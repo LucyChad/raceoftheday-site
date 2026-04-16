@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Race Of The Day — UK Horse Racing Tips | Verified 12-Month Record</title>
+  <meta name="description" content="Race Of The Day. Daily horse racing selections from Frank Chadwick, 60 years in racing. +628 points profit from 1,841 selections over 12 verified months. £1 trial week." />
+  <link rel="canonical" href="https://raceoftheday.co.uk" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Bebas+Neue&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --red: #CC2936; --mint: #7FFFD4; --black: #0D0D0D; --white: #FFFFFF; --grey: #F5F5F5; }
+    body { font-family: 'Manrope', sans-serif; background: var(--white); color: var(--black); font-size: 17px; line-height: 1.65; }
+    .container { max-width: 820px; margin: 0 auto; padding: 0 24px; }
+
+    /* NAV */
+    nav { border-bottom: 1px solid #E5E5E5; padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; color: var(--black); }
+    .nav-logo span { color: var(--red); }
+    .nav-cta { background: var(--red); color: var(--white); font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 13px; padding: 10px 20px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.06em; }
+
+    /* HERO */
+    #hero { background: var(--black); color: var(--white); padding: 72px 24px 64px; }
+    .hero-meta { font-family: 'DM Mono', monospace; font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 20px; }
+    .hero-meta span { color: var(--mint); margin-right: 12px; }
+    h1 { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: clamp(34px, 5.5vw, 58px); line-height: 1.04; letter-spacing: -0.02em; margin-bottom: 24px; }
+    h1 em { color: var(--mint); font-style: normal; }
+    .hero-standfirst { font-size: 19px; color: rgba(255,255,255,0.7); line-height: 1.6; max-width: 580px; margin-bottom: 36px; }
+    .hero-cta { display: inline-block; background: var(--red); color: var(--white); font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: 0.07em; padding: 18px 40px; text-decoration: none; text-transform: uppercase; }
+
+    /* RECORD STRIP */
+    .record-strip { background: var(--mint); padding: 0; }
+    .record-strip .container { display: grid; grid-template-columns: repeat(4, 1fr); }
+    .record-cell { padding: 28px 20px; text-align: center; border-right: 1px solid rgba(0,0,0,0.08); }
+    .record-cell:last-child { border-right: none; }
+    .record-num { font-family: 'Bebas Neue', sans-serif; font-size: 44px; color: var(--black); line-height: 1; display: block; }
+    .record-label { font-family: 'DM Mono', monospace; font-size: 10px; color: rgba(0,0,0,0.55); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 5px; display: block; }
+
+    /* SECTIONS */
+    section { padding: 64px 0; }
+    section.alt { background: var(--grey); }
+    h2 { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: clamp(24px, 3.5vw, 36px); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 20px; }
+    h3 { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 20px; margin-bottom: 10px; }
+    p { margin-bottom: 18px; color: #2A2A2A; }
+    .section-label { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--red); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 14px; display: block; }
+
+    /* FRANK */
+    .frank-block { display: grid; grid-template-columns: 1fr 2fr; gap: 48px; align-items: start; }
+    .frank-card { background: var(--black); color: var(--white); padding: 36px 28px; }
+    .frank-name { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 26px; margin-bottom: 4px; }
+    .frank-title { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--mint); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px; display: block; }
+    .frank-stat { margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .frank-stat:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .frank-stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 32px; color: var(--mint); line-height: 1; display: block; }
+    .frank-stat-label { font-family: 'DM Mono', monospace; font-size: 10px; color: rgba(255,255,255,0.4); letter-spacing: 0.08em; text-transform: uppercase; }
+
+    /* RECORD TABLE */
+    .record-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 15px; }
+    .record-table th { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; padding: 12px 16px; text-align: left; background: var(--black); color: rgba(255,255,255,0.6); font-weight: 400; }
+    .record-table td { padding: 14px 16px; border-bottom: 1px solid #EBEBEB; }
+    .record-table tr:last-child td { border-bottom: none; }
+    .positive { color: #1a7a3d; font-weight: 700; }
+    .source-note { font-family: 'DM Mono', monospace; font-size: 11px; color: #999; margin-top: -8px; }
+
+    /* HOW IT WORKS */
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin: 32px 0; }
+    .step { background: var(--black); color: var(--white); padding: 32px 24px; }
+    .step-num { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: var(--mint); line-height: 1; margin-bottom: 12px; display: block; }
+    .step h3 { color: var(--white); font-size: 17px; margin-bottom: 8px; }
+    .step p { color: rgba(255,255,255,0.6); font-size: 15px; margin: 0; }
+
+    /* PRICING */
+    .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin: 32px 0; }
+    .price-card { background: var(--grey); padding: 32px 28px; position: relative; }
+    .price-card.featured { background: var(--black); color: var(--white); }
+    .price-badge { font-family: 'DM Mono', monospace; font-size: 10px; background: var(--red); color: var(--white); padding: 4px 10px; letter-spacing: 0.1em; text-transform: uppercase; display: inline-block; margin-bottom: 16px; }
+    .price-name { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 18px; margin-bottom: 6px; }
+    .price-amount { font-family: 'Bebas Neue', sans-serif; font-size: 52px; line-height: 1; color: var(--red); }
+    .price-period { font-family: 'DM Mono', monospace; font-size: 11px; color: #999; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; display: block; }
+    .price-card.featured .price-period { color: rgba(255,255,255,0.4); }
+    .price-note { font-size: 14px; color: #555; margin: 0; }
+    .price-card.featured .price-note { color: rgba(255,255,255,0.6); }
+    .trial-note { background: var(--black); color: var(--white); padding: 20px 28px; margin-top: 2px; font-size: 15px; }
+    .trial-note strong { color: var(--mint); }
+
+    /* CTA STRIP */
+    .cta-strip { background: var(--red); color: var(--white); padding: 56px 40px; text-align: center; }
+    .cta-strip h2 { color: var(--white); margin-bottom: 12px; }
+    .cta-strip p { color: rgba(255,255,255,0.8); margin-bottom: 28px; }
+    .cta-btn-white { display: inline-block; background: var(--white); color: var(--red); font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 15px; letter-spacing: 0.08em; padding: 18px 44px; text-decoration: none; text-transform: uppercase; }
+
+    /* CONTACT */
+    .contact-block { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+    .contact-item { margin-bottom: 20px; }
+    .contact-label { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--red); letter-spacing: 0.12em; text-transform: uppercase; display: block; margin-bottom: 4px; }
+    .contact-value { font-weight: 600; font-size: 16px; }
+    .contact-value a { color: var(--black); text-decoration: none; }
+
+    /* FOOTER */
+    footer { background: #0A0A0A; border-top: 1px solid #1A1A1A; padding: 36px 24px; text-align: center; }
+    .disclaimer { font-size: 12px; color: rgba(255,255,255,0.25); line-height: 1.7; max-width: 680px; margin: 0 auto; }
+    .disclaimer a { color: rgba(255,255,255,0.4); }
+
+    @media (max-width: 640px) {
+      .record-strip .container { grid-template-columns: 1fr 1fr; }
+      .frank-block { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .contact-block { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Race Of The <span>Day</span></a>
+  <a href="#pricing" class="nav-cta">Start £1 Trial</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-meta"><span>Est. 2024</span> UK Horse Racing Tips · Verified Record</div>
+    <h1>Where 60 years of<br>racing intelligence<br><em>ignores 90% of races</em></h1>
+    <p class="hero-standfirst">Frank Chadwick has been studying form for six decades. He ignores most races. The ones he doesn't ignore have produced +628 points profit over the last 12 months. Every selection is logged. Every result is verified.</p>
+    <a href="#pricing" class="hero-cta">Start your £1 trial week</a>
+  </div>
+</section>
+
+<!-- RECORD STRIP -->
+<div class="record-strip">
+  <div class="container">
+    <div class="record-cell">
+      <span class="record-num">+628</span>
+      <span class="record-label">Points profit · 12 months</span>
+    </div>
+    <div class="record-cell">
+      <span class="record-num">1,841</span>
+      <span class="record-label">Selections logged</span>
+    </div>
+    <div class="record-cell">
+      <span class="record-num">13.6%</span>
+      <span class="record-label">Win rate</span>
+    </div>
+    <div class="record-cell">
+      <span class="record-num">27.6%</span>
+      <span class="record-label">Win or place rate</span>
+    </div>
+  </div>
+</div>
+
+<!-- FRANK -->
+<section>
+  <div class="container">
+    <span class="section-label">The tipster</span>
+    <div class="frank-block">
+      <div class="frank-card">
+        <div class="frank-name">Frank Chadwick</div>
+        <span class="frank-title">Lead Analyst</span>
+        <div class="frank-stat">
+          <span class="frank-stat-num">60</span>
+          <span class="frank-stat-label">Years studying form</span>
+        </div>
+        <div class="frank-stat">
+          <span class="frank-stat-num">+628</span>
+          <span class="frank-stat-label">Points profit · Apr 2025–Apr 2026</span>
+        </div>
+        <div class="frank-stat">
+          <span class="frank-stat-num">90%</span>
+          <span class="frank-stat-label">Races filtered out</span>
+        </div>
+      </div>
+      <div>
+        <h2>The man behind the selections</h2>
+        <p>Frank Chadwick has been attending and analysing race meetings since the 1960s. He is not a data analyst or a software system. He is a horseman — someone who understands why a horse runs better on soft ground at Haydock than on good at Cheltenham, and what a trainer's pattern of entries tells you before the market has priced it in.</p>
+        <p>The discipline that defines his approach is what he doesn't bet on. Roughly nine races in ten are filtered out before he considers a selection. The ones that remain — where the form, ground, draw, trainer pattern and price align — are the races Race Of The Day members receive.</p>
+        <p>Every selection Frank makes is logged at the time it is made, before the race runs, with the advised price. Every result is recorded against it. The record is open to members before they subscribe. There is no selective memory and no cherry-picked period.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VERIFIED RECORD -->
+<section class="alt">
+  <div class="container">
+    <span class="section-label">The verified record</span>
+    <h2>12 months. Every selection. Every result.</h2>
+    <p>The table below shows the full performance summary for Race Of The Day, April 2025 to April 2026. Results are calculated at Starting Price. All selections were logged before the race.</p>
+
+    <table class="record-table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Figure</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Points profit (12 months)</strong></td>
+          <td class="positive">+628.01 pts</td>
+          <td>Level stakes, SP-based</td>
+        </tr>
+        <tr>
+          <td><strong>Period</strong></td>
+          <td>Apr 2025 – Apr 2026</td>
+          <td>Full 12 months, no gaps</td>
+        </tr>
+        <tr>
+          <td><strong>Total selections</strong></td>
+          <td>1,841</td>
+          <td>2–7 per racing day</td>
+        </tr>
+        <tr>
+          <td><strong>Winners</strong></td>
+          <td>248</td>
+          <td>13.6% win rate</td>
+        </tr>
+        <tr>
+          <td><strong>Places</strong></td>
+          <td>257</td>
+          <td>Each-way returns included</td>
+        </tr>
+        <tr>
+          <td><strong>Win or place rate</strong></td>
+          <td>27.6%</td>
+          <td>Combined strike rate</td>
+        </tr>
+        <tr>
+          <td><strong>Odds basis</strong></td>
+          <td>Starting Price (SP)</td>
+          <td>Worst-case — no BOG, no early prices</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="source-note">Source: ROTD Master Tip Log · Last updated 13 April 2026 · Results calculated at SP</p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section>
+  <div class="container">
+    <span class="section-label">How it works</span>
+    <h2>Simple. Daily. Before the first race.</h2>
+    <div class="steps">
+      <div class="step">
+        <span class="step-num">01</span>
+        <h3>Frank selects</h3>
+        <p>Each morning Frank analyses the day's racing and identifies the races worth betting on. You get the conclusion — not the workings.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">02</span>
+        <h3>You receive</h3>
+        <p>Selections land by email and WhatsApp before 12pm. Horse, race, course, bet type. One tap to place with your preferred bookmaker.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">03</span>
+        <h3>Results logged</h3>
+        <p>Every result is recorded against the selection log. The running P&L is visible to all members at all times. Nothing is hidden.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="alt" id="pricing">
+  <div class="container">
+    <span class="section-label">Membership</span>
+    <h2>Start for £1. Stay because it works.</h2>
+    <p>All memberships begin with a 7-day trial for £1. Founding Member pricing is limited — when each tier sells out, the price moves up. Members who join early are locked in at their rate for life.</p>
+
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-badge">Founding Member · Monthly</div>
+        <div class="price-name">Monthly</div>
+        <span class="price-amount">£29</span>
+        <span class="price-period">per month · first 100 members</span>
+        <p class="price-note">Full daily selections. Cancel anytime. Price rises to £39 at 101 members.</p>
+      </div>
+      <div class="price-card featured">
+        <div class="price-badge">Founding Member · Quarterly</div>
+        <div class="price-name">Quarterly</div>
+        <span class="price-amount">£75</span>
+        <span class="price-period">every 3 months · save £12</span>
+        <p class="price-note">Three months at the Founder rate. £25/month versus £29 rolling.</p>
+      </div>
+    </div>
+    <div class="trial-note">
+      Every membership begins with a <strong>7-day trial for £1</strong>. Full access from day one. Cancel before day 7 and pay nothing more. The full verified record is open before you start.
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-strip">
+  <div class="container">
+    <h2>The record is open. Judge it yourself.</h2>
+    <p>Every selection Frank has made in the last 12 months is logged and available to read before you pay a penny beyond the £1 trial.</p>
+    <a href="#pricing" class="cta-btn-white">Start Your £1 Trial Week</a>
+  </div>
+</div>
+
+<!-- CONTACT / ABOUT -->
+<section>
+  <div class="container">
+    <span class="section-label">About & contact</span>
+    <h2>Race Of The Day</h2>
+    <div class="contact-block">
+      <div>
+        <p>Race Of The Day is a UK-based horse racing tipster membership service. Daily selections are provided by Frank Chadwick, with 60 years of professional racing experience. The service covers flat, jumps and all-weather racing year-round.</p>
+        <p>The full selection history and verified P&L record is available to prospective members and media on request.</p>
+      </div>
+      <div>
+        <div class="contact-item">
+          <span class="contact-label">Email</span>
+          <span class="contact-value"><a href="mailto:hello@raceoftheday.co.uk">hello@raceoftheday.co.uk</a></span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Website</span>
+          <span class="contact-value"><a href="https://raceoftheday.co.uk">raceoftheday.co.uk</a></span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Service type</span>
+          <span class="contact-value">Horse racing tips · UK & Ireland</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Tipster</span>
+          <span class="contact-value">Frank Chadwick</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p class="disclaimer">Race Of The Day is operated for informational and entertainment purposes. Horse racing involves financial risk and past results do not guarantee future returns. Please bet responsibly and within your means. <a href="https://www.begambleaware.org" target="_blank" rel="noopener">BeGambleAware.org</a> | 0808 802 0133 | 18+ only. Frank Chadwick is not a licensed financial adviser. All selections are opinions, not financial advice.</p>
+</footer>
+
+</body>
+</html>

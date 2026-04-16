@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Race Of The Day — Content for Proofing (Frank)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Merriweather+Sans:wght@400;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: 11pt;
+      line-height: 1.8;
+      color: #111;
+      background: #fff;
+    }
+
+    /* Cover page */
+    .cover {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px;
+      border-bottom: 4px solid #CC2936;
+      page-break-after: always;
+    }
+    .cover-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 9pt;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #CC2936;
+      margin-bottom: 24px;
+    }
+    .cover h1 {
+      font-family: 'Merriweather Sans', sans-serif;
+      font-size: 32pt;
+      font-weight: 800;
+      line-height: 1.1;
+      color: #111;
+      margin-bottom: 24px;
+    }
+    .cover-meta {
+      font-family: 'DM Mono', monospace;
+      font-size: 9pt;
+      color: #666;
+      line-height: 2;
+    }
+    .cover-toc {
+      margin-top: 48px;
+      border-top: 1px solid #E0E0E0;
+      padding-top: 32px;
+    }
+    .cover-toc h2 {
+      font-family: 'Merriweather Sans', sans-serif;
+      font-size: 11pt;
+      font-weight: 700;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .toc-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 7px 0;
+      border-bottom: 1px dotted #DDD;
+      font-size: 10pt;
+    }
+    .toc-num {
+      font-family: 'DM Mono', monospace;
+      color: #CC2936;
+      min-width: 28px;
+    }
+    .toc-slug {
+      font-family: 'DM Mono', monospace;
+      font-size: 8.5pt;
+      color: #999;
+    }
+    .cover-instructions {
+      margin-top: 40px;
+      background: #F7F7F7;
+      padding: 20px 24px;
+      font-size: 10pt;
+      color: #444;
+      line-height: 1.7;
+    }
+    .cover-instructions strong { color: #111; }
+
+    /* Article sections */
+    .article-section {
+      padding: 60px 80px;
+      page-break-after: always;
+      max-width: 100%;
+    }
+    .article-section:last-child {
+      page-break-after: auto;
+    }
+
+    .article-header {
+      border-bottom: 2px solid #111;
+      padding-bottom: 20px;
+      margin-bottom: 32px;
+    }
+    .article-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 9pt;
+      color: #CC2936;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 10px;
+    }
+    .article-type {
+      font-family: 'DM Mono', monospace;
+      font-size: 8.5pt;
+      color: #999;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .article-section h1 {
+      font-family: 'Merriweather Sans', sans-serif;
+      font-size: 20pt;
+      font-weight: 800;
+      line-height: 1.15;
+      color: #111;
+      margin-bottom: 10px;
+    }
+    .article-slug {
+      font-family: 'DM Mono', monospace;
+      font-size: 8pt;
+      color: #BBB;
+      margin-top: 8px;
+    }
+
+    .standfirst {
+      font-size: 12pt;
+      font-style: italic;
+      color: #444;
+      line-height: 1.7;
+      margin-bottom: 32px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #E0E0E0;
+    }
+
+    h2 {
+      font-family: 'Merriweather Sans', sans-serif;
+      font-size: 14pt;
+      font-weight: 700;
+      margin: 32px 0 12px;
+      color: #111;
+      line-height: 1.25;
+    }
+    h3 {
+      font-family: 'Merriweather Sans', sans-serif;
+      font-size: 11.5pt;
+      font-weight: 700;
+      margin: 24px 0 8px;
+      color: #333;
+    }
+
+    p { margin-bottom: 14px; }
+
+    .pull-quote {
+      border-left: 3px solid #CC2936;
+      padding: 12px 20px;
+      margin: 24px 0;
+      font-size: 12pt;
+      font-weight: 700;
+      color: #222;
+      line-height: 1.5;
+      background: #FAFAFA;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 9.5pt;
+      font-family: 'Merriweather Sans', sans-serif;
+    }
+    th {
+      font-family: 'DM Mono', monospace;
+      font-size: 8pt;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 9px 12px;
+      text-align: left;
+      background: #111;
+      color: rgba(255,255,255,0.7);
+      font-weight: 400;
+    }
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #EBEBEB;
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr.alt td { background: #F9F9F9; }
+
+    .stats-row {
+      display: flex;
+      gap: 0;
+      margin: 24px 0;
+      border: 1px solid #E0E0E0;
+    }
+    .stat-item {
+      flex: 1;
+      padding: 16px 12px;
+      text-align: center;
+      border-right: 1px solid #E0E0E0;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 18pt;
+      font-weight: 700;
+      color: #CC2936;
+      display: block;
+      line-height: 1.1;
+    }
+    .stat-lbl {
+      font-family: 'DM Mono', monospace;
+      font-size: 7pt;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      display: block;
+      margin-top: 4px;
+    }
+
+    .verdict {
+      background: #F0F0F0;
+      padding: 20px 24px;
+      margin: 20px 0;
+      font-style: italic;
+    }
+    .verdict-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 8pt;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      display: block;
+      margin-bottom: 8px;
+      font-style: normal;
+    }
+
+    ol.steps { padding-left: 0; list-style: none; counter-reset: steps; }
+    ol.steps li {
+      counter-increment: steps;
+      padding: 12px 0 12px 40px;
+      border-bottom: 1px solid #EBEBEB;
+      position: relative;
+    }
+    ol.steps li::before {
+      content: counter(steps);
+      position: absolute;
+      left: 0;
+      top: 12px;
+      font-family: 'DM Mono', monospace;
+      font-size: 14pt;
+      font-weight: 700;
+      color: #CC2936;
+      width: 32px;
+    }
+    ol.steps li:last-child { border-bottom: none; }
+    ol.steps li strong { display: block; font-family: 'Merriweather Sans', sans-serif; margin-bottom: 4px; }
+
+    ul.criteria { list-style: none; padding: 0; }
+    ul.criteria li {
+      padding: 9px 0 9px 20px;
+      border-bottom: 1px solid #EBEBEB;
+      position: relative;
+    }
+    ul.criteria li::before { content: '—'; position: absolute; left: 0; color: #CC2936; font-weight: 700; }
+    ul.criteria li:last-child { border-bottom: none; }
+
+    .warning-box {
+      border: 1px solid #FFCCCC;
+      background: #FFF8F8;
+      padding: 16px 20px;
+      margin: 20px 0;
+      font-size: 10pt;
+    }
+    .warning-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 8pt;
+      color: #CC2936;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      display: block;
+      margin-bottom: 10px;
+    }
+    .info-box {
+      border-left: 3px solid #CCC;
+      background: #F7F7F7;
+      padding: 14px 18px;
+      margin: 20px 0;
+      font-size: 10pt;
+    }
+
+    .calc-box {
+      background: #F0F0F0;
+      padding: 16px 20px;
+      margin: 20px 0;
+      font-size: 10pt;
+    }
+    .calc-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 8pt;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      display: block;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    .calc-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 0;
+      border-bottom: 1px solid #DDD;
+      font-family: 'DM Mono', monospace;
+      font-size: 9.5pt;
+    }
+    .calc-row:last-child { border-bottom: none; font-weight: 700; }
+    .calc-row .lbl { color: #555; }
+    .calc-row .val { font-weight: 700; }
+
+    /* Proof marks column hint */
+    @page {
+      size: A4;
+      margin: 20mm 22mm 20mm 22mm;
+    }
+
+    @media print {
+      .cover { page-break-after: always; }
+      .article-section { page-break-after: always; }
+    }
+
+    .service-card {
+      border: 1px solid #DDD;
+      margin: 20px 0;
+    }
+    .service-card-header {
+      background: #111;
+      color: #fff;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .service-card-name { font-family: 'Merriweather Sans', sans-serif; font-weight: 700; font-size: 11pt; }
+    .service-card-price { font-family: 'DM Mono', monospace; font-size: 9pt; color: #aaa; }
+    .service-card-body { padding: 14px 16px; }
+    .service-meta { display: flex; gap: 24px; margin-bottom: 12px; font-size: 9.5pt; }
+    .service-meta-label { font-family: 'DM Mono', monospace; font-size: 8pt; color: #999; text-transform: uppercase; letter-spacing: 0.06em; display: block; }
+    .service-meta-value { font-weight: 700; }
+
+    .positive { color: #1a7a3d; }
+    .negative { color: #CC2936; }
+  </style>
+</head>
+<body>
+
+<!-- COVER PAGE -->
+<div class="cover">
+  <div class="cover-label">Race Of The Day — Internal Document</div>
+  <h1>Website Content<br>Proofing Draft</h1>
+  <div class="cover-meta">
+    Prepared: 16 April 2026<br>
+    For: Frank (Racing Expert / Tipster)<br>
+    From: Content build session<br>
+    Pages: 7 articles
+  </div>
+
+  <div class="cover-toc">
+    <h2>Contents</h2>
+    <div class="toc-item">
+      <span><span class="toc-num">1</span> 2026 Grand National — Full Result &amp; Analysis</span>
+      <span class="toc-slug">grand-national-2026</span>
+    </div>
+    <div class="toc-item">
+      <span><span class="toc-num">2</span> Craven Stakes 2026 — Race Preview</span>
+      <span class="toc-slug">craven-stakes-2026</span>
+    </div>
+    <div class="toc-item">
+      <span><span class="toc-num">3</span> Willie Mullins — Trainer Profile</span>
+      <span class="toc-slug">trainer-profiles/willie-mullins</span>
+    </div>
+    <div class="toc-item">
+      <span><span class="toc-num">4</span> Dan Skelton — Trainer Profile</span>
+      <span class="toc-slug">trainer-profiles/dan-skelton</span>
+    </div>
+    <div class="toc-item">
+      <span><span class="toc-num">5</span> Best UK Horse Racing Tipsters 2026</span>
+      <span class="toc-slug">best-horse-racing-tipsters-uk-2026</span>
+    </div>
+    <div class="toc-item">
+      <span><span class="toc-num">6</span> How to Choose a Verified Tipster</span>
+      <span class="toc-slug">how-to-choose-a-verified-horse-racing-tipster</span>
+    </div>
+    <div class="toc-item">
+      <span><span class="toc-num">7</span> Each-Way Betting Guide</span>
+      <span class="toc-slug">each-way-betting-guide-horse-racing</span>
+    </div>
+  </div>
+
+  <div class="cover-instructions">
+    <strong>Frank — things to check:</strong><br>
+    Factual accuracy on all race results, horse names, trainers, jockeys and official ratings (OR). Stats on the trainer profile pages are pulled from live racing data — flag anything that looks off. The betting guides (articles 5, 6, 7) are for a general racing audience so check the explanations are clear and fair. Add any notes in the margin or return a marked-up copy.
+  </div>
+</div>
+
+
+<!-- ARTICLE 1: GRAND NATIONAL -->
+<div class="article-section">
+  <div class="article-header">
+    <span class="article-type">Race Result &amp; Analysis</span>
+    <span class="article-num">Article 1 of 7</span>
+    <h1>2026 Grand National — Full Result &amp; Analysis</h1>
+    <div class="article-slug">raceoftheday.co.uk/grand-national-2026</div>
+  </div>
+
+  <p class="standfirst">I Am Maximus wins the 2026 Randox Grand National for Willie Mullins and Paul Townend. 34 runners, Good to Soft ground, Aintree. The full result, key incidents, and what it means for 2027.</p>
+
+  <div class="stats-row">
+    <div class="stat-item"><span class="stat-num">9/2F</span><span class="stat-lbl">Starting price</span></div>
+    <div class="stat-item"><span class="stat-num">168</span><span class="stat-lbl">Official rating</span></div>
+    <div class="stat-item"><span class="stat-num">34</span><span class="stat-lbl">Runners</span></div>
+    <div class="stat-item"><span class="stat-num">Good/Soft</span><span class="stat-lbl">Going</span></div>
+    <div class="stat-item"><span class="stat-num">8</span><span class="stat-lbl">Mullins runners</span></div>
+  </div>
+
+  <h2>The result</h2>
+  <table>
+    <thead>
+      <tr><th>Pos</th><th>Horse</th><th>Age</th><th>SP</th><th>Trainer</th><th>Jockey</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>1st</strong></td><td><strong>I Am Maximus (FR)</strong></td><td>10</td><td>9/2F</td><td>W P Mullins</td><td>Paul Townend</td></tr>
+      <tr class="alt"><td>2nd</td><td>Iroko (FR)</td><td>8</td><td>18/1</td><td>Greenall &amp; Guerriero</td><td>Jonjo O'Neill Jr</td></tr>
+      <tr><td>3rd</td><td>Jordans (FR)</td><td>7</td><td>28/1</td><td>Joseph P O'Brien</td><td>Ben Jones</td></tr>
+      <tr class="alt"><td>4th</td><td>Johnnywho (IRE)</td><td>9</td><td>12/1</td><td>Jonjo &amp; A J O'Neill</td><td>Richie McLernon</td></tr>
+      <tr><td>5th</td><td>High Class Hero (GB)</td><td>9</td><td>66/1</td><td>W P Mullins</td><td>James Bowen</td></tr>
+      <tr class="alt"><td>Fell</td><td>Panic Attack (IRE)</td><td>10</td><td>7/1</td><td>Dan Skelton</td><td>Harry Skelton</td></tr>
+      <tr><td>Fell</td><td>Gerri Colombe (FR)</td><td>10</td><td>33/1</td><td>Gordon Elliott</td><td>Jack Kennedy</td></tr>
+      <tr class="alt"><td>Fell</td><td>Quai De Bourbon (FR)</td><td>7</td><td>33/1</td><td>W P Mullins</td><td>Donagh Meyler</td></tr>
+      <tr><td>Unseated</td><td>Grangeclare West (IRE)</td><td>10</td><td>9/1</td><td>W P Mullins</td><td>Mr P W Mullins</td></tr>
+      <tr class="alt"><td>Unseated</td><td>Jagwar (FR)</td><td>7</td><td>17/2</td><td>Greenall &amp; Guerriero</td><td>Mark Walsh</td></tr>
+      <tr><td>Unseated</td><td>Banbridge (IRE)</td><td>10</td><td>33/1</td><td>Joseph P O'Brien</td><td>J J Slevin</td></tr>
+      <tr class="alt"><td>Pulled up</td><td>Lecky Watson (IRE)</td><td>8</td><td>50/1</td><td>W P Mullins</td><td>Sean O'Keeffe</td></tr>
+      <tr><td>Pulled up</td><td>Spanish Harlem (FR)</td><td>8</td><td>50/1</td><td>W P Mullins</td><td>Brian Hayes</td></tr>
+    </tbody>
+  </table>
+
+  <h2>I Am Maximus</h2>
+  <p>A ten-year-old French-bred chaser rated 168 — the highest-rated horse in the race. Won with authority under Paul Townend, Mullins' retained jockey. The ride was patient through the early stages and decisive from the final few fences. Townend did not need to do anything exceptional — the horse was good enough.</p>
+  <p>I Am Maximus will be eleven in the 2027 National. Age eleven is not unusual for Grand National winners but the weight he will carry following this win is the primary question for his 2027 participation.</p>
+
+  <div class="pull-quote">Mullins ran eight horses. Won with the favourite. Had the 5th (High Class Hero, 66/1). Two unseated, two pulled up, one fell. The race was shaped by his yard.</div>
+
+  <h2>Willie Mullins — the scale of the operation</h2>
+  <p>Eight of the 34 runners came from Closnamore: I Am Maximus (1st), High Class Hero (5th), Champ Kiely (8th), Grangeclare West (UR), Captain Cody (UR), Quai De Bourbon (F), Lecky Watson (PU), Spanish Harlem (PU). That level of representation is without precedent in the modern era of the Grand National.</p>
+  <p>Grangeclare West (9/1) unseated Patrick Mullins and remains a strong 2027 Aintree candidate. Jagwar (17/2), trained by Greenall and Guerriero — not Mullins — also unseated, removing what looked a live each-way contender from proceedings.</p>
+
+  <h2>Panic Attack</h2>
+  <p>Dan Skelton's Panic Attack (7/1) fell during the race. The ten-year-old was second favourite and one of the leading British hopes. Falls at Aintree are part of the race's character. Panic Attack's ability profile remains intact and he is a realistic 2027 National contender.</p>
+
+  <h2>Iroko, Jordans and the places</h2>
+  <p>Iroko (FR), trained by Oliver Greenall and Josh Guerriero and ridden by Jonjo O'Neill Jr, finished second at 18/1. The eight-year-old handled the National course well. Stablemate Jagwar (17/2) unseated early — Greenall and Guerriero will feel the result could have looked very different had both completed.</p>
+  <p>Jordans (FR) in third at 28/1, trained by Joseph O'Brien and ridden by Ben Jones, was a notable result — a seven-year-old finishing third in the Grand National is unusual. The race traditionally favours older, more experienced horses. Johnnywho (IRE) ran a solid fourth at 12/1 for the Jonjo O'Neill yard.</p>
+</div>
+
+
+<!-- ARTICLE 2: CRAVEN STAKES -->
+<div class="article-section">
+  <div class="article-header">
+    <span class="article-type">Race Preview — 16 April 2026</span>
+    <span class="article-num">Article 2 of 7</span>
+    <h1>Craven Stakes 2026 — Newmarket Preview</h1>
+    <div class="article-slug">raceoftheday.co.uk/craven-stakes-2026</div>
+  </div>
+
+  <p class="standfirst">The Betway Craven Stakes (Group 3, 1m, Good) at Newmarket Rowley Mile, 3:35. Six unbeaten horses in a seven-runner field. The Classic trial that sets the early order for the 2,000 Guineas market.</p>
+
+  <div class="stats-row">
+    <div class="stat-item"><span class="stat-num">Group 3</span><span class="stat-lbl">Race class</span></div>
+    <div class="stat-item"><span class="stat-num">1m</span><span class="stat-lbl">Distance</span></div>
+    <div class="stat-item"><span class="stat-num">Good</span><span class="stat-lbl">Going</span></div>
+    <div class="stat-item"><span class="stat-num">7</span><span class="stat-lbl">Runners</span></div>
+    <div class="stat-item"><span class="stat-num">3:35</span><span class="stat-lbl">Race time</span></div>
+  </div>
+
+  <h2>The field</h2>
+  <table>
+    <thead>
+      <tr><th>Draw</th><th>Horse</th><th>Age</th><th>Trainer</th><th>Jockey</th><th>Form</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>5</td><td><strong>Hawk Mountain</strong></td><td>3</td><td>A P O'Brien</td><td>Ryan Moore</td><td>5111-</td></tr>
+      <tr class="alt"><td>2</td><td><strong>Hidden Force</strong></td><td>3</td><td>Charlie Appleby</td><td>William Buick</td><td>1-1</td></tr>
+      <tr><td>3</td><td><strong>Avicenna</strong></td><td>3</td><td>Roger Varian</td><td>Ray Dawson</td><td>11-</td></tr>
+      <tr class="alt"><td>7</td><td>Venetian Prince</td><td>3</td><td>Andrew Balding</td><td>P J McDonald</td><td>61-22</td></tr>
+      <tr><td>4</td><td>Commander's Intent</td><td>3</td><td>George Scott</td><td>James Doyle</td><td>31222-</td></tr>
+      <tr class="alt"><td>6</td><td>Hankelow</td><td>3</td><td>K R Burke</td><td>—</td><td>121-</td></tr>
+      <tr><td>1</td><td>Oxagon</td><td>3</td><td>John &amp; Thady Gosden</td><td>Oisin Murphy</td><td>51255-</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Hawk Mountain</h2>
+  <p>Trained by Aidan O'Brien, ridden by Ryan Moore. Form of 5111 shows a horse that started slowly as a juvenile and improved across three consecutive wins. Moore's choice to ride him over stablemates is always a meaningful signal at this level. The Rowley Mile suits horses with a galloping action — O'Brien's three-year-olds typically improve significantly stepping up in class in the spring.</p>
+
+  <h2>Hidden Force</h2>
+  <p>Charlie Appleby, William Buick. Two runs, two wins. The form figure of 1-1 masks the fact that the horse has not yet been fully tested. Godolphin's operation arrives with a horse whose ceiling is unknown. Appleby and Buick have won this race before and the combination at Newmarket in a Classic trial commands respect.</p>
+
+  <div class="pull-quote">Hidden Force has not been beaten. Two runs, two wins. The question is whether those wins came against suitable opposition.</div>
+
+  <h2>Avicenna</h2>
+  <p>Roger Varian's entry with Ray Dawson in the saddle. 100% record from two starts. Varian has a strong record at Newmarket with well-bred three-year-olds. Avicenna looks the type whose best form comes as the season develops. Today establishes whether two juvenile wins translate to Group 3 level on the Rowley Mile.</p>
+
+  <h2>The remainder</h2>
+  <p>Venetian Prince (Balding, McDonald) has placed twice after an earlier win — consistent without winning at this level. Commander's Intent (George Scott, Doyle) has been placed five times without winning. Oxagon (Gosden, Murphy) form of 51255 suggests at the limit of his ability here. Hankelow (Burke) arrives with two wins but drawn in stall six, making the task harder.</p>
+
+  <div class="verdict">
+    <span class="verdict-label">Race Of The Day Assessment</span>
+    Three horses dominate. Hawk Mountain has the strongest profile on figures and brings the Moore factor. Hidden Force is unbeaten and represents the division's most powerful operation. Avicenna is the unknown — two wins from two but untested at this level. A race that will define the Classic order for several of these horses going forward.
+  </div>
+
+  <h2>Also today: Abernant Stakes (3:00, Group 3, 6f)</h2>
+  <p>Diligent Harry (Clive Cox, Rossa Ryan), an eight-year-old sprinter, arrives having won his last two starts. At eight, sprinters can maintain peak form across several seasons. Elmonjed (Haggas, Marquand) consistent on form of 21021. Beckford's Folly (Appleby, Buick) a three-year-old testing Group 3 company for the first time.</p>
+</div>
+
+
+<!-- ARTICLE 3: WILLIE MULLINS PROFILE -->
+<div class="article-section">
+  <div class="article-header">
+    <span class="article-type">Trainer Profile</span>
+    <span class="article-num">Article 3 of 7</span>
+    <h1>Willie Mullins — Trainer Profile 2026</h1>
+    <div class="article-slug">raceoftheday.co.uk/trainer-profiles/willie-mullins</div>
+  </div>
+
+  <p class="standfirst">The dominant trainer in jump racing. Multiple Champion Trainer in Ireland and Britain. Grand National winner in 2026. The standard by which every other jumps operation is measured.</p>
+
+  <div class="stats-row">
+    <div class="stat-item"><span class="stat-num">2,181</span><span class="stat-lbl">Jumps runners analysed (2024–26)</span></div>
+    <div class="stat-item"><span class="stat-num">A/E 1.37</span><span class="stat-lbl">Aintree above-expected</span></div>
+    <div class="stat-item"><span class="stat-num">168</span><span class="stat-lbl">OR — I Am Maximus</span></div>
+    <div class="stat-item"><span class="stat-num">+69.49</span><span class="stat-lbl">Level stakes profit at Cheltenham</span></div>
+    <div class="stat-item"><span class="stat-num">8</span><span class="stat-lbl">National runners 2026</span></div>
+  </div>
+
+  <h2>The operation at Closnamore</h2>
+  <p>Willie Mullins trains from Closnamore in County Carlow, Ireland. The yard has grown from a respected Irish jumping operation to the dominant force across the full spectrum of jump racing in Britain and Ireland. The scale is unmatched — in the 2026 Grand National, Mullins ran eight of the 34 horses in the field.</p>
+  <p>The operation is a family business. His son Patrick (Mr P W Mullins) rides regularly. His brother Tom trains from a separate yard. The Mullins name carries weight throughout racing on both sides of the Irish Sea.</p>
+
+  <h2>The 2026 Grand National</h2>
+  <p>I Am Maximus, a ten-year-old rated 168, won the 2026 Randox Grand National at 9/2 under Paul Townend. Grangeclare West (9/1, OR 166), ridden by Patrick Mullins, unseated during the race. Had he completed, Mullins could have filled the first two positions.</p>
+
+  <div class="pull-quote">Mullins ran eight horses. Won with the favourite. Had the 5th at 66/1. Two others unseated. The race was shaped by his yard.</div>
+
+  <h2>Paul Townend</h2>
+  <p>Townend has been Mullins' retained jockey since the retirement of Ruby Walsh. The partnership has produced championship success at Cheltenham, Punchestown, and now Aintree. When Mullins and Townend combine at a major festival, the combination demands respect regardless of price.</p>
+
+  <h2>Key horses to follow</h2>
+  <table>
+    <thead>
+      <tr><th>Horse</th><th>Age</th><th>OR</th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>I Am Maximus</strong></td><td>10</td><td>168</td><td>2026 Grand National winner. Will be 11 in 2027.</td></tr>
+      <tr class="alt"><td><strong>Grangeclare West</strong></td><td>10</td><td>166</td><td>Unseated 2026 National. Strong 2027 Aintree candidate.</td></tr>
+      <tr><td><strong>Champ Kiely</strong></td><td>10</td><td>157</td><td>Completed 2026 National in 8th. Consistent stayer.</td></tr>
+      <tr class="alt"><td><strong>Lecky Watson</strong></td><td>8</td><td>158</td><td>Pulled up 2026 National. Younger with more to give.</td></tr>
+      <tr><td><strong>Spanish Harlem</strong></td><td>8</td><td>159</td><td>Pulled up 2026 National. Rated 159 — has the ability.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>What Mullins' dominance means for betting</h2>
+  <p>When Mullins enters a race with multiple horses, the race shape changes. Secondaries from his yard can run for each other, setting pace and making life difficult for rivals. The opportunity is in the autumn and winter — before the market fully prices in what Closnamore is preparing. His festival horses are rarely available at value by the time the meeting arrives.</p>
+  <p>Townend aboard signals first-string. Patrick Mullins riding indicates a different level of expectation. That jockey signal is the clearest form guide you will get before post time.</p>
+</div>
+
+
+<!-- ARTICLE 4: DAN SKELTON PROFILE -->
+<div class="article-section">
+  <div class="article-header">
+    <span class="article-type">Trainer Profile</span>
+    <span class="article-num">Article 4 of 7</span>
+    <h1>Dan Skelton — Trainer Profile 2026</h1>
+    <div class="article-slug">raceoftheday.co.uk/trainer-profiles/dan-skelton</div>
+  </div>
+
+  <p class="standfirst">Britain's most consistent challenger for the Champion Jumps Trainer title. Former Paul Nicholls assistant. Cheltenham A/E 1.17, Aintree +29.85 level-stake profit from live data. Key horses and what the numbers mean for betting.</p>
+
+  <div class="stats-row">
+    <div class="stat-item"><span class="stat-num">18%</span><span class="stat-lbl">Win rate Cheltenham</span></div>
+    <div class="stat-item"><span class="stat-num">A/E 1.17</span><span class="stat-lbl">Cheltenham above-expected</span></div>
+    <div class="stat-item"><span class="stat-num">+29.9</span><span class="stat-lbl">Profit at Aintree (pts)</span></div>
+    <div class="stat-item"><span class="stat-num">2142</span><span class="stat-lbl">Runners (2024–26)</span></div>
+    <div class="stat-item"><span class="stat-num">41%</span><span class="stat-lbl">Win rate Lingfield</span></div>
+  </div>
+
+  <h2>The operation at Lodge Hill</h2>
+  <p>Dan Skelton trains from Lodge Hill in Shelfield, Warwickshire. He built the yard after leaving Paul Nicholls' operation in 2013 and in a decade has made it the pre-eminent British jumps stable. Brother Harry Skelton is the stable jockey and when Harry rides a Skelton runner at a Grade 1 meeting, it rarely goes as a token runner.</p>
+
+  <h2>The 2026 Grand National</h2>
+  <p>Panic Attack (7/1, OR 147) fell during the race. Falls at Aintree are part of the race's character — the ability profile remains intact and Panic Attack is a realistic 2027 National candidate.</p>
+
+  <h2>Course-by-course record (2024–2026, GB jumps)</h2>
+  <table>
+    <thead>
+      <tr><th>Course</th><th>Runs</th><th>Wins</th><th>Win %</th><th>A/E</th><th>L/S P&amp;L</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Lingfield</td><td>22</td><td>9</td><td>41%</td><td>1.21</td><td class="positive">+0.09</td></tr>
+      <tr class="alt"><td>Newton Abbot</td><td>42</td><td>14</td><td>33%</td><td>1.37</td><td class="positive">+12.75</td></tr>
+      <tr><td>Fakenham</td><td>30</td><td>10</td><td>33%</td><td>1.22</td><td class="positive">+14.40</td></tr>
+      <tr class="alt"><td>Wetherby</td><td>64</td><td>17</td><td>27%</td><td>1.05</td><td class="positive">+21.44</td></tr>
+      <tr><td>Newcastle</td><td>18</td><td>7</td><td>39%</td><td>1.27</td><td class="positive">+22.28</td></tr>
+      <tr class="alt"><td><strong>Aintree</strong></td><td>92</td><td>13</td><td>14%</td><td>0.86</td><td class="positive"><strong>+29.85</strong></td></tr>
+      <tr><td><strong>Cheltenham</strong></td><td>155</td><td>28</td><td>18%</td><td><strong>1.17</strong></td><td class="positive">+6.30</td></tr>
+      <tr class="alt"><td>Warwick (home)</td><td>163</td><td>37</td><td>23%</td><td>0.92</td><td class="negative">-33.20</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:8.5pt; color:#999; margin-top:-8px;">Source: The Racing API | 2024-01-01 to 2026-04-16 | GB jumps only</p>
+
+  <h2>Reading the A/E figure</h2>
+  <p>A/E (Actual to Expected) above 1.0 means the trainer's horses win at a higher rate than their starting prices imply. Cheltenham A/E of 1.17 from 155 runners means the market consistently underprices Skelton horses at the Festival. Warwick (home course, A/E 0.92) is the notable exception — the market knows these horses and prices them accurately or slightly above their ability.</p>
+
+  <h2>Key horses</h2>
+  <table>
+    <thead>
+      <tr><th>Horse</th><th>Age</th><th>OR</th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Panic Attack</strong></td><td>10</td><td>147</td><td>Fell 2026 National (7/1). Sound ability. 2027 National candidate.</td></tr>
+      <tr class="alt"><td><strong>Protektorat</strong></td><td>11</td><td>165</td><td>Grade 1-placed chaser. Festival performer.</td></tr>
+      <tr><td><strong>Langer Dan</strong></td><td>9</td><td>160</td><td>Multiple hurdle winner. Consistent at Grade 2–3.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- ARTICLE 5: BEST TIPSTERS -->
+<div class="article-section">
+  <div class="article-header">
+    <span class="article-type">Buyers Guide</span>
+    <span class="article-num">Article 5 of 7</span>
+    <h1>Best Horse Racing Tipster Services UK 2026</h1>
+    <div class="article-slug">raceoftheday.co.uk/best-horse-racing-tipsters-uk-2026</div>
+  </div>
+
+  <p class="standfirst">What to look for. What to avoid. And an honest assessment of the verified services operating in the UK market in 2026. No paid placements.</p>
+
+  <h2>The problem with most tipster services</h2>
+  <p>The UK horse racing tipster market is large, largely unregulated, and full of services presenting favourable numbers. Most tipster review sites make money from referral commissions — a five-star review often reflects a commercial relationship, not an independent assessment. This guide uses no paid placements.</p>
+
+  <div class="pull-quote">A tipster that only shows you winning months is not showing you its record. The record is all of it.</div>
+
+  <h2>What to look for</h2>
+  <ul class="criteria">
+    <li><strong>Full P&amp;L published openly.</strong> Not just winning months — the complete history including losing runs.</li>
+    <li><strong>Third-party verification or clear methodology.</strong> A proofed record is the gold standard. Full transparent self-publication is acceptable. Screenshots are not.</li>
+    <li><strong>Realistic strike rates.</strong> 15–30% depending on price range. Claims of 35%+ at average odds above 4/1 require scepticism.</li>
+    <li><strong>Stated bet types and stakes.</strong> Level stakes is the cleanest method. Variable staking without stated methodology is harder to evaluate.</li>
+    <li><strong>Accessible trial period.</strong> The record should be visible before you commit.</li>
+    <li><strong>Volume with rationale.</strong> Services that never have a no-send day are filling space, not selecting races.</li>
+  </ul>
+
+  <h2>Services assessed</h2>
+
+  <div class="service-card">
+    <div class="service-card-header">
+      <span class="service-card-name">Race Of The Day</span>
+      <span class="service-card-price">From £19/month</span>
+    </div>
+    <div class="service-card-body">
+      <div class="service-meta">
+        <div><span class="service-meta-label">Volume</span><span class="service-meta-value">2–7/day</span></div>
+        <div><span class="service-meta-label">Focus</span><span class="service-meta-value">UK flat &amp; jumps</span></div>
+        <div><span class="service-meta-label">Record</span><span class="service-meta-value">12 months open</span></div>
+      </div>
+      <p style="font-size:10pt;">Full 12-month P&amp;L published on site, updated after every race, including all losing periods. Selections not sent on days when the cards do not present the right conditions. New service (2025) — lacks the multi-year track record of established operations, but the record published is the full record. £1 trial provides access to the complete archive before subscribing.</p>
+    </div>
+  </div>
+
+  <div class="service-card">
+    <div class="service-card-header">
+      <span class="service-card-name">Timeform Jury Daily</span>
+      <span class="service-card-price">Closed 2024</span>
+    </div>
+    <div class="service-card-body">
+      <p style="font-size:10pt;">The benchmark for verified, methodology-led tipster services in the UK. Closed in 2024. The regulatory environment around best-odds guarantees and price advising contributed to the closure. Its closure left a clear gap in the market for selective, verified daily tips at a professional level.</p>
+    </div>
+  </div>
+
+  <div class="service-card">
+    <div class="service-card-header">
+      <span class="service-card-name">High volume tipping clubs</span>
+      <span class="service-card-price">£30–£80/month</span>
+    </div>
+    <div class="service-card-body">
+      <p style="font-size:10pt;">Services sending 15–30 tips per day cover enough ground to almost always include a winner. The key questions: what is the level-stake P&amp;L over 12 months, and how many total points were staked? Headline claims like "500 winners last year" without the denominator are not informative.</p>
+    </div>
+  </div>
+
+  <h2>On account restrictions</h2>
+  <p>Any bettor following a tipster service long-term will encounter bookmaker account restrictions. This is not unique to tipster followers — it happens to all consistently profitable bettors. Spreading activity across multiple accounts and using exchanges from the start is more effective than rebuilding after restrictions hit a single account.</p>
+</div>
+
+
+<!-- ARTICLE 6: HOW TO CHOOSE A TIPSTER -->
+<div class="article-section">
+  <div class="article-header">
+    <span class="article-type">Guide</span>
+    <span class="article-num">Article 6 of 7</span>
+    <h1>How to Choose a Verified Horse Racing Tipster</h1>
+    <div class="article-slug">raceoftheday.co.uk/how-to-choose-a-verified-horse-racing-tipster</div>
+  </div>
+
+  <p class="standfirst">What verified means in practice. How to read a P&amp;L record properly. How to identify cherry-picked results. And six questions to ask before subscribing to any service.</p>
+
+  <h2>What "verified" actually means</h2>
+  <p>The word is used loosely. In the strictest sense, a verified record is one where selections are submitted to a third party before the race — timestamped — and results recorded independently (Proform Digital, Tipster Street). This is the gold standard.</p>
+  <p>The next level: full transparent self-publication. Every selection, odds taken, result, and running P&amp;L published openly and auditable against public race records. Not third-party verified, but verifiable.</p>
+  <p>Below that: screenshots of winning bets, highlights of profitable months, records "available on request." This is not verification. It is marketing.</p>
+
+  <div class="pull-quote">Ask for the record including the losing months. If the service will not show you the losing months, you are not looking at a record. You are looking at a brochure.</div>
+
+  <h2>Six questions to ask before subscribing</h2>
+  <ol class="steps">
+    <li><strong>Is the full selection history published openly?</strong> Every selection, every result, running P&amp;L updated after each race. Not just winning months.</li>
+    <li><strong>What is the total number of selections over the stated period?</strong> "+120 points" means nothing without knowing how many selections produced it.</li>
+    <li><strong>What are the average odds of selections?</strong> A 25% strike rate at 3/1 is profitable. At 6/4 it is a loss. Strike rate and average odds must be read together.</li>
+    <li><strong>What bet types and staking are used?</strong> Level-stakes win bets are the cleanest method to evaluate. Variable staking without stated methodology is opaque.</li>
+    <li><strong>What odds source is used?</strong> SP is auditable. BOG produces higher returns. "Industry best odds" without a named source is unverifiable.</li>
+    <li><strong>Is there a trial period with record access before payment?</strong> A service confident in its record will let you see it before you pay.</li>
+  </ol>
+
+  <h2>Warning signs</h2>
+  <div class="warning-box">
+    <span class="warning-label">Red flags</span>
+    <p style="margin-bottom:8pt;"><strong>Start date that conveniently misses a losing run.</strong> Starting the record after a losing period is common.</p>
+    <p style="margin-bottom:8pt;"><strong>Strike rate without average odds.</strong> A 30% strike rate at 6/4 is a losing proposition.</p>
+    <p style="margin-bottom:8pt;"><strong>"100+ winners last month."</strong> High volume almost always includes winners. Volume without P&amp;L context means nothing.</p>
+    <p style="margin-bottom:0;"><strong>Urgency mechanics without substance.</strong> "Prices rising soon" as the primary call to action, without the record as lead content, signals where the service's confidence actually lies.</p>
+  </div>
+
+  <h2>How to read a P&amp;L record</h2>
+  <p><strong>Level stakes</strong> means the same amount on every selection. One point = whatever unit you choose (commonly £10). +80 points over 12 months means £800 profit if staking £10 per selection.</p>
+  <p><strong>ROI</strong> combines P&amp;L with total staking. 8% ROI means for every £100 staked you returned £108. 500+ selections is generally considered the minimum sample for meaningful conclusions.</p>
+  <p><strong>Losing runs</strong> are normal. A system that claims otherwise is mathematically impossible over any meaningful sample. Flat periods of 8–15 consecutive selections without a winner are typical for a legitimate service. The question is whether the service communicates them honestly.</p>
+</div>
+
+
+<!-- ARTICLE 7: EACH-WAY GUIDE -->
+<div class="article-section">
+  <div class="article-header">
+    <span class="article-type">Betting Guide</span>
+    <span class="article-num">Article 7 of 7</span>
+    <h1>Each-Way Betting in Horse Racing — Complete Guide</h1>
+    <div class="article-slug">raceoftheday.co.uk/each-way-betting-guide-horse-racing</div>
+  </div>
+
+  <p class="standfirst">How each-way bets work. Place terms by race type. When each-way adds value. When it doesn't. With worked calculations at three outcomes.</p>
+
+  <h2>What is an each-way bet?</h2>
+  <p>An each-way bet is two bets placed simultaneously for the same amount: a win bet and a place bet. A £10 each-way bet costs £20 — £10 on the horse to win, and £10 on the horse to be placed. If the horse wins, you collect on both parts. If it places but does not win, you lose the win part and collect on the place. If unplaced, you lose both.</p>
+
+  <h2>Place terms</h2>
+  <table>
+    <thead>
+      <tr><th>Runners</th><th>Places paid</th><th>Place fraction</th><th>Race type</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>2–4 runners</td><td>Win only</td><td>N/A</td><td>Any</td></tr>
+      <tr class="alt"><td>5–7 runners</td><td>2 places</td><td>1/4 odds</td><td>Any (excl. handicap)</td></tr>
+      <tr><td>8–11 runners</td><td>3 places</td><td>1/5 odds</td><td>Non-handicap</td></tr>
+      <tr class="alt"><td>8–11 runners</td><td>3 places</td><td>1/4 odds</td><td>Handicap</td></tr>
+      <tr><td>12–15 runners</td><td>3 places</td><td>1/4 odds</td><td>Handicap</td></tr>
+      <tr class="alt"><td>16+ runners</td><td>4 places</td><td>1/4 odds</td><td>Handicap</td></tr>
+      <tr><td>Grand National</td><td>6 places</td><td>1/4 odds</td><td>Aintree handicap chase</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Worked calculations — horse at 10/1, £10 each-way, 3 places at 1/4 odds</h2>
+
+  <div class="calc-box">
+    <span class="calc-label">Horse wins</span>
+    <div class="calc-row"><span class="lbl">Win part: £10 at 10/1</span><span class="val">£110 return</span></div>
+    <div class="calc-row"><span class="lbl">Place part: £10 at 10/4 (2.5/1)</span><span class="val">£35 return</span></div>
+    <div class="calc-row"><span class="lbl">Total return / Profit</span><span class="val">£145 / +£125</span></div>
+  </div>
+
+  <div class="calc-box">
+    <span class="calc-label">Horse places (2nd or 3rd) — does not win</span>
+    <div class="calc-row"><span class="lbl">Win part</span><span class="val">-£10</span></div>
+    <div class="calc-row"><span class="lbl">Place part: £10 at 10/4</span><span class="val">£35 return</span></div>
+    <div class="calc-row"><span class="lbl">Total return / Profit</span><span class="val">£35 / +£15</span></div>
+  </div>
+
+  <div class="calc-box">
+    <span class="calc-label">Horse unplaced</span>
+    <div class="calc-row"><span class="lbl">Win part</span><span class="val">-£10</span></div>
+    <div class="calc-row"><span class="lbl">Place part</span><span class="val">-£10</span></div>
+    <div class="calc-row"><span class="lbl">Total return / Loss</span><span class="val">£0 / -£20</span></div>
+  </div>
+
+  <h2>When each-way adds value</h2>
+  <div class="pull-quote">General rule: each-way value exists when the horse is 5/1 or bigger and genuine enough to place regularly, in a race with competitive place terms.</div>
+  <p>At 5/1 with 1/4 place odds, the place return is 5/4. At 7/2 with 1/4 place odds, the place return is 7/8 — below evens. Short-priced horses backed each-way in standard each-way races are almost never value. Large handicaps with four or more places (Grand National: six places at 1/4) are where each-way bets gain most value.</p>
+
+  <h2>When each-way does not add value</h2>
+  <p><strong>Short-priced horses in small fields.</strong> A 9/4 favourite in an eight-runner race at 1/5 place odds returns 9/20 on the place. The maths does not work — back to win or don't back at all.</p>
+  <p><strong>When you genuinely think the horse will win.</strong> Each-way splits your stake and reduces the win return. A horse you assess as a clear standout is worth more backed to win outright.</p>
+
+  <h2>Rule 4 deductions</h2>
+  <p>If a horse is withdrawn as a non-runner after you have placed your bet, a Rule 4 deduction is applied. The deduction percentage depends on the price of the non-runner. Deductions apply to both the win and place parts of an each-way bet.</p>
+
+  <div class="info-box">
+    <strong>On exchanges:</strong> Betfair and other exchanges do not offer traditional each-way markets — win and place markets are separate. Experienced bettors often find more value treating win and place as independent decisions on an exchange rather than as bundled each-way bets with bookmakers.
+  </div>
+</div>
+
+</body>
+</html>
