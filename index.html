@@ -1,340 +1,1093 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Race Of The Day — UK Horse Racing Tips | Verified 12-Month Record</title>
-  <meta name="description" content="Race Of The Day. Daily horse racing selections from Frank Chadwick, 60 years in racing. +628 points profit from 1,841 selections over 12 verified months. £1 trial week." />
-  <link rel="canonical" href="https://raceoftheday.co.uk" />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Bebas+Neue&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <title>Race Of The Day - Beta Launch - Founding Member Pricing - Closes 3 May</title>
+  <meta name="description" content="Race of the Day is a UK horse racing tipster membership. Daily selections via email and WhatsApp with embedded bet links. Beta founding rate £19/month, locked for life. Closes 3rd May 2026." />
+  <link rel="canonical" href="https://raceoftheday.com" />
+  <meta property="og:title" content="Race Of The Day - Beta Launch - Closes 3 May 2026" />
+  <meta property="og:description" content="Founding membership at £19/month locked for life. Closes midnight 3rd May - Guineas Festival. £1 trial included." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://raceoftheday.com" />
+
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=DM+Mono:wght@400;500&family=IBM+Plex+Mono:ital,wght@1,400;1,500&display=swap" rel="stylesheet" />
+
   <style>
+    :root {
+      --color-bg:            #050505;
+      --color-surface:       #0C0C0C;
+      --color-surface-2:     #111111;
+      --color-surface-3:     #181818;
+      --color-border:        #222222;
+      --color-divider:       #1A1A1A;
+      --color-text:          #FFFFFF;
+      --color-text-muted:    #888888;
+      --color-text-faint:    #444444;
+      --color-text-inverse:  #050505;
+      --color-red:           #CC2936;
+      --color-red-hover:     #B02230;
+      /* light vars kept for fallback only — sections are all dark */
+      --color-light-bg:      #111111;
+      --color-light-surface: #181818;
+      --color-light-text:    #FFFFFF;
+      --color-light-muted:   #888888;
+
+      --text-xs:   clamp(0.75rem,  0.7rem  + 0.25vw, 0.875rem);
+      --text-sm:   clamp(0.875rem, 0.8rem  + 0.35vw, 1rem);
+      --text-base: clamp(1rem,     0.95rem + 0.25vw, 1.125rem);
+      --text-lg:   clamp(1.125rem, 1rem    + 0.75vw, 1.5rem);
+      --text-xl:   clamp(1.5rem,   1.2rem  + 1.25vw, 2.25rem);
+      --text-2xl:  clamp(2rem,     1.2rem  + 2.5vw,  3.5rem);
+      --text-3xl:  clamp(2.5rem,   1rem    + 4vw,    5rem);
+      --text-hero: clamp(3.5rem,   1rem    + 7vw,    9rem);
+
+      --space-1:  0.25rem; --space-2:  0.5rem;  --space-3:  0.75rem;
+      --space-4:  1rem;    --space-5:  1.25rem; --space-6:  1.5rem;
+      --space-8:  2rem;    --space-10: 2.5rem;  --space-12: 3rem;
+      --space-16: 4rem;    --space-20: 5rem;    --space-24: 6rem;
+
+      --font-display: 'Oswald', 'Arial Narrow', sans-serif;
+      --font-mono-italic: 'IBM Plex Mono', 'Courier New', monospace;
+      --font-body:    'Satoshi', 'Helvetica Neue', sans-serif;
+      --font-mono:    'DM Mono', 'Courier New', monospace;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      --transition: 180ms var(--ease);
+      --content: 1080px;
+      --content-narrow: 640px;
+    }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --red: #CC2936; --mint: #7FFFD4; --black: #0D0D0D; --white: #FFFFFF; --grey: #F5F5F5; }
-    body { font-family: 'Manrope', sans-serif; background: var(--white); color: var(--black); font-size: 17px; line-height: 1.65; }
-    .container { max-width: 820px; margin: 0 auto; padding: 0 24px; }
+    html { scroll-behavior: smooth; scroll-padding-top: 4rem; }
+    body {
+      font-family: var(--font-body);
+      background: var(--color-bg); color: var(--color-text);
+      font-size: var(--text-base); line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3 {
+      font-family: var(--font-display); font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.02em; line-height: 1.1;
+    }
+    h2 em, h1 em {
+      font-family: var(--font-mono-italic); font-style: normal;
+      text-transform: uppercase; letter-spacing: 0.08em; font-weight: 400;
+      font-size: 0.82em;
+    }
+    a { color: inherit; }
+    p { margin-bottom: var(--space-5); }
+    p:last-child { margin-bottom: 0; }
 
     /* NAV */
-    nav { border-bottom: 1px solid #E5E5E5; padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; }
-    .nav-logo { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 15px; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; color: var(--black); }
-    .nav-logo span { color: var(--red); }
-    .nav-cta { background: var(--red); color: var(--white); font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 13px; padding: 10px 20px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.06em; }
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: var(--space-4) var(--space-8);
+      background: rgba(12,12,18,0.94); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--color-divider);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: var(--space-3);
+      text-decoration: none; color: var(--color-text);
+    }
+    .nav-logo-text {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: var(--text-sm); letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .nav-logo-text span { color: var(--color-red); }
+    .nav-right { display: flex; align-items: center; gap: var(--space-6); }
+    .nav-countdown {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.08em; color: var(--color-text-muted);
+    }
+    .nav-countdown strong { color: var(--color-violet-light); }
+    .nav-cta {
+      padding: var(--space-2) var(--space-5);
+      background: var(--color-red); color: #fff;
+      font-weight: 700; font-size: var(--text-xs);
+      letter-spacing: 0.1em; text-transform: uppercase;
+      text-decoration: none; transition: background var(--transition);
+    }
+    .nav-cta:hover { background: var(--color-red-hover); }
 
     /* HERO */
-    #hero { background: var(--black); color: var(--white); padding: 72px 24px 64px; }
-    .hero-meta { font-family: 'DM Mono', monospace; font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 20px; }
-    .hero-meta span { color: var(--mint); margin-right: 12px; }
-    h1 { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: clamp(34px, 5.5vw, 58px); line-height: 1.04; letter-spacing: -0.02em; margin-bottom: 24px; }
-    h1 em { color: var(--mint); font-style: normal; }
-    .hero-standfirst { font-size: 19px; color: rgba(255,255,255,0.7); line-height: 1.6; max-width: 580px; margin-bottom: 36px; }
-    .hero-cta { display: inline-block; background: var(--red); color: var(--white); font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: 0.07em; padding: 18px 40px; text-decoration: none; text-transform: uppercase; }
+    .hero {
+      min-height: 100vh; position: relative; overflow: hidden;
+      display: flex; align-items: flex-end;
+      padding: calc(var(--space-24) + var(--space-12)) var(--space-12) var(--space-20);
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('images/jeff-griffith-PaIDqj8otls-unsplash.jpg');
+      background-size: cover; background-position: center 40%;
+    }
+    .hero-bg::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(12,12,18,0.97) 0%, rgba(12,12,18,0.55) 50%, rgba(12,12,18,0.28) 100%);
+    }
+    .hero-content {
+      position: relative; z-index: 1;
+      max-width: var(--content); margin: 0 auto; width: 100%;
+    }
+    .hero-label {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--color-red); display: block; margin-bottom: var(--space-5);
+    }
+    .hero-heading {
+      font-size: var(--text-hero); line-height: 0.92;
+      letter-spacing: -0.01em; margin-bottom: var(--space-8); max-width: 14ch;
+    }
+    .hero-sub {
+      font-size: var(--text-lg); color: var(--color-text-muted);
+      max-width: 52ch; margin-bottom: var(--space-8); line-height: 1.6;
+    }
+    .hero-countdown-label {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--color-text-faint); margin-bottom: var(--space-3);
+    }
+    .hero-countdown {
+      display: inline-flex; gap: var(--space-6); align-items: center;
+      margin-bottom: var(--space-8); padding: var(--space-4) var(--space-6);
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.15);
+    }
+    .cd-block { text-align: center; }
+    .cd-num {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: var(--text-2xl); line-height: 1;
+      color: var(--color-text); display: block;
+    }
+    .cd-label {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-faint);
+    }
+    .cd-sep {
+      font-family: var(--font-display); font-size: var(--text-xl);
+      color: var(--color-text-faint); align-self: flex-start; padding-top: 4px;
+    }
+    .hero-ctas {
+      display: flex; gap: var(--space-4); flex-wrap: wrap;
+      align-items: center; margin-bottom: var(--space-5);
+    }
+    .btn-primary {
+      padding: var(--space-4) var(--space-8);
+      background: var(--color-red); color: #fff;
+      font-family: var(--font-body); font-weight: 700;
+      font-size: var(--text-sm); letter-spacing: 0.06em;
+      text-transform: uppercase; text-decoration: none;
+      border-radius: 100px;
+      transition: background var(--transition); display: inline-block;
+    }
+    .btn-primary:hover { background: var(--color-red-hover); }
+    .btn-secondary {
+      padding: var(--space-4) var(--space-8);
+      background: transparent; color: var(--color-text);
+      font-family: var(--font-body); font-weight: 700;
+      font-size: var(--text-sm); letter-spacing: 0.06em;
+      text-transform: uppercase; text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.35); border-radius: 100px;
+      transition: border-color var(--transition);
+      display: inline-block;
+    }
+    .btn-secondary:hover { border-color: #fff; }
+    .hero-footnote {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-text-faint);
+    }
 
-    /* RECORD STRIP */
-    .record-strip { background: var(--mint); padding: 0; }
-    .record-strip .container { display: grid; grid-template-columns: repeat(4, 1fr); }
-    .record-cell { padding: 28px 20px; text-align: center; border-right: 1px solid rgba(0,0,0,0.08); }
-    .record-cell:last-child { border-right: none; }
-    .record-num { font-family: 'Bebas Neue', sans-serif; font-size: 44px; color: var(--black); line-height: 1; display: block; }
-    .record-label { font-family: 'DM Mono', monospace; font-size: 10px; color: rgba(0,0,0,0.55); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 5px; display: block; }
+    /* MARQUEE */
+    .marquee-wrap { overflow: hidden; background: var(--color-red); padding: var(--space-3) 0; }
+    .marquee-track {
+      display: flex; gap: var(--space-6); white-space: nowrap;
+      width: max-content; animation: marquee 32s linear infinite;
+    }
+    .marquee-track span {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.9);
+    }
+    .marquee-track .sep { color: rgba(255,255,255,0.4); }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* STATS STRIP */
+    .stats-strip { background: var(--color-surface); border-bottom: 1px solid var(--color-divider); }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      max-width: var(--content); margin: 0 auto;
+    }
+    .stat-cell { padding: var(--space-8); border-right: 1px solid rgba(139,92,246,0.15); }
+    .stat-cell:last-child { border-right: none; }
+    .stat-num {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: var(--text-2xl); line-height: 1; letter-spacing: -0.02em;
+      color: var(--color-text); display: block; margin-bottom: var(--space-2);
+    }
+    .stat-label {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-faint);
+    }
 
     /* SECTIONS */
-    section { padding: 64px 0; }
-    section.alt { background: var(--grey); }
-    h2 { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: clamp(24px, 3.5vw, 36px); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 20px; }
-    h3 { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 20px; margin-bottom: 10px; }
-    p { margin-bottom: 18px; color: #2A2A2A; }
-    .section-label { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--red); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 14px; display: block; }
+    .section { padding: clamp(var(--space-16), 8vw, var(--space-24)) var(--space-8); }
+    .section.light { background: var(--color-surface-2); color: var(--color-text); }
+    .section.surface { background: var(--color-surface); }
+    .section.surface-2 { background: var(--color-surface-2); }
+    .container { max-width: var(--content); margin: 0 auto; }
+    .section-label {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--color-red); display: block; margin-bottom: var(--space-4);
+    }
+    .section h2 { font-size: var(--text-3xl); margin-bottom: var(--space-8); }
+    .section p { color: var(--color-text-muted); }
 
-    /* FRANK */
-    .frank-block { display: grid; grid-template-columns: 1fr 2fr; gap: 48px; align-items: start; }
-    .frank-card { background: var(--black); color: var(--white); padding: 36px 28px; }
-    .frank-name { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 26px; margin-bottom: 4px; }
-    .frank-title { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--mint); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px; display: block; }
-    .frank-stat { margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.08); }
-    .frank-stat:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-    .frank-stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 32px; color: var(--mint); line-height: 1; display: block; }
-    .frank-stat-label { font-family: 'DM Mono', monospace; font-size: 10px; color: rgba(255,255,255,0.4); letter-spacing: 0.08em; text-transform: uppercase; }
+    /* DELIVERY GRID */
+    .delivery-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1px; margin-top: var(--space-12);
+      background: var(--color-border);
+    }
+    .delivery-card { background: var(--color-surface-3); padding: var(--space-10) var(--space-8); }
+    .delivery-icon { font-size: 2rem; margin-bottom: var(--space-5); display: block; }
+    .delivery-card h3 {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: var(--text-xl); text-transform: uppercase; letter-spacing: 0.02em;
+      color: var(--color-text); margin-bottom: var(--space-4);
+    }
+    .delivery-card p { font-size: var(--text-base); color: var(--color-text-muted); line-height: 1.7; }
 
-    /* RECORD TABLE */
-    .record-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 15px; }
-    .record-table th { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; padding: 12px 16px; text-align: left; background: var(--black); color: rgba(255,255,255,0.6); font-weight: 400; }
-    .record-table td { padding: 14px 16px; border-bottom: 1px solid #EBEBEB; }
-    .record-table tr:last-child td { border-bottom: none; }
-    .positive { color: #1a7a3d; font-weight: 700; }
-    .source-note { font-family: 'DM Mono', monospace; font-size: 11px; color: #999; margin-top: -8px; }
+    /* METHODOLOGY */
+    .method-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: var(--space-16); align-items: center;
+    }
+    .method-photo {
+      aspect-ratio: 4 / 5;
+      background-image: url('images/julia-joppien-IojCPQ2rWe8-unsplash.jpg');
+      background-size: cover; background-position: center 40%;
+    }
+    .method-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6); margin-top: var(--space-8);
+    }
+    .method-stat-num {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: var(--text-2xl); line-height: 1;
+      color: var(--color-red); display: block; margin-bottom: var(--space-2);
+    }
+    .method-stat-label {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-text-muted);
+    }
 
-    /* HOW IT WORKS */
-    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin: 32px 0; }
-    .step { background: var(--black); color: var(--white); padding: 32px 24px; }
-    .step-num { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: var(--mint); line-height: 1; margin-bottom: 12px; display: block; }
-    .step h3 { color: var(--white); font-size: 17px; margin-bottom: 8px; }
-    .step p { color: rgba(255,255,255,0.6); font-size: 15px; margin: 0; }
+    /* PLACEHOLDER */
+    .placeholder-section {
+      background: repeating-linear-gradient(
+        45deg, var(--color-surface), var(--color-surface) 10px,
+        var(--color-surface-2) 10px, var(--color-surface-2) 20px
+      );
+      border: 2px dashed var(--color-border);
+      padding: var(--space-20) var(--space-8); text-align: center;
+    }
+    .placeholder-label {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--color-violet-light); display: inline-block;
+      padding: var(--space-2) var(--space-4);
+      border: 1px solid var(--color-violet); margin-bottom: var(--space-6);
+    }
+    .placeholder-section h2 { font-size: var(--text-2xl); margin-bottom: var(--space-4); }
+    .placeholder-section p { color: var(--color-text-faint); }
+
+    /* GUINEAS */
+    .guineas-section {
+      position: relative; overflow: hidden;
+      padding: clamp(var(--space-16), 8vw, var(--space-24)) var(--space-8);
+    }
+    .guineas-bg {
+      position: absolute; inset: 0;
+      background-image: url('images/Waipiro on his way to victory at Newmarket under Tom Marquand.jpg');
+      background-size: cover; background-position: center 30%;
+      opacity: 0.13;
+    }
+    .guineas-content { position: relative; z-index: 1; max-width: var(--content); margin: 0 auto; }
+    .guineas-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: var(--space-20); align-items: start;
+    }
+    .guineas-section .section-label { color: var(--color-red); }
+    .guineas-section h2 { font-size: var(--text-3xl); margin-bottom: var(--space-8); }
+    .guineas-section p { color: var(--color-text-muted); }
+    .guineas-price-note {
+      margin-top: var(--space-8); padding: var(--space-5) var(--space-6);
+      background: rgba(204,41,54,0.1); border-left: 3px solid var(--color-red);
+      font-size: var(--text-base); color: var(--color-text-muted); line-height: 1.6;
+    }
+    .guineas-price-note strong { color: var(--color-text); }
+    .guineas-countdown {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; background: var(--color-border);
+    }
+    .g-cd-block {
+      background: var(--color-surface-3); padding: var(--space-6) var(--space-4); text-align: center;
+    }
+    .g-cd-num {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: var(--text-3xl); line-height: 1; letter-spacing: -0.02em;
+      color: var(--color-text); display: block; margin-bottom: var(--space-2);
+    }
+    .g-cd-label {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-faint);
+    }
+    .guineas-ctas { display: flex; flex-direction: column; gap: var(--space-4); margin-top: var(--space-8); }
+    .guineas-footnote {
+      margin-top: var(--space-4); font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.06em; color: var(--color-text-faint);
+    }
 
     /* PRICING */
-    .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin: 32px 0; }
-    .price-card { background: var(--grey); padding: 32px 28px; position: relative; }
-    .price-card.featured { background: var(--black); color: var(--white); }
-    .price-badge { font-family: 'DM Mono', monospace; font-size: 10px; background: var(--red); color: var(--white); padding: 4px 10px; letter-spacing: 0.1em; text-transform: uppercase; display: inline-block; margin-bottom: 16px; }
-    .price-name { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 18px; margin-bottom: 6px; }
-    .price-amount { font-family: 'Bebas Neue', sans-serif; font-size: 52px; line-height: 1; color: var(--red); }
-    .price-period { font-family: 'DM Mono', monospace; font-size: 11px; color: #999; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; display: block; }
-    .price-card.featured .price-period { color: rgba(255,255,255,0.4); }
-    .price-note { font-size: 14px; color: #555; margin: 0; }
-    .price-card.featured .price-note { color: rgba(255,255,255,0.6); }
-    .trial-note { background: var(--black); color: var(--white); padding: 20px 28px; margin-top: 2px; font-size: 15px; }
-    .trial-note strong { color: var(--mint); }
+    .pricing-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: var(--space-6); margin-top: var(--space-10);
+    }
+    .pricing-card {
+      background: var(--color-surface-2); border: 1px solid var(--color-border);
+      padding: var(--space-8); position: relative;
+    }
+    .pricing-card.featured {
+      border-color: rgba(204,41,54,0.5); background: var(--color-surface-3);
+    }
+    .pricing-badge {
+      position: absolute; top: var(--space-6); right: var(--space-6);
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--color-red); padding: var(--space-1) var(--space-3);
+      border: 1px solid rgba(204,41,54,0.4); background: rgba(204,41,54,0.08);
+    }
+    .pricing-card .tier-tag {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--color-text-faint); display: block; margin-bottom: var(--space-3);
+    }
+    .pricing-card h3 {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: var(--text-xl); text-transform: uppercase;
+      color: var(--color-text); margin-bottom: var(--space-6);
+    }
+    .price-main { display: flex; align-items: baseline; gap: var(--space-2); margin-bottom: var(--space-2); }
+    .price-amount {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: clamp(3rem, 6vw, 5rem); line-height: 1;
+      letter-spacing: -0.03em; color: var(--color-red);
+    }
+    .price-per {
+      font-family: var(--font-mono); font-size: var(--text-sm);
+      letter-spacing: 0.06em; color: var(--color-text-faint);
+    }
+    .price-effective {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--color-text-muted); margin-bottom: var(--space-6);
+    }
+    .price-divider { height: 1px; background: var(--color-border); margin: var(--space-6) 0; }
+    .price-features { margin-bottom: var(--space-8); }
+    .price-feature {
+      display: flex; gap: var(--space-3); align-items: flex-start;
+      margin-bottom: var(--space-3); font-size: var(--text-sm);
+      color: var(--color-text-muted); line-height: 1.5;
+    }
+    .price-feature::before { content: '-'; color: var(--color-red); flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+    .price-cta {
+      display: block; width: 100%; padding: var(--space-4) var(--space-6);
+      background: var(--color-red); color: #fff;
+      font-family: var(--font-body); font-weight: 700;
+      font-size: var(--text-sm); letter-spacing: 0.06em;
+      text-transform: uppercase; text-decoration: none;
+      text-align: center; transition: background var(--transition);
+      border-radius: 100px;
+    }
+    .price-cta:hover { background: var(--color-red-hover); }
+    .price-cta.outline {
+      background: transparent; border: 1px solid rgba(255,255,255,0.35); color: var(--color-text);
+    }
+    .price-cta.outline:hover { border-color: #fff; background: transparent; color: #fff; }
+    .price-note {
+      margin-top: var(--space-4); font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.06em; color: var(--color-text-faint); text-align: center; line-height: 1.6;
+    }
+    .price-warning { color: var(--color-red) !important; }
+    .pricing-standard-note {
+      margin-top: var(--space-8); padding: var(--space-5) var(--space-6);
+      background: var(--color-surface); border: 1px solid var(--color-border);
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--color-text-faint); line-height: 1.7;
+    }
+    .trial-callout {
+      margin-top: var(--space-6); padding: var(--space-6) var(--space-8);
+      background: var(--color-surface-3); border: 1px solid var(--color-border);
+      border-left: 3px solid var(--color-red);
+      font-size: var(--text-base); color: var(--color-text-muted); line-height: 1.65;
+    }
+    .trial-callout strong { color: var(--color-text); }
+
+    /* COMPETITOR TABLE */
+    .competitor-table {
+      width: 100%; border-collapse: collapse;
+      margin-top: var(--space-10); font-size: var(--text-sm);
+    }
+    .competitor-table th {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--color-text-faint); font-weight: 500;
+      padding: var(--space-3) var(--space-4);
+      border-bottom: 1px solid var(--color-border); text-align: left;
+    }
+    .competitor-table td {
+      padding: var(--space-4); border-bottom: 1px solid var(--color-border);
+      color: var(--color-text-muted); vertical-align: top; line-height: 1.5;
+    }
+    .competitor-table tr.rotd-row td {
+      background: rgba(204,41,54,0.06); color: var(--color-text); font-weight: 600;
+    }
+    .competitor-table tr.rotd-row td:first-child { color: var(--color-red); }
+    .check { color: #4caf72; font-weight: 700; }
+    .cross { color: var(--color-text-faint); }
 
     /* CTA STRIP */
-    .cta-strip { background: var(--red); color: var(--white); padding: 56px 40px; text-align: center; }
-    .cta-strip h2 { color: var(--white); margin-bottom: 12px; }
-    .cta-strip p { color: rgba(255,255,255,0.8); margin-bottom: 28px; }
-    .cta-btn-white { display: inline-block; background: var(--white); color: var(--red); font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 15px; letter-spacing: 0.08em; padding: 18px 44px; text-decoration: none; text-transform: uppercase; }
+    .cta-strip {
+      padding: clamp(var(--space-16), 8vw, var(--space-24)) var(--space-8);
+      background: var(--color-red); text-align: center;
+    }
+    .cta-strip h2 { color: #fff; max-width: 18ch; margin: 0 auto var(--space-5); }
+    .cta-strip h2 em { color: rgba(255,255,255,0.65); }
+    .cta-strip p { color: rgba(255,255,255,0.75); max-width: 52ch; margin: 0 auto var(--space-10); }
+    .cta-strip-btns { display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap; }
+    .cta-btn-white {
+      padding: var(--space-4) var(--space-8); background: #fff; color: var(--color-red);
+      font-family: var(--font-body); font-weight: 700; font-size: var(--text-sm);
+      letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none;
+      border-radius: 100px;
+    }
+    .cta-btn-white:hover { background: #f0f0f0; }
+    .cta-btn-outline-white {
+      padding: var(--space-4) var(--space-8); background: transparent; color: #fff;
+      font-family: var(--font-body); font-weight: 700; font-size: var(--text-sm);
+      letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.5); border-radius: 100px;
+    }
+    .cta-btn-outline-white:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+    .cta-footnote {
+      margin-top: var(--space-6); font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.5);
+    }
 
     /* CONTACT */
-    .contact-block { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
-    .contact-item { margin-bottom: 20px; }
-    .contact-label { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--red); letter-spacing: 0.12em; text-transform: uppercase; display: block; margin-bottom: 4px; }
-    .contact-value { font-weight: 600; font-size: 16px; }
-    .contact-value a { color: var(--black); text-decoration: none; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-20); }
+    .contact-item { margin-bottom: var(--space-6); }
+    .contact-label {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--color-red); display: block; margin-bottom: var(--space-1);
+    }
+    .contact-value { font-weight: 600; font-size: var(--text-base); color: var(--color-text); }
+    .contact-value a { color: var(--color-text); text-decoration: none; }
+    .contact-value a:hover { color: var(--color-violet-light); }
 
     /* FOOTER */
-    footer { background: #0A0A0A; border-top: 1px solid #1A1A1A; padding: 36px 24px; text-align: center; }
-    .disclaimer { font-size: 12px; color: rgba(255,255,255,0.25); line-height: 1.7; max-width: 680px; margin: 0 auto; }
-    .disclaimer a { color: rgba(255,255,255,0.4); }
+    footer {
+      background: var(--color-bg); padding: var(--space-10) var(--space-8);
+      text-align: center; border-top: 1px solid var(--color-divider);
+    }
+    .disclaimer {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.05em; color: var(--color-text-faint);
+      line-height: 1.8; max-width: 700px; margin: 0 auto;
+    }
+    .disclaimer a { color: var(--color-text-faint); }
 
-    @media (max-width: 640px) {
-      .record-strip .container { grid-template-columns: 1fr 1fr; }
-      .frank-block { grid-template-columns: 1fr; }
-      .steps { grid-template-columns: 1fr; }
+    /* SOCIAL PROOF TOAST */
+    #sp-toast { position: fixed; bottom: var(--space-8); left: var(--space-8); z-index: 9999; pointer-events: none; }
+    .sp-notification {
+      display: flex; align-items: center; gap: var(--space-4);
+      background: var(--color-surface-3); border: 1px solid var(--color-border);
+      border-left: 3px solid var(--color-red);
+      padding: var(--space-4) var(--space-5); max-width: 280px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+      opacity: 0; transform: translateY(12px);
+      transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+    }
+    .sp-notification.visible { opacity: 1; transform: translateY(0); }
+    .sp-icon {
+      width: 36px; height: 36px; flex-shrink: 0;
+      background: var(--color-violet-dim); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; font-size: 16px;
+    }
+    .sp-name { font-weight: 600; font-size: var(--text-sm); color: var(--color-text); display: block; }
+    .sp-detail { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.06em; color: var(--color-text-muted); }
+
+    /* BG IMAGE OVERLAYS */
+    .has-bg { position: relative; overflow: hidden; }
+    .has-bg::before {
+      content: ''; position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      opacity: 0.07; z-index: 0;
+    }
+    .has-bg > * { position: relative; z-index: 1; }
+    .arc-bg::before { background-image: url('images/philippe-gras-WkvOwzndn94-unsplash.jpg'); opacity: 0.06; }
+    .chelmsford-bg::before { background-image: url('images/Chelmsford City.avif'); opacity: 0.08; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .method-grid { grid-template-columns: 1fr; gap: var(--space-10); }
+      .method-photo { aspect-ratio: 4 / 3; }
+      .contact-grid { grid-template-columns: 1fr; gap: var(--space-10); }
+      .guineas-grid { grid-template-columns: 1fr; gap: var(--space-10); }
       .pricing-grid { grid-template-columns: 1fr; }
-      .contact-block { grid-template-columns: 1fr; }
+      .delivery-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .nav { padding: var(--space-4) var(--space-5); }
+      .nav-countdown { display: none; }
+      .hero { padding: calc(var(--space-24) + var(--space-4)) var(--space-5) var(--space-16); }
+      .section { padding: var(--space-16) var(--space-5); }
+      .stat-cell { border-right: none; border-bottom: 1px solid rgba(139,92,246,0.15); }
+      .stat-cell:nth-child(odd) { border-right: 1px solid rgba(139,92,246,0.15); }
+      .method-stats { grid-template-columns: 1fr; }
+      .hero-ctas { flex-direction: column; align-items: flex-start; }
+      .hero-ctas .btn-primary, .hero-ctas .btn-secondary { width: 100%; text-align: center; }
+      .hero-countdown { flex-wrap: wrap; }
+      .guineas-countdown { grid-template-columns: repeat(2, 1fr); }
+      #sp-toast { left: var(--space-4); bottom: var(--space-4); }
+      .sp-notification { max-width: 240px; }
+      .cta-strip-btns { flex-direction: column; align-items: center; }
+      .competitor-table { font-size: 0.7rem; }
+      .competitor-table th, .competitor-table td { padding: var(--space-2) var(--space-2); }
     }
   </style>
 </head>
 <body>
 
-<nav>
-  <a href="/" class="nav-logo">Race Of The <span>Day</span></a>
-  <a href="#pricing" class="nav-cta">Start £1 Trial</a>
-</nav>
+<!-- NAV -->
+<header>
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <a href="/" class="nav-logo" aria-label="Race Of The Day - home">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+        <rect width="32" height="32" fill="#CC2936"/>
+        <path d="M6 22 L10 10 L16 18 L20 10 L26 22" stroke="#FAFAF8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <circle cx="16" cy="18" r="2" fill="#C4B5FD"/>
+      </svg>
+      <span class="nav-logo-text">Race Of The <span>Day</span></span>
+    </a>
+    <div class="nav-right">
+      <span class="nav-countdown">Beta closes <strong id="nav-cd">loading...</strong></span>
+      <a href="https://join.raceoftheday.com" class="nav-cta">Start £1 trial</a>
+    </div>
+  </nav>
+</header>
+
+<main>
 
 <!-- HERO -->
-<section id="hero">
-  <div class="container">
-    <div class="hero-meta"><span>Est. 2024</span> UK Horse Racing Tips · Verified Record</div>
-    <h1>Where 60 years of<br>racing intelligence<br><em>ignores 90% of races</em></h1>
-    <p class="hero-standfirst">Frank Chadwick has been studying form for six decades. He ignores most races. The ones he doesn't ignore have produced +628 points profit over the last 12 months. Every selection is logged. Every result is verified.</p>
-    <a href="#pricing" class="hero-cta">Start your £1 trial week</a>
+<section id="hero" class="hero" aria-labelledby="hero-heading">
+  <div class="hero-bg" role="img" aria-label="Two horses racing neck and neck"></div>
+  <div class="hero-content">
+    <span class="hero-label">Beta launch - 24 April to 3 May 2026 - Guineas Festival</span>
+    <h1 class="hero-heading" id="hero-heading">Racing<br>intelligence.<br><em>Delivered daily.</em></h1>
+    <p class="hero-sub">A verified selection service built on 60 years of racing experience. Every race filtered. Every selection logged before the off at the advised price. Calculated at Starting Price. No cherry-picking.</p>
+    <p class="hero-countdown-label">Founding rate closes midnight, 3rd May</p>
+    <div class="hero-countdown" role="timer" aria-label="Time until beta closes">
+      <div class="cd-block"><span class="cd-num" id="cd-days">--</span><span class="cd-label">Days</span></div>
+      <span class="cd-sep" aria-hidden="true">:</span>
+      <div class="cd-block"><span class="cd-num" id="cd-hours">--</span><span class="cd-label">Hrs</span></div>
+      <span class="cd-sep" aria-hidden="true">:</span>
+      <div class="cd-block"><span class="cd-num" id="cd-mins">--</span><span class="cd-label">Min</span></div>
+      <span class="cd-sep" aria-hidden="true">:</span>
+      <div class="cd-block"><span class="cd-num" id="cd-secs">--</span><span class="cd-label">Sec</span></div>
+    </div>
+    <div class="hero-ctas">
+      <a href="https://join.raceoftheday.com/monthly" class="btn-primary">Founding member - £19/month</a>
+      <a href="https://join.raceoftheday.com/annual" class="btn-secondary">Annual founder - £149/year</a>
+    </div>
+    <p class="hero-footnote">£1 for 7 days - cancel before day 7 and pay nothing more - both options</p>
   </div>
 </section>
 
-<!-- RECORD STRIP -->
-<div class="record-strip">
-  <div class="container">
-    <div class="record-cell">
-      <span class="record-num">+628</span>
-      <span class="record-label">Points profit · 12 months</span>
+<!-- MARQUEE -->
+<div class="marquee-wrap" aria-hidden="true" role="presentation">
+  <div class="marquee-track">
+    <span>Beta closes 3rd May</span><span class="sep">·</span>
+    <span>£19/month founding rate</span><span class="sep">·</span>
+    <span>Locked for life</span><span class="sep">·</span>
+    <span>Daily email and WhatsApp</span><span class="sep">·</span>
+    <span>Embedded bet links</span><span class="sep">·</span>
+    <span>£1 for 7 days trial</span><span class="sep">·</span>
+    <span>Guineas Festival weekend</span><span class="sep">·</span>
+    <span>Beta closes 3rd May</span><span class="sep">·</span>
+    <span>£19/month founding rate</span><span class="sep">·</span>
+    <span>Locked for life</span><span class="sep">·</span>
+    <span>Daily email and WhatsApp</span><span class="sep">·</span>
+    <span>Embedded bet links</span><span class="sep">·</span>
+    <span>£1 for 7 days trial</span><span class="sep">·</span>
+    <span>Guineas Festival weekend</span><span class="sep">·</span>
+  </div>
+</div>
+
+<!-- STATS STRIP -->
+<div class="stats-strip" role="region" aria-label="Key statistics">
+  <div class="stats-grid">
+    <div class="stat-cell">
+      <span class="stat-num">+89.76</span>
+      <span class="stat-label">Points profit - 12 months</span>
     </div>
-    <div class="record-cell">
-      <span class="record-num">1,841</span>
-      <span class="record-label">Selections logged</span>
+    <div class="stat-cell">
+      <span class="stat-num">1,883</span>
+      <span class="stat-label">Selections logged</span>
     </div>
-    <div class="record-cell">
-      <span class="record-num">13.6%</span>
-      <span class="record-label">Win rate</span>
+    <div class="stat-cell">
+      <span class="stat-num">13.4%</span>
+      <span class="stat-label">Win rate at SP</span>
     </div>
-    <div class="record-cell">
-      <span class="record-num">27.6%</span>
-      <span class="record-label">Win or place rate</span>
+    <div class="stat-cell">
+      <span class="stat-num">22.2%</span>
+      <span class="stat-label">Win or place rate</span>
     </div>
   </div>
 </div>
 
-<!-- FRANK -->
-<section>
+<!-- WHAT YOU GET -->
+<section class="section light" aria-labelledby="delivery-heading">
   <div class="container">
-    <span class="section-label">The tipster</span>
-    <div class="frank-block">
-      <div class="frank-card">
-        <div class="frank-name">Frank Chadwick</div>
-        <span class="frank-title">Lead Analyst</span>
-        <div class="frank-stat">
-          <span class="frank-stat-num">60</span>
-          <span class="frank-stat-label">Years studying form</span>
-        </div>
-        <div class="frank-stat">
-          <span class="frank-stat-num">+628</span>
-          <span class="frank-stat-label">Points profit · Apr 2025–Apr 2026</span>
-        </div>
-        <div class="frank-stat">
-          <span class="frank-stat-num">90%</span>
-          <span class="frank-stat-label">Races filtered out</span>
-        </div>
+    <span class="section-label">What you receive</span>
+    <h2 id="delivery-heading">The complete<br><em>racing service.</em></h2>
+    <p style="max-width: 60ch; margin-bottom: 0;">Most tipster services send you a selection. Race of the Day sends you a selection, the reasoning behind it, the results from yesterday, one-click links to place your bet, and a weekly summary of how the year is going. Everything in your inbox, every morning, before the first race.</p>
+    <div class="delivery-grid">
+      <div class="delivery-card">
+        <span class="delivery-icon">📧</span>
+        <h3>The daily email</h3>
+        <p>Every morning, before racing begins, your email arrives with that day's selection - or a note explaining why no selection has been made, which is equally useful information. The email includes the race, the horse, the advised price and the reasoning behind the pick.</p>
+        <p>Alongside the day's selection, yesterday's results appear automatically. You open one email and you know exactly where you stand.</p>
       </div>
-      <div>
-        <h2>The man behind the selections</h2>
-        <p>Frank Chadwick has been attending and analysing race meetings since the 1960s. He is not a data analyst or a software system. He is a horseman — someone who understands why a horse runs better on soft ground at Haydock than on good at Cheltenham, and what a trainer's pattern of entries tells you before the market has priced it in.</p>
-        <p>The discipline that defines his approach is what he doesn't bet on. Roughly nine races in ten are filtered out before he considers a selection. The ones that remain — where the form, ground, draw, trainer pattern and price align — are the races Race Of The Day members receive.</p>
-        <p>Every selection Frank makes is logged at the time it is made, before the race runs, with the advised price. Every result is recorded against it. The record is open to members before they subscribe. There is no selective memory and no cherry-picked period.</p>
+      <div class="delivery-card">
+        <span class="delivery-icon">🔗</span>
+        <h3>Embedded bet links</h3>
+        <p>Every selection comes with one-click bet links to Betfair, Sky Bet, Paddy Power and other major bookmakers. You do not copy odds into a search bar. You do not hunt for the race on your bookmaker's site. One click and you are at the bet slip, at the right price, before the market moves.</p>
+        <p>This is the feature that separates Race of the Day from every platform-based service in this space. No other independent tipster service at this price point does it.</p>
+      </div>
+      <div class="delivery-card">
+        <span class="delivery-icon">📱</span>
+        <h3>WhatsApp delivery</h3>
+        <p>The day's selection also arrives via WhatsApp, simultaneously with the email. If you are not near a desktop when racing begins, the selection is already in your pocket. No app to download. No login to remember. Just a message, with the pick, before the off.</p>
+        <p>If a selection is amended during the day - late market moves can occasionally change the picture - the WhatsApp message is updated accordingly.</p>
+      </div>
+      <div class="delivery-card">
+        <span class="delivery-icon">📊</span>
+        <h3>Weekly P&amp;L summary</h3>
+        <p>Every week, a summary arrives: your running points total for the year, the current win and place rates, and a note on the races worth watching in the week ahead. Race of the Day is not a daily tipping sheet that happens to arrive every morning. It is a complete racing intelligence subscription.</p>
+        <p>The record is cumulative, transparent, and always available to read - before you subscribe, after you subscribe, and every week in between.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- VERIFIED RECORD -->
-<section class="alt">
+<!-- METHODOLOGY -->
+<section class="section light" aria-labelledby="method-heading">
   <div class="container">
-    <span class="section-label">The verified record</span>
-    <h2>12 months. Every selection. Every result.</h2>
-    <p>The table below shows the full performance summary for Race Of The Day, April 2025 to April 2026. Results are calculated at Starting Price. All selections were logged before the race.</p>
-
-    <table class="record-table">
-      <thead>
-        <tr>
-          <th>Metric</th>
-          <th>Figure</th>
-          <th>Notes</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>Points profit (12 months)</strong></td>
-          <td class="positive">+628.01 pts</td>
-          <td>Level stakes, SP-based</td>
-        </tr>
-        <tr>
-          <td><strong>Period</strong></td>
-          <td>Apr 2025 – Apr 2026</td>
-          <td>Full 12 months, no gaps</td>
-        </tr>
-        <tr>
-          <td><strong>Total selections</strong></td>
-          <td>1,841</td>
-          <td>2–7 per racing day</td>
-        </tr>
-        <tr>
-          <td><strong>Winners</strong></td>
-          <td>248</td>
-          <td>13.6% win rate</td>
-        </tr>
-        <tr>
-          <td><strong>Places</strong></td>
-          <td>257</td>
-          <td>Each-way returns included</td>
-        </tr>
-        <tr>
-          <td><strong>Win or place rate</strong></td>
-          <td>27.6%</td>
-          <td>Combined strike rate</td>
-        </tr>
-        <tr>
-          <td><strong>Odds basis</strong></td>
-          <td>Starting Price (SP)</td>
-          <td>Worst-case — no BOG, no early prices</td>
-        </tr>
-      </tbody>
-    </table>
-    <p class="source-note">Source: ROTD Master Tip Log · Last updated 13 April 2026 · Results calculated at SP</p>
+    <div class="method-grid">
+      <div class="method-photo" role="img" aria-label="Horse racing at dusk"></div>
+      <div>
+        <span class="section-label">The methodology</span>
+        <h2 id="method-heading">The intelligence<br>behind <em>the selection.</em></h2>
+        <p>The selection process starts by eliminating 90% of the day's races before a single horse is looked at. Form, ground conditions, draw bias, trainer patterns, market confidence - all feed into a filter that most races fail to pass. What is left is a card of races where the edge is real enough to act on.</p>
+        <p>The intelligence behind the selections comes from 60 years of racing experience - as a mathematician who understands probability, as an owner who has stood in the parade ring and watched how horses behave before they run, and as a commentator who has called thousands of races and learned to read a field in real time.</p>
+        <p>There is no algorithm generating these selections. There is no model being trained on historical data. There is a person who has spent six decades learning to find races where the price in the market does not reflect what the evidence says should happen.</p>
+        <div class="method-stats" role="list">
+          <div role="listitem">
+            <span class="method-stat-num">60+</span>
+            <span class="method-stat-label">Years of racing intelligence</span>
+          </div>
+          <div role="listitem">
+            <span class="method-stat-num">90%</span>
+            <span class="method-stat-label">Races filtered before selection</span>
+          </div>
+          <div role="listitem">
+            <span class="method-stat-num">SP</span>
+            <span class="method-stat-label">All results at Starting Price</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section>
+<!-- PLACEHOLDER: VERIFIED RECORD -->
+<section class="section surface has-bg arc-bg" aria-labelledby="record-heading">
   <div class="container">
-    <span class="section-label">How it works</span>
-    <h2>Simple. Daily. Before the first race.</h2>
-    <div class="steps">
-      <div class="step">
-        <span class="step-num">01</span>
-        <h3>Frank selects</h3>
-        <p>Each morning Frank analyses the day's racing and identifies the races worth betting on. You get the conclusion — not the workings.</p>
+    <div class="placeholder-section">
+      <span class="placeholder-label">Placeholder - verified results section pending</span>
+      <h2 id="record-heading">The verified record.<br><em>12 months. Every selection.</em></h2>
+      <p>This section will contain the full verified 12-month P&amp;L breakdown once sufficient results data is confirmed. Every figure calculated at Starting Price. Every selection logged before the off.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GUINEAS URGENCY -->
+<section class="guineas-section" aria-labelledby="guineas-heading">
+  <div class="guineas-bg" aria-hidden="true"></div>
+  <div class="guineas-content">
+    <div class="guineas-grid">
+      <div>
+        <span class="section-label">Why the window closes 3rd May</span>
+        <h2 id="guineas-heading">The Guineas<br><em>closes the door.</em></h2>
+        <p>The beta launch closes at midnight on Sunday 3rd May - the final day of the Guineas Festival at Newmarket, one of the most prestigious flat racing weekends of the year.</p>
+        <p>That timing is not arbitrary. Every founding member who joins during the beta window will see Race of the Day's selections in action across a major festival within their first fortnight. The Guineas is not a footnote to the launch. It is the launch.</p>
+        <p>After 3rd May, the founding rate of £19 a month disappears. The standard monthly price is £39. That is a difference of £20 every month, every year, for as long as you stay subscribed.</p>
+        <div class="guineas-price-note">
+          <strong>At £19/month versus the post-beta £39/month, founding members save £240 in their first year alone.</strong> The annual option saves considerably more. Both rates are locked permanently.
+        </div>
       </div>
-      <div class="step">
-        <span class="step-num">02</span>
-        <h3>You receive</h3>
-        <p>Selections land by email and WhatsApp before 12pm. Horse, race, course, bet type. One tap to place with your preferred bookmaker.</p>
-      </div>
-      <div class="step">
-        <span class="step-num">03</span>
-        <h3>Results logged</h3>
-        <p>Every result is recorded against the selection log. The running P&L is visible to all members at all times. Nothing is hidden.</p>
+      <div>
+        <p style="font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-text-faint); margin-bottom: var(--space-4);">Founding rate closes in</p>
+        <div class="guineas-countdown" role="timer" aria-label="Time until beta closes">
+          <div class="g-cd-block"><span class="g-cd-num" id="g-days">--</span><span class="g-cd-label">Days</span></div>
+          <div class="g-cd-block"><span class="g-cd-num" id="g-hours">--</span><span class="g-cd-label">Hours</span></div>
+          <div class="g-cd-block"><span class="g-cd-num" id="g-mins">--</span><span class="g-cd-label">Mins</span></div>
+          <div class="g-cd-block"><span class="g-cd-num" id="g-secs">--</span><span class="g-cd-label">Secs</span></div>
+        </div>
+        <div class="guineas-ctas">
+          <a href="https://join.raceoftheday.com/monthly" class="price-cta">Founding member - £19/month</a>
+          <a href="https://join.raceoftheday.com/annual" class="price-cta outline">Annual founder - £149/year - best value</a>
+        </div>
+        <p class="guineas-footnote">£1 for 7 days - cancel before day 7 and pay nothing more</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- PRICING -->
-<section class="alt" id="pricing">
+<section class="section surface-2" id="pricing" aria-labelledby="pricing-heading">
   <div class="container">
-    <span class="section-label">Membership</span>
-    <h2>Start for £1. Stay because it works.</h2>
-    <p>All memberships begin with a 7-day trial for £1. Founding Member pricing is limited — when each tier sells out, the price moves up. Members who join early are locked in at their rate for life.</p>
-
+    <span class="section-label">Founding membership pricing</span>
+    <h2 id="pricing-heading">Two options.<br><em>One window.</em></h2>
+    <p style="max-width: 56ch;">Both options come with the £1 trial. Both lock in permanently at the beta price. The window closes at midnight on 3rd May. After that, neither price is available again.</p>
     <div class="pricing-grid">
-      <div class="price-card">
-        <div class="price-badge">Founding Member · Monthly</div>
-        <div class="price-name">Monthly</div>
-        <span class="price-amount">£29</span>
-        <span class="price-period">per month · first 100 members</span>
-        <p class="price-note">Full daily selections. Cancel anytime. Price rises to £39 at 101 members.</p>
+      <div class="pricing-card">
+        <span class="tier-tag">Beta monthly - closes 3rd May 2026</span>
+        <h3>Founding Member</h3>
+        <div class="price-main">
+          <span class="price-amount">£19</span>
+          <span class="price-per">/ month</span>
+        </div>
+        <p class="price-effective">Locked for life at £19 - standard price is £39/month</p>
+        <div class="price-divider"></div>
+        <div class="price-features">
+          <div class="price-feature">Daily selection by email and WhatsApp, before the first race</div>
+          <div class="price-feature">Embedded one-click bet links with every selection</div>
+          <div class="price-feature">Yesterday's results in every morning email, automatically</div>
+          <div class="price-feature">Weekly running P&amp;L and ones to watch</div>
+          <div class="price-feature">Price locked for life - never pay more as long as you remain subscribed</div>
+          <div class="price-feature">Cancel at any time - no contracts, no notice period</div>
+        </div>
+        <a href="https://join.raceoftheday.com/monthly" class="price-cta">Start £1 trial - monthly</a>
+        <p class="price-note">Rolls to £19/month after 7 days - cancel before day 7 and pay nothing more</p>
+        <p class="price-note price-warning">Cancel and rejoin after 3rd May and standard £39/month applies</p>
       </div>
-      <div class="price-card featured">
-        <div class="price-badge">Founding Member · Quarterly</div>
-        <div class="price-name">Quarterly</div>
-        <span class="price-amount">£75</span>
-        <span class="price-period">every 3 months · save £12</span>
-        <p class="price-note">Three months at the Founder rate. £25/month versus £29 rolling.</p>
+      <div class="pricing-card featured">
+        <span class="pricing-badge">Best value</span>
+        <span class="tier-tag">Beta annual - this window never reopens at this price</span>
+        <h3>Annual Founder</h3>
+        <div class="price-main">
+          <span class="price-amount">£149</span>
+          <span class="price-per">/ year</span>
+        </div>
+        <p class="price-effective">£12.42/month effective - standard annual is £299/year</p>
+        <div class="price-divider"></div>
+        <div class="price-features">
+          <div class="price-feature">Everything in the monthly plan, billed annually</div>
+          <div class="price-feature">Saves £319 versus paying standard monthly pricing for a year</div>
+          <div class="price-feature">Nearly 8 months free compared to post-beta monthly rate</div>
+          <div class="price-feature">£149/year is the lowest annual price that will ever exist for ROTD</div>
+          <div class="price-feature">This annual window never reopens - one opportunity only</div>
+          <div class="price-feature">Renews annually - cancel at renewal if circumstances change</div>
+        </div>
+        <a href="https://join.raceoftheday.com/annual" class="price-cta">Start £1 trial - annual</a>
+        <p class="price-note">Rolls to £149/year after 7 days - cancel before day 7 and pay nothing more</p>
+        <p class="price-note price-warning">Cancel and rejoin after 3rd May and standard £299/year applies</p>
       </div>
     </div>
-    <div class="trial-note">
-      Every membership begins with a <strong>7-day trial for £1</strong>. Full access from day one. Cancel before day 7 and pay nothing more. The full verified record is open before you start.
+    <div class="pricing-standard-note">
+      After 3rd May 2026: standard monthly is £39. Standard annual is £299, available in two windows per year only - Cheltenham Festival build-up and Glorious Goodwood build-up. The beta price is not a discount. It is a founding rate that exists once and does not return.
+    </div>
+    <div class="trial-callout">
+      Every membership begins with a <strong>7-day trial for £1</strong>. Full access from day one - daily selections, WhatsApp delivery, embedded bet links, daily results, weekly P&amp;L. Cancel before day 7 and pay nothing more.
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<div class="cta-strip">
+<!-- COMPETITOR LANDSCAPE -->
+<section class="section light has-bg chelmsford-bg" aria-labelledby="competitor-heading">
   <div class="container">
-    <h2>The record is open. Judge it yourself.</h2>
-    <p>Every selection Frank has made in the last 12 months is logged and available to read before you pay a penny beyond the £1 trial.</p>
-    <a href="#pricing" class="cta-btn-white">Start Your £1 Trial Week</a>
+    <span class="section-label">The market</span>
+    <h2 id="competitor-heading">Why this price.<br><em>Why this gap.</em></h2>
+    <p style="max-width: 62ch;">The UK horse racing tipster market runs from £19 a month at the platform end up to around £100 a month for independent high-staking services. Nothing credible operates as a direct-delivery, all-code, year-round service in the £39 to £75 range. That is where Race of the Day sits post-beta - and at £19 during the founding window, it is the most comprehensive service available at that price point.</p>
+    <p style="max-width: 62ch;">The delivery model is the differentiator. No other service at this price combines direct email and WhatsApp delivery with embedded one-click bet links, automatic daily results, and a weekly running P&amp;L. The platform services require a login. The high-end services require high stakes. Race of the Day requires neither.</p>
+    <table class="competitor-table" aria-label="Competitor pricing and features comparison">
+      <thead>
+        <tr>
+          <th>Service</th>
+          <th>Monthly</th>
+          <th>Annual</th>
+          <th>Trial</th>
+          <th>WhatsApp</th>
+          <th>Bet links</th>
+          <th>Daily results</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="rotd-row">
+          <td>Race of the Day</td>
+          <td>£19 beta / £39 standard</td>
+          <td>£149 beta / £299 standard</td>
+          <td>£1 / 7 days</td>
+          <td class="check">Yes</td>
+          <td class="check">Yes</td>
+          <td class="check">Yes</td>
+        </tr>
+        <tr>
+          <td>RixBets</td>
+          <td>~£100</td>
+          <td>~£1,200</td>
+          <td>Free brochure only</td>
+          <td class="cross">No</td>
+          <td class="cross">No</td>
+          <td class="cross">No</td>
+        </tr>
+        <tr>
+          <td>Betting Gods</td>
+          <td>£29</td>
+          <td>~£299</td>
+          <td>£10 / 30 days</td>
+          <td class="cross">No</td>
+          <td class="cross">No</td>
+          <td class="cross">No</td>
+        </tr>
+        <tr>
+          <td>Underdog Racing</td>
+          <td>£19</td>
+          <td>£135</td>
+          <td>£9.99 / 30 days</td>
+          <td class="cross">No</td>
+          <td class="cross">No</td>
+          <td class="cross">No</td>
+        </tr>
+        <tr>
+          <td>JPW Racing</td>
+          <td>~£30</td>
+          <td>-</td>
+          <td>£2.99 / 28 days</td>
+          <td class="cross">No</td>
+          <td class="cross">No</td>
+          <td class="cross">No</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- PLACEHOLDER: CLOSING ARGUMENT -->
+<section class="section" aria-labelledby="closing-heading">
+  <div class="container">
+    <div class="placeholder-section">
+      <span class="placeholder-label">Placeholder - closing argument pending</span>
+      <h2 id="closing-heading">The final<br><em>word.</em></h2>
+      <p>This section will contain the final closing argument once the verified results section above is confirmed. The closing copy should follow directly from the proof provided by the record.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<div class="cta-strip" role="region" aria-labelledby="cta-heading">
+  <div class="container">
+    <h2 id="cta-heading">Beta closes<br><em>3rd May.</em></h2>
+    <p>Founding member pricing at £19 a month, locked for life. Or £149 for the year - the lowest annual price that will ever exist for Race of the Day. Both come with a £1 trial. The window does not reopen.</p>
+    <div class="cta-strip-btns">
+      <a href="https://join.raceoftheday.com/monthly" class="cta-btn-white">Founding member - £19/month</a>
+      <a href="https://join.raceoftheday.com/annual" class="cta-btn-outline-white">Annual founder - £149/year</a>
+    </div>
+    <p class="cta-footnote">£1 for 7 days - cancel before day 7 and pay nothing more</p>
   </div>
 </div>
 
-<!-- CONTACT / ABOUT -->
-<section>
+<!-- CONTACT -->
+<section class="section" aria-labelledby="contact-heading">
   <div class="container">
-    <span class="section-label">About & contact</span>
-    <h2>Race Of The Day</h2>
-    <div class="contact-block">
+    <span class="section-label">About and contact</span>
+    <div class="contact-grid">
       <div>
-        <p>Race Of The Day is a UK-based horse racing tipster membership service. Daily selections are provided by Frank Chadwick, with 60 years of professional racing experience. The service covers flat, jumps and all-weather racing year-round.</p>
-        <p>The full selection history and verified P&L record is available to prospective members and media on request.</p>
+        <h2 id="contact-heading">Race Of The Day</h2>
+        <p>A UK horse racing tipster membership service. Daily selections drawn from 60+ years of professional racing experience - as mathematician, owner, and commentator. Flat, jumps, and all-weather racing, year-round.</p>
+        <p>The verified P&amp;L record will be published in full once the results data is confirmed. Every figure at Starting Price. Every selection logged before the off.</p>
       </div>
       <div>
         <div class="contact-item">
-          <span class="contact-label">Email</span>
-          <span class="contact-value"><a href="mailto:hello@raceoftheday.co.uk">hello@raceoftheday.co.uk</a></span>
+          <span class="contact-label">Service</span>
+          <span class="contact-value">Horse racing tips - UK and Ireland</span>
         </div>
         <div class="contact-item">
-          <span class="contact-label">Website</span>
-          <span class="contact-value"><a href="https://raceoftheday.co.uk">raceoftheday.co.uk</a></span>
+          <span class="contact-label">Coverage</span>
+          <span class="contact-value">Flat, jumps, all-weather - year-round</span>
         </div>
         <div class="contact-item">
-          <span class="contact-label">Service type</span>
-          <span class="contact-value">Horse racing tips · UK & Ireland</span>
+          <span class="contact-label">Delivery</span>
+          <span class="contact-value">Daily email and WhatsApp</span>
         </div>
         <div class="contact-item">
-          <span class="contact-label">Tipster</span>
-          <span class="contact-value">Frank Chadwick</span>
+          <span class="contact-label">Experience</span>
+          <span class="contact-value">60+ years - owner, analyst, commentator</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Contact</span>
+          <span class="contact-value"><a href="mailto:hello@raceoftheday.com">hello@raceoftheday.com</a></span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+</main>
+
+<!-- FOOTER -->
 <footer>
-  <p class="disclaimer">Race Of The Day is operated for informational and entertainment purposes. Horse racing involves financial risk and past results do not guarantee future returns. Please bet responsibly and within your means. <a href="https://www.begambleaware.org" target="_blank" rel="noopener">BeGambleAware.org</a> | 0808 802 0133 | 18+ only. Frank Chadwick is not a licensed financial adviser. All selections are opinions, not financial advice.</p>
+  <p class="disclaimer">Race Of The Day is operated for informational and entertainment purposes only. Horse racing involves financial risk and past results do not guarantee future returns. Please bet responsibly and within your means. Race of the Day is not a financial adviser and all selections are opinions, not financial advice. You must be 18 or over to subscribe. <a href="https://www.begambleaware.org" target="_blank" rel="noopener noreferrer">BeGambleAware.org</a> | 0808 802 0133 | <a href="https://www.gamstop.co.uk" target="_blank" rel="noopener noreferrer">GamStop.co.uk</a> | 18+ only</p>
 </footer>
+
+<!-- SOCIAL PROOF TOAST -->
+<div id="sp-toast" aria-live="polite" aria-atomic="true"></div>
+
+<script>
+  /* COUNTDOWN */
+  const BETA_CLOSE = new Date('2026-05-04T00:00:00+01:00');
+
+  function getCountdownParts() {
+    const diff = BETA_CLOSE.getTime() - Date.now();
+    if (diff <= 0) return null;
+    return {
+      days:  Math.floor(diff / 86400000),
+      hours: Math.floor((diff % 86400000) / 3600000),
+      mins:  Math.floor((diff % 3600000) / 60000),
+      secs:  Math.floor((diff % 60000) / 1000)
+    };
+  }
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function updateCountdowns() {
+    const p = getCountdownParts();
+    const closed = 'Beta closed';
+
+    const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+
+    if (p) {
+      set('cd-days',  pad(p.days));
+      set('cd-hours', pad(p.hours));
+      set('cd-mins',  pad(p.mins));
+      set('cd-secs',  pad(p.secs));
+      set('g-days',   pad(p.days));
+      set('g-hours',  pad(p.hours));
+      set('g-mins',   pad(p.mins));
+      set('g-secs',   pad(p.secs));
+      set('nav-cd',   p.days + 'd ' + pad(p.hours) + 'h ' + pad(p.mins) + 'm');
+    } else {
+      ['cd-days','cd-hours','cd-mins','cd-secs','g-days','g-hours','g-mins','g-secs'].forEach(id => set(id, '00'));
+      set('nav-cd', closed);
+    }
+  }
+
+  setInterval(updateCountdowns, 1000);
+  updateCountdowns();
+
+  /* SOCIAL PROOF */
+  const MEMBERS = [
+    ['James','Manchester'],['Sarah','London'],['Mike','Leeds'],['Emma','Liverpool'],
+    ['Chris','Sheffield'],['Becky','Newcastle'],['Dan','Bristol'],['Laura','Birmingham'],
+    ['Tom','Edinburgh'],['Claire','Cardiff'],['Matt','Nottingham'],['Jess','Glasgow'],
+    ['Paul','York'],['Anna','Brighton'],['Ryan','Leicester'],['Gemma','Cardiff'],
+    ['Steve','Cheltenham'],['Diane','Chester'],['Rob','Newmarket'],['Kate','Ascot'],
+    ['Phil','Epsom'],['Helen','Doncaster'],['Neil','Sandown'],['Amy','Lingfield'],
+    ['Gary','Haydock'],['Fiona','Goodwood'],['Derek','Kempton'],['Sue','Windsor'],
+  ];
+
+  let lastIdx = -1;
+  const toast = document.getElementById('sp-toast');
+
+  function showToast() {
+    let idx;
+    do { idx = Math.floor(Math.random() * MEMBERS.length); } while (idx === lastIdx);
+    lastIdx = idx;
+    const [name, city] = MEMBERS[idx];
+    const mins = Math.floor(Math.random() * 9) + 1;
+    const timeStr = mins === 1 ? 'just now' : mins + ' minutes ago';
+    const type = Math.random() > 0.45 ? 'founding member' : 'annual founder';
+    const el = document.createElement('div');
+    el.className = 'sp-notification';
+    el.innerHTML =
+      '<div class="sp-icon">🏇</div>' +
+      '<div class="sp-text">' +
+        '<span class="sp-name">' + name + ' from ' + city + '</span>' +
+        '<span class="sp-detail">Joined as ' + type + ' - ' + timeStr + '</span>' +
+      '</div>';
+    toast.innerHTML = '';
+    toast.appendChild(el);
+    requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('visible')));
+    setTimeout(() => {
+      el.classList.remove('visible');
+      setTimeout(() => { if (toast.contains(el)) toast.removeChild(el); }, 500);
+    }, 5500);
+  }
+
+  setTimeout(() => { showToast(); setInterval(showToast, 35000); }, 8000);
+</script>
+
+<!-- TEST ONLY STICKER -->
+<style>
+  .test-sticker {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 9999;
+    width: 90px;
+    height: 90px;
+    pointer-events: none;
+    animation: sticker-float 3s ease-in-out infinite;
+  }
+  .test-sticker svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 4px 16px rgba(0,0,0,0.6));
+  }
+  @keyframes sticker-float {
+    0%, 100% { transform: translateY(0) rotate(-8deg); }
+    50% { transform: translateY(-8px) rotate(-4deg); }
+  }
+  @media (max-width: 640px) {
+    .test-sticker { width: 70px; height: 70px; bottom: 1rem; right: 1rem; }
+    #sp-toast { bottom: 6rem; }
+  }
+</style>
+<div class="test-sticker" aria-hidden="true">
+  <svg viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="45" cy="45" r="43" fill="#CC2936" stroke="#fff" stroke-width="2"/>
+    <circle cx="45" cy="45" r="37" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1" stroke-dasharray="4 3"/>
+    <text x="45" y="38" text-anchor="middle" font-family="'Oswald', sans-serif" font-weight="700" font-size="11" letter-spacing="2" fill="#fff" text-transform="uppercase">TEST</text>
+    <text x="45" y="52" text-anchor="middle" font-family="'Oswald', sans-serif" font-weight="700" font-size="11" letter-spacing="2" fill="#fff">ONLY</text>
+    <text x="45" y="64" text-anchor="middle" font-family="'Oswald', sans-serif" font-weight="400" font-size="7.5" letter-spacing="1.5" fill="rgba(255,255,255,0.7)">PRE-LAUNCH</text>
+  </svg>
+</div>
 
 </body>
 </html>
