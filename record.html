@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Verified Record — Race Of The Day</title>
+  <title>Verified Record | Race Of The Day</title>
   <meta name="description" content="The full verified selection record for Race Of The Day. Every tip logged before the race, calculated at Starting Price. Open before you pay a penny." />
   <link rel="canonical" href="https://raceoftheday.com/record" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=DM+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:ital,wght@0,300;0,600;0,700;1,300&family=DM+Mono:wght@400;500&family=Poppins:wght@300;400;500;600&family=IBM+Plex+Mono:ital,wght@1,400&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 
   <style>
@@ -43,8 +43,10 @@
       --space-20: 5rem;
 
       --font-display: 'Oswald', 'Arial Narrow', sans-serif;
-      --font-body:    'Source Serif 4', Georgia, serif;
+      --font-display-light: 'Oswald', 'Arial Narrow', sans-serif;
+      --font-body:    'Poppins', 'Helvetica Neue', sans-serif;
       --font-mono:    'DM Mono', 'Courier New', monospace;
+      --font-mono-italic: 'IBM Plex Mono', 'Courier New', monospace;
       --ease: cubic-bezier(0.16, 1, 0.3, 1);
       --transition: 180ms var(--ease);
       --content: 1100px;
@@ -55,7 +57,7 @@
     body {
       font-family: var(--font-body);
       background: var(--color-bg); color: var(--color-text);
-      font-size: var(--text-base); line-height: 1.7;
+      font-size: var(--text-base); line-height: 1.7; font-weight: 300;
       -webkit-font-smoothing: antialiased;
     }
     a { color: inherit; text-decoration: none; }
@@ -103,8 +105,8 @@
     }
     .page-header-inner { max-width: var(--content); margin: 0 auto; }
     .page-label {
-      font-family: var(--font-mono); font-size: var(--text-xs);
-      letter-spacing: 0.14em; text-transform: uppercase;
+      font-family: var(--font-mono); font-size: var(--text-sm);
+      letter-spacing: 0.12em; text-transform: uppercase;
       color: var(--color-red); display: block; margin-bottom: var(--space-4);
     }
     .page-title {
@@ -190,7 +192,7 @@
       padding: var(--space-8);
     }
     .chart-title {
-      font-family: var(--font-display); font-weight: 700;
+      font-family: var(--font-display); font-weight: 300; font-style: italic;
       font-size: var(--text-lg); text-transform: uppercase;
       letter-spacing: 0.04em; margin-bottom: var(--space-2);
     }
@@ -213,7 +215,7 @@
       border-bottom: 1px solid var(--color-divider);
     }
     .table-title {
-      font-family: var(--font-display); font-weight: 700;
+      font-family: var(--font-display); font-weight: 300; font-style: italic;
       font-size: var(--text-xl); text-transform: uppercase;
     }
     .table-note {
@@ -353,9 +355,9 @@
 <!-- PAGE HEADER -->
 <div class="page-header">
   <div class="page-header-inner">
-    <span class="page-label">Open record — no login, no request</span>
+    <span class="page-label">Open record. No login, no request.</span>
     <h1 class="page-title">The Verified Record</h1>
-    <p class="page-intro">Every selection logged before the race. Every result at Starting Price — not best odds, not advised price. The full record, open before you spend a penny. Most services will send you theirs if you ask. We just leave it out.</p>
+    <p class="page-intro">Every selection logged before the race. Every result at Starting Price. Not best odds, not advised price. The full record, open before you spend a penny. Most services will send you theirs if you ask. We just leave it out.</p>
     <div class="trust-row">
       <div class="trust-badge"><span class="trust-badge-icon">✓</span><span class="trust-badge-text">Logged pre-race</span></div>
       <div class="trust-badge"><span class="trust-badge-icon">✓</span><span class="trust-badge-text">SP calculated</span></div>
@@ -371,7 +373,7 @@
   <div class="stats-grid">
     <div class="stat-cell">
       <span class="stat-num pos">+291.53</span>
-      <span class="stat-label">Points profit — 13 months</span>
+      <span class="stat-label">Points profit, 13 months</span>
     </div>
     <div class="stat-cell">
       <span class="stat-num">1,832</span>
@@ -405,7 +407,7 @@
   <!-- CUMULATIVE LINE CHART - FULL WIDTH -->
   <div class="chart-card-full" style="margin-bottom: var(--space-8);">
     <div class="chart-title">Cumulative profit</div>
-    <div class="chart-sub">Running points total — Apr 2025 to Apr 2026</div>
+    <div class="chart-sub">Running points total: Apr 2025 to Apr 2026</div>
     <div class="chart-wrap" style="height: 280px;">
       <canvas id="lineChart"></canvas>
     </div>
@@ -442,14 +444,34 @@
 <!-- WINNERS TABLE -->
 <div class="table-section">
   <div class="table-header">
-    <span class="table-title">Recent winners</span>
-    <span class="table-note">Sample — Feb 2026</span>
+    <span class="table-title">Recent winners and placed horses</span>
+    <span class="table-note" id="table-period">Last 3 months</span>
   </div>
   <div class="record-note">
-    <p>Winners and placed horses shown. Full tip-by-tip record including all losses available to members. 13-month totals above reflect the complete record.</p>
+    <p>Winners and placed horses shown below, loaded live from the master tip log. Full record including every loss is available in the sheet linked below. SP data sourced via The Racing API.</p>
+  </div>
+
+  <!-- FULL RECORD BUTTON -->
+  <div style="margin-bottom: var(--space-8);">
+    <a href="https://docs.google.com/spreadsheets/d/1mMILO_ykJkfrLMALuYRCB0M6CoqUaYQpq4kD7smdqKU/edit?usp=sharing"
+       target="_blank" rel="noopener"
+       style="display:inline-flex; align-items:center; gap:0.5rem;
+              padding: 0.75rem 1.5rem;
+              background: transparent;
+              border: 1px solid #22c55e;
+              color: #22c55e;
+              font-family: var(--font-mono); font-size: var(--text-xs);
+              letter-spacing: 0.1em; text-transform: uppercase;
+              border-radius: 100px;
+              text-decoration: none;
+              transition: background 180ms ease;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      View the full verified record
+    </a>
+    <span style="font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:0.06em;text-transform:uppercase;color:var(--color-text-faint);margin-left:var(--space-5);">Every selection. Every loss. Nothing removed.</span>
   </div>
   <div class="table-wrap">
-    <table>
+    <table id="winners-table">
       <thead>
         <tr>
           <th>Date</th>
@@ -461,27 +483,8 @@
           <th style="text-align:right">Pts</th>
         </tr>
       </thead>
-      <tbody>
-        <tr><td class="td-date">02 Feb</td><td class="td-horse">Jacob's Ladder</td><td class="td-course">Leopardstown</td><td class="td-sp">2/1F</td><td class="td-type">Win</td><td><span class="badge badge-win">Win</span></td><td class="td-pts pos">+4</td></tr>
-        <tr><td class="td-date">02 Feb</td><td class="td-horse">Fact To File</td><td class="td-course">Leopardstown</td><td class="td-sp">9/2</td><td class="td-type">Win</td><td><span class="badge badge-win">Win</span></td><td class="td-pts pos">+4</td></tr>
-        <tr><td class="td-date">02 Feb</td><td class="td-horse">Barra Rua</td><td class="td-course">Leopardstown</td><td class="td-sp">12/1</td><td class="td-type">Each Way</td><td><span class="badge badge-place">Place</span></td><td class="td-pts pos">+1</td></tr>
-        <tr><td class="td-date">01 Feb</td><td class="td-horse">Backmeorsackme</td><td class="td-course">Leopardstown</td><td class="td-sp">14/1</td><td class="td-type">Win</td><td><span class="badge badge-win">Win</span></td><td class="td-pts pos">+4</td></tr>
-        <tr><td class="td-date">01 Feb</td><td class="td-horse">Majborough</td><td class="td-course">Leopardstown</td><td class="td-sp">2/1</td><td class="td-type">Win</td><td><span class="badge badge-win">Win</span></td><td class="td-pts pos">+4</td></tr>
-        <tr><td class="td-date">01 Feb</td><td class="td-horse">Bowensonfire</td><td class="td-course">Leopardstown</td><td class="td-sp">10/1</td><td class="td-type">Each Way</td><td><span class="badge badge-win">Win</span></td><td class="td-pts pos">+2</td></tr>
-        <tr><td class="td-date">01 Feb</td><td class="td-horse">Dee Capo</td><td class="td-course">Leopardstown</td><td class="td-sp">16/1</td><td class="td-type">Each Way</td><td><span class="badge badge-place">Place</span></td><td class="td-pts pos">+1</td></tr>
-        <tr><td class="td-date">27 Jan</td><td class="td-horse">Rose Cotton</td><td class="td-course">Wolverhampton</td><td class="td-sp">3/1</td><td class="td-type">Win</td><td><span class="badge badge-win">Win</span></td><td class="td-pts pos">+4</td></tr>
-        <tr><td class="td-date">27 Jan</td><td class="td-horse">West To The Bridge</td><td class="td-course">Chepstow</td><td class="td-sp">15/2</td><td class="td-type">Each Way</td><td><span class="badge badge-win">Win</span></td><td class="td-pts pos">+2</td></tr>
-        <tr><td class="td-date">24 Jan</td><td class="td-horse">Germanic</td><td class="td-course">Newcastle</td><td class="td-sp">11/4</td><td class="td-type">Win</td><td><span class="badge badge-win">Win</span></td><td class="td-pts pos">+4</td></tr>
-        <tr><td class="td-date">18 Jan</td><td class="td-horse">Highlands Legacy</td><td class="td-course">Windsor</td><td class="td-sp">11/8F</td><td class="td-type">Win</td><td><span class="badge badge-win">Win</span></td><td class="td-pts pos">+4</td></tr>
-        <tr><td class="td-date">13 Jan</td><td class="td-horse">Spring Is Spring</td><td class="td-course">Southwell</td><td class="td-sp">22/1</td><td class="td-type">Each Way</td><td><span class="badge badge-win">Win</span></td><td class="td-pts pos">+2</td></tr>
-        <tr><td class="td-date">13 Jan</td><td class="td-horse">Platin Moon</td><td class="td-course">Ayr</td><td class="td-sp">100/30</td><td class="td-type">Win</td><td><span class="badge badge-win">Win</span></td><td class="td-pts pos">+4</td></tr>
-        <tr><td class="td-date">08 Jan</td><td class="td-horse">Brave Knight</td><td class="td-course">Taunton</td><td class="td-sp">13/2</td><td class="td-type">Win</td><td><span class="badge badge-win">Win</span></td><td class="td-pts pos">+4</td></tr>
-        <tr><td class="td-date">31 Dec</td><td class="td-horse">Nebras</td><td class="td-course">Lingfield Park</td><td class="td-sp">7/2</td><td class="td-type">Win</td><td><span class="badge badge-win">Win</span></td><td class="td-pts pos">+4</td></tr>
-        <tr><td class="td-date">30 Dec</td><td class="td-horse">Grain D'Oudairies</td><td class="td-course">Haydock Park</td><td class="td-sp">6/1</td><td class="td-type">Win</td><td><span class="badge badge-win">Win</span></td><td class="td-pts pos">+4</td></tr>
-        <tr><td class="td-date">26 Dec</td><td class="td-horse">Brazil Power</td><td class="td-course">Wolverhampton</td><td class="td-sp">100/30</td><td class="td-type">Win</td><td><span class="badge badge-win">Win</span></td><td class="td-pts pos">+4</td></tr>
-        <tr><td class="td-date">15 Dec</td><td class="td-horse">Dukes Command</td><td class="td-course">Lingfield Park</td><td class="td-sp">3/1</td><td class="td-type">Win</td><td><span class="badge badge-win">Win</span></td><td class="td-pts pos">+4</td></tr>
-        <tr><td class="td-date">06 Nov</td><td class="td-horse">Threatening</td><td class="td-course">Chelmsford City</td><td class="td-sp">15/2</td><td class="td-type">Win</td><td><span class="badge badge-win">Win</span></td><td class="td-pts pos">+4</td></tr>
-        <tr><td class="td-date">05 Nov</td><td class="td-horse">Coul Angel</td><td class="td-course">Kempton Park</td><td class="td-sp">9/4</td><td class="td-type">Win</td><td><span class="badge badge-win">Win</span></td><td class="td-pts pos">+4</td></tr>
+      <tbody id="winners-tbody">
+        <tr><td colspan="7" style="text-align:center;padding:2rem;font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-faint);">Loading live data...</td></tr>
       </tbody>
     </table>
   </div>
@@ -509,6 +512,128 @@
 </footer>
 
 <script>
+  // ── LIVE WINNERS TABLE ────────────────────────────────────────────────────────
+  // Fetches wins and places from the public Google Sheet (Tip Log tab)
+  // Sheet must be shared as "Anyone with the link can view"
+  const SHEET_ID = '1mMILO_ykJkfrLMALuYRCB0M6CoqUaYQpq4kD7smdqKU';
+  const SHEET_NAME = 'Tip Log';
+  const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(SHEET_NAME)}`;
+
+  function parseDateDMY(str) {
+    // Handles DD/MM/YYYY
+    if (!str) return null;
+    const parts = str.trim().split('/');
+    if (parts.length === 3) return new Date(+parts[2], +parts[1] - 1, +parts[0]);
+    return new Date(str);
+  }
+
+  function formatDateDisplay(str) {
+    const d = parseDateDMY(str);
+    if (!d) return str;
+    return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: '2-digit' });
+  }
+
+  function threeMonthsAgo() {
+    const d = new Date();
+    d.setMonth(d.getMonth() - 3);
+    return d;
+  }
+
+  async function loadWinners() {
+    const tbody = document.getElementById('winners-tbody');
+    try {
+      const res = await fetch(CSV_URL);
+      if (!res.ok) throw new Error('fetch failed');
+      const text = await res.text();
+
+      // Parse CSV — skip first two rows (title row + header row)
+      const lines = text.trim().split('\n');
+      // Find the header row (contains "Date")
+      let headerIdx = 0;
+      for (let i = 0; i < Math.min(5, lines.length); i++) {
+        if (lines[i].includes('"Date"') || lines[i].startsWith('Date,') || lines[i].startsWith('"Date",')) {
+          headerIdx = i;
+          break;
+        }
+      }
+
+      const parseCSVLine = (line) => {
+        const result = [];
+        let current = '';
+        let inQuotes = false;
+        for (let i = 0; i < line.length; i++) {
+          const char = line[i];
+          if (char === '"') {
+            inQuotes = !inQuotes;
+          } else if (char === ',' && !inQuotes) {
+            result.push(current.trim());
+            current = '';
+          } else {
+            current += char;
+          }
+        }
+        result.push(current.trim());
+        return result;
+      };
+
+      const cutoff = threeMonthsAgo();
+      const rows = [];
+
+      for (let i = headerIdx + 1; i < lines.length; i++) {
+        const cols = parseCSVLine(lines[i]);
+        if (cols.length < 12) continue;
+
+        const date = cols[0];
+        const course = cols[1];
+        const horse = cols[3];
+        const betType = cols[5];
+        const sp = cols[7];
+        const outcome = cols[11];
+        const pts = cols[12];
+
+        if (!outcome || !['win','place'].includes(outcome.toLowerCase())) continue;
+
+        const d = parseDateDMY(date);
+        if (!d || d < cutoff) continue;
+
+        rows.push({ date, dateObj: d, course, horse, betType, sp, outcome, pts });
+      }
+
+      // Sort newest first
+      rows.sort((a, b) => b.dateObj - a.dateObj);
+
+      if (rows.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:2rem;font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-faint);">No results in last 3 months</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = rows.map(r => {
+        const isWin = r.outcome.toLowerCase() === 'win';
+        const ptsNum = parseFloat(r.pts) || 0;
+        const ptsDisplay = ptsNum > 0 ? '+' + ptsNum.toFixed(2) : ptsNum.toFixed(2);
+        return `
+          <tr>
+            <td class="td-date">${formatDateDisplay(r.date)}</td>
+            <td class="td-horse">${r.horse}</td>
+            <td class="td-course">${r.course}</td>
+            <td class="td-sp">${r.sp}</td>
+            <td class="td-type">${r.betType}</td>
+            <td><span class="badge ${isWin ? 'badge-win' : 'badge-place'}">${isWin ? 'Win' : 'Place'}</span></td>
+            <td class="td-pts pos">${ptsDisplay}</td>
+          </tr>`;
+      }).join('');
+
+      // Update the period label
+      const oldest = rows[rows.length - 1];
+      document.getElementById('table-period').textContent = `${formatDateDisplay(oldest.date)} to today`;
+
+    } catch (e) {
+      tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:2rem;font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-faint);">Record loading — please refresh</td></tr>';
+    }
+  }
+
+  loadWinners();
+
   // ── DATA ──────────────────────────────────────────────────────────────────────
   const monthly = [
     { label: 'Apr 25', tips: 34,  pts: -30.53 },

@@ -13,7 +13,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=DM+Mono:wght@400;500&family=IBM+Plex+Mono:ital,wght@1,400;1,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:ital,wght@0,600;0,700;1,300;1,400&family=DM+Mono:wght@400;500&family=IBM+Plex+Mono:ital,wght@1,400;1,500&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
 
   <style>
     :root {
@@ -29,7 +29,7 @@
       --color-text-inverse:  #050505;
       --color-red:           #CC2936;
       --color-red-hover:     #B02230;
-      /* light vars kept for fallback only — sections are all dark */
+      /* light vars kept for fallback only - sections are all dark */
       --color-light-bg:      #111111;
       --color-light-surface: #181818;
       --color-light-text:    #FFFFFF;
@@ -51,7 +51,7 @@
 
       --font-display: 'Oswald', 'Arial Narrow', sans-serif;
       --font-mono-italic: 'IBM Plex Mono', 'Courier New', monospace;
-      --font-body:    'Source Serif 4', Georgia, serif;
+      --font-body:    'Poppins', 'Helvetica Neue', sans-serif;
       --font-mono:    'DM Mono', 'Courier New', monospace;
       --ease: cubic-bezier(0.16, 1, 0.3, 1);
       --transition: 180ms var(--ease);
@@ -64,11 +64,15 @@
     body {
       font-family: var(--font-body);
       background: var(--color-bg); color: var(--color-text);
-      font-size: var(--text-base); line-height: 1.65;
+      font-size: var(--text-base); line-height: 1.7; font-weight: 300;
       -webkit-font-smoothing: antialiased;
     }
-    h1, h2, h3 {
+    h1, h3 {
       font-family: var(--font-display); font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.02em; line-height: 1.1;
+    }
+    h2 {
+      font-family: var(--font-display); font-weight: 300; font-style: italic;
       text-transform: uppercase; letter-spacing: 0.02em; line-height: 1.1;
     }
     h2 em, h1 em {
@@ -236,9 +240,9 @@
     .section.surface-2 { background: var(--color-surface-2); }
     .container { max-width: var(--content); margin: 0 auto; }
     .section-label {
-      font-family: var(--font-mono); font-size: var(--text-xs);
+      font-family: var(--font-mono); font-size: var(--text-sm);
       letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--color-red); display: block; margin-bottom: var(--space-4);
+      color: var(--color-red); display: block; margin-bottom: var(--space-5);
     }
     .section h2 { font-size: var(--text-3xl); margin-bottom: var(--space-8); }
     .section p { color: var(--color-text-muted); }
@@ -257,6 +261,9 @@
       color: var(--color-text); margin-bottom: var(--space-4);
     }
     .delivery-card p { font-size: var(--text-base); color: var(--color-text-muted); line-height: 1.7; }
+
+    /* RECORD SECTION */
+    .record-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-20); align-items: start; }
 
     /* METHODOLOGY */
     .method-grid {
@@ -542,6 +549,7 @@
 
     /* RESPONSIVE */
     @media (max-width: 900px) {
+      .record-grid { grid-template-columns: 1fr; gap: var(--space-10); }
       .method-grid { grid-template-columns: 1fr; gap: var(--space-10); }
       .method-photo { aspect-ratio: 4 / 3; }
       .contact-grid { grid-template-columns: 1fr; gap: var(--space-10); }
@@ -642,7 +650,7 @@
   <div class="stats-grid">
     <div class="stat-cell">
       <span class="stat-num">+291.53</span>
-      <span class="stat-label">Points profit — 13 months</span>
+      <span class="stat-label">Points profit, 13 months</span>
     </div>
     <div class="stat-cell">
       <span class="stat-num">1,832</span>
@@ -659,6 +667,47 @@
   </div>
 </div>
 
+<!-- VERIFIED RECORD — main story -->
+<section class="section surface" style="border-bottom: 1px solid var(--color-divider);" aria-labelledby="record-heading">
+  <div class="container">
+    <div class="record-grid">
+      <div>
+        <span class="section-label">Verified record</span>
+        <h2 id="record-heading" style="font-size: var(--text-3xl); margin-bottom: var(--space-6);">The record is open.<br><em>No request needed.</em></h2>
+        <p style="font-size: var(--text-lg); color: var(--color-text-muted); margin-bottom: var(--space-6); line-height: 1.6;">Every selection is logged before the race starts. Every result is calculated at Starting Price, not best odds, not advised price. The worst-case number. Published in full. No login. No request.</p>
+        <p style="color: var(--color-text-muted); margin-bottom: var(--space-8);">Most services will send you their record if you ask nicely. Some do not respond at all. We leave it out in the open because we want you to read it before you spend a penny. That is the only proof worth offering.</p>
+        <div style="display: flex; gap: var(--space-4); flex-wrap: wrap; align-items: center;">
+          <a href="/record" class="btn-primary">View the full record</a>
+          <span style="font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:0.08em;text-transform:uppercase;color:var(--color-text-faint);">No login. No account. Just open.</span>
+        </div>
+      </div>
+      <div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border); border: 1px solid var(--color-border); margin-bottom: var(--space-6);">
+          <div style="background: var(--color-surface-2); padding: var(--space-8);">
+            <span style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;color:#22c55e;display:block;line-height:1;margin-bottom:var(--space-2);">+291.53</span>
+            <span style="font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-muted);">Points profit</span>
+          </div>
+          <div style="background: var(--color-surface-2); padding: var(--space-8);">
+            <span style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;display:block;line-height:1;margin-bottom:var(--space-2);">1,832</span>
+            <span style="font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-muted);">Selections logged</span>
+          </div>
+          <div style="background: var(--color-surface-2); padding: var(--space-8);">
+            <span style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;display:block;line-height:1;margin-bottom:var(--space-2);">13.7%</span>
+            <span style="font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-muted);">Win rate at SP</span>
+          </div>
+          <div style="background: var(--color-surface-2); padding: var(--space-8);">
+            <span style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;display:block;line-height:1;margin-bottom:var(--space-2);">23.0%</span>
+            <span style="font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-muted);">Win or place rate</span>
+          </div>
+        </div>
+        <div style="padding: var(--space-5) var(--space-6); background: var(--color-surface-2); border: 1px solid var(--color-border); border-left: 3px solid #22c55e;">
+          <p style="font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-text-muted); margin: 0; line-height: 1.8;">All results at Starting Price (SP). No best-odds guaranteed. No cherry-picking. 13 months of selections, verified and published in full.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- WHAT YOU GET -->
 <section class="section light" aria-labelledby="delivery-heading">
   <div class="container">
@@ -669,26 +718,26 @@
       <div class="delivery-card">
         <span class="delivery-icon">📧</span>
         <h3>The daily email</h3>
-        <p>Before racing begins, the email is already in your inbox. The horse, the race, the course, the advised price, and the reasoning behind the pick. On days when no selection is made, you hear that too — which is equally useful information.</p>
+        <p>Before racing begins, the email is already in your inbox. The horse, the race, the course, the advised price, and the reasoning behind the pick. On days when no selection is made, you hear that too. Equally useful information.</p>
         <p>Yesterday's result sits right underneath. You open one email and you know exactly where you stand.</p>
       </div>
       <div class="delivery-card">
         <span class="delivery-icon">🔗</span>
         <h3>One-click bet links</h3>
         <p>Every selection arrives with direct links to Betfair, Sky Bet, Paddy Power and other major bookmakers. One click puts you at the right bet slip, at the right price, before the market moves.</p>
-        <p>No copying odds into a search bar. No hunting for the race. This is the feature no other independent tipster at this price point offers — and it makes a real difference to the price you get on.</p>
+        <p>No copying odds into a search bar. No hunting for the race. This is the feature no other independent tipster at this price point offers. It makes a real difference to the price you get on.</p>
       </div>
       <div class="delivery-card">
         <span class="delivery-icon">📱</span>
         <h3>WhatsApp delivery</h3>
         <p>The selection hits your WhatsApp at the same time as the email. If you are away from a screen when racing starts, the pick is already in your pocket. No app. No login. Just a message.</p>
-        <p>If anything changes during the day — and occasionally it does — the WhatsApp is updated accordingly.</p>
+        <p>If anything changes during the day (and occasionally it does), the WhatsApp is updated accordingly.</p>
       </div>
       <div class="delivery-card">
         <span class="delivery-icon">📊</span>
         <h3>Weekly P&amp;L summary</h3>
         <p>Every week, a summary lands with your running points total, current win and place rates, and a note on the races worth watching ahead. Not a daily tipping sheet. A complete racing intelligence subscription.</p>
-        <p>The record is always open — before you subscribe, during your trial, every week after. No request needed.</p>
+        <p>The record is always open. Before you subscribe, during your trial, every week after. No request needed.</p>
       </div>
     </div>
   </div>
@@ -703,8 +752,8 @@
         <span class="section-label">The methodology</span>
         <h2 id="method-heading">The intelligence<br>behind <em>the selection.</em></h2>
         <p>Start with 90% of races already removed. Before a single horse is considered, form, ground conditions, draw bias, trainer patterns and market behaviour all run through a filter that most races simply fail to pass. What remains is a short list of races where a genuine edge exists.</p>
-        <p>The intelligence behind the selections comes from six decades in racing — as a mathematician who understands probability, as an owner who has stood in the parade ring and watched how horses behave before they run, and as a commentator who has called thousands of races from the stands and learned to read a field in real time.</p>
-        <p>There is no algorithm here. No model trained on historical data. Just someone who has spent sixty years learning to identify races where the market price does not reflect what the evidence says should happen — and the discipline to only act when the evidence is clear.</p>
+        <p>The intelligence behind the selections comes from six decades in racing: as a mathematician who understands probability, as an owner who has stood in the parade ring and watched how horses behave before they run, and as a commentator who has called thousands of races from the stands and learned to read a field in real time.</p>
+        <p>There is no algorithm here. No model trained on historical data. Just someone who has spent sixty years learning to identify races where the market price does not reflect what the evidence says should happen. And the discipline to only act when the evidence is clear.</p>
         <div class="method-stats" role="list">
           <div role="listitem">
             <span class="method-stat-num">60+</span>
@@ -721,35 +770,6 @@
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- VERIFIED RECORD -->
-<section class="section surface has-bg arc-bg" aria-labelledby="record-heading">
-  <div class="container">
-    <span class="section-label">Nothing to hide</span>
-    <h2 id="record-heading">The record is open.<br><em>No request needed.</em></h2>
-    <p style="max-width: 58ch;">Every selection logged before the race. Every result calculated at Starting Price — not best odds, not advised price, not cherry-picked. The worst-case number, published openly. Most services will send you their record if you ask nicely. We just leave it out.</p>
-    <div style="display:grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--color-border); border: 1px solid var(--color-border); margin: var(--space-10) 0;">
-      <div style="background: var(--color-surface-2); padding: var(--space-8);">
-        <span style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;color:#22c55e;display:block;line-height:1;margin-bottom:var(--space-2);">+291.53</span>
-        <span style="font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-muted);">Points profit</span>
-      </div>
-      <div style="background: var(--color-surface-2); padding: var(--space-8);">
-        <span style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;display:block;line-height:1;margin-bottom:var(--space-2);">1,832</span>
-        <span style="font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-muted);">Selections logged</span>
-      </div>
-      <div style="background: var(--color-surface-2); padding: var(--space-8);">
-        <span style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;display:block;line-height:1;margin-bottom:var(--space-2);">13.7%</span>
-        <span style="font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-muted);">Win rate at SP</span>
-      </div>
-      <div style="background: var(--color-surface-2); padding: var(--space-8);">
-        <span style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;display:block;line-height:1;margin-bottom:var(--space-2);">23.0%</span>
-        <span style="font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-muted);">Win or place rate</span>
-      </div>
-    </div>
-    <a href="/record" class="btn-primary" style="display:inline-block;">View the full record</a>
-    <span style="font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:0.08em;text-transform:uppercase;color:var(--color-text-faint);margin-left:var(--space-5);">No login. No request. Just open.</span>
   </div>
 </section>
 
@@ -851,8 +871,8 @@
   <div class="container">
     <span class="section-label">The market</span>
     <h2 id="competitor-heading">Why this price.<br><em>Why this gap.</em></h2>
-    <p style="max-width: 62ch;">There are established names in this market. Some have been going for years. A few have decent records — if you can get hold of them. What none of them do is put the record out in the open, deliver via WhatsApp, include one-click bet links, and charge less than £40 a month to do it. That combination does not exist anywhere else.</p>
-    <p style="max-width: 62ch;">The platform services require a login. The high-end services require high stakes. Race of the Day requires neither — and during the beta window, it costs less than a round at the bar per month.</p>
+    <p style="max-width: 62ch;">There are established names in this market. Some have been going for years. A few have decent records, if you can get hold of them. What none of them do is put the record out in the open, deliver via WhatsApp, include one-click bet links, and charge less than £40 a month to do it. That combination does not exist anywhere else.</p>
+    <p style="max-width: 62ch;">The platform services require a login. The high-end services require high stakes. Race of the Day requires neither. During the beta window, it costs less than a round at the bar per month.</p>
     <table class="competitor-table" aria-label="Competitor pricing and features comparison">
       <thead>
         <tr>
