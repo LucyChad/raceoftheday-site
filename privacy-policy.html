@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Race Of The Day</title>
+  <meta name="description" content="Privacy Policy for Race Of The Day, operated by Horseracing Analytics Ltd." />
+  <link rel="canonical" href="https://raceoftheday.com/privacy-policy" />
+
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --color-bg:            #050505;
+      --color-surface:       #0C0C0C;
+      --color-surface-2:     #111111;
+      --color-border:        #1E1E1E;
+      --color-divider:       #1A1A1A;
+      --color-text:          #FFFFFF;
+      --color-text-muted:    #888888;
+      --color-text-faint:    #444444;
+      --color-red:           #CC2936;
+      --color-red-hover:     #B02230;
+
+      --text-xs:   clamp(0.75rem,  0.7rem  + 0.25vw, 0.875rem);
+      --text-sm:   clamp(0.875rem, 0.8rem  + 0.35vw, 1rem);
+      --text-base: clamp(1rem,     0.95rem + 0.25vw, 1.125rem);
+      --text-lg:   clamp(1.125rem, 1rem    + 0.75vw, 1.5rem);
+      --text-xl:   clamp(1.5rem,   1.2rem  + 1.25vw, 2.25rem);
+
+      --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem;
+      --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem;
+      --space-10: 2.5rem; --space-12: 3rem; --space-16: 4rem;
+      --space-20: 5rem;
+
+      --font-display: 'Oswald', 'Arial Narrow', sans-serif;
+      --font-body:    'Satoshi', 'Helvetica Neue', sans-serif;
+      --font-mono:    'DM Mono', 'Courier New', monospace;
+      --transition: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+      --content: 740px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--color-bg); color: var(--color-text);
+      font-size: var(--text-base); line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--color-red); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    p { margin-bottom: var(--space-5); }
+    p:last-child { margin-bottom: 0; }
+
+    /* NAV */
+    header { position: sticky; top: 0; z-index: 100; }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: var(--space-4) var(--space-8);
+      background: rgba(5,5,5,0.97); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--color-divider);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: var(--space-3);
+      text-decoration: none; color: var(--color-text);
+    }
+    .nav-logo-text {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: var(--text-sm); letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .nav-logo-text span { color: var(--color-red); }
+    .nav-back {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.08em; color: var(--color-text-muted);
+      text-decoration: none; text-transform: uppercase;
+      transition: color var(--transition);
+    }
+    .nav-back:hover { color: var(--color-text); text-decoration: none; }
+
+    /* PAGE */
+    .page-header {
+      padding: var(--space-20) var(--space-8) var(--space-12);
+      border-bottom: 1px solid var(--color-divider);
+      background: var(--color-surface);
+    }
+    .page-header-inner { max-width: var(--content); margin: 0 auto; }
+    .page-label {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--color-red); display: block; margin-bottom: var(--space-4);
+    }
+    .page-title {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: var(--text-xl); text-transform: uppercase;
+      letter-spacing: 0.02em; margin-bottom: var(--space-4);
+    }
+    .page-meta {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.06em; color: var(--color-text-muted);
+    }
+
+    /* CONTENT */
+    .content {
+      max-width: var(--content); margin: 0 auto;
+      padding: var(--space-16) var(--space-8);
+    }
+    .content h2 {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: var(--text-lg); text-transform: uppercase;
+      letter-spacing: 0.04em; margin-top: var(--space-12);
+      margin-bottom: var(--space-5); color: var(--color-text);
+      padding-bottom: var(--space-3);
+      border-bottom: 1px solid var(--color-divider);
+    }
+    .content h2:first-child { margin-top: 0; }
+    .content ul {
+      list-style: none; margin-bottom: var(--space-5);
+      padding-left: var(--space-5);
+    }
+    .content ul li {
+      position: relative; margin-bottom: var(--space-2);
+      color: var(--color-text-muted);
+    }
+    .content ul li::before {
+      content: '—'; position: absolute; left: calc(-1 * var(--space-5));
+      color: var(--color-red);
+    }
+    .content p { color: var(--color-text-muted); }
+    .content strong { color: var(--color-text); font-weight: 600; }
+
+    /* FOOTER */
+    footer {
+      padding: var(--space-8);
+      border-top: 1px solid var(--color-divider);
+      background: var(--color-bg);
+    }
+    .footer-inner {
+      max-width: var(--content); margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: var(--space-4);
+    }
+    .footer-copy {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.06em; color: var(--color-text-faint);
+    }
+    .footer-links {
+      display: flex; gap: var(--space-6);
+    }
+    .footer-links a {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.06em; color: var(--color-text-faint);
+      text-decoration: none; text-transform: uppercase;
+      transition: color var(--transition);
+    }
+    .footer-links a:hover { color: var(--color-text); }
+
+    @media (max-width: 640px) {
+      .nav { padding: var(--space-4) var(--space-5); }
+      .page-header { padding: var(--space-16) var(--space-5) var(--space-10); }
+      .content { padding: var(--space-10) var(--space-5); }
+      .footer-inner { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <a href="/" class="nav-logo" aria-label="Race Of The Day - home">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <rect width="32" height="32" fill="#CC2936"/>
+        <path d="M6 22 L10 10 L16 18 L20 10 L26 22" stroke="#FAFAF8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      <span class="nav-logo-text">Race Of The <span>Day</span></span>
+    </a>
+    <a href="/" class="nav-back">← Back to home</a>
+  </nav>
+</header>
+
+<main>
+  <div class="page-header">
+    <div class="page-header-inner">
+      <span class="page-label">Legal</span>
+      <h1 class="page-title">Privacy Policy</h1>
+      <p class="page-meta">Last updated: April 2026 &nbsp;·&nbsp; Horseracing Analytics Ltd</p>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <h2>Who We Are</h2>
+    <p>Race Of The Day is operated by <strong>Horseracing Analytics Ltd</strong>, a company registered in England and Wales. Our registered office is in Wilmslow, Cheshire. You can contact us at <a href="mailto:hello@raceoftheday.com">hello@raceoftheday.com</a>.</p>
+    <p>This privacy policy explains how we collect, use, and protect your personal data when you use our website at raceoftheday.com or subscribe to our membership service.</p>
+
+    <h2>What Data We Collect</h2>
+    <p>We collect the following personal data when you sign up or interact with our service:</p>
+    <ul>
+      <li>Your name and email address, provided at the point of subscription</li>
+      <li>Payment information — processed securely by Stripe. We do not store card details.</li>
+      <li>Communication preferences and subscription status</li>
+      <li>Basic usage data collected automatically (IP address, browser type, pages visited) via cookies</li>
+    </ul>
+
+    <h2>How We Use Your Data</h2>
+    <p>We use your personal data for the following purposes:</p>
+    <ul>
+      <li>To deliver the daily tip email and any other membership communications you have subscribed to</li>
+      <li>To process your subscription payment via Stripe</li>
+      <li>To manage your account and respond to any queries you send us</li>
+      <li>To send you service updates, including changes to pricing, terms, or delivery</li>
+      <li>To comply with our legal obligations</li>
+    </ul>
+    <p>We will never sell your data to third parties. We will never use your data for purposes beyond those listed above without your explicit consent.</p>
+
+    <h2>Legal Basis for Processing</h2>
+    <p>We process your data under the following legal bases as defined by UK GDPR:</p>
+    <ul>
+      <li><strong>Contract performance</strong> — processing necessary to deliver the membership service you have paid for</li>
+      <li><strong>Legitimate interests</strong> — improving our service and communicating relevant updates to existing members</li>
+      <li><strong>Legal obligation</strong> — where required by law</li>
+    </ul>
+
+    <h2>Email Communications</h2>
+    <p>By subscribing to Race Of The Day, you consent to receive our daily tip email and related membership communications. You may unsubscribe at any time by clicking the unsubscribe link in any email, or by contacting us at <a href="mailto:hello@raceoftheday.com">hello@raceoftheday.com</a>. Unsubscribing from marketing communications does not cancel your subscription.</p>
+
+    <h2>Third-Party Services</h2>
+    <p>We use the following third-party services to operate Race Of The Day:</p>
+    <ul>
+      <li><strong>Stripe</strong> — payment processing. Stripe's privacy policy is available at stripe.com/gb/privacy</li>
+      <li><strong>GoHighLevel</strong> — CRM and email delivery</li>
+      <li><strong>Netlify</strong> — website hosting</li>
+      <li><strong>Google</strong> — data storage via Google Sheets</li>
+    </ul>
+    <p>Each of these providers is GDPR-compliant and processes your data only as instructed by us.</p>
+
+    <h2>Cookies</h2>
+    <p>Our website uses essential cookies to function correctly. We do not use tracking or advertising cookies. By using our website, you consent to essential cookies being set on your device.</p>
+
+    <h2>Data Retention</h2>
+    <p>We retain your personal data for as long as your membership is active, and for up to 12 months following cancellation. Payment records may be retained for up to 7 years in line with financial record-keeping obligations.</p>
+
+    <h2>Your Rights</h2>
+    <p>Under UK GDPR, you have the right to:</p>
+    <ul>
+      <li>Access the personal data we hold about you</li>
+      <li>Request correction of inaccurate data</li>
+      <li>Request deletion of your data (subject to legal retention requirements)</li>
+      <li>Object to processing based on legitimate interests</li>
+      <li>Request restriction of processing</li>
+      <li>Data portability — receive your data in a commonly used format</li>
+    </ul>
+    <p>To exercise any of these rights, contact us at <a href="mailto:hello@raceoftheday.com">hello@raceoftheday.com</a>. We will respond within 30 days.</p>
+
+    <h2>Responsible Gambling</h2>
+    <p>Race Of The Day provides information and selections for entertainment and informational purposes. Betting involves financial risk. Please gamble responsibly. If you are concerned about your gambling, visit <a href="https://www.begambleaware.org" target="_blank" rel="noopener">BeGambleAware.org</a> or <a href="https://www.gamstop.co.uk" target="_blank" rel="noopener">GamStop.co.uk</a>. The National Gambling Helpline is available on 0808 8020 133, free of charge, 24 hours a day.</p>
+
+    <h2>Changes to This Policy</h2>
+    <p>We may update this privacy policy from time to time. We will notify active members of any material changes by email. The current version will always be available at raceoftheday.com/privacy-policy.</p>
+
+    <h2>Contact</h2>
+    <p>For any privacy-related queries, contact us at <a href="mailto:hello@raceoftheday.com">hello@raceoftheday.com</a>.</p>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <span class="footer-copy">&copy; 2026 Horseracing Analytics Ltd</span>
+    <nav class="footer-links" aria-label="Legal pages">
+      <a href="/privacy-policy">Privacy Policy</a>
+      <a href="/terms">Terms &amp; Conditions</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>

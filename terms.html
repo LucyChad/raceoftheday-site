@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms &amp; Conditions — Race Of The Day</title>
+  <meta name="description" content="Terms and Conditions for Race Of The Day, operated by Horseracing Analytics Ltd." />
+  <link rel="canonical" href="https://raceoftheday.com/terms" />
+
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --color-bg:            #050505;
+      --color-surface:       #0C0C0C;
+      --color-surface-2:     #111111;
+      --color-border:        #1E1E1E;
+      --color-divider:       #1A1A1A;
+      --color-text:          #FFFFFF;
+      --color-text-muted:    #888888;
+      --color-text-faint:    #444444;
+      --color-red:           #CC2936;
+      --color-red-hover:     #B02230;
+
+      --text-xs:   clamp(0.75rem,  0.7rem  + 0.25vw, 0.875rem);
+      --text-sm:   clamp(0.875rem, 0.8rem  + 0.35vw, 1rem);
+      --text-base: clamp(1rem,     0.95rem + 0.25vw, 1.125rem);
+      --text-lg:   clamp(1.125rem, 1rem    + 0.75vw, 1.5rem);
+      --text-xl:   clamp(1.5rem,   1.2rem  + 1.25vw, 2.25rem);
+
+      --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem;
+      --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem;
+      --space-10: 2.5rem; --space-12: 3rem; --space-16: 4rem;
+      --space-20: 5rem;
+
+      --font-display: 'Oswald', 'Arial Narrow', sans-serif;
+      --font-body:    'Satoshi', 'Helvetica Neue', sans-serif;
+      --font-mono:    'DM Mono', 'Courier New', monospace;
+      --transition: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+      --content: 740px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--color-bg); color: var(--color-text);
+      font-size: var(--text-base); line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--color-red); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    p { margin-bottom: var(--space-5); }
+    p:last-child { margin-bottom: 0; }
+
+    header { position: sticky; top: 0; z-index: 100; }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: var(--space-4) var(--space-8);
+      background: rgba(5,5,5,0.97); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--color-divider);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: var(--space-3);
+      text-decoration: none; color: var(--color-text);
+    }
+    .nav-logo-text {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: var(--text-sm); letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .nav-logo-text span { color: var(--color-red); }
+    .nav-back {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.08em; color: var(--color-text-muted);
+      text-decoration: none; text-transform: uppercase;
+      transition: color var(--transition);
+    }
+    .nav-back:hover { color: var(--color-text); text-decoration: none; }
+
+    .page-header {
+      padding: var(--space-20) var(--space-8) var(--space-12);
+      border-bottom: 1px solid var(--color-divider);
+      background: var(--color-surface);
+    }
+    .page-header-inner { max-width: var(--content); margin: 0 auto; }
+    .page-label {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--color-red); display: block; margin-bottom: var(--space-4);
+    }
+    .page-title {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: var(--text-xl); text-transform: uppercase;
+      letter-spacing: 0.02em; margin-bottom: var(--space-4);
+    }
+    .page-meta {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.06em; color: var(--color-text-muted);
+    }
+
+    .content {
+      max-width: var(--content); margin: 0 auto;
+      padding: var(--space-16) var(--space-8);
+    }
+    .content h2 {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: var(--text-lg); text-transform: uppercase;
+      letter-spacing: 0.04em; margin-top: var(--space-12);
+      margin-bottom: var(--space-5); color: var(--color-text);
+      padding-bottom: var(--space-3);
+      border-bottom: 1px solid var(--color-divider);
+    }
+    .content h2:first-child { margin-top: 0; }
+    .content ul {
+      list-style: none; margin-bottom: var(--space-5);
+      padding-left: var(--space-5);
+    }
+    .content ul li {
+      position: relative; margin-bottom: var(--space-2);
+      color: var(--color-text-muted);
+    }
+    .content ul li::before {
+      content: '—'; position: absolute; left: calc(-1 * var(--space-5));
+      color: var(--color-red);
+    }
+    .content p { color: var(--color-text-muted); }
+    .content strong { color: var(--color-text); font-weight: 600; }
+
+    .disclaimer-box {
+      padding: var(--space-6); margin-bottom: var(--space-8);
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-left: 3px solid var(--color-red);
+    }
+    .disclaimer-box p {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--color-text-muted); margin: 0; line-height: 1.8;
+    }
+
+    footer {
+      padding: var(--space-8);
+      border-top: 1px solid var(--color-divider);
+      background: var(--color-bg);
+    }
+    .footer-inner {
+      max-width: var(--content); margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: var(--space-4);
+    }
+    .footer-copy {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.06em; color: var(--color-text-faint);
+    }
+    .footer-links { display: flex; gap: var(--space-6); }
+    .footer-links a {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.06em; color: var(--color-text-faint);
+      text-decoration: none; text-transform: uppercase;
+      transition: color var(--transition);
+    }
+    .footer-links a:hover { color: var(--color-text); }
+
+    @media (max-width: 640px) {
+      .nav { padding: var(--space-4) var(--space-5); }
+      .page-header { padding: var(--space-16) var(--space-5) var(--space-10); }
+      .content { padding: var(--space-10) var(--space-5); }
+      .footer-inner { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <a href="/" class="nav-logo" aria-label="Race Of The Day - home">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <rect width="32" height="32" fill="#CC2936"/>
+        <path d="M6 22 L10 10 L16 18 L20 10 L26 22" stroke="#FAFAF8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+      <span class="nav-logo-text">Race Of The <span>Day</span></span>
+    </a>
+    <a href="/" class="nav-back">← Back to home</a>
+  </nav>
+</header>
+
+<main>
+  <div class="page-header">
+    <div class="page-header-inner">
+      <span class="page-label">Legal</span>
+      <h1 class="page-title">Terms &amp; Conditions</h1>
+      <p class="page-meta">Last updated: April 2026 &nbsp;·&nbsp; Horseracing Analytics Ltd</p>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <div class="disclaimer-box">
+      <p>Race Of The Day provides racing selections for informational and entertainment purposes only. Past performance does not guarantee future results. Betting involves risk. You may lose money. Please read these terms carefully before subscribing.</p>
+    </div>
+
+    <h2>About Us</h2>
+    <p>Race Of The Day is a trading name of <strong>Horseracing Analytics Ltd</strong>, a company registered in England and Wales. Our registered office is in Wilmslow, Cheshire. Contact us at <a href="mailto:hello@raceoftheday.com">hello@raceoftheday.com</a>.</p>
+    <p>By subscribing to Race Of The Day, you agree to these terms and conditions in full. If you do not agree, please do not subscribe.</p>
+
+    <h2>The Service</h2>
+    <p>Race Of The Day provides members with daily horse racing selections delivered by email and WhatsApp. Selections include the race, course, time, horse name, bet type, and advised price. All selections are logged before the relevant race begins.</p>
+    <p>The service is provided for informational and entertainment purposes only. It does not constitute financial advice, investment advice, or a guarantee of profit.</p>
+
+    <h2>Membership and Payment</h2>
+    <p>Membership is offered on a recurring subscription basis. By subscribing, you authorise us to charge your payment method at the applicable rate on a recurring basis until you cancel.</p>
+    <ul>
+      <li>All prices are stated in pounds sterling and are inclusive of any applicable taxes</li>
+      <li>Payments are processed securely by Stripe</li>
+      <li>Your membership rate is locked at the price you joined at, for as long as your membership remains active and in good standing</li>
+      <li>We reserve the right to change pricing for new members at any time</li>
+      <li>You will be given at least 30 days notice of any price change that affects your existing subscription</li>
+    </ul>
+
+    <h2>Free Trial</h2>
+    <p>Where a trial period is offered, you will not be charged during the trial. If you do not cancel before the trial ends, your subscription will automatically convert to a paid membership at the applicable rate. You may cancel at any time before the trial ends with no charge.</p>
+
+    <h2>Cancellation</h2>
+    <p>You may cancel your membership at any time. Cancellation takes effect at the end of your current billing period. You will continue to receive the service until that date. We do not offer refunds for partial billing periods except where required by law.</p>
+    <p>To cancel, contact us at <a href="mailto:hello@raceoftheday.com">hello@raceoftheday.com</a> or manage your subscription directly through the payment portal.</p>
+
+    <h2>No Financial Advice</h2>
+    <p>Race Of The Day is not regulated by the Financial Conduct Authority. The selections and commentary we provide do not constitute financial advice or regulated betting advice. You are solely responsible for any betting decisions you make. We strongly recommend you bet only what you can afford to lose.</p>
+    <p>Past results published on our website and in our communications represent historical performance only and are not a guarantee or indication of future results.</p>
+
+    <h2>Responsible Gambling</h2>
+    <p>We are committed to promoting responsible gambling. Our service is available to persons aged 18 and over only. By subscribing, you confirm that you are at least 18 years of age.</p>
+    <p>If you are concerned about your gambling or that of someone you know, please seek help:</p>
+    <ul>
+      <li><a href="https://www.begambleaware.org" target="_blank" rel="noopener">BeGambleAware.org</a> — free support and information</li>
+      <li><a href="https://www.gamstop.co.uk" target="_blank" rel="noopener">GamStop.co.uk</a> — self-exclusion scheme</li>
+      <li>National Gambling Helpline: <strong>0808 8020 133</strong> — free, 24 hours a day</li>
+    </ul>
+
+    <h2>Intellectual Property</h2>
+    <p>All content published by Race Of The Day — including selections, commentary, analysis, and website copy — is the property of Horseracing Analytics Ltd. You may not reproduce, distribute, or republish any content without our prior written consent.</p>
+    <p>Sharing daily selections publicly, including on social media or betting forums, is prohibited under these terms and may result in immediate termination of your membership without refund.</p>
+
+    <h2>Limitation of Liability</h2>
+    <p>To the fullest extent permitted by law, Horseracing Analytics Ltd shall not be liable for any financial losses incurred as a result of following selections provided by Race Of The Day. Our total liability to you in any circumstances shall not exceed the total subscription fees paid by you in the three months preceding the relevant claim.</p>
+
+    <h2>Service Availability</h2>
+    <p>We aim to deliver a selection every racing day. There will be days when no selection is made — this is a feature of the methodology, not a failure of the service. We do not offer credits or refunds for days on which no selection is issued.</p>
+    <p>In the event of technical issues affecting delivery, we will make every reasonable effort to notify members and restore service promptly.</p>
+
+    <h2>Termination</h2>
+    <p>We reserve the right to terminate or suspend your membership immediately if you breach these terms, including but not limited to sharing selections publicly or providing false information at the point of registration.</p>
+
+    <h2>Governing Law</h2>
+    <p>These terms are governed by the laws of England and Wales. Any disputes arising from your use of Race Of The Day shall be subject to the exclusive jurisdiction of the courts of England and Wales.</p>
+
+    <h2>Changes to These Terms</h2>
+    <p>We may update these terms from time to time. We will notify active members of any material changes by email with at least 14 days notice. Continued use of the service after that date constitutes acceptance of the updated terms.</p>
+
+    <h2>Contact</h2>
+    <p>For any questions about these terms, contact us at <a href="mailto:hello@raceoftheday.com">hello@raceoftheday.com</a>.</p>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <span class="footer-copy">&copy; 2026 Horseracing Analytics Ltd</span>
+    <nav class="footer-links" aria-label="Legal pages">
+      <a href="/privacy-policy">Privacy Policy</a>
+      <a href="/terms">Terms &amp; Conditions</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
