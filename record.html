@@ -7,10 +7,10 @@
   <meta name="description" content="The full verified selection record for Race Of The Day. Every tip logged before the race, calculated at Starting Price. Open before you pay a penny." />
   <link rel="canonical" href="https://raceoftheday.com/record" />
 
-  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=DM+Mono:wght@400;500&family=IBM+Plex+Mono:ital,wght@1,400;1,500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=DM+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 
   <style>
     :root {
@@ -26,8 +26,8 @@
       --color-red:           #CC2936;
       --color-red-hover:     #B02230;
       --color-win:           #22c55e;
+      --color-loss:          #CC2936;
       --color-place:         #f59e0b;
-      --color-loss:          #444444;
 
       --text-xs:   clamp(0.75rem,  0.7rem  + 0.25vw, 0.875rem);
       --text-sm:   clamp(0.875rem, 0.8rem  + 0.35vw, 1rem);
@@ -37,13 +37,13 @@
       --text-2xl:  clamp(2rem,     1.2rem  + 2.5vw,  3.5rem);
       --text-3xl:  clamp(2.5rem,   1rem    + 4vw,    5rem);
 
-      --space-1:  0.25rem; --space-2:  0.5rem;  --space-3:  0.75rem;
-      --space-4:  1rem;    --space-5:  1.25rem; --space-6:  1.5rem;
-      --space-8:  2rem;    --space-10: 2.5rem;  --space-12: 3rem;
-      --space-16: 4rem;    --space-20: 5rem;    --space-24: 6rem;
+      --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem;
+      --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem;
+      --space-10: 2.5rem; --space-12: 3rem; --space-16: 4rem;
+      --space-20: 5rem;
 
       --font-display: 'Oswald', 'Arial Narrow', sans-serif;
-      --font-body:    'Satoshi', 'Helvetica Neue', sans-serif;
+      --font-body:    'Source Serif 4', Georgia, serif;
       --font-mono:    'DM Mono', 'Courier New', monospace;
       --ease: cubic-bezier(0.16, 1, 0.3, 1);
       --transition: 180ms var(--ease);
@@ -51,18 +51,14 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; scroll-padding-top: 4rem; }
+    html { scroll-behavior: smooth; }
     body {
       font-family: var(--font-body);
       background: var(--color-bg); color: var(--color-text);
-      font-size: var(--text-base); line-height: 1.65;
+      font-size: var(--text-base); line-height: 1.7;
       -webkit-font-smoothing: antialiased;
     }
-    h1, h2, h3 {
-      font-family: var(--font-display); font-weight: 700;
-      text-transform: uppercase; letter-spacing: 0.02em; line-height: 1.1;
-    }
-    a { color: inherit; }
+    a { color: inherit; text-decoration: none; }
     p { margin-bottom: var(--space-5); }
     p:last-child { margin-bottom: 0; }
 
@@ -87,25 +83,23 @@
     .nav-back {
       font-family: var(--font-mono); font-size: var(--text-xs);
       letter-spacing: 0.08em; color: var(--color-text-muted);
-      text-decoration: none; text-transform: uppercase;
-      transition: color var(--transition);
+      text-transform: uppercase; transition: color var(--transition);
     }
     .nav-back:hover { color: var(--color-text); }
     .nav-cta {
       padding: var(--space-2) var(--space-5);
       background: var(--color-red); color: #fff;
-      font-weight: 700; font-size: var(--text-xs);
+      font-family: var(--font-mono); font-weight: 700; font-size: var(--text-xs);
       letter-spacing: 0.1em; text-transform: uppercase;
-      text-decoration: none; border-radius: 100px;
-      transition: background var(--transition);
+      border-radius: 100px; transition: background var(--transition);
     }
     .nav-cta:hover { background: var(--color-red-hover); }
 
     /* PAGE HEADER */
     .page-header {
       padding: var(--space-20) var(--space-8) var(--space-12);
-      border-bottom: 1px solid var(--color-divider);
       background: var(--color-surface);
+      border-bottom: 1px solid var(--color-divider);
     }
     .page-header-inner { max-width: var(--content); margin: 0 auto; }
     .page-label {
@@ -114,210 +108,195 @@
       color: var(--color-red); display: block; margin-bottom: var(--space-4);
     }
     .page-title {
-      font-size: var(--text-3xl); margin-bottom: var(--space-6);
-      line-height: 1; letter-spacing: -0.01em;
+      font-family: var(--font-display); font-weight: 700;
+      font-size: var(--text-3xl); text-transform: uppercase;
+      letter-spacing: -0.01em; line-height: 1; margin-bottom: var(--space-6);
     }
     .page-intro {
       font-size: var(--text-lg); color: var(--color-text-muted);
-      max-width: 60ch; line-height: 1.6; margin-bottom: 0;
+      max-width: 58ch; line-height: 1.65;
     }
 
     /* TRUST BADGES */
     .trust-row {
-      display: flex; flex-wrap: wrap; gap: var(--space-6); margin-top: var(--space-8);
+      display: flex; flex-wrap: wrap; gap: var(--space-4); margin-top: var(--space-8);
     }
     .trust-badge {
       display: flex; align-items: center; gap: var(--space-3);
-      padding: var(--space-3) var(--space-5);
-      border: 1px solid var(--color-border); background: var(--color-surface-2);
+      padding: var(--space-2) var(--space-4);
+      border: 1px solid var(--color-border);
     }
-    .trust-badge-icon {
-      font-family: var(--font-mono); font-size: var(--text-xs);
-      color: var(--color-red); letter-spacing: 0.1em; text-transform: uppercase;
-    }
+    .trust-badge-icon { color: var(--color-win); font-size: 0.75rem; }
     .trust-badge-text {
       font-family: var(--font-mono); font-size: var(--text-xs);
       letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-text-muted);
     }
 
-    /* SUMMARY STATS */
-    .summary-section {
-      background: var(--color-bg);
-      border-bottom: 1px solid var(--color-divider);
-    }
-    .summary-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr);
+    /* HEADLINE STATS */
+    .stats-band { background: var(--color-bg); border-bottom: 1px solid var(--color-divider); }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4,1fr);
       max-width: var(--content); margin: 0 auto;
     }
-    .summary-cell {
+    .stat-cell {
       padding: var(--space-10) var(--space-8);
       border-right: 1px solid var(--color-divider);
     }
-    .summary-cell:last-child { border-right: none; }
-    .summary-num {
+    .stat-cell:last-child { border-right: none; }
+    .stat-num {
       font-family: var(--font-display); font-weight: 700;
-      font-size: var(--text-2xl); line-height: 1; letter-spacing: -0.02em;
-      color: var(--color-text); display: block; margin-bottom: var(--space-2);
+      font-size: var(--text-2xl); line-height: 1;
+      display: block; margin-bottom: var(--space-2);
     }
-    .summary-num.pos { color: var(--color-win); }
-    .summary-label {
+    .stat-num.pos { color: var(--color-win); }
+    .stat-label {
       font-family: var(--font-mono); font-size: var(--text-xs);
       letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-muted);
     }
 
-    /* METHODOLOGY BAR */
+    /* METHOD BAR */
     .method-bar {
-      background: var(--color-surface);
-      border-bottom: 1px solid var(--color-divider);
-      padding: var(--space-6) var(--space-8);
+      background: var(--color-surface); border-bottom: 1px solid var(--color-divider);
+      padding: var(--space-5) var(--space-8);
     }
     .method-bar-inner {
       max-width: var(--content); margin: 0 auto;
       display: flex; gap: var(--space-8); flex-wrap: wrap; align-items: center;
     }
-    .method-item {
-      display: flex; align-items: center; gap: var(--space-3);
-    }
-    .method-dot { width: 6px; height: 6px; background: var(--color-red); border-radius: 50%; flex-shrink: 0; }
+    .method-item { display: flex; align-items: center; gap: var(--space-3); }
+    .method-dot { width: 5px; height: 5px; background: var(--color-red); border-radius: 50%; }
     .method-text {
       font-family: var(--font-mono); font-size: var(--text-xs);
       letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-text-muted);
     }
 
-    /* MAIN CONTENT AREA */
-    .main-content {
+    /* CHARTS SECTION */
+    .charts-section {
       max-width: var(--content); margin: 0 auto;
-      padding: var(--space-12) var(--space-8);
+      padding: var(--space-16) var(--space-8);
     }
+    .charts-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8);
+      margin-bottom: var(--space-8);
+    }
+    .chart-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      padding: var(--space-8);
+    }
+    .chart-card-full {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      padding: var(--space-8);
+    }
+    .chart-title {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: var(--text-lg); text-transform: uppercase;
+      letter-spacing: 0.04em; margin-bottom: var(--space-2);
+    }
+    .chart-sub {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--color-text-muted); margin-bottom: var(--space-6);
+    }
+    .chart-wrap { position: relative; width: 100%; }
+    .chart-wrap canvas { width: 100% !important; }
 
-    /* MONTHLY SUMMARY CARDS */
-    .month-section { margin-bottom: var(--space-12); }
-    .month-header {
-      display: flex; align-items: baseline; gap: var(--space-5);
+    /* WINNERS TABLE */
+    .table-section {
+      max-width: var(--content); margin: 0 auto;
+      padding: 0 var(--space-8) var(--space-16);
+    }
+    .table-header {
+      display: flex; align-items: baseline; justify-content: space-between;
       margin-bottom: var(--space-6); padding-bottom: var(--space-4);
       border-bottom: 1px solid var(--color-divider);
     }
-    .month-title {
+    .table-title {
       font-family: var(--font-display); font-weight: 700;
-      font-size: var(--text-xl); letter-spacing: 0.02em; text-transform: uppercase;
+      font-size: var(--text-xl); text-transform: uppercase;
     }
-    .month-pts {
-      font-family: var(--font-mono); font-size: var(--text-sm);
-      color: var(--color-text-muted); letter-spacing: 0.08em;
+    .table-note {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--color-text-faint);
     }
-    .month-pts.pos { color: var(--color-win); }
-    .month-pts.neg { color: var(--color-red); }
-
-    /* WINNERS TABLE */
-    .winners-table-wrap { overflow-x: auto; margin-bottom: var(--space-6); }
-    .winners-table {
-      width: 100%; border-collapse: collapse;
-      font-size: var(--text-sm);
+    .record-note {
+      padding: var(--space-5) var(--space-6);
+      background: var(--color-surface-2); border: 1px solid var(--color-border);
+      border-left: 3px solid var(--color-red);
+      margin-bottom: var(--space-8);
     }
-    .winners-table thead tr {
-      border-bottom: 1px solid var(--color-border);
+    .record-note p {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--color-text-muted); margin: 0;
     }
-    .winners-table th {
+    .table-wrap { overflow-x: auto; }
+    table {
+      width: 100%; border-collapse: collapse; font-size: var(--text-sm);
+    }
+    thead tr { border-bottom: 1px solid var(--color-border); }
+    th {
       font-family: var(--font-mono); font-size: var(--text-xs);
       letter-spacing: 0.1em; text-transform: uppercase;
       color: var(--color-text-faint); font-weight: 400;
       text-align: left; padding: var(--space-3) var(--space-4);
       white-space: nowrap;
     }
-    .winners-table td {
+    td {
       padding: var(--space-3) var(--space-4);
       border-bottom: 1px solid rgba(255,255,255,0.04);
       vertical-align: middle; white-space: nowrap;
     }
-    .winners-table tbody tr:last-child td { border-bottom: none; }
-    .winners-table tbody tr:hover { background: rgba(255,255,255,0.02); }
-
-    .td-date {
-      font-family: var(--font-mono); font-size: var(--text-xs);
-      color: var(--color-text-muted); letter-spacing: 0.06em;
-    }
-    .td-horse {
-      font-family: var(--font-body); font-weight: 600;
-      color: var(--color-text);
-    }
-    .td-course {
-      font-family: var(--font-mono); font-size: var(--text-xs);
-      color: var(--color-text-muted);
-    }
-    .td-sp {
-      font-family: var(--font-mono); font-size: var(--text-xs);
-      color: var(--color-text);
-    }
-    .td-type {
-      font-family: var(--font-mono); font-size: var(--text-xs);
-      color: var(--color-text-faint);
-    }
-    .outcome-badge {
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:hover { background: rgba(255,255,255,0.02); }
+    .td-date { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-text-muted); }
+    .td-horse { font-weight: 600; }
+    .td-course { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-text-muted); }
+    .td-sp { font-family: var(--font-mono); font-size: var(--text-xs); }
+    .td-type { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-text-faint); }
+    .td-pts { font-family: var(--font-mono); font-size: var(--text-xs); text-align: right; }
+    .td-pts.pos { color: var(--color-win); }
+    .badge {
       display: inline-block; padding: 2px var(--space-3);
       font-family: var(--font-mono); font-size: 0.65rem;
       letter-spacing: 0.1em; text-transform: uppercase; border-radius: 100px;
     }
-    .outcome-win   { background: rgba(34,197,94,0.12); color: var(--color-win); border: 1px solid rgba(34,197,94,0.2); }
-    .outcome-place { background: rgba(245,158,11,0.12); color: var(--color-place); border: 1px solid rgba(245,158,11,0.2); }
-    .outcome-loss  { background: rgba(255,255,255,0.04); color: var(--color-text-faint); border: 1px solid rgba(255,255,255,0.06); }
-    .td-pts {
-      font-family: var(--font-mono); font-size: var(--text-xs);
-      text-align: right;
-    }
-    .td-pts.pos { color: var(--color-win); }
-    .td-pts.neg { color: var(--color-text-faint); }
+    .badge-win   { background: rgba(34,197,94,0.12); color: var(--color-win); border: 1px solid rgba(34,197,94,0.2); }
+    .badge-place { background: rgba(245,158,11,0.12); color: var(--color-place); border: 1px solid rgba(245,158,11,0.2); }
 
-    /* PERIOD NOTE */
-    .period-note {
-      padding: var(--space-5) var(--space-6);
-      background: var(--color-surface-2);
-      border: 1px solid var(--color-border);
-      border-left: 3px solid var(--color-red);
-      margin-bottom: var(--space-12);
-    }
-    .period-note p {
-      font-family: var(--font-mono); font-size: var(--text-xs);
-      letter-spacing: 0.06em; text-transform: uppercase;
-      color: var(--color-text-muted); margin: 0;
-    }
-
-    /* CTA BLOCK */
+    /* CTA */
     .record-cta {
-      padding: var(--space-16) var(--space-8);
-      background: var(--color-surface);
-      border-top: 1px solid var(--color-divider);
-      text-align: center;
+      background: var(--color-surface); border-top: 1px solid var(--color-divider);
+      padding: var(--space-16) var(--space-8); text-align: center;
     }
-    .record-cta-inner { max-width: 640px; margin: 0 auto; }
-    .record-cta h2 { font-size: var(--text-xl); margin-bottom: var(--space-4); }
+    .record-cta-inner { max-width: 600px; margin: 0 auto; }
+    .record-cta h2 {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: var(--text-xl); text-transform: uppercase;
+      margin-bottom: var(--space-4);
+    }
     .record-cta p { color: var(--color-text-muted); margin-bottom: var(--space-8); }
-    .record-cta-btns { display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap; }
+    .cta-btns { display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap; }
     .btn-primary {
-      padding: var(--space-4) var(--space-8);
-      background: var(--color-red); color: #fff;
-      font-family: var(--font-body); font-weight: 700;
-      font-size: var(--text-sm); letter-spacing: 0.06em;
-      text-transform: uppercase; text-decoration: none;
-      border-radius: 100px; transition: background var(--transition); display: inline-block;
+      padding: var(--space-4) var(--space-8); background: var(--color-red); color: #fff;
+      font-family: var(--font-mono); font-weight: 700; font-size: var(--text-xs);
+      letter-spacing: 0.1em; text-transform: uppercase; border-radius: 100px;
+      transition: background var(--transition);
     }
     .btn-primary:hover { background: var(--color-red-hover); }
     .btn-secondary {
-      padding: var(--space-4) var(--space-8);
-      background: transparent; color: var(--color-text);
-      font-family: var(--font-body); font-weight: 700;
-      font-size: var(--text-sm); letter-spacing: 0.06em;
-      text-transform: uppercase; text-decoration: none;
+      padding: var(--space-4) var(--space-8); background: transparent;
+      color: var(--color-text); font-family: var(--font-mono); font-weight: 700;
+      font-size: var(--text-xs); letter-spacing: 0.1em; text-transform: uppercase;
       border: 1px solid rgba(255,255,255,0.25); border-radius: 100px;
-      transition: border-color var(--transition); display: inline-block;
+      transition: border-color var(--transition);
     }
     .btn-secondary:hover { border-color: #fff; }
 
     /* FOOTER */
-    footer {
-      padding: var(--space-8);
-      border-top: 1px solid var(--color-divider);
-      background: var(--color-bg);
-    }
+    footer { padding: var(--space-8); border-top: 1px solid var(--color-divider); }
     .footer-inner {
       max-width: var(--content); margin: 0 auto;
       display: flex; align-items: center; justify-content: space-between;
@@ -330,40 +309,33 @@
     .footer-gambling {
       font-family: var(--font-mono); font-size: var(--text-xs);
       letter-spacing: 0.06em; color: var(--color-text-faint);
-      text-align: right; max-width: 480px;
     }
     .footer-gambling a { color: var(--color-text-muted); text-decoration: underline; }
 
     /* RESPONSIVE */
     @media (max-width: 900px) {
-      .summary-grid { grid-template-columns: repeat(2, 1fr); }
-      .summary-cell:nth-child(2) { border-right: none; }
-      .summary-cell { border-bottom: 1px solid var(--color-divider); }
-      .summary-cell:nth-child(3), .summary-cell:nth-child(4) { border-bottom: none; }
-      .summary-cell:nth-child(4) { border-right: none; }
+      .stats-grid { grid-template-columns: repeat(2,1fr); }
+      .stat-cell:nth-child(2) { border-right: none; }
+      .stat-cell { border-bottom: 1px solid var(--color-divider); }
+      .stat-cell:nth-child(3), .stat-cell:nth-child(4) { border-bottom: none; }
+      .charts-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 640px) {
       .nav { padding: var(--space-4) var(--space-5); }
       .page-header { padding: var(--space-16) var(--space-5) var(--space-10); }
-      .main-content { padding: var(--space-10) var(--space-5); }
+      .charts-section, .table-section { padding-left: var(--space-5); padding-right: var(--space-5); }
+      .stat-cell { padding: var(--space-6) var(--space-5); }
       .method-bar { padding: var(--space-5); }
-      .summary-grid { grid-template-columns: 1fr 1fr; }
-      .summary-cell { padding: var(--space-6) var(--space-5); }
-      .winners-table th, .winners-table td { padding: var(--space-2) var(--space-3); }
-      .record-cta { padding: var(--space-12) var(--space-5); }
-      .record-cta-btns { flex-direction: column; align-items: center; }
       .footer-inner { flex-direction: column; }
-      .footer-gambling { text-align: left; max-width: 100%; }
     }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
 <header>
-  <nav class="nav" role="navigation" aria-label="Main navigation">
-    <a href="/" class="nav-logo" aria-label="Race Of The Day - home">
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+  <nav class="nav">
+    <a href="/" class="nav-logo">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
         <rect width="32" height="32" fill="#CC2936"/>
         <path d="M6 22 L10 10 L16 18 L20 10 L26 22" stroke="#FAFAF8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
       </svg>
@@ -381,490 +353,310 @@
 <!-- PAGE HEADER -->
 <div class="page-header">
   <div class="page-header-inner">
-    <span class="page-label">Open record — verified before you subscribe</span>
+    <span class="page-label">Open record — no login, no request</span>
     <h1 class="page-title">The Verified Record</h1>
-    <p class="page-intro">Every selection logged before the race runs, at the advised price. Results calculated at Starting Price — the worst-case odds available. No screenshots, no cherry-picking, no best-odds-guaranteed adjustments.</p>
+    <p class="page-intro">Every selection logged before the race. Every result at Starting Price — not best odds, not advised price. The full record, open before you spend a penny. Most services will send you theirs if you ask. We just leave it out.</p>
     <div class="trust-row">
-      <div class="trust-badge">
-        <span class="trust-badge-icon">✓</span>
-        <span class="trust-badge-text">Logged pre-race</span>
-      </div>
-      <div class="trust-badge">
-        <span class="trust-badge-icon">✓</span>
-        <span class="trust-badge-text">SP calculated</span>
-      </div>
-      <div class="trust-badge">
-        <span class="trust-badge-icon">✓</span>
-        <span class="trust-badge-text">No cherry-picking</span>
-      </div>
-      <div class="trust-badge">
-        <span class="trust-badge-icon">✓</span>
-        <span class="trust-badge-text">No days removed</span>
-      </div>
+      <div class="trust-badge"><span class="trust-badge-icon">✓</span><span class="trust-badge-text">Logged pre-race</span></div>
+      <div class="trust-badge"><span class="trust-badge-icon">✓</span><span class="trust-badge-text">SP calculated</span></div>
+      <div class="trust-badge"><span class="trust-badge-icon">✓</span><span class="trust-badge-text">No cherry-picking</span></div>
+      <div class="trust-badge"><span class="trust-badge-icon">✓</span><span class="trust-badge-text">Every selection included</span></div>
+      <div class="trust-badge"><span class="trust-badge-icon">✓</span><span class="trust-badge-text">13 months of data</span></div>
     </div>
   </div>
 </div>
 
-<!-- SUMMARY STATS -->
-<div class="summary-section" role="region" aria-label="Record summary statistics">
-  <div class="summary-grid">
-    <div class="summary-cell">
-      <span class="summary-num pos">+89.76</span>
-      <span class="summary-label">Points profit — 12 months</span>
+<!-- HEADLINE STATS -->
+<div class="stats-band">
+  <div class="stats-grid">
+    <div class="stat-cell">
+      <span class="stat-num pos">+291.53</span>
+      <span class="stat-label">Points profit — 13 months</span>
     </div>
-    <div class="summary-cell">
-      <span class="summary-num">1,883</span>
-      <span class="summary-label">Selections logged</span>
+    <div class="stat-cell">
+      <span class="stat-num">1,832</span>
+      <span class="stat-label">Selections logged</span>
     </div>
-    <div class="summary-cell">
-      <span class="summary-num">13.4%</span>
-      <span class="summary-label">Win rate at SP</span>
+    <div class="stat-cell">
+      <span class="stat-num">13.7%</span>
+      <span class="stat-label">Win rate at SP</span>
     </div>
-    <div class="summary-cell">
-      <span class="summary-num">22.2%</span>
-      <span class="summary-label">Win or place rate</span>
+    <div class="stat-cell">
+      <span class="stat-num">23.0%</span>
+      <span class="stat-label">Win or place rate</span>
     </div>
   </div>
 </div>
 
-<!-- METHODOLOGY BAR -->
-<div class="method-bar" role="note">
+<!-- METHOD BAR -->
+<div class="method-bar">
   <div class="method-bar-inner">
-    <div class="method-item"><span class="method-dot"></span><span class="method-text">Results at Starting Price</span></div>
+    <div class="method-item"><span class="method-dot"></span><span class="method-text">All results at Starting Price</span></div>
     <div class="method-item"><span class="method-dot"></span><span class="method-text">Win bets: 2pt stake</span></div>
-    <div class="method-item"><span class="method-dot"></span><span class="method-text">Each-way bets: 1pt each way</span></div>
+    <div class="method-item"><span class="method-dot"></span><span class="method-text">Each-way: 1pt each way</span></div>
     <div class="method-item"><span class="method-dot"></span><span class="method-text">Place terms by field size</span></div>
-    <div class="method-item"><span class="method-dot"></span><span class="method-text">All UK and Irish selections included</span></div>
+    <div class="method-item"><span class="method-dot"></span><span class="method-text">UK and Irish racing included</span></div>
   </div>
 </div>
 
-<!-- MAIN CONTENT -->
-<div class="main-content">
+<!-- CHARTS -->
+<div class="charts-section">
 
-  <div class="period-note">
-    <p>Sample results shown below: November 2025 — February 2026. Confirmed winners and placed horses only. Full tip-by-tip record — including all non-runners, voids and losses — is available to members on request. 12-month totals above reflect the complete record.</p>
+  <!-- CUMULATIVE LINE CHART - FULL WIDTH -->
+  <div class="chart-card-full" style="margin-bottom: var(--space-8);">
+    <div class="chart-title">Cumulative profit</div>
+    <div class="chart-sub">Running points total — Apr 2025 to Apr 2026</div>
+    <div class="chart-wrap" style="height: 280px;">
+      <canvas id="lineChart"></canvas>
+    </div>
   </div>
 
-  <!-- FEBRUARY 2026 -->
-  <div class="month-section">
-    <div class="month-header">
-      <span class="month-title">February 2026</span>
-      <span class="month-pts pos">Winners this month: 5</span>
+  <!-- TWO COLUMN: BAR + MONTHLY TABLE -->
+  <div class="charts-grid">
+    <div class="chart-card">
+      <div class="chart-title">Monthly P&amp;L</div>
+      <div class="chart-sub">Points per month at SP</div>
+      <div class="chart-wrap" style="height: 280px;">
+        <canvas id="barChart"></canvas>
+      </div>
     </div>
-    <div class="winners-table-wrap">
-      <table class="winners-table" role="table" aria-label="February 2026 results">
+    <div class="chart-card">
+      <div class="chart-title">Monthly breakdown</div>
+      <div class="chart-sub">Full month-by-month record</div>
+      <table style="margin-top: var(--space-2);">
         <thead>
           <tr>
-            <th>Date</th>
-            <th>Horse</th>
-            <th>Course</th>
-            <th>SP</th>
-            <th>Bet type</th>
-            <th>Result</th>
-            <th style="text-align:right">Pts</th>
+            <th>Month</th>
+            <th>Tips</th>
+            <th style="text-align:right">P&amp;L</th>
+            <th style="text-align:right">Running</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td class="td-date">01 Feb</td>
-            <td class="td-horse">Majborough</td>
-            <td class="td-course">Leopardstown</td>
-            <td class="td-sp">2/1</td>
-            <td class="td-type">Win</td>
-            <td><span class="outcome-badge outcome-win">Win</span></td>
-            <td class="td-pts pos">+4</td>
-          </tr>
-          <tr>
-            <td class="td-date">01 Feb</td>
-            <td class="td-horse">Backmeorsackme</td>
-            <td class="td-course">Leopardstown</td>
-            <td class="td-sp">14/1</td>
-            <td class="td-type">Win</td>
-            <td><span class="outcome-badge outcome-win">Win</span></td>
-            <td class="td-pts pos">+4</td>
-          </tr>
-          <tr>
-            <td class="td-date">01 Feb</td>
-            <td class="td-horse">Bowensonfire</td>
-            <td class="td-course">Leopardstown</td>
-            <td class="td-sp">10/1</td>
-            <td class="td-type">Each Way</td>
-            <td><span class="outcome-badge outcome-win">Win</span></td>
-            <td class="td-pts pos">+2</td>
-          </tr>
-          <tr>
-            <td class="td-date">01 Feb</td>
-            <td class="td-horse">Dee Capo</td>
-            <td class="td-course">Leopardstown</td>
-            <td class="td-sp">16/1</td>
-            <td class="td-type">Each Way</td>
-            <td><span class="outcome-badge outcome-place">Place</span></td>
-            <td class="td-pts pos">+1</td>
-          </tr>
-          <tr>
-            <td class="td-date">02 Feb</td>
-            <td class="td-horse">Fact To File</td>
-            <td class="td-course">Leopardstown</td>
-            <td class="td-sp">9/2</td>
-            <td class="td-type">Win</td>
-            <td><span class="outcome-badge outcome-win">Win</span></td>
-            <td class="td-pts pos">+4</td>
-          </tr>
-          <tr>
-            <td class="td-date">02 Feb</td>
-            <td class="td-horse">Jacob's Ladder</td>
-            <td class="td-course">Leopardstown</td>
-            <td class="td-sp">2/1F</td>
-            <td class="td-type">Win</td>
-            <td><span class="outcome-badge outcome-win">Win</span></td>
-            <td class="td-pts pos">+4</td>
-          </tr>
-          <tr>
-            <td class="td-date">02 Feb</td>
-            <td class="td-horse">Barra Rua</td>
-            <td class="td-course">Leopardstown</td>
-            <td class="td-sp">12/1</td>
-            <td class="td-type">Each Way</td>
-            <td><span class="outcome-badge outcome-place">Place</span></td>
-            <td class="td-pts pos">+1</td>
-          </tr>
-        </tbody>
+        <tbody id="monthlyTableBody"></tbody>
       </table>
     </div>
   </div>
 
-  <!-- JANUARY 2026 -->
-  <div class="month-section">
-    <div class="month-header">
-      <span class="month-title">January 2026</span>
-      <span class="month-pts pos">Winners this month: 11</span>
-    </div>
-    <div class="winners-table-wrap">
-      <table class="winners-table" role="table" aria-label="January 2026 results">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Horse</th>
-            <th>Course</th>
-            <th>SP</th>
-            <th>Bet type</th>
-            <th>Result</th>
-            <th style="text-align:right">Pts</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="td-date">06 Jan</td>
-            <td class="td-horse">Saffron Dandy</td>
-            <td class="td-course">Wolverhampton</td>
-            <td class="td-sp">11/1</td>
-            <td class="td-type">Each Way</td>
-            <td><span class="outcome-badge outcome-win">Win</span></td>
-            <td class="td-pts pos">+2</td>
-          </tr>
-          <tr>
-            <td class="td-date">06 Jan</td>
-            <td class="td-horse">The Turpinator</td>
-            <td class="td-course">Wolverhampton</td>
-            <td class="td-sp">11/1</td>
-            <td class="td-type">Each Way</td>
-            <td><span class="outcome-badge outcome-place">Place</span></td>
-            <td class="td-pts pos">+1</td>
-          </tr>
-          <tr>
-            <td class="td-date">08 Jan</td>
-            <td class="td-horse">Brave Knight</td>
-            <td class="td-course">Taunton</td>
-            <td class="td-sp">13/2</td>
-            <td class="td-type">Win</td>
-            <td><span class="outcome-badge outcome-win">Win</span></td>
-            <td class="td-pts pos">+4</td>
-          </tr>
-          <tr>
-            <td class="td-date">09 Jan</td>
-            <td class="td-horse">Champagne Mahler</td>
-            <td class="td-course">Naas</td>
-            <td class="td-sp">5/1</td>
-            <td class="td-type">Each Way</td>
-            <td><span class="outcome-badge outcome-place">Place</span></td>
-            <td class="td-pts pos">+1</td>
-          </tr>
-          <tr>
-            <td class="td-date">10 Jan</td>
-            <td class="td-horse">Iberico Lord</td>
-            <td class="td-course">Kempton</td>
-            <td class="td-sp">22/1</td>
-            <td class="td-type">Each Way</td>
-            <td><span class="outcome-badge outcome-win">Win</span></td>
-            <td class="td-pts pos">+2</td>
-          </tr>
-          <tr>
-            <td class="td-date">13 Jan</td>
-            <td class="td-horse">Platin Moon</td>
-            <td class="td-course">Ayr</td>
-            <td class="td-sp">100/30</td>
-            <td class="td-type">Win</td>
-            <td><span class="outcome-badge outcome-win">Win</span></td>
-            <td class="td-pts pos">+4</td>
-          </tr>
-          <tr>
-            <td class="td-date">13 Jan</td>
-            <td class="td-horse">Spring Is Spring</td>
-            <td class="td-course">Southwell</td>
-            <td class="td-sp">22/1</td>
-            <td class="td-type">Each Way</td>
-            <td><span class="outcome-badge outcome-win">Win</span></td>
-            <td class="td-pts pos">+2</td>
-          </tr>
-          <tr>
-            <td class="td-date">15 Jan</td>
-            <td class="td-horse">Oman</td>
-            <td class="td-course">Chelmsford City</td>
-            <td class="td-sp">14/1</td>
-            <td class="td-type">Each Way</td>
-            <td><span class="outcome-badge outcome-place">Place</span></td>
-            <td class="td-pts pos">+1</td>
-          </tr>
-          <tr>
-            <td class="td-date">18 Jan</td>
-            <td class="td-horse">Highlands Legacy</td>
-            <td class="td-course">Windsor</td>
-            <td class="td-sp">11/8F</td>
-            <td class="td-type">Win</td>
-            <td><span class="outcome-badge outcome-win">Win</span></td>
-            <td class="td-pts pos">+4</td>
-          </tr>
-          <tr>
-            <td class="td-date">19 Jan</td>
-            <td class="td-horse">Invincible Nao</td>
-            <td class="td-course">Lingfield Park</td>
-            <td class="td-sp">10/1</td>
-            <td class="td-type">Each Way</td>
-            <td><span class="outcome-badge outcome-place">Place</span></td>
-            <td class="td-pts pos">+1</td>
-          </tr>
-          <tr>
-            <td class="td-date">24 Jan</td>
-            <td class="td-horse">Germanic</td>
-            <td class="td-course">Newcastle</td>
-            <td class="td-sp">11/4</td>
-            <td class="td-type">Win</td>
-            <td><span class="outcome-badge outcome-win">Win</span></td>
-            <td class="td-pts pos">+4</td>
-          </tr>
-          <tr>
-            <td class="td-date">27 Jan</td>
-            <td class="td-horse">West To The Bridge</td>
-            <td class="td-course">Chepstow</td>
-            <td class="td-sp">15/2</td>
-            <td class="td-type">Each Way</td>
-            <td><span class="outcome-badge outcome-win">Win</span></td>
-            <td class="td-pts pos">+2</td>
-          </tr>
-          <tr>
-            <td class="td-date">27 Jan</td>
-            <td class="td-horse">Rose Cotton</td>
-            <td class="td-course">Wolverhampton</td>
-            <td class="td-sp">3/1</td>
-            <td class="td-type">Win</td>
-            <td><span class="outcome-badge outcome-win">Win</span></td>
-            <td class="td-pts pos">+4</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+</div>
 
-  <!-- DECEMBER 2025 -->
-  <div class="month-section">
-    <div class="month-header">
-      <span class="month-title">December 2025</span>
-      <span class="month-pts pos">Winners this month: 6</span>
-    </div>
-    <div class="winners-table-wrap">
-      <table class="winners-table" role="table" aria-label="December 2025 results">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Horse</th>
-            <th>Course</th>
-            <th>SP</th>
-            <th>Bet type</th>
-            <th>Result</th>
-            <th style="text-align:right">Pts</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="td-date">01 Dec</td>
-            <td class="td-horse">Mythical Composer</td>
-            <td class="td-course">Kempton Park</td>
-            <td class="td-sp">17/2</td>
-            <td class="td-type">Win</td>
-            <td><span class="outcome-badge outcome-win">Win</span></td>
-            <td class="td-pts pos">+4</td>
-          </tr>
-          <tr>
-            <td class="td-date">05 Dec</td>
-            <td class="td-horse">Howyoulikethat</td>
-            <td class="td-course">Dundalk</td>
-            <td class="td-sp">28/1</td>
-            <td class="td-type">Each Way</td>
-            <td><span class="outcome-badge outcome-place">Place</span></td>
-            <td class="td-pts pos">+1</td>
-          </tr>
-          <tr>
-            <td class="td-date">06 Dec</td>
-            <td class="td-horse">Tribal Wisdom</td>
-            <td class="td-course">Wolverhampton</td>
-            <td class="td-sp">5/1</td>
-            <td class="td-type">Win</td>
-            <td><span class="outcome-badge outcome-win">Win</span></td>
-            <td class="td-pts pos">+4</td>
-          </tr>
-          <tr>
-            <td class="td-date">12 Dec</td>
-            <td class="td-horse">Alrazeen</td>
-            <td class="td-course">Southwell</td>
-            <td class="td-sp">22/1</td>
-            <td class="td-type">Each Way</td>
-            <td><span class="outcome-badge outcome-place">Place</span></td>
-            <td class="td-pts pos">+1</td>
-          </tr>
-          <tr>
-            <td class="td-date">15 Dec</td>
-            <td class="td-horse">Dukes Command</td>
-            <td class="td-course">Lingfield Park</td>
-            <td class="td-sp">3/1</td>
-            <td class="td-type">Win</td>
-            <td><span class="outcome-badge outcome-win">Win</span></td>
-            <td class="td-pts pos">+4</td>
-          </tr>
-          <tr>
-            <td class="td-date">26 Dec</td>
-            <td class="td-horse">Brazil Power</td>
-            <td class="td-course">Wolverhampton</td>
-            <td class="td-sp">100/30</td>
-            <td class="td-type">Win</td>
-            <td><span class="outcome-badge outcome-win">Win</span></td>
-            <td class="td-pts pos">+4</td>
-          </tr>
-          <tr>
-            <td class="td-date">30 Dec</td>
-            <td class="td-horse">Grain D'Oudairies</td>
-            <td class="td-course">Haydock Park</td>
-            <td class="td-sp">6/1</td>
-            <td class="td-type">Win</td>
-            <td><span class="outcome-badge outcome-win">Win</span></td>
-            <td class="td-pts pos">+4</td>
-          </tr>
-          <tr>
-            <td class="td-date">31 Dec</td>
-            <td class="td-horse">Nebras</td>
-            <td class="td-course">Lingfield Park</td>
-            <td class="td-sp">7/2</td>
-            <td class="td-type">Win</td>
-            <td><span class="outcome-badge outcome-win">Win</span></td>
-            <td class="td-pts pos">+4</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+<!-- WINNERS TABLE -->
+<div class="table-section">
+  <div class="table-header">
+    <span class="table-title">Recent winners</span>
+    <span class="table-note">Sample — Feb 2026</span>
   </div>
-
-  <!-- NOVEMBER 2025 -->
-  <div class="month-section">
-    <div class="month-header">
-      <span class="month-title">November 2025</span>
-      <span class="month-pts pos">Winners this month: 5</span>
-    </div>
-    <div class="winners-table-wrap">
-      <table class="winners-table" role="table" aria-label="November 2025 results">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Horse</th>
-            <th>Course</th>
-            <th>SP</th>
-            <th>Bet type</th>
-            <th>Result</th>
-            <th style="text-align:right">Pts</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="td-date">03 Nov</td>
-            <td class="td-horse">King's Code</td>
-            <td class="td-course">Kempton Park</td>
-            <td class="td-sp">11/1</td>
-            <td class="td-type">Win</td>
-            <td><span class="outcome-badge outcome-win">Win</span></td>
-            <td class="td-pts pos">+4</td>
-          </tr>
-          <tr>
-            <td class="td-date">05 Nov</td>
-            <td class="td-horse">Coul Angel</td>
-            <td class="td-course">Kempton Park</td>
-            <td class="td-sp">9/4</td>
-            <td class="td-type">Win</td>
-            <td><span class="outcome-badge outcome-win">Win</span></td>
-            <td class="td-pts pos">+4</td>
-          </tr>
-          <tr>
-            <td class="td-date">06 Nov</td>
-            <td class="td-horse">Threatening</td>
-            <td class="td-course">Chelmsford City</td>
-            <td class="td-sp">15/2</td>
-            <td class="td-type">Win</td>
-            <td><span class="outcome-badge outcome-win">Win</span></td>
-            <td class="td-pts pos">+4</td>
-          </tr>
-          <tr>
-            <td class="td-date">12 Nov</td>
-            <td class="td-horse">Buddy Batt</td>
-            <td class="td-course">Dundalk</td>
-            <td class="td-sp">8/1</td>
-            <td class="td-type">Win</td>
-            <td><span class="outcome-badge outcome-win">Win</span></td>
-            <td class="td-pts pos">+4</td>
-          </tr>
-          <tr>
-            <td class="td-date">21 Nov</td>
-            <td class="td-horse">Sturlasson</td>
-            <td class="td-course">Southwell</td>
-            <td class="td-sp">9/2</td>
-            <td class="td-type">Win</td>
-            <td><span class="outcome-badge outcome-win">Win</span></td>
-            <td class="td-pts pos">+4</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  <div class="record-note">
+    <p>Winners and placed horses shown. Full tip-by-tip record including all losses available to members. 13-month totals above reflect the complete record.</p>
   </div>
-
-</div><!-- end main-content -->
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Horse</th>
+          <th>Course</th>
+          <th>SP</th>
+          <th>Bet</th>
+          <th>Result</th>
+          <th style="text-align:right">Pts</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="td-date">02 Feb</td><td class="td-horse">Jacob's Ladder</td><td class="td-course">Leopardstown</td><td class="td-sp">2/1F</td><td class="td-type">Win</td><td><span class="badge badge-win">Win</span></td><td class="td-pts pos">+4</td></tr>
+        <tr><td class="td-date">02 Feb</td><td class="td-horse">Fact To File</td><td class="td-course">Leopardstown</td><td class="td-sp">9/2</td><td class="td-type">Win</td><td><span class="badge badge-win">Win</span></td><td class="td-pts pos">+4</td></tr>
+        <tr><td class="td-date">02 Feb</td><td class="td-horse">Barra Rua</td><td class="td-course">Leopardstown</td><td class="td-sp">12/1</td><td class="td-type">Each Way</td><td><span class="badge badge-place">Place</span></td><td class="td-pts pos">+1</td></tr>
+        <tr><td class="td-date">01 Feb</td><td class="td-horse">Backmeorsackme</td><td class="td-course">Leopardstown</td><td class="td-sp">14/1</td><td class="td-type">Win</td><td><span class="badge badge-win">Win</span></td><td class="td-pts pos">+4</td></tr>
+        <tr><td class="td-date">01 Feb</td><td class="td-horse">Majborough</td><td class="td-course">Leopardstown</td><td class="td-sp">2/1</td><td class="td-type">Win</td><td><span class="badge badge-win">Win</span></td><td class="td-pts pos">+4</td></tr>
+        <tr><td class="td-date">01 Feb</td><td class="td-horse">Bowensonfire</td><td class="td-course">Leopardstown</td><td class="td-sp">10/1</td><td class="td-type">Each Way</td><td><span class="badge badge-win">Win</span></td><td class="td-pts pos">+2</td></tr>
+        <tr><td class="td-date">01 Feb</td><td class="td-horse">Dee Capo</td><td class="td-course">Leopardstown</td><td class="td-sp">16/1</td><td class="td-type">Each Way</td><td><span class="badge badge-place">Place</span></td><td class="td-pts pos">+1</td></tr>
+        <tr><td class="td-date">27 Jan</td><td class="td-horse">Rose Cotton</td><td class="td-course">Wolverhampton</td><td class="td-sp">3/1</td><td class="td-type">Win</td><td><span class="badge badge-win">Win</span></td><td class="td-pts pos">+4</td></tr>
+        <tr><td class="td-date">27 Jan</td><td class="td-horse">West To The Bridge</td><td class="td-course">Chepstow</td><td class="td-sp">15/2</td><td class="td-type">Each Way</td><td><span class="badge badge-win">Win</span></td><td class="td-pts pos">+2</td></tr>
+        <tr><td class="td-date">24 Jan</td><td class="td-horse">Germanic</td><td class="td-course">Newcastle</td><td class="td-sp">11/4</td><td class="td-type">Win</td><td><span class="badge badge-win">Win</span></td><td class="td-pts pos">+4</td></tr>
+        <tr><td class="td-date">18 Jan</td><td class="td-horse">Highlands Legacy</td><td class="td-course">Windsor</td><td class="td-sp">11/8F</td><td class="td-type">Win</td><td><span class="badge badge-win">Win</span></td><td class="td-pts pos">+4</td></tr>
+        <tr><td class="td-date">13 Jan</td><td class="td-horse">Spring Is Spring</td><td class="td-course">Southwell</td><td class="td-sp">22/1</td><td class="td-type">Each Way</td><td><span class="badge badge-win">Win</span></td><td class="td-pts pos">+2</td></tr>
+        <tr><td class="td-date">13 Jan</td><td class="td-horse">Platin Moon</td><td class="td-course">Ayr</td><td class="td-sp">100/30</td><td class="td-type">Win</td><td><span class="badge badge-win">Win</span></td><td class="td-pts pos">+4</td></tr>
+        <tr><td class="td-date">08 Jan</td><td class="td-horse">Brave Knight</td><td class="td-course">Taunton</td><td class="td-sp">13/2</td><td class="td-type">Win</td><td><span class="badge badge-win">Win</span></td><td class="td-pts pos">+4</td></tr>
+        <tr><td class="td-date">31 Dec</td><td class="td-horse">Nebras</td><td class="td-course">Lingfield Park</td><td class="td-sp">7/2</td><td class="td-type">Win</td><td><span class="badge badge-win">Win</span></td><td class="td-pts pos">+4</td></tr>
+        <tr><td class="td-date">30 Dec</td><td class="td-horse">Grain D'Oudairies</td><td class="td-course">Haydock Park</td><td class="td-sp">6/1</td><td class="td-type">Win</td><td><span class="badge badge-win">Win</span></td><td class="td-pts pos">+4</td></tr>
+        <tr><td class="td-date">26 Dec</td><td class="td-horse">Brazil Power</td><td class="td-course">Wolverhampton</td><td class="td-sp">100/30</td><td class="td-type">Win</td><td><span class="badge badge-win">Win</span></td><td class="td-pts pos">+4</td></tr>
+        <tr><td class="td-date">15 Dec</td><td class="td-horse">Dukes Command</td><td class="td-course">Lingfield Park</td><td class="td-sp">3/1</td><td class="td-type">Win</td><td><span class="badge badge-win">Win</span></td><td class="td-pts pos">+4</td></tr>
+        <tr><td class="td-date">06 Nov</td><td class="td-horse">Threatening</td><td class="td-course">Chelmsford City</td><td class="td-sp">15/2</td><td class="td-type">Win</td><td><span class="badge badge-win">Win</span></td><td class="td-pts pos">+4</td></tr>
+        <tr><td class="td-date">05 Nov</td><td class="td-horse">Coul Angel</td><td class="td-course">Kempton Park</td><td class="td-sp">9/4</td><td class="td-type">Win</td><td><span class="badge badge-win">Win</span></td><td class="td-pts pos">+4</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 </main>
 
-<!-- CTA BLOCK -->
+<!-- CTA -->
 <div class="record-cta">
   <div class="record-cta-inner">
     <h2>You've seen the record.<br>Now try it.</h2>
-    <p>£1 for 7 days. Cancel before day 7 and pay nothing more. If the selections don't meet the standard, you're free to leave before a single pound of real subscription money changes hands.</p>
-    <div class="record-cta-btns">
+    <p>£1 for 7 days. Cancel before day 7 and pay nothing more. Full access from day one — daily selections, WhatsApp, one-click bet links, daily results.</p>
+    <div class="cta-btns">
       <a href="https://buy.stripe.com/eVqbJ05aH85A3eodUE6AM00" class="btn-primary">Start £1 trial</a>
       <a href="/" class="btn-secondary">Back to home</a>
     </div>
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <span class="footer-copy">&copy; 2026 Race Of The Day</span>
-    <span class="footer-gambling">18+ only. Please bet responsibly. <a href="https://www.begambleaware.org" target="_blank" rel="noopener">BeGambleAware.org</a> &mdash; <a href="https://www.gamstop.co.uk" target="_blank" rel="noopener">GamStop.co.uk</a></span>
+    <span class="footer-copy">&copy; 2026 Horseracing Analytics Ltd</span>
+    <span class="footer-gambling">18+ only. <a href="https://www.begambleaware.org" target="_blank" rel="noopener">BeGambleAware.org</a> · <a href="https://www.gamstop.co.uk" target="_blank" rel="noopener">GamStop.co.uk</a> · 0808 802 0133</span>
   </div>
 </footer>
+
+<script>
+  // ── DATA ──────────────────────────────────────────────────────────────────────
+  const monthly = [
+    { label: 'Apr 25', tips: 34,  pts: -30.53 },
+    { label: 'May 25', tips: 197, pts:  48.60 },
+    { label: 'Jun 25', tips: 156, pts:  28.33 },
+    { label: 'Jul 25', tips: 162, pts:  27.94 },
+    { label: 'Aug 25', tips: 144, pts:  11.36 },
+    { label: 'Sep 25', tips: 113, pts: 122.00 },
+    { label: 'Oct 25', tips: 102, pts:   6.24 },
+    { label: 'Nov 25', tips: 100, pts:   3.12 },
+    { label: 'Dec 25', tips:  76, pts: -13.44 },
+    { label: 'Jan 26', tips: 180, pts: 169.97 },
+    { label: 'Feb 26', tips: 134, pts:  48.39 },
+    { label: 'Mar 26', tips: 242, pts: -64.19 },
+    { label: 'Apr 26', tips: 192, pts: -66.26 },
+  ];
+
+  // Cumulative
+  let running = 0;
+  const cumulative = monthly.map(m => {
+    running += m.pts;
+    return parseFloat(running.toFixed(2));
+  });
+
+  // ── SHARED CHART DEFAULTS ────────────────────────────────────────────────────
+  Chart.defaults.color = '#666';
+  Chart.defaults.borderColor = '#1e1e1e';
+  Chart.defaults.font.family = "'DM Mono', monospace";
+  Chart.defaults.font.size = 10;
+
+  // ── LINE CHART ───────────────────────────────────────────────────────────────
+  const lineCtx = document.getElementById('lineChart').getContext('2d');
+  const gradient = lineCtx.createLinearGradient(0, 0, 0, 280);
+  gradient.addColorStop(0, 'rgba(34,197,94,0.18)');
+  gradient.addColorStop(1, 'rgba(34,197,94,0)');
+
+  new Chart(lineCtx, {
+    type: 'line',
+    data: {
+      labels: monthly.map(m => m.label),
+      datasets: [{
+        label: 'Cumulative pts',
+        data: cumulative,
+        borderColor: '#22c55e',
+        borderWidth: 2,
+        backgroundColor: gradient,
+        fill: true,
+        tension: 0.35,
+        pointRadius: 4,
+        pointBackgroundColor: cumulative.map(v => v >= 0 ? '#22c55e' : '#CC2936'),
+        pointBorderColor: '#050505',
+        pointBorderWidth: 2,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { intersect: false, mode: 'index' },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#111',
+          borderColor: '#222',
+          borderWidth: 1,
+          padding: 10,
+          callbacks: {
+            label: ctx => ` ${ctx.parsed.y > 0 ? '+' : ''}${ctx.parsed.y.toFixed(2)} pts`
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { color: '#111' },
+          ticks: { color: '#555', font: { size: 10 } }
+        },
+        y: {
+          grid: { color: '#111' },
+          ticks: {
+            color: '#555', font: { size: 10 },
+            callback: v => (v > 0 ? '+' : '') + v
+          }
+        }
+      }
+    }
+  });
+
+  // ── BAR CHART ────────────────────────────────────────────────────────────────
+  const barCtx = document.getElementById('barChart').getContext('2d');
+  new Chart(barCtx, {
+    type: 'bar',
+    data: {
+      labels: monthly.map(m => m.label),
+      datasets: [{
+        label: 'Monthly pts',
+        data: monthly.map(m => m.pts),
+        backgroundColor: monthly.map(m => m.pts >= 0 ? 'rgba(34,197,94,0.7)' : 'rgba(204,41,54,0.7)'),
+        borderColor:     monthly.map(m => m.pts >= 0 ? '#22c55e' : '#CC2936'),
+        borderWidth: 1,
+        borderRadius: 2,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#111',
+          borderColor: '#222',
+          borderWidth: 1,
+          padding: 10,
+          callbacks: {
+            label: ctx => ` ${ctx.parsed.y > 0 ? '+' : ''}${ctx.parsed.y.toFixed(2)} pts`
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { display: false },
+          ticks: { color: '#555', font: { size: 10 } }
+        },
+        y: {
+          grid: { color: '#111' },
+          ticks: {
+            color: '#555', font: { size: 10 },
+            callback: v => (v > 0 ? '+' : '') + v
+          }
+        }
+      }
+    }
+  });
+
+  // ── MONTHLY TABLE ─────────────────────────────────────────────────────────────
+  const tbody = document.getElementById('monthlyTableBody');
+  let tableRunning = 0;
+  monthly.forEach(m => {
+    tableRunning += m.pts;
+    const pos = m.pts >= 0;
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="td-date">${m.label}</td>
+      <td class="td-type">${m.tips}</td>
+      <td class="td-pts ${pos ? 'pos' : ''}" style="${!pos ? 'color:var(--color-red)' : ''}">${pos ? '+' : ''}${m.pts.toFixed(2)}</td>
+      <td class="td-pts ${tableRunning >= 0 ? 'pos' : ''}" style="${tableRunning < 0 ? 'color:var(--color-red)' : ''}">${tableRunning >= 0 ? '+' : ''}${tableRunning.toFixed(2)}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+</script>
 
 </body>
 </html>
