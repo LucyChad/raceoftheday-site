@@ -75,10 +75,13 @@
       font-family: var(--font-display); font-weight: 300; font-style: italic;
       text-transform: uppercase; letter-spacing: 0.02em; line-height: 1.1;
     }
-    h2 em, h1 em {
+    h1 em {
       font-family: var(--font-mono-italic); font-style: normal;
       text-transform: uppercase; letter-spacing: 0.04em; font-weight: 400;
       font-size: 0.55em; display: inline; white-space: nowrap;
+    }
+    h2 em {
+      font-style: italic; font-weight: 300;
     }
     a { color: inherit; }
     p { margin-bottom: var(--space-5); }
@@ -649,19 +652,19 @@
 <div class="stats-strip" role="region" aria-label="Key statistics">
   <div class="stats-grid">
     <div class="stat-cell">
-      <span class="stat-num">+291.53</span>
-      <span class="stat-label">Points profit, 13 months</span>
+      <span class="stat-num" id="stat-pts">+291.53</span>
+      <span class="stat-label">Points profit</span>
     </div>
     <div class="stat-cell">
-      <span class="stat-num">1,832</span>
+      <span class="stat-num" id="stat-selections">1,832</span>
       <span class="stat-label">Selections logged</span>
     </div>
     <div class="stat-cell">
-      <span class="stat-num">13.7%</span>
+      <span class="stat-num" id="stat-win">13.7%</span>
       <span class="stat-label">Win rate at SP</span>
     </div>
     <div class="stat-cell">
-      <span class="stat-num">23.0%</span>
+      <span class="stat-num" id="stat-winplace">23.0%</span>
       <span class="stat-label">Win or place rate</span>
     </div>
   </div>
@@ -684,19 +687,19 @@
       <div>
         <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--color-border); border: 1px solid var(--color-border); margin-bottom: var(--space-6);">
           <div style="background: var(--color-surface-2); padding: var(--space-8);">
-            <span style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;color:#22c55e;display:block;line-height:1;margin-bottom:var(--space-2);">+291.53</span>
+            <span id="rec-pts" style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;color:#22c55e;display:block;line-height:1;margin-bottom:var(--space-2);">+291.53</span>
             <span style="font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-muted);">Points profit</span>
           </div>
           <div style="background: var(--color-surface-2); padding: var(--space-8);">
-            <span style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;display:block;line-height:1;margin-bottom:var(--space-2);">1,832</span>
+            <span id="rec-selections" style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;display:block;line-height:1;margin-bottom:var(--space-2);">1,832</span>
             <span style="font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-muted);">Selections logged</span>
           </div>
           <div style="background: var(--color-surface-2); padding: var(--space-8);">
-            <span style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;display:block;line-height:1;margin-bottom:var(--space-2);">13.7%</span>
+            <span id="rec-win" style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;display:block;line-height:1;margin-bottom:var(--space-2);">13.7%</span>
             <span style="font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-muted);">Win rate at SP</span>
           </div>
           <div style="background: var(--color-surface-2); padding: var(--space-8);">
-            <span style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;display:block;line-height:1;margin-bottom:var(--space-2);">23.0%</span>
+            <span id="rec-winplace" style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;display:block;line-height:1;margin-bottom:var(--space-2);">23.0%</span>
             <span style="font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-muted);">Win or place rate</span>
           </div>
         </div>
@@ -1130,6 +1133,62 @@
     <text x="45" y="64" text-anchor="middle" font-family="'Oswald', sans-serif" font-weight="400" font-size="7.5" letter-spacing="1.5" fill="rgba(255,255,255,0.7)">PRE-LAUNCH</text>
   </svg>
 </div>
+
+<script>
+// ── LIVE STATS FROM PUBLISHED CSV ──────────────────────────────────────────
+(async function() {
+  const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRVxHWVrcFIOSKyOgHKSsNAqb9zqmgexoMWxRmhqB-hlPT9C_fWwGg8rZTIeNbzNjSLsHwAm__FbxB_/pub?gid=1605745152&single=true&output=csv';
+  try {
+    const res = await fetch(CSV_URL);
+    if (!res.ok) return;
+    const text = await res.text();
+    const lines = text.trim().split('\n');
+
+    // Find header row
+    let headerIdx = 0;
+    for (let i = 0; i < Math.min(5, lines.length); i++) {
+      if (lines[i].includes('Date')) { headerIdx = i; break; }
+    }
+
+    const parseCSVLine = (line) => {
+      const result = []; let current = ''; let inQuotes = false;
+      for (let i = 0; i < line.length; i++) {
+        const c = line[i];
+        if (c === '"') { inQuotes = !inQuotes; }
+        else if (c === ',' && !inQuotes) { result.push(current.trim()); current = ''; }
+        else { current += c; }
+      }
+      result.push(current.trim());
+      return result;
+    };
+
+    let totalPts = 0, totalSelections = 0, wins = 0, winPlaces = 0;
+    for (let i = headerIdx + 1; i < lines.length; i++) {
+      const cols = parseCSVLine(lines[i]);
+      if (cols.length < 12) continue;
+      const outcome = (cols[11] || '').toLowerCase().trim();
+      const pts = parseFloat(cols[12]) || 0;
+      if (!outcome) continue;
+      totalSelections++;
+      totalPts += pts;
+      if (outcome === 'win') { wins++; winPlaces++; }
+      else if (outcome === 'place') { winPlaces++; }
+    }
+    if (totalSelections === 0) return;
+
+    const winRate = ((wins / totalSelections) * 100).toFixed(1) + '%';
+    const winPlaceRate = ((winPlaces / totalSelections) * 100).toFixed(1) + '%';
+    const ptsDisplay = (totalPts >= 0 ? '+' : '') + totalPts.toFixed(2);
+    const selectionsDisplay = totalSelections.toLocaleString();
+
+    // Update all stat elements
+    ['stat-pts','rec-pts'].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = ptsDisplay; });
+    ['stat-selections','rec-selections'].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = selectionsDisplay; });
+    ['stat-win','rec-win'].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = winRate; });
+    ['stat-winplace','rec-winplace'].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = winPlaceRate; });
+  } catch(e) { /* fail silently — hardcoded fallbacks remain */ }
+})();
+</script>
 
 </body>
 </html>
