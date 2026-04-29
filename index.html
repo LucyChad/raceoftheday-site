@@ -144,7 +144,7 @@
       color: var(--color-red); display: block; margin-bottom: var(--space-5);
     }
     .hero-heading {
-      font-size: var(--text-hero); line-height: 0.92;
+      font-size: var(--text-hero); line-height: 0.88;
       letter-spacing: -0.01em; margin-bottom: var(--space-8); max-width: 14ch;
     }
     .hero-sub {
@@ -509,7 +509,7 @@
 
     /* FOOTER */
     footer {
-      background: var(--color-bg); padding: var(--space-10) var(--space-8);
+      background: var(--color-bg); padding: var(--space-10) var(--space-8) calc(var(--space-10) + 3.5rem);
       text-align: center; border-top: 1px solid var(--color-divider);
     }
     .disclaimer {
@@ -519,25 +519,47 @@
     }
     .disclaimer a { color: var(--color-text-faint); }
 
-    /* SOCIAL PROOF TOAST */
-    #sp-toast { position: fixed; bottom: var(--space-8); left: var(--space-8); z-index: 9999; pointer-events: none; }
-    .sp-notification {
-      display: flex; align-items: center; gap: var(--space-4);
-      background: var(--color-surface-3); border: 1px solid var(--color-border);
-      border-left: 3px solid var(--color-red);
-      padding: var(--space-4) var(--space-5); max-width: 280px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-      opacity: 0; transform: translateY(12px);
-      transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+    /* FOUNDING TIER BAR */
+    .tier-bar {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+      background: var(--color-surface-2); border-top: 1px solid var(--color-border);
+      padding: var(--space-3) var(--space-8);
+      display: flex; align-items: center; justify-content: space-between; gap: var(--space-6);
     }
-    .sp-notification.visible { opacity: 1; transform: translateY(0); }
-    .sp-icon {
-      width: 36px; height: 36px; flex-shrink: 0;
-      background: var(--color-violet-dim); border-radius: 50%;
-      display: flex; align-items: center; justify-content: center; font-size: 16px;
+    .tier-bar-left {
+      display: flex; align-items: center; gap: var(--space-5); flex-shrink: 0;
     }
-    .sp-name { font-weight: 600; font-size: var(--text-sm); color: var(--color-text); display: block; }
-    .sp-detail { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.06em; color: var(--color-text-muted); }
+    .tier-bar-label {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-faint);
+      white-space: nowrap;
+    }
+    .tier-bar-count {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: var(--text-base); color: var(--color-text); white-space: nowrap;
+    }
+    .tier-bar-count span { color: var(--color-red); }
+    .tier-bar-track {
+      flex: 1; height: 4px; background: var(--color-border); max-width: 240px;
+    }
+    .tier-bar-fill {
+      height: 100%; background: var(--color-red);
+      transition: width 1s var(--ease);
+    }
+    .tier-bar-note {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--color-text-faint); white-space: nowrap; flex-shrink: 0;
+    }
+    .tier-bar-cta {
+      padding: var(--space-2) var(--space-5);
+      background: var(--color-red); color: #fff;
+      font-family: var(--font-mono); font-weight: 700;
+      font-size: var(--text-xs); letter-spacing: 0.1em; text-transform: uppercase;
+      text-decoration: none; white-space: nowrap; flex-shrink: 0;
+      transition: background var(--transition); border-radius: 100px;
+    }
+    .tier-bar-cta:hover { background: var(--color-red-hover); }
 
     /* BG IMAGE OVERLAYS */
     .has-bg { position: relative; overflow: hidden; }
@@ -573,7 +595,9 @@
       .hero-ctas .btn-primary, .hero-ctas .btn-secondary { width: 100%; text-align: center; }
       .hero-countdown { flex-wrap: wrap; }
       .guineas-countdown { grid-template-columns: repeat(2, 1fr); }
-      #sp-toast { left: var(--space-4); bottom: var(--space-4); }
+      .tier-bar { padding: var(--space-3) var(--space-4); gap: var(--space-3); }
+      .tier-bar-track { display: none; }
+      .tier-bar-note { display: none; }
       .sp-notification { max-width: 240px; }
       .cta-strip-btns { flex-direction: column; align-items: center; }
       .competitor-table { font-size: 0.7rem; }
@@ -608,7 +632,7 @@
   <div class="hero-bg" role="img" aria-label="Two horses racing neck and neck"></div>
   <div class="hero-content">
     <span class="hero-label">Beta launch - 24 April to 3 May 2026 - Guineas Festival</span>
-    <h1 class="hero-heading" id="hero-heading">Racing<br>intelligence. <em>Delivered daily.</em></h1>
+    <h1 class="hero-heading" id="hero-heading">Racing<br>intelligence<br>Delivered daily</h1>
     <p class="hero-sub">Sixty years of racing experience. One selection a day, logged before the race starts, calculated at Starting Price. The full record is open before you spend a penny. No request needed.</p>
     <p class="hero-countdown-label">Founding rate closes midnight, 3rd May</p>
     <div class="hero-countdown" role="timer" aria-label="Time until beta closes">
@@ -1011,8 +1035,16 @@
   </p>
 </footer>
 
-<!-- SOCIAL PROOF TOAST -->
-<div id="sp-toast" aria-live="polite" aria-atomic="true"></div>
+<!-- FOUNDING TIER BAR -->
+<div class="tier-bar" role="status" aria-label="Founding membership availability">
+  <div class="tier-bar-left">
+    <span class="tier-bar-label">Founding tier</span>
+    <span class="tier-bar-count"><span id="tier-taken">—</span> of 100 spots taken</span>
+  </div>
+  <div class="tier-bar-track"><div class="tier-bar-fill" id="tier-fill" style="width:0%"></div></div>
+  <span class="tier-bar-note" id="tier-note">— spots left at £19/mo</span>
+  <a href="https://buy.stripe.com/eVqbJ05aH85A3eodUE6AM00" class="tier-bar-cta">Claim your spot</a>
+</div>
 
 <script>
   /* COUNTDOWN */
@@ -1056,46 +1088,22 @@
   setInterval(updateCountdowns, 1000);
   updateCountdowns();
 
-  /* SOCIAL PROOF */
-  const MEMBERS = [
-    ['James','Manchester'],['Sarah','London'],['Mike','Leeds'],['Emma','Liverpool'],
-    ['Chris','Sheffield'],['Becky','Newcastle'],['Dan','Bristol'],['Laura','Birmingham'],
-    ['Tom','Edinburgh'],['Claire','Cardiff'],['Matt','Nottingham'],['Jess','Glasgow'],
-    ['Paul','York'],['Anna','Brighton'],['Ryan','Leicester'],['Gemma','Cardiff'],
-    ['Steve','Cheltenham'],['Diane','Chester'],['Rob','Newmarket'],['Kate','Ascot'],
-    ['Phil','Epsom'],['Helen','Doncaster'],['Neil','Sandown'],['Amy','Lingfield'],
-    ['Gary','Haydock'],['Fiona','Goodwood'],['Derek','Kempton'],['Sue','Windsor'],
-  ];
+  /* FOUNDING TIER BAR
+     Update FOUNDING_MEMBERS_TAKEN with the real current count */
+  const FOUNDING_MEMBERS_TAKEN = 4;
+  const FOUNDING_TIER_MAX = 100;
 
-  let lastIdx = -1;
-  const toast = document.getElementById('sp-toast');
-
-  function showToast() {
-    let idx;
-    do { idx = Math.floor(Math.random() * MEMBERS.length); } while (idx === lastIdx);
-    lastIdx = idx;
-    const [name, city] = MEMBERS[idx];
-    const mins = Math.floor(Math.random() * 9) + 1;
-    const timeStr = mins === 1 ? 'just now' : mins + ' minutes ago';
-    const type = Math.random() > 0.45 ? 'founding member' : 'annual founder';
-    const el = document.createElement('div');
-    el.className = 'sp-notification';
-    el.innerHTML =
-      '<div class="sp-icon">🏇</div>' +
-      '<div class="sp-text">' +
-        '<span class="sp-name">' + name + ' from ' + city + '</span>' +
-        '<span class="sp-detail">Joined as ' + type + ' - ' + timeStr + '</span>' +
-      '</div>';
-    toast.innerHTML = '';
-    toast.appendChild(el);
-    requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('visible')));
-    setTimeout(() => {
-      el.classList.remove('visible');
-      setTimeout(() => { if (toast.contains(el)) toast.removeChild(el); }, 500);
-    }, 5500);
-  }
-
-  setTimeout(() => { showToast(); setInterval(showToast, 35000); }, 8000);
+  (function() {
+    const taken = FOUNDING_MEMBERS_TAKEN;
+    const remaining = FOUNDING_TIER_MAX - taken;
+    const pct = Math.min((taken / FOUNDING_TIER_MAX) * 100, 100);
+    const takenEl = document.getElementById('tier-taken');
+    const fillEl = document.getElementById('tier-fill');
+    const noteEl = document.getElementById('tier-note');
+    if (takenEl) takenEl.textContent = taken;
+    if (noteEl) noteEl.textContent = remaining + ' spots left at £19/mo';
+    setTimeout(() => { if (fillEl) fillEl.style.width = pct + '%'; }, 200);
+  })();
 </script>
 
 <!-- TEST ONLY STICKER -->
@@ -1121,7 +1129,6 @@
   }
   @media (max-width: 640px) {
     .test-sticker { width: 70px; height: 70px; bottom: 1rem; right: 1rem; }
-    #sp-toast { bottom: 6rem; }
   }
 </style>
 <div class="test-sticker" aria-hidden="true">
