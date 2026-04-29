@@ -424,6 +424,9 @@
       background: transparent; border: 1px solid rgba(255,255,255,0.35); color: var(--color-text);
     }
     .price-cta.outline:hover { border-color: #fff; background: transparent; color: #fff; }
+    .btn-disabled, .btn-disabled:hover {
+      opacity: 0.35; cursor: not-allowed; pointer-events: none;
+    }
     .price-note {
       margin-top: var(--space-4); font-family: var(--font-mono); font-size: var(--text-xs);
       letter-spacing: 0.06em; color: var(--color-text-faint); text-align: center; line-height: 1.6;
@@ -620,7 +623,7 @@
     </a>
     <div class="nav-right">
       <span class="nav-countdown">Beta closes <strong id="nav-cd">loading...</strong></span>
-      <a href="https://buy.stripe.com/eVqbJ05aH85A3eodUE6AM00" class="nav-cta">Start £1 trial</a>
+      <a href="https://buy.stripe.com/eVqbJ05aH85A3eodUE6AM00" class="nav-cta">TEST member (limit 100)</a>
     </div>
   </nav>
 </header>
@@ -645,8 +648,8 @@
       <div class="cd-block"><span class="cd-num" id="cd-secs">--</span><span class="cd-label">Sec</span></div>
     </div>
     <div class="hero-ctas">
-      <a href="https://buy.stripe.com/eVqbJ05aH85A3eodUE6AM00/monthly" class="btn-primary">Founding member - £19/month</a>
-      <a href="https://buy.stripe.com/eVqbJ05aH85A3eodUE6AM00/annual" class="btn-secondary">Annual founder - £149/year</a>
+      <a href="https://buy.stripe.com/eVqbJ05aH85A3eodUE6AM00/monthly" class="btn-primary">TEST member (limit 100)</a>
+      <a href="#" class="btn-secondary btn-disabled" aria-disabled="true" tabindex="-1">🚫 Annual founder - not yet open</a>
     </div>
     <p class="hero-footnote">£1 for 7 days - cancel before day 7 and pay nothing more - both options</p>
   </div>
@@ -824,8 +827,8 @@
           <div class="g-cd-block"><span class="g-cd-num" id="g-secs">--</span><span class="g-cd-label">Secs</span></div>
         </div>
         <div class="guineas-ctas">
-          <a href="https://buy.stripe.com/eVqbJ05aH85A3eodUE6AM00/monthly" class="price-cta">Founding member - £19/month</a>
-          <a href="https://buy.stripe.com/eVqbJ05aH85A3eodUE6AM00/annual" class="price-cta outline">Annual founder - £149/year - best value</a>
+          <a href="https://buy.stripe.com/eVqbJ05aH85A3eodUE6AM00/monthly" class="price-cta">TEST member (limit 100)</a>
+          <a href="#" class="price-cta outline btn-disabled" aria-disabled="true" tabindex="-1">🚫 Annual founder - not yet open</a>
         </div>
         <p class="guineas-footnote">£1 for 7 days - cancel before day 7 and pay nothing more</p>
       </div>
@@ -857,7 +860,7 @@
           <div class="price-feature">Price locked for life - never pay more as long as you remain subscribed</div>
           <div class="price-feature">Cancel at any time - no contracts, no notice period</div>
         </div>
-        <a href="https://buy.stripe.com/eVqbJ05aH85A3eodUE6AM00/monthly" class="price-cta">Start £1 trial - monthly</a>
+        <a href="https://buy.stripe.com/eVqbJ05aH85A3eodUE6AM00/monthly" class="price-cta">TEST member (limit 100)</a>
         <p class="price-note">Rolls to £19/month after 7 days - cancel before day 7 and pay nothing more</p>
         <p class="price-note price-warning">Cancel and rejoin after 3rd May and standard £39/month applies</p>
       </div>
@@ -879,7 +882,7 @@
           <div class="price-feature">This annual window never reopens - one opportunity only</div>
           <div class="price-feature">Renews annually - cancel at renewal if circumstances change</div>
         </div>
-        <a href="https://buy.stripe.com/eVqbJ05aH85A3eodUE6AM00/annual" class="price-cta">Start £1 trial - annual</a>
+        <a href="#" class="price-cta btn-disabled" aria-disabled="true" tabindex="-1">🚫 Annual founder - not yet open</a>
         <p class="price-note">Rolls to £149/year after 7 days - cancel before day 7 and pay nothing more</p>
         <p class="price-note price-warning">Cancel and rejoin after 3rd May and standard £299/year applies</p>
       </div>
@@ -980,8 +983,8 @@
     <h2 id="cta-heading">Beta closes<br><em>3rd May.</em></h2>
     <p>Founding member pricing at £19 a month, locked for life. Or £149 for the year - the lowest annual price that will ever exist for Race of the Day. Both come with a £1 trial. The window does not reopen.</p>
     <div class="cta-strip-btns">
-      <a href="https://buy.stripe.com/eVqbJ05aH85A3eodUE6AM00/monthly" class="cta-btn-white">Founding member - £19/month</a>
-      <a href="https://buy.stripe.com/eVqbJ05aH85A3eodUE6AM00/annual" class="cta-btn-outline-white">Annual founder - £149/year</a>
+      <a href="https://buy.stripe.com/eVqbJ05aH85A3eodUE6AM00/monthly" class="cta-btn-white">TEST member (limit 100)</a>
+      <a href="#" class="cta-btn-outline-white btn-disabled" aria-disabled="true" tabindex="-1">🚫 Annual founder - not yet open</a>
     </div>
     <p class="cta-footnote">£1 for 7 days - cancel before day 7 and pay nothing more</p>
   </div>
@@ -1043,7 +1046,7 @@
   </div>
   <div class="tier-bar-track"><div class="tier-bar-fill" id="tier-fill" style="width:0%"></div></div>
   <span class="tier-bar-note" id="tier-note">— spots left at £19/mo</span>
-  <a href="https://buy.stripe.com/eVqbJ05aH85A3eodUE6AM00" class="tier-bar-cta">Claim your spot</a>
+  <a href="https://buy.stripe.com/eVqbJ05aH85A3eodUE6AM00" class="tier-bar-cta">TEST member (limit 100)</a>
 </div>
 
 <script>
