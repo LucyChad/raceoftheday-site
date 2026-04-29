@@ -453,7 +453,7 @@
 
   <!-- FULL RECORD BUTTON -->
   <div style="margin-bottom: var(--space-8);">
-    <a href="https://docs.google.com/spreadsheets/d/1mMILO_ykJkfrLMALuYRCB0M6CoqUaYQpq4kD7smdqKU/edit?usp=sharing"
+    <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vRVxHWVrcFIOSKyOgHKSsNAqb9zqmgexoMWxRmhqB-hlPT9C_fWwGg8rZTIeNbzNjSLsHwAm__FbxB_/pubhtml?gid=1605745152&single=true"
        target="_blank" rel="noopener"
        style="display:inline-flex; align-items:center; gap:0.5rem;
               padding: 0.75rem 1.5rem;
@@ -513,11 +513,8 @@
 
 <script>
   // ── LIVE WINNERS TABLE ────────────────────────────────────────────────────────
-  // Fetches wins and places from the public Google Sheet (Tip Log tab)
-  // Sheet must be shared as "Anyone with the link can view"
-  const SHEET_ID = '1mMILO_ykJkfrLMALuYRCB0M6CoqUaYQpq4kD7smdqKU';
-  const SHEET_NAME = 'Tip Log';
-  const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(SHEET_NAME)}`;
+  // Fetches wins and places from the published Tip Log tab (CSV)
+  const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRVxHWVrcFIOSKyOgHKSsNAqb9zqmgexoMWxRmhqB-hlPT9C_fWwGg8rZTIeNbzNjSLsHwAm__FbxB_/pub?gid=1605745152&single=true&output=csv';
 
   function parseDateDMY(str) {
     // Handles DD/MM/YYYY
