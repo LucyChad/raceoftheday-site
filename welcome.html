@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>You're in — Race Of The Day</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;700&family=Poppins:wght@300;400&family=DM+Mono:wght@400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-bg:         #050505;
+      --color-surface:    #0C0C0C;
+      --color-border:     #222222;
+      --color-text:       #FFFFFF;
+      --color-text-muted: #888888;
+      --color-text-faint: #444444;
+      --color-red:        #CC2936;
+      --font-display: 'Oswald', 'Arial Narrow', sans-serif;
+      --font-body:    'Poppins', 'Helvetica Neue', sans-serif;
+      --font-mono:    'DM Mono', 'Courier New', monospace;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-body); font-weight: 300;
+      background: var(--color-bg); color: var(--color-text);
+      min-height: 100vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 2rem; -webkit-font-smoothing: antialiased;
+    }
+    .wrap {
+      max-width: 520px; width: 100%; text-align: center;
+      animation: slide-up 0.5s var(--ease) both;
+    }
+    @keyframes slide-up {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .check {
+      width: 64px; height: 64px; margin: 0 auto 2rem;
+    }
+    .eyebrow {
+      font-family: var(--font-mono); font-size: 0.7rem;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: #22c55e; display: block; margin-bottom: 1rem;
+    }
+    h1 {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: clamp(2.5rem, 8vw, 4rem); text-transform: uppercase;
+      letter-spacing: 0.02em; line-height: 1; margin-bottom: 1.5rem;
+    }
+    .sub {
+      font-size: 1.05rem; color: var(--color-text-muted);
+      line-height: 1.7; margin-bottom: 2rem;
+    }
+    .steps {
+      border: 1px solid var(--color-border);
+      background: #0C0C0C;
+      text-align: left; margin-bottom: 2.5rem;
+    }
+    .step {
+      display: flex; gap: 1.25rem; align-items: flex-start;
+      padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--color-border);
+    }
+    .step:last-child { border-bottom: none; }
+    .step-num {
+      font-family: var(--font-mono); font-size: 0.7rem;
+      color: var(--color-red); letter-spacing: 0.1em;
+      min-width: 1.5rem; padding-top: 0.15rem;
+    }
+    .step-text {
+      font-size: 0.9rem; color: var(--color-text-muted); line-height: 1.6;
+    }
+    .step-text strong { color: var(--color-text); }
+    .back-link {
+      font-family: var(--font-mono); font-size: 0.7rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--color-text-faint); text-decoration: none;
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 0.15rem; transition: color 0.15s, border-color 0.15s;
+    }
+    .back-link:hover { color: var(--color-text-muted); border-color: var(--color-text-muted); }
+    .disclaimer {
+      margin-top: 2.5rem; font-family: var(--font-mono); font-size: 0.65rem;
+      color: var(--color-text-faint); line-height: 1.8; text-align: center;
+    }
+    .disclaimer a { color: inherit; text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <svg class="check" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="32" cy="32" r="30" stroke="#22c55e" stroke-width="2"/>
+      <path d="M20 32 L28 40 L44 24" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+
+    <span class="eyebrow">Payment confirmed</span>
+    <h1>You're in.</h1>
+    <p class="sub">Your £1 trial has started. Full access begins today. Here is what happens next.</p>
+
+    <div class="steps">
+      <div class="step">
+        <span class="step-num">01</span>
+        <p class="step-text"><strong>Check your email.</strong> Stripe has sent a payment receipt to the address you used at checkout. Keep this — it confirms your founding rate is locked.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">02</span>
+        <p class="step-text"><strong>WhatsApp confirmation incoming.</strong> We'll send you a WhatsApp message within a few hours to confirm your membership and add you to the daily tips feed.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">03</span>
+        <p class="step-text"><strong>First selection tomorrow morning.</strong> Your first daily selection will arrive before racing begins. On days when no selection meets the criteria, you'll hear that too.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">04</span>
+        <p class="step-text"><strong>Cancel before day 7 and pay nothing more.</strong> If you change your mind for any reason, email <a href="mailto:hello@raceoftheday.com" style="color:inherit;text-decoration:underline;">hello@raceoftheday.com</a> before day 7. No questions asked.</p>
+      </div>
+    </div>
+
+    <a href="/" class="back-link">Back to Race Of The Day</a>
+
+    <p class="disclaimer">
+      Race Of The Day is operated by Horseracing Analytics Ltd. All selections are opinions, not financial advice. 18+ only.<br>
+      <a href="https://www.begambleaware.org" target="_blank" rel="noopener noreferrer">BeGambleAware.org</a> &nbsp;·&nbsp; 0808 802 0133 &nbsp;·&nbsp;
+      <a href="https://www.gamstop.co.uk" target="_blank" rel="noopener noreferrer">GamStop.co.uk</a>
+    </p>
+
+  </div>
+</body>
+</html>

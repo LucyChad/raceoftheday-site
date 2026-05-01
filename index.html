@@ -1224,5 +1224,257 @@
 })();
 </script>
 
+
+<!-- ══════════════════════════════════════════════════════════
+     ENTRY POPUP — beta notice, shows once per session
+     ══════════════════════════════════════════════════════════ -->
+<div id="entry-popup" class="popup-overlay" role="dialog" aria-modal="true" aria-labelledby="entry-popup-heading" style="display:none;">
+  <div class="popup-box">
+    <span class="popup-eyebrow">Beta access</span>
+    <h2 id="entry-popup-heading" class="popup-heading">You're entering a beta<br>version of the site.</h2>
+    <p class="popup-body">The full launch starts next week. But the first 100 beta members get in at <strong>£1 per month, for life</strong> — a rate that closes the moment the live site goes public. That is not a launch discount. It is a permanent price, locked to you as long as you stay subscribed.</p>
+    <button class="popup-cta" id="entry-popup-close">Continue to site</button>
+    <p class="popup-footnote">18+ · Bet responsibly · <a href="https://www.begambleaware.org" target="_blank" rel="noopener noreferrer">BeGambleAware.org</a></p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     WAITLIST POPUP — email capture via Netlify Forms
+     ══════════════════════════════════════════════════════════ -->
+<div id="waitlist-popup" class="popup-overlay" role="dialog" aria-modal="true" aria-labelledby="waitlist-popup-heading" style="display:none;">
+  <div class="popup-box">
+    <button class="popup-close-x" id="waitlist-close-x" aria-label="Close">&#x2715;</button>
+    <span class="popup-eyebrow">First 100 · £1/month forever</span>
+    <h2 id="waitlist-popup-heading" class="popup-heading">Reserve your spot.</h2>
+    <p class="popup-body">Enter your email and we'll confirm your place in the first 100. When we go live next week, you'll be first through the door at the beta rate.</p>
+
+    <form id="waitlist-form" name="waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+      <input type="hidden" name="form-name" value="waitlist" />
+      <p style="display:none;"><label>Do not fill this in: <input name="bot-field" /></label></p>
+      <div class="popup-field">
+        <input type="email" name="email" id="waitlist-email" placeholder="Your email address" required autocomplete="email" />
+        <button type="submit" class="popup-cta" id="waitlist-submit">Reserve my spot</button>
+      </div>
+      <p class="popup-error" id="waitlist-error" style="display:none;">Please enter a valid email address.</p>
+    </form>
+
+    <div id="waitlist-success" style="display:none;">
+      <p class="popup-success-msg">You're on the list. We'll be in touch before launch.</p>
+    </div>
+
+    <div class="popup-divider"><span>or</span></div>
+    <p class="popup-alt-text">Already want to start your £1 trial right now?</p>
+    <a href="https://buy.stripe.com/eVqbJ05aH85A3eodUE6AM00" class="popup-stripe-link" target="_blank" rel="noopener noreferrer">Start £1 trial today &rarr;</a>
+    <p class="popup-footnote">Cancel before day 7 and pay nothing more. 18+ only.</p>
+  </div>
+</div>
+
+<style>
+  /* ── SHARED POPUP STYLES ─────────────────────────────────── */
+  .popup-overlay {
+    position: fixed; inset: 0; z-index: 10000;
+    background: rgba(0,0,0,0.85); backdrop-filter: blur(6px);
+    display: flex; align-items: center; justify-content: center;
+    padding: var(--space-5);
+    animation: popup-fade-in 0.25s var(--ease) both;
+  }
+  @keyframes popup-fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  .popup-box {
+    position: relative;
+    background: var(--color-surface-2); border: 1px solid var(--color-border);
+    max-width: 480px; width: 100%;
+    padding: var(--space-10) var(--space-10);
+    animation: popup-slide-up 0.3s var(--ease) both;
+  }
+  @keyframes popup-slide-up {
+    from { transform: translateY(20px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+  }
+  .popup-eyebrow {
+    font-family: var(--font-mono); font-size: var(--text-xs);
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--color-red); display: block; margin-bottom: var(--space-3);
+  }
+  .popup-heading {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: var(--text-xl); text-transform: uppercase;
+    line-height: 1.05; letter-spacing: 0.02em;
+    margin-bottom: var(--space-5); color: var(--color-text);
+  }
+  .popup-body {
+    font-size: var(--text-sm); color: var(--color-text-muted);
+    line-height: 1.7; margin-bottom: var(--space-6);
+  }
+  .popup-body strong { color: var(--color-text); }
+  .popup-cta {
+    display: block; width: 100%; padding: var(--space-4) var(--space-6);
+    background: var(--color-red); color: #fff; border: none; cursor: pointer;
+    font-family: var(--font-display); font-weight: 700; font-size: var(--text-sm);
+    letter-spacing: 0.08em; text-transform: uppercase;
+    transition: background var(--transition);
+    text-align: center;
+  }
+  .popup-cta:hover { background: var(--color-red-hover); }
+  .popup-footnote {
+    font-family: var(--font-mono); font-size: 0.7rem;
+    color: var(--color-text-faint); text-align: center;
+    margin: var(--space-4) 0 0; line-height: 1.6;
+  }
+  .popup-footnote a { color: inherit; text-decoration: underline; }
+  .popup-close-x {
+    position: absolute; top: var(--space-4); right: var(--space-4);
+    background: none; border: none; color: var(--color-text-muted);
+    font-size: 1rem; cursor: pointer; line-height: 1; padding: var(--space-2);
+    transition: color var(--transition);
+  }
+  .popup-close-x:hover { color: var(--color-text); }
+
+  /* ── WAITLIST FORM ───────────────────────────────────────── */
+  .popup-field {
+    display: flex; flex-direction: column; gap: var(--space-3);
+    margin-bottom: var(--space-2);
+  }
+  .popup-field input[type="email"] {
+    width: 100%; padding: var(--space-4);
+    background: var(--color-surface-3); border: 1px solid var(--color-border);
+    color: var(--color-text); font-family: var(--font-body); font-size: var(--text-sm);
+    outline: none; transition: border-color var(--transition);
+  }
+  .popup-field input[type="email"]::placeholder { color: var(--color-text-faint); }
+  .popup-field input[type="email"]:focus { border-color: var(--color-text-muted); }
+  .popup-error {
+    font-family: var(--font-mono); font-size: 0.7rem;
+    color: var(--color-red); margin: var(--space-2) 0 0;
+  }
+  .popup-success-msg {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: var(--text-lg); text-transform: uppercase;
+    color: #22c55e; text-align: center;
+    padding: var(--space-6) 0; margin: 0;
+  }
+  .popup-divider {
+    display: flex; align-items: center; gap: var(--space-4);
+    margin: var(--space-6) 0 var(--space-4);
+  }
+  .popup-divider::before, .popup-divider::after {
+    content: ''; flex: 1; height: 1px; background: var(--color-border);
+  }
+  .popup-divider span {
+    font-family: var(--font-mono); font-size: 0.7rem;
+    color: var(--color-text-faint); letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .popup-alt-text {
+    font-size: var(--text-xs); color: var(--color-text-muted);
+    text-align: center; margin-bottom: var(--space-3);
+  }
+  .popup-stripe-link {
+    display: block; width: 100%; padding: var(--space-3) var(--space-6);
+    border: 1px solid var(--color-border); color: var(--color-text-muted);
+    font-family: var(--font-mono); font-size: var(--text-xs);
+    letter-spacing: 0.08em; text-transform: uppercase;
+    text-align: center; text-decoration: none;
+    transition: border-color var(--transition), color var(--transition);
+  }
+  .popup-stripe-link:hover { border-color: var(--color-text-muted); color: var(--color-text); }
+
+  @media (max-width: 540px) {
+    .popup-box { padding: var(--space-8) var(--space-6); }
+  }
+</style>
+
+<script>
+// ── ENTRY POPUP ───────────────────────────────────────────────
+(function() {
+  const popup = document.getElementById('entry-popup');
+  const closeBtn = document.getElementById('entry-popup-close');
+  if (!popup) return;
+
+  // Show once per session
+  if (!sessionStorage.getItem('rotd-entry-seen')) {
+    popup.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeEntry() {
+    popup.style.display = 'none';
+    document.body.style.overflow = '';
+    sessionStorage.setItem('rotd-entry-seen', '1');
+  }
+
+  closeBtn.addEventListener('click', closeEntry);
+  popup.addEventListener('click', function(e) { if (e.target === popup) closeEntry(); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeEntry(); });
+})();
+
+// ── WAITLIST POPUP ────────────────────────────────────────────
+(function() {
+  const overlay  = document.getElementById('waitlist-popup');
+  const closeX   = document.getElementById('waitlist-close-x');
+  const form     = document.getElementById('waitlist-form');
+  const emailEl  = document.getElementById('waitlist-email');
+  const errorEl  = document.getElementById('waitlist-error');
+  const successEl = document.getElementById('waitlist-success');
+  const submitBtn = document.getElementById('waitlist-submit');
+  if (!overlay) return;
+
+  const STRIPE_URL = 'https://buy.stripe.com/eVqbJ05aH85A3eodUE6AM00';
+
+  function openWaitlist() {
+    overlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    if (emailEl) setTimeout(() => emailEl.focus(), 100);
+  }
+
+  function closeWaitlist() {
+    overlay.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  closeX.addEventListener('click', closeWaitlist);
+  overlay.addEventListener('click', function(e) { if (e.target === overlay) closeWaitlist(); });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && overlay.style.display === 'flex') closeWaitlist();
+  });
+
+  // Intercept all enabled CTA buttons (exclude disabled and record/welcome links)
+  const skipHrefs = ['/record', '/welcome', 'mailto:', 'privacy', 'terms', 'begamble', 'gamstop'];
+  document.querySelectorAll('a.btn-primary, a.nav-cta, a.price-cta, a.cta-btn-white, a.tier-bar-cta').forEach(function(el) {
+    if (el.classList.contains('btn-disabled')) return;
+    if (skipHrefs.some(s => (el.getAttribute('href') || '').includes(s))) return;
+    el.addEventListener('click', function(e) {
+      e.preventDefault();
+      openWaitlist();
+    });
+  });
+
+  // Form submit — Netlify async
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = (emailEl.value || '').trim();
+    const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (!valid) { errorEl.style.display = 'block'; return; }
+    errorEl.style.display = 'none';
+    submitBtn.textContent = 'Reserving...';
+    submitBtn.disabled = true;
+
+    const data = new FormData(form);
+    fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(data).toString() })
+      .then(function() {
+        form.style.display = 'none';
+        successEl.style.display = 'block';
+      })
+      .catch(function() {
+        // Fallback — show success anyway, Netlify may still capture
+        form.style.display = 'none';
+        successEl.style.display = 'block';
+      });
+  });
+})();
+</script>
+
 </body>
 </html>
