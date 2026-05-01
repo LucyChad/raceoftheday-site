@@ -147,6 +147,11 @@
       font-size: var(--text-hero); line-height: 0.88;
       letter-spacing: -0.01em; margin-bottom: var(--space-8); max-width: 14ch;
     }
+    .hero-sub-line {
+      font-size: 0.45em; font-weight: 300; letter-spacing: 0.12em;
+      display: block; line-height: 1.4; margin-top: 0.15em;
+      color: var(--color-text-muted); text-transform: uppercase;
+    }
     .hero-sub {
       font-size: var(--text-lg); color: var(--color-text-muted);
       max-width: 52ch; margin-bottom: var(--space-8); line-height: 1.6;
@@ -635,7 +640,7 @@
   <div class="hero-bg" role="img" aria-label="Two horses racing neck and neck"></div>
   <div class="hero-content">
     <span class="hero-label">Founding membership open - closes 6 June 2026 or 1,000 members</span>
-    <h1 class="hero-heading" id="hero-heading">Racing<br>intelligence<br>Delivered daily</h1>
+    <h1 class="hero-heading" id="hero-heading">Racing<br>intelligence<br><span class="hero-sub-line">Delivered daily</span></h1>
     <p class="hero-sub">Sixty years of racing experience. One selection a day, logged before the race starts, calculated at Starting Price. The full record is open before you spend a penny. No request needed.</p>
     <p class="hero-countdown-label">Founding rate closes midnight, 6th June - or at 1,000 members</p>
     <div class="hero-countdown" role="timer" aria-label="Time until beta closes">
@@ -966,13 +971,21 @@
   </div>
 </section>
 
-<!-- PLACEHOLDER: CLOSING ARGUMENT -->
-<section class="section" aria-labelledby="closing-heading">
+<!-- CLOSING ARGUMENT -->
+<section class="section surface" aria-labelledby="closing-heading">
   <div class="container">
-    <div class="placeholder-section">
-      <span class="placeholder-label">Placeholder - closing argument pending</span>
-      <h2 id="closing-heading">The final<br><em>word.</em></h2>
-      <p>This section will contain the final closing argument once the verified results section above is confirmed. The closing copy should follow directly from the proof provided by the record.</p>
+    <div style="max-width: 720px; margin: 0 auto;">
+      <span class="section-label">The bottom line</span>
+      <h2 id="closing-heading" style="font-size: var(--text-2xl); margin-bottom: var(--space-8);">You have seen this before.<br><em>This time, look first.</em></h2>
+      <p style="font-size: var(--text-lg); color: var(--color-text-muted); line-height: 1.7; margin-bottom: var(--space-6);">Most services ask you to trust them before you see anything. A screenshot. A cherry-picked month. A proven record available on request. You have seen those. You know how they tend to end.</p>
+      <p style="color: var(--color-text-muted); margin-bottom: var(--space-6);">This is different in one way that matters. The record is open before you spend a penny. Not behind a login. Not on request. Every selection, every result, at Starting Price. Read it now. Find the bad stretches. That is what the record is for.</p>
+      <p style="color: var(--color-text-muted); margin-bottom: var(--space-6);">If the record holds up, the trial costs £1. Seven days. Full access from day one. Cancel before day seven and that is all you pay. If it does not hold up, close the tab and pay nothing.</p>
+      <p style="color: var(--color-text-muted); margin-bottom: var(--space-6);">The £1 trial exists because a record can be read but not felt. Seeing a figure and following a real selection in real time are two different things. The trial lets you do both before you commit to anything more.</p>
+      <p style="color: var(--color-text-muted); margin-bottom: var(--space-10);">The founding window closes at midnight on 6th June, or when 1,000 members join. After that, £19 a month is gone. But the only reason to join before that date is if the record justifies it. Read it first. Then decide.</p>
+      <div style="display: flex; gap: var(--space-4); flex-wrap: wrap; align-items: center;">
+        <a href="/record" class="btn-secondary" style="border-color: var(--color-text-muted); color: var(--color-text-muted);">Read the record first</a>
+        <a href="https://buy.stripe.com/eVqbJ05aH85A3eodUE6AM00" class="btn-primary">TEST member (limit 100)</a>
+      </div>
     </div>
   </div>
 </section>
