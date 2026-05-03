@@ -24,7 +24,7 @@
       --color-border:        #222222;
       --color-divider:       #1A1A1A;
       --color-text:          #FFFFFF;
-      --color-text-muted:    #888888;
+      --color-text-muted:    #BBBBBB;
       --color-text-faint:    #444444;
       --color-text-inverse:  #050505;
       --color-red:           #CC2936;
@@ -139,9 +139,29 @@
       max-width: var(--content); margin: 0 auto; width: 100%;
     }
     .hero-label {
-      font-family: var(--font-mono); font-size: var(--text-xs);
-      letter-spacing: 0.14em; text-transform: uppercase;
+      font-family: var(--font-mono); font-size: var(--text-sm);
+      letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500;
       color: var(--color-red); display: block; margin-bottom: var(--space-5);
+    }
+    .hero-result {
+      display: flex; align-items: baseline; gap: var(--space-3);
+      margin-bottom: var(--space-3);
+    }
+    .hero-result-pts {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: clamp(4rem, 10vw, 7rem); line-height: 1;
+      color: var(--color-red); letter-spacing: -0.02em;
+    }
+    .hero-result-label {
+      font-family: var(--font-mono); font-size: var(--text-sm);
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--color-text-muted); padding-bottom: 0.4em;
+    }
+    .hero-result-sub {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--color-text-faint); margin-bottom: var(--space-8);
+      line-height: 1.8;
     }
     .hero-heading {
       font-size: var(--text-hero); line-height: 0.88;
@@ -640,9 +660,26 @@
   <div class="hero-bg" role="img" aria-label="Two horses racing neck and neck"></div>
   <div class="hero-content">
     <span class="hero-label">Founding membership open - closes 6 June 2026 or 1,000 members</span>
+
+    <!-- Result first — what gamblers want to know immediately -->
+    <div class="hero-result">
+      <span class="hero-result-pts" id="hero-pts">+291.53</span>
+      <span class="hero-result-label">points profit</span>
+    </div>
+    <p class="hero-result-sub"><span id="hero-races">1,832</span> races &nbsp;·&nbsp; <span id="hero-win">13.7%</span> wins &nbsp;·&nbsp; Starting Price &nbsp;·&nbsp; every result verified</p>
+
+    <!-- Brand identity second -->
     <h1 class="hero-heading" id="hero-heading">Racing<br>intelligence<br><span class="hero-sub-line">Delivered daily</span></h1>
-    <p class="hero-sub">Sixty years of racing experience. One selection a day, logged before the race starts, calculated at Starting Price. The full record is open before you spend a penny. No request needed.</p>
-    <p class="hero-countdown-label">Founding rate closes midnight, 6th June - or at 1,000 members</p>
+
+    <!-- CTAs immediately after brand reveal -->
+    <div class="hero-ctas">
+      <a href="https://buy.stripe.com/7sYeVc5aH85AbKU2bW6AM01/monthly" class="btn-primary">TEST member (limit 100)</a>
+      <a href="#" class="btn-secondary btn-disabled" aria-disabled="true" tabindex="-1">🚫 Annual founder - not yet open</a>
+    </div>
+    <p class="hero-footnote">£1 for 7 days - cancel before day 7 and pay nothing more</p>
+
+    <!-- Urgency after the hook -->
+    <p class="hero-countdown-label" style="margin-top: var(--space-8);">Founding rate closes midnight, 6th June - or at 1,000 members</p>
     <div class="hero-countdown" role="timer" aria-label="Time until beta closes">
       <div class="cd-block"><span class="cd-num" id="cd-days">--</span><span class="cd-label">Days</span></div>
       <span class="cd-sep" aria-hidden="true">:</span>
@@ -652,11 +689,6 @@
       <span class="cd-sep" aria-hidden="true">:</span>
       <div class="cd-block"><span class="cd-num" id="cd-secs">--</span><span class="cd-label">Sec</span></div>
     </div>
-    <div class="hero-ctas">
-      <a href="https://buy.stripe.com/7sYeVc5aH85AbKU2bW6AM01/monthly" class="btn-primary">TEST member (limit 100)</a>
-      <a href="#" class="btn-secondary btn-disabled" aria-disabled="true" tabindex="-1">🚫 Annual founder - not yet open</a>
-    </div>
-    <p class="hero-footnote">£1 for 7 days - cancel before day 7 and pay nothing more - both options</p>
   </div>
 </section>
 
@@ -689,7 +721,7 @@
     </div>
     <div class="stat-cell">
       <span class="stat-num" id="stat-selections">1,832</span>
-      <span class="stat-label">Selections logged</span>
+      <span class="stat-label">Races analysed</span>
     </div>
     <div class="stat-cell">
       <span class="stat-num" id="stat-win">13.7%</span>
@@ -724,7 +756,7 @@
           </div>
           <div style="background: var(--color-surface-2); padding: var(--space-8);">
             <span id="rec-selections" style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;display:block;line-height:1;margin-bottom:var(--space-2);">1,832</span>
-            <span style="font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-muted);">Selections logged</span>
+            <span style="font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-muted);">Races analysed</span>
           </div>
           <div style="background: var(--color-surface-2); padding: var(--space-8);">
             <span id="rec-win" style="font-family:var(--font-display);font-size:var(--text-2xl);font-weight:700;display:block;line-height:1;margin-bottom:var(--space-2);">13.7%</span>
@@ -1130,41 +1162,39 @@
 <style>
   .test-sticker {
     position: fixed;
-    bottom: 4.5rem;
+    bottom: 5rem;
     right: 1.5rem;
     z-index: 9999;
-    width: 104px;
-    height: 104px;
+    width: 130px;
+    height: 130px;
     pointer-events: none;
     animation: sticker-float 4s ease-in-out infinite;
-    filter: drop-shadow(0 6px 24px rgba(0,0,0,0.7));
+    filter: drop-shadow(0 8px 28px rgba(0,0,0,0.8));
   }
   @keyframes sticker-float {
-    0%, 100% { transform: rotate(-10deg) translateY(0); }
-    50% { transform: rotate(-7deg) translateY(-6px); }
+    0%, 100% { transform: rotate(-8deg) translateY(0); }
+    50% { transform: rotate(-5deg) translateY(-7px); }
   }
   @media (max-width: 640px) {
-    .test-sticker { width: 80px; height: 80px; bottom: 4rem; right: 1rem; }
+    .test-sticker { width: 100px; height: 100px; bottom: 4.5rem; right: 1rem; }
   }
 </style>
 <div class="test-sticker" aria-hidden="true">
-  <svg viewBox="0 0 104 104" fill="none" xmlns="http://www.w3.org/2000/svg" id="test-badge-svg">
-    <!-- outer glow ring -->
-    <circle cx="52" cy="52" r="50" fill="#CC2936" stroke="#fff" stroke-width="2.5"/>
+  <svg viewBox="0 0 130 130" fill="none" xmlns="http://www.w3.org/2000/svg" id="test-badge-svg">
+    <!-- outer ring -->
+    <circle cx="65" cy="65" r="62" fill="#0C0C0C" stroke="#CC2936" stroke-width="3"/>
     <!-- inner dashed ring -->
-    <circle cx="52" cy="52" r="43" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1" stroke-dasharray="5 3"/>
-    <!-- star highlights -->
-    <circle cx="52" cy="52" r="36" fill="rgba(0,0,0,0.15)"/>
-    <!-- CHARTER text -->
-    <text x="52" y="32" text-anchor="middle" font-family="'Oswald', sans-serif" font-weight="700" font-size="9" letter-spacing="3" fill="rgba(255,255,255,0.6)">CHARTER</text>
-    <!-- MEMBER text -->
-    <text x="52" y="48" text-anchor="middle" font-family="'Oswald', sans-serif" font-weight="700" font-size="14" letter-spacing="1.5" fill="#fff">MEMBER</text>
+    <circle cx="65" cy="65" r="54" fill="none" stroke="#CC2936" stroke-width="0.75" stroke-dasharray="4 3" opacity="0.5"/>
+    <!-- BETA text -->
+    <text x="65" y="44" text-anchor="middle" font-family="'Oswald', sans-serif" font-weight="700" font-size="11" letter-spacing="5" fill="#CC2936">BETA</text>
+    <!-- TEST text -->
+    <text x="65" y="64" text-anchor="middle" font-family="'Oswald', sans-serif" font-weight="700" font-size="22" letter-spacing="2" fill="#FFFFFF">TEST</text>
     <!-- divider -->
-    <line x1="30" y1="53" x2="74" y2="53" stroke="rgba(255,255,255,0.3)" stroke-width="0.75"/>
-    <!-- counter: e.g. 4/100 -->
-    <text id="badge-counter" x="52" y="67" text-anchor="middle" font-family="'DM Mono', monospace" font-weight="500" font-size="11" letter-spacing="1" fill="#fff">4/100</text>
+    <line x1="38" y1="71" x2="92" y2="71" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+    <!-- counter -->
+    <text id="badge-counter" x="65" y="87" text-anchor="middle" font-family="'DM Mono', monospace" font-weight="500" font-size="13" letter-spacing="1" fill="#BBBBBB">4/100</text>
     <!-- SPOTS LEFT -->
-    <text x="52" y="80" text-anchor="middle" font-family="'Oswald', sans-serif" font-weight="400" font-size="7.5" letter-spacing="2" fill="rgba(255,255,255,0.55)">SPOTS LEFT</text>
+    <text x="65" y="102" text-anchor="middle" font-family="'Oswald', sans-serif" font-weight="300" font-size="8" letter-spacing="3" fill="rgba(255,255,255,0.4)">SPOTS LEFT</text>
   </svg>
 </div>
 
@@ -1216,9 +1246,9 @@
     const selectionsDisplay = totalSelections.toLocaleString();
 
     // Update all stat elements
-    ['stat-pts','rec-pts'].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = ptsDisplay; });
-    ['stat-selections','rec-selections'].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = selectionsDisplay; });
-    ['stat-win','rec-win'].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = winRate; });
+    ['stat-pts','rec-pts','hero-pts'].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = ptsDisplay; });
+    ['stat-selections','rec-selections','hero-races'].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = selectionsDisplay; });
+    ['stat-win','rec-win','hero-win'].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = winRate; });
     ['stat-winplace','rec-winplace'].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = winPlaceRate; });
   } catch(e) { /* fail silently — hardcoded fallbacks remain */ }
 })();
@@ -1230,10 +1260,11 @@
      ══════════════════════════════════════════════════════════ -->
 <div id="entry-popup" class="popup-overlay" role="dialog" aria-modal="true" aria-labelledby="entry-popup-heading" style="display:none;">
   <div class="popup-box">
-    <span class="popup-eyebrow">Beta access</span>
-    <h2 id="entry-popup-heading" class="popup-heading">You're entering a beta<br>version of the site.</h2>
-    <p class="popup-body">The full launch starts next week. But the first 100 beta members get in at <strong>£1 per month, for life</strong> — a rate that closes the moment the live site goes public. That is not a launch discount. It is a permanent price, locked to you as long as you stay subscribed.</p>
-    <button class="popup-cta" id="entry-popup-close">Continue to site</button>
+    <span class="popup-eyebrow">Beta test access</span>
+    <h2 id="entry-popup-heading" class="popup-heading">You're in before<br>the launch.</h2>
+    <p class="popup-body">If you're reading this, you have access to the <strong>£1/month beta test membership</strong> — before it goes public. The site content you'll see is written for our founder launch starting next week, but as a beta test member you're getting in ahead of that at a rate that never changes.</p>
+    <p class="popup-body">There may be the odd glitch. If you spot anything, let us know at <a href="mailto:hello@raceoftheday.com" style="color:var(--color-text);text-decoration:underline;">hello@raceoftheday.com</a> — your feedback genuinely helps us get it right before we open the doors properly.</p>
+    <button class="popup-cta" id="entry-popup-close">Got it — take me in</button>
     <p class="popup-footnote">18+ · Bet responsibly · <a href="https://www.begambleaware.org" target="_blank" rel="noopener noreferrer">BeGambleAware.org</a></p>
   </div>
 </div>
