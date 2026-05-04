@@ -101,9 +101,9 @@
     }
     .nav-logo-text {
       font-family: var(--font-display); font-weight: 700;
-      font-size: var(--text-sm); letter-spacing: 0.08em; text-transform: uppercase;
+      font-size: var(--text-base); letter-spacing: 0.1em; text-transform: uppercase;
     }
-    .nav-logo-text span { color: var(--color-red); }
+    .nav-logo-text .logo-day { color: var(--color-red); }
     .nav-right { display: flex; align-items: center; gap: var(--space-6); }
     .nav-countdown {
       font-family: var(--font-mono); font-size: var(--text-xs);
@@ -639,12 +639,7 @@
 <header>
   <nav class="nav" role="navigation" aria-label="Main navigation">
     <a href="/" class="nav-logo" aria-label="Race Of The Day - home">
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-        <rect width="32" height="32" fill="#CC2936"/>
-        <path d="M6 22 L10 10 L16 18 L20 10 L26 22" stroke="#FAFAF8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <circle cx="16" cy="18" r="2" fill="#C4B5FD"/>
-      </svg>
-      <span class="nav-logo-text">Race Of The <span>Day</span></span>
+      <span class="nav-logo-text">Race Of The <span class="logo-day">Day</span></span>
     </a>
     <div class="nav-right">
       <span class="nav-countdown">Founder window closes <strong id="nav-cd">loading...</strong></span>
