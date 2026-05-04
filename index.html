@@ -179,6 +179,12 @@
       font-size: clamp(4rem, 10vw, 7rem); line-height: 1;
       color: var(--color-red); letter-spacing: -0.02em;
     }
+    .hero-period {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--color-text-muted); display: block;
+      margin-bottom: var(--space-2);
+    }
     .hero-result-label {
       font-family: var(--font-mono); font-size: var(--text-sm);
       letter-spacing: 0.12em; text-transform: uppercase;
@@ -187,7 +193,7 @@
     .hero-result-sub {
       font-family: var(--font-mono); font-size: var(--text-xs);
       letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--color-text-faint); margin-bottom: var(--space-8);
+      color: var(--color-text-muted); margin-bottom: var(--space-8);
       line-height: 1.8;
     }
     .hero-heading {
@@ -237,8 +243,18 @@
       font-family: var(--font-body); font-weight: 700;
       font-size: var(--text-sm); letter-spacing: 0.06em;
       text-transform: uppercase; text-decoration: none;
-      border-radius: 100px;
+      border-radius: 100px; position: relative; overflow: hidden;
       transition: background var(--transition); display: inline-block;
+    }
+    .btn-primary::after {
+      content: ''; position: absolute;
+      top: 0; left: -100%; width: 60%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      animation: btn-shimmer 2.8s ease-in-out infinite;
+    }
+    @keyframes btn-shimmer {
+      0%   { left: -100%; }
+      50%, 100% { left: 160%; }
     }
     .btn-primary:hover { background: var(--color-red-hover); }
     .btn-secondary {
@@ -247,7 +263,7 @@
       font-family: var(--font-body); font-weight: 700;
       font-size: var(--text-sm); letter-spacing: 0.06em;
       text-transform: uppercase; text-decoration: none;
-      border: 1px solid rgba(255,255,255,0.35); border-radius: 100px;
+      border: 1px solid rgba(255,255,255,0.8); border-radius: 100px;
       transition: border-color var(--transition);
       display: inline-block;
     }
@@ -703,16 +719,17 @@
     <!-- Brand identity first -->
     <h1 class="hero-heading" id="hero-heading">Racing<br>intelligence<br><span class="hero-sub-line">Delivered daily</span></h1>
 
-    <!-- Proven results -->
+    <!-- Proven results — last 12 months -->
+    <span class="hero-period">Points profit — last 12 months</span>
     <div class="hero-result">
       <span class="hero-result-pts" id="hero-pts">+291.53</span>
-      <span class="hero-result-label">points profit</span>
+      <span class="hero-result-label">pts</span>
     </div>
-    <p class="hero-result-sub"><span id="hero-races">1,832</span> races &nbsp;·&nbsp; <span id="hero-win">13.7%</span> wins &nbsp;·&nbsp; Starting Price &nbsp;·&nbsp; every result verified</p>
+    <p class="hero-result-sub"><span id="hero-races">600</span> races tipped &nbsp;·&nbsp; <span id="hero-win">13.7%</span> winners &nbsp;·&nbsp; Starting Price only &nbsp;·&nbsp; every result verified</p>
 
     <!-- CTAs -->
     <div class="hero-ctas">
-      <a href="https://buy.stripe.com/7sYeVc5aH85AbKU2bW6AM01/monthly" class="btn-primary">TEST member (limit 100)</a>
+      <a href="https://buy.stripe.com/7sYeVc5aH85AbKU2bW6AM01/monthly" class="btn-primary">£1 test member</a>
       <a href="#" class="btn-secondary btn-disabled" aria-disabled="true" tabindex="-1">🚫 Annual founder - not yet open</a>
     </div>
     <p class="hero-footnote">£1 for 7 days - cancel before day 7 and pay nothing more</p>
@@ -1172,50 +1189,9 @@
     setTimeout(() => { if (fillEl) fillEl.style.width = pct + '%'; }, 200);
     // Badge counter — shows test spots taken/100
     const TEST_MAX = 100;
-    const badgeEl = document.getElementById('badge-counter');
-    if (badgeEl) badgeEl.textContent = taken + '/' + TEST_MAX;
   })();
 </script>
 
-<!-- TEST MEMBER BADGE -->
-<style>
-  .test-sticker {
-    position: fixed;
-    bottom: 5rem;
-    right: 1.5rem;
-    z-index: 9999;
-    width: 130px;
-    height: 130px;
-    pointer-events: none;
-    animation: sticker-float 4s ease-in-out infinite;
-    filter: drop-shadow(0 8px 28px rgba(0,0,0,0.8));
-  }
-  @keyframes sticker-float {
-    0%, 100% { transform: rotate(-8deg) translateY(0); }
-    50% { transform: rotate(-5deg) translateY(-7px); }
-  }
-  @media (max-width: 640px) {
-    .test-sticker { width: 100px; height: 100px; bottom: 4.5rem; right: 1rem; }
-  }
-</style>
-<div class="test-sticker" aria-hidden="true">
-  <svg viewBox="0 0 130 130" fill="none" xmlns="http://www.w3.org/2000/svg" id="test-badge-svg">
-    <!-- outer ring -->
-    <circle cx="65" cy="65" r="62" fill="#0C0C0C" stroke="#CC2936" stroke-width="3"/>
-    <!-- inner dashed ring -->
-    <circle cx="65" cy="65" r="54" fill="none" stroke="#CC2936" stroke-width="0.75" stroke-dasharray="4 3" opacity="0.5"/>
-    <!-- BETA text -->
-    <text x="65" y="44" text-anchor="middle" font-family="'Oswald', sans-serif" font-weight="700" font-size="11" letter-spacing="5" fill="#CC2936">BETA</text>
-    <!-- TEST text -->
-    <text x="65" y="64" text-anchor="middle" font-family="'Oswald', sans-serif" font-weight="700" font-size="22" letter-spacing="2" fill="#FFFFFF">TEST</text>
-    <!-- divider -->
-    <line x1="38" y1="71" x2="92" y2="71" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-    <!-- counter -->
-    <text id="badge-counter" x="65" y="87" text-anchor="middle" font-family="'DM Mono', monospace" font-weight="500" font-size="13" letter-spacing="1" fill="#BBBBBB">4/100</text>
-    <!-- SPOTS LEFT -->
-    <text x="65" y="102" text-anchor="middle" font-family="'Oswald', sans-serif" font-weight="300" font-size="8" letter-spacing="3" fill="rgba(255,255,255,0.4)">SPOTS LEFT</text>
-  </svg>
-</div>
 
 <script>
 // ── LIVE STATS FROM PUBLISHED CSV ──────────────────────────────────────────
@@ -1245,30 +1221,53 @@
       return result;
     };
 
-    let totalPts = 0, totalSelections = 0, wins = 0, winPlaces = 0;
+    const parseDate = (s) => {
+      if (!s) return null;
+      const dmy = s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+      if (dmy) return new Date(+dmy[3], +dmy[2]-1, +dmy[1]);
+      const ymd = s.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+      if (ymd) return new Date(+ymd[1], +ymd[2]-1, +ymd[3]);
+      return null;
+    };
+    const cutoff = new Date(); cutoff.setFullYear(cutoff.getFullYear() - 1);
+
+    // All-time (unique races)
+    const aRaces = new Set(), aWin = new Set(), aWP = new Set(); let aPts = 0;
+    // Last 12 months (unique races)
+    const rRaces = new Set(), rWin = new Set(), rWP = new Set(); let rPts = 0;
+
     for (let i = headerIdx + 1; i < lines.length; i++) {
       const cols = parseCSVLine(lines[i]);
-      if (cols.length < 12) continue;
+      if (cols.length < 13) continue;
       const outcome = (cols[11] || '').toLowerCase().trim();
       const pts = parseFloat(cols[12]) || 0;
       if (!outcome) continue;
-      totalSelections++;
-      totalPts += pts;
-      if (outcome === 'win') { wins++; winPlaces++; }
-      else if (outcome === 'place') { winPlaces++; }
+      const rk = `${cols[0]}|${cols[1]}|${cols[2]}`; // date|course|time = unique race
+      aRaces.add(rk); aPts += pts;
+      if (outcome === 'win')   { aWin.add(rk); aWP.add(rk); }
+      else if (outcome === 'place') { aWP.add(rk); }
+      const d = parseDate(cols[0]);
+      if (d && d >= cutoff) {
+        rRaces.add(rk); rPts += pts;
+        if (outcome === 'win')   { rWin.add(rk); rWP.add(rk); }
+        else if (outcome === 'place') { rWP.add(rk); }
+      }
     }
-    if (totalSelections === 0) return;
+    if (aRaces.size === 0) return;
 
-    const winRate = ((wins / totalSelections) * 100).toFixed(1) + '%';
-    const winPlaceRate = ((winPlaces / totalSelections) * 100).toFixed(1) + '%';
-    const ptsDisplay = (totalPts >= 0 ? '+' : '') + totalPts.toFixed(2);
-    const selectionsDisplay = totalSelections.toLocaleString();
+    const fmt = (n) => (n >= 0 ? '+' : '') + n.toFixed(2);
+    const pct = (a, b) => b > 0 ? ((a/b)*100).toFixed(1)+'%' : '0%';
 
-    // Update all stat elements
-    ['stat-pts','rec-pts','hero-pts'].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = ptsDisplay; });
-    ['stat-selections','rec-selections','hero-races'].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = selectionsDisplay; });
-    ['stat-win','rec-win','hero-win'].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = winRate; });
-    ['stat-winplace','rec-winplace'].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = winPlaceRate; });
+    // Stats strip + record: all-time unique races
+    ['stat-pts','rec-pts'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=fmt(aPts);});
+    ['stat-selections','rec-selections'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=aRaces.size.toLocaleString();});
+    ['stat-win','rec-win'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=pct(aWin.size,aRaces.size);});
+    ['stat-winplace','rec-winplace'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=pct(aWP.size,aRaces.size);});
+
+    // Hero: last 12 months unique races
+    const hPts=document.getElementById('hero-pts'); if(hPts) hPts.textContent=fmt(rPts);
+    const hR=document.getElementById('hero-races'); if(hR) hR.textContent=rRaces.size.toLocaleString();
+    const hW=document.getElementById('hero-win'); if(hW) hW.textContent=pct(rWin.size,rRaces.size);
   } catch(e) { /* fail silently — hardcoded fallbacks remain */ }
 })();
 </script>
