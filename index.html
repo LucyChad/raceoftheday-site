@@ -114,9 +114,9 @@
 
     /* ANNOUNCEMENT BANNER */
     .announce-banner {
-      position: fixed; top: 57px; left: 0; right: 0; z-index: 99;
-      background: #F5F0E8; overflow: hidden;
+      background: #F5F0E8;
       border-bottom: 1px solid #D9D0C0;
+      overflow: hidden;
     }
     .announce-track {
       display: flex; white-space: nowrap;
@@ -689,25 +689,24 @@
       <a href="https://buy.stripe.com/7sYeVc5aH85AbKU2bW6AM01" class="nav-cta">TEST member (limit 100)</a>
     </div>
   </nav>
-</header>
-
-<!-- ANNOUNCEMENT BANNER — fixed below nav -->
-<div class="announce-banner" aria-label="Founding membership announcement">
-  <div class="announce-track">
-    <span class="announce-item">£19 per month founding membership</span>
-    <span class="announce-sep">/</span>
-    <span class="announce-item">Launch window closes 6th June 2026 — or at 1,000 members</span>
-    <span class="announce-sep">/</span>
-    <span class="announce-item">£149 annual founding membership</span>
-    <span class="announce-sep">/</span>
-    <span class="announce-item">£19 per month founding membership</span>
-    <span class="announce-sep">/</span>
-    <span class="announce-item">Launch window closes 6th June 2026 — or at 1,000 members</span>
-    <span class="announce-sep">/</span>
-    <span class="announce-item">£149 annual founding membership</span>
-    <span class="announce-sep">/</span>
+  <!-- ANNOUNCEMENT BANNER — inside header so it naturally follows nav -->
+  <div class="announce-banner" aria-label="Founding membership announcement">
+    <div class="announce-track">
+      <span class="announce-item">£19 per month founding membership</span>
+      <span class="announce-sep">/</span>
+      <span class="announce-item">Launch window closes 6th June 2026 — or at 1,000 members</span>
+      <span class="announce-sep">/</span>
+      <span class="announce-item">£149 annual founding membership</span>
+      <span class="announce-sep">/</span>
+      <span class="announce-item">£19 per month founding membership</span>
+      <span class="announce-sep">/</span>
+      <span class="announce-item">Launch window closes 6th June 2026 — or at 1,000 members</span>
+      <span class="announce-sep">/</span>
+      <span class="announce-item">£149 annual founding membership</span>
+      <span class="announce-sep">/</span>
+    </div>
   </div>
-</div>
+</header>
 
 <main>
 
