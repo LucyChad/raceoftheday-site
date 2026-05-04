@@ -1265,8 +1265,8 @@
 
     // All-time (unique races)
     const aRaces = new Set(), aWin = new Set(), aWP = new Set(); let aPts = 0;
-    // Last 12 months (unique races)
-    const rRaces = new Set(), rWin = new Set(), rWP = new Set(); let rPts = 0;
+    // Last 12 months (unique races + per-tip counts for honest win rate)
+    const rRaces = new Set(); let rPts = 0, rTips = 0, rWins = 0;
 
     for (let i = headerIdx + 1; i < lines.length; i++) {
       const cols = parseCSVLine(lines[i]);
@@ -1280,9 +1280,8 @@
       else if (outcome === 'place') { aWP.add(rk); }
       const d = parseDate(cols[0]);
       if (d && d >= cutoff) {
-        rRaces.add(rk); rPts += pts;
-        if (outcome === 'win')   { rWin.add(rk); rWP.add(rk); }
-        else if (outcome === 'place') { rWP.add(rk); }
+        rRaces.add(rk); rPts += pts; rTips++;
+        if (outcome === 'win') rWins++;
       }
     }
     if (aRaces.size === 0) return;
@@ -1296,10 +1295,10 @@
     ['stat-win','rec-win'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=pct(aWin.size,aRaces.size);});
     ['stat-winplace','rec-winplace'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=pct(aWP.size,aRaces.size);});
 
-    // Hero: last 12 months unique races
+    // Hero: last 12 months — races for count, per-tip for win rate (honest figure)
     const hPts=document.getElementById('hero-pts'); if(hPts) hPts.textContent=fmt(rPts);
     const hR=document.getElementById('hero-races'); if(hR) hR.textContent=rRaces.size.toLocaleString();
-    const hW=document.getElementById('hero-win'); if(hW) hW.textContent=pct(rWin.size,rRaces.size);
+    const hW=document.getElementById('hero-win'); if(hW) hW.textContent=pct(rWins,rTips);
 
     // ── HERO CHART: cumulative P&L by month (all-time) ──────────────────────────
     const monthMap = {};
