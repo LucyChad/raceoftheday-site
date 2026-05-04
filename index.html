@@ -29,6 +29,7 @@
       --color-text-inverse:  #050505;
       --color-red:           #CC2936;
       --color-red-hover:     #B02230;
+      --color-green:         #4ADE80;
       /* light vars kept for fallback only - sections are all dark */
       --color-light-bg:      #111111;
       --color-light-surface: #181818;
@@ -103,13 +104,39 @@
       font-family: var(--font-display); font-weight: 700;
       font-size: var(--text-base); letter-spacing: 0.1em; text-transform: uppercase;
     }
-    .nav-logo-text .logo-day { color: var(--color-red); }
     .nav-right { display: flex; align-items: center; gap: var(--space-6); }
     .nav-countdown {
-      font-family: var(--font-mono); font-size: var(--text-xs);
-      letter-spacing: 0.08em; color: var(--color-text-muted);
+      font-family: var(--font-display); font-weight: 700;
+      font-size: var(--text-xs); letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--color-text-muted);
     }
-    .nav-countdown strong { color: var(--color-violet-light); }
+    .nav-countdown strong { color: var(--color-text); }
+
+    /* ANNOUNCEMENT BANNER */
+    .announce-banner {
+      position: fixed; top: 57px; left: 0; right: 0; z-index: 99;
+      background: #F5F0E8; overflow: hidden;
+      border-bottom: 1px solid #D9D0C0;
+    }
+    .announce-track {
+      display: flex; white-space: nowrap;
+      animation: announce-scroll 28s linear infinite;
+    }
+    .announce-track:hover { animation-play-state: paused; }
+    .announce-item {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: var(--text-xs); letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--color-red); padding: 0.55rem var(--space-8);
+      flex-shrink: 0;
+    }
+    .announce-sep {
+      color: var(--color-red); opacity: 0.35;
+      padding: 0.55rem 0; font-weight: 300; flex-shrink: 0;
+    }
+    @keyframes announce-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
     .nav-cta {
       padding: var(--space-2) var(--space-5);
       background: var(--color-red); color: #fff;
@@ -123,7 +150,7 @@
     .hero {
       min-height: 100vh; position: relative; overflow: hidden;
       display: flex; align-items: flex-end;
-      padding: calc(var(--space-24) + var(--space-12)) var(--space-12) var(--space-20);
+      padding: calc(var(--space-24) + var(--space-16)) var(--space-12) var(--space-20);
     }
     .hero-bg {
       position: absolute; inset: 0;
@@ -168,9 +195,9 @@
       letter-spacing: -0.01em; margin-bottom: var(--space-8); max-width: 14ch;
     }
     .hero-sub-line {
-      font-size: 0.45em; font-weight: 300; letter-spacing: 0.12em;
+      font-size: 0.45em; font-weight: 700; letter-spacing: 0.12em;
       display: block; line-height: 1.4; margin-top: 0.15em;
-      color: var(--color-text-muted); text-transform: uppercase;
+      color: var(--color-green); text-transform: uppercase;
     }
     .hero-sub {
       font-size: var(--text-lg); color: var(--color-text-muted);
@@ -639,14 +666,32 @@
 <header>
   <nav class="nav" role="navigation" aria-label="Main navigation">
     <a href="/" class="nav-logo" aria-label="Race Of The Day - home">
-      <span class="nav-logo-text">Race Of The <span class="logo-day">Day</span></span>
+      <span class="nav-logo-text">Race Of The Day</span>
     </a>
     <div class="nav-right">
-      <span class="nav-countdown">Founder window closes <strong id="nav-cd">loading...</strong></span>
+      <span class="nav-countdown">Founder Window Closes In <strong id="nav-cd">loading...</strong></span>
       <a href="https://buy.stripe.com/7sYeVc5aH85AbKU2bW6AM01" class="nav-cta">TEST member (limit 100)</a>
     </div>
   </nav>
 </header>
+
+<!-- ANNOUNCEMENT BANNER — fixed below nav -->
+<div class="announce-banner" aria-label="Founding membership announcement">
+  <div class="announce-track">
+    <span class="announce-item">£19 per month founding membership</span>
+    <span class="announce-sep">/</span>
+    <span class="announce-item">Launch window closes 6th June 2026 — or at 1,000 members</span>
+    <span class="announce-sep">/</span>
+    <span class="announce-item">£149 annual founding membership</span>
+    <span class="announce-sep">/</span>
+    <span class="announce-item">£19 per month founding membership</span>
+    <span class="announce-sep">/</span>
+    <span class="announce-item">Launch window closes 6th June 2026 — or at 1,000 members</span>
+    <span class="announce-sep">/</span>
+    <span class="announce-item">£149 annual founding membership</span>
+    <span class="announce-sep">/</span>
+  </div>
+</div>
 
 <main>
 
@@ -654,26 +699,25 @@
 <section id="hero" class="hero" aria-labelledby="hero-heading">
   <div class="hero-bg" role="img" aria-label="Two horses racing neck and neck"></div>
   <div class="hero-content">
-    <span class="hero-label">Founding membership open - closes 6 June 2026 or 1,000 members</span>
 
-    <!-- Result first — what gamblers want to know immediately -->
+    <!-- Brand identity first -->
+    <h1 class="hero-heading" id="hero-heading">Racing<br>intelligence<br><span class="hero-sub-line">Delivered daily</span></h1>
+
+    <!-- Proven results -->
     <div class="hero-result">
       <span class="hero-result-pts" id="hero-pts">+291.53</span>
       <span class="hero-result-label">points profit</span>
     </div>
     <p class="hero-result-sub"><span id="hero-races">1,832</span> races &nbsp;·&nbsp; <span id="hero-win">13.7%</span> wins &nbsp;·&nbsp; Starting Price &nbsp;·&nbsp; every result verified</p>
 
-    <!-- Brand identity second -->
-    <h1 class="hero-heading" id="hero-heading">Racing<br>intelligence<br><span class="hero-sub-line">Delivered daily</span></h1>
-
-    <!-- CTAs immediately after brand reveal -->
+    <!-- CTAs -->
     <div class="hero-ctas">
       <a href="https://buy.stripe.com/7sYeVc5aH85AbKU2bW6AM01/monthly" class="btn-primary">TEST member (limit 100)</a>
       <a href="#" class="btn-secondary btn-disabled" aria-disabled="true" tabindex="-1">🚫 Annual founder - not yet open</a>
     </div>
     <p class="hero-footnote">£1 for 7 days - cancel before day 7 and pay nothing more</p>
 
-    <!-- Urgency after the hook -->
+    <!-- Urgency -->
     <p class="hero-countdown-label" style="margin-top: var(--space-8);">Founding rate closes midnight, 6th June - or at 1,000 members</p>
     <div class="hero-countdown" role="timer" aria-label="Time until beta closes">
       <div class="cd-block"><span class="cd-num" id="cd-days">--</span><span class="cd-label">Days</span></div>
@@ -686,26 +730,6 @@
     </div>
   </div>
 </section>
-
-<!-- MARQUEE -->
-<div class="marquee-wrap" aria-hidden="true" role="presentation">
-  <div class="marquee-track">
-    <span>Founding rate closes 6 June</span><span class="sep">·</span>
-    <span>£19/month locked for life</span><span class="sep">·</span>
-    <span>Or 1,000 members - whichever first</span><span class="sep">·</span>
-    <span>Daily email and WhatsApp</span><span class="sep">·</span>
-    <span>One-click bet links</span><span class="sep">·</span>
-    <span>£1 for 7 days</span><span class="sep">·</span>
-    <span>Epsom Derby weekend</span><span class="sep">·</span>
-    <span>Founding rate closes 6 June</span><span class="sep">·</span>
-    <span>£19/month locked for life</span><span class="sep">·</span>
-    <span>Or 1,000 members - whichever first</span><span class="sep">·</span>
-    <span>Daily email and WhatsApp</span><span class="sep">·</span>
-    <span>One-click bet links</span><span class="sep">·</span>
-    <span>£1 for 7 days</span><span class="sep">·</span>
-    <span>Epsom Derby weekend</span><span class="sep">·</span>
-  </div>
-</div>
 
 <!-- STATS STRIP -->
 <div class="stats-strip" role="region" aria-label="Key statistics">
