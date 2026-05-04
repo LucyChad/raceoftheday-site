@@ -164,6 +164,24 @@
     .hero-content {
       position: relative; z-index: 1;
       max-width: var(--content); margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: var(--space-12); align-items: end;
+    }
+    .hero-text-col { display: flex; flex-direction: column; }
+    .hero-chart-col {
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding-bottom: var(--space-2);
+    }
+    .hero-chart-wrap { position: relative; width: 100%; height: 300px; }
+    .hero-chart-label {
+      font-family: var(--font-mono); font-size: 0.65rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--color-text-muted); margin-top: var(--space-3);
+      text-align: center;
+    }
+    @media (max-width: 900px) {
+      .hero-content { grid-template-columns: 1fr; }
+      .hero-chart-col { display: none; }
     }
     .hero-label {
       font-family: var(--font-mono); font-size: var(--text-sm);
@@ -683,6 +701,7 @@
       .competitor-table th, .competitor-table td { padding: var(--space-2) var(--space-2); }
     }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 </head>
 <body>
 
@@ -723,36 +742,41 @@
   <div class="hero-bg" role="img" aria-label="Two horses racing neck and neck"></div>
   <div class="hero-content">
 
-    <!-- Brand identity first -->
-    <h1 class="hero-heading" id="hero-heading">Racing<br>intelligence<br><span class="hero-sub-line">Delivered daily</span></h1>
-
-    <!-- Proven results — last 12 months -->
-    <span class="hero-period">Points profit — last 12 months</span>
-    <div class="hero-result">
-      <span class="hero-result-pts" id="hero-pts">+291.53</span>
-      <span class="hero-result-label">pts</span>
+    <!-- LEFT: text -->
+    <div class="hero-text-col">
+      <h1 class="hero-heading" id="hero-heading">Racing<br>intelligence<br><span class="hero-sub-line">Delivered daily</span></h1>
+      <span class="hero-period">Points profit — last 12 months</span>
+      <div class="hero-result">
+        <span class="hero-result-pts" id="hero-pts">+291.53</span>
+        <span class="hero-result-label">pts</span>
+      </div>
+      <p class="hero-result-sub"><span id="hero-races">600</span> races tipped &nbsp;·&nbsp; <span id="hero-win">13.7%</span> winners &nbsp;·&nbsp; every result verified</p>
+      <p class="hero-sp-note">We calculate on the <strong>Starting Price, not advised price.</strong> No best odds, no cherry-picking. These are the truest figures you will find from any tipster service.</p>
+      <div class="hero-ctas">
+        <a href="https://buy.stripe.com/7sYeVc5aH85AbKU2bW6AM01/monthly" class="btn-primary">£1 test member</a>
+        <a href="#" class="btn-secondary btn-disabled" aria-disabled="true" tabindex="-1">🚫 Annual founder - not yet open</a>
+      </div>
+      <p class="hero-footnote">£1 for 7 days - cancel before day 7 and pay nothing more</p>
+      <p class="hero-countdown-label" style="margin-top: var(--space-8);">Founding rate closes midnight, 6th June - or at 1,000 members</p>
+      <div class="hero-countdown" role="timer" aria-label="Time until beta closes">
+        <div class="cd-block"><span class="cd-num" id="cd-days">--</span><span class="cd-label">Days</span></div>
+        <span class="cd-sep" aria-hidden="true">:</span>
+        <div class="cd-block"><span class="cd-num" id="cd-hours">--</span><span class="cd-label">Hrs</span></div>
+        <span class="cd-sep" aria-hidden="true">:</span>
+        <div class="cd-block"><span class="cd-num" id="cd-mins">--</span><span class="cd-label">Min</span></div>
+        <span class="cd-sep" aria-hidden="true">:</span>
+        <div class="cd-block"><span class="cd-num" id="cd-secs">--</span><span class="cd-label">Sec</span></div>
+      </div>
     </div>
-    <p class="hero-result-sub"><span id="hero-races">600</span> races tipped &nbsp;·&nbsp; <span id="hero-win">13.7%</span> winners &nbsp;·&nbsp; every result verified</p>
-    <p class="hero-sp-note">We calculate on the <strong>Starting Price, not advised price.</strong> No best odds, no cherry-picking. These are the truest figures you will find from any tipster service.</p>
 
-    <!-- CTAs -->
-    <div class="hero-ctas">
-      <a href="https://buy.stripe.com/7sYeVc5aH85AbKU2bW6AM01/monthly" class="btn-primary">£1 test member</a>
-      <a href="#" class="btn-secondary btn-disabled" aria-disabled="true" tabindex="-1">🚫 Annual founder - not yet open</a>
+    <!-- RIGHT: live cumulative P&L chart -->
+    <div class="hero-chart-col" aria-hidden="true">
+      <div class="hero-chart-wrap">
+        <canvas id="heroChart"></canvas>
+      </div>
+      <p class="hero-chart-label">Cumulative points profit — all time · Starting Price</p>
     </div>
-    <p class="hero-footnote">£1 for 7 days - cancel before day 7 and pay nothing more</p>
 
-    <!-- Urgency -->
-    <p class="hero-countdown-label" style="margin-top: var(--space-8);">Founding rate closes midnight, 6th June - or at 1,000 members</p>
-    <div class="hero-countdown" role="timer" aria-label="Time until beta closes">
-      <div class="cd-block"><span class="cd-num" id="cd-days">--</span><span class="cd-label">Days</span></div>
-      <span class="cd-sep" aria-hidden="true">:</span>
-      <div class="cd-block"><span class="cd-num" id="cd-hours">--</span><span class="cd-label">Hrs</span></div>
-      <span class="cd-sep" aria-hidden="true">:</span>
-      <div class="cd-block"><span class="cd-num" id="cd-mins">--</span><span class="cd-label">Min</span></div>
-      <span class="cd-sep" aria-hidden="true">:</span>
-      <div class="cd-block"><span class="cd-num" id="cd-secs">--</span><span class="cd-label">Sec</span></div>
-    </div>
   </div>
 </section>
 
@@ -1276,6 +1300,70 @@
     const hPts=document.getElementById('hero-pts'); if(hPts) hPts.textContent=fmt(rPts);
     const hR=document.getElementById('hero-races'); if(hR) hR.textContent=rRaces.size.toLocaleString();
     const hW=document.getElementById('hero-win'); if(hW) hW.textContent=pct(rWin.size,rRaces.size);
+
+    // ── HERO CHART: cumulative P&L by month (all-time) ──────────────────────────
+    const monthMap = {};
+    for (let i = headerIdx + 1; i < lines.length; i++) {
+      const cols = parseCSVLine(lines[i]);
+      if (cols.length < 13) continue;
+      const outcome = (cols[11] || '').toLowerCase().trim();
+      const pts = parseFloat(cols[12]) || 0;
+      if (!outcome) continue;
+      const d = parseDate(cols[0]);
+      if (!d) continue;
+      const key = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
+      monthMap[key] = (monthMap[key] || 0) + pts;
+    }
+    const sortedMonths = Object.keys(monthMap).sort();
+    let cum = 0;
+    const cumData = sortedMonths.map(k => { cum += monthMap[k]; return parseFloat(cum.toFixed(2)); });
+    const labels = sortedMonths.map(k => {
+      const [y, m] = k.split('-');
+      return new Date(+y, +m-1).toLocaleDateString('en-GB', { month: 'short', year: '2-digit' });
+    });
+
+    const canvas = document.getElementById('heroChart');
+    if (canvas && window.Chart) {
+      const ctx = canvas.getContext('2d');
+      const grad = ctx.createLinearGradient(0, 0, 0, 300);
+      grad.addColorStop(0, 'rgba(74,222,128,0.2)');
+      grad.addColorStop(1, 'rgba(74,222,128,0)');
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels,
+          datasets: [{
+            data: cumData,
+            borderColor: '#4ADE80',
+            borderWidth: 2.5,
+            backgroundColor: grad,
+            fill: true,
+            tension: 0.4,
+            pointRadius: 0,
+            pointHoverRadius: 4,
+            pointHoverBackgroundColor: '#4ADE80',
+          }]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          interaction: { intersect: false, mode: 'index' },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: '#111', borderColor: '#333', borderWidth: 1, padding: 10,
+              callbacks: { label: c => ` ${c.parsed.y >= 0 ? '+' : ''}${c.parsed.y.toFixed(2)} pts` }
+            }
+          },
+          scales: {
+            x: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#666', font: { size: 9 }, maxRotation: 0 } },
+            y: {
+              grid: { color: 'rgba(255,255,255,0.05)' },
+              ticks: { color: '#666', font: { size: 9 }, callback: v => (v >= 0 ? '+' : '') + v }
+            }
+          }
+        }
+      });
+    }
   } catch(e) { /* fail silently — hardcoded fallbacks remain */ }
 })();
 </script>
