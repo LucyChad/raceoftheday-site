@@ -1278,16 +1278,24 @@
      ══════════════════════════════════════════════════════════ -->
 <div id="entry-popup" class="popup-overlay" role="dialog" aria-modal="true" aria-labelledby="entry-popup-heading" style="display:none;">
   <div class="popup-box">
-    <span class="popup-eyebrow">Beta test access</span>
-    <h2 id="entry-popup-heading" class="popup-heading">You're in before<br>the launch.</h2>
-    <p class="popup-body">If you're reading this, you have access to the <strong>£1/month beta test membership</strong> before it goes public. Thanks for being here! Just click on any of the sign up buttons and you'll get the beta price while it's available.</p>
-    <p class="popup-body">The site content you'll see is written for our founder launch starting next week, but as a beta test member you're getting in ahead of that at a rate that is yours for as long as you stay subscribed. In return, we just ask that you help us make this really user friendly and help us iron out any glitches that may crop up.</p>
-    <div class="popup-quid">
-      <p>So yes, it says £19 per month. While this pop-up is showing, it's not. <span>It's a quid. 100 spaces.</span></p>
+    <div class="popup-grid">
+      <!-- LEFT: hook + callout -->
+      <div class="popup-left">
+        <span class="popup-eyebrow">Beta test access</span>
+        <h2 id="entry-popup-heading" class="popup-heading">You're in before<br>the launch.</h2>
+        <div class="popup-quid">
+          <p>So yes, it says £19 per month. While this pop-up is showing, it's not. <span>It's a quid. 100 spaces.</span></p>
+        </div>
+      </div>
+      <!-- RIGHT: copy + action -->
+      <div class="popup-right">
+        <p class="popup-body">If you're reading this, you have access to the <strong>£1/month beta test membership</strong> before it goes public. Thanks for being here! Just click on any of the sign up buttons and you'll get the beta price while it's available.</p>
+        <p class="popup-body">The site content you'll see is written for our founder launch starting next week, but as a beta test member you're getting in ahead of that at a rate that is yours for as long as you stay subscribed. In return, we just ask that you help us make this really user friendly and help us iron out any glitches that may crop up.</p>
+        <p class="popup-body">If you spot anything, or think of something that is missing that you'd really like to see, let us know at <a href="mailto:hello@raceoftheday.com">hello@raceoftheday.com</a>. We are a small family business, so your feedback genuinely helps us get it right.</p>
+        <button class="popup-cta" id="entry-popup-close">Got it, take me in</button>
+        <p class="popup-footnote">18+ only · Please bet responsibly · <a href="https://www.begambleaware.org" target="_blank" rel="noopener noreferrer">BeGambleAware.org</a> · 0808 802 0133 · <a href="https://www.gamstop.co.uk" target="_blank" rel="noopener noreferrer">GamStop.co.uk</a></p>
+      </div>
     </div>
-    <p class="popup-body">If you spot anything, or think of something that is missing that you'd really like to see, let us know at <a href="mailto:hello@raceoftheday.com">hello@raceoftheday.com</a>. We are a small family business, so your feedback genuinely helps us get it right before we open up the membership fully.</p>
-    <button class="popup-cta" id="entry-popup-close">Got it, take me in</button>
-    <p class="popup-footnote">18+ only · Please bet responsibly · <a href="https://www.begambleaware.org" target="_blank" rel="noopener noreferrer">BeGambleAware.org</a> · 0808 802 0133 · <a href="https://www.gamstop.co.uk" target="_blank" rel="noopener noreferrer">GamStop.co.uk</a></p>
   </div>
 </div>
 
@@ -1339,9 +1347,19 @@
     position: relative;
     background: var(--color-surface-2); border: 1px solid var(--color-border);
     border-top: 3px solid var(--color-red);
-    max-width: 500px; width: 100%;
-    padding: var(--space-10) var(--space-10);
+    max-width: 820px; width: 100%;
+    padding: var(--space-10);
     animation: popup-slide-up 0.3s var(--ease) both;
+    max-height: 90vh; overflow-y: auto;
+  }
+  .popup-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: var(--space-10); align-items: start;
+  }
+  .popup-left { display: flex; flex-direction: column; gap: 0; }
+  @media (max-width: 640px) {
+    .popup-grid { grid-template-columns: 1fr; gap: var(--space-6); }
+    .popup-box { padding: var(--space-7) var(--space-6); }
   }
   @keyframes popup-slide-up {
     from { transform: translateY(20px); opacity: 0; }
