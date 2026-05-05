@@ -385,19 +385,19 @@
 <div class="stats-band">
   <div class="stats-grid">
     <div class="stat-cell">
-      <span class="stat-num pos">+291.53</span>
-      <span class="stat-label">Points profit, 13 months</span>
+      <span class="stat-num pos" id="stat-pnl">—</span>
+      <span class="stat-label">Points profit, all time</span>
     </div>
     <div class="stat-cell">
-      <span class="stat-num">1,832</span>
+      <span class="stat-num" id="stat-tips">—</span>
       <span class="stat-label">Selections logged</span>
     </div>
     <div class="stat-cell">
-      <span class="stat-num">13.7%</span>
+      <span class="stat-num" id="stat-winrate">—</span>
       <span class="stat-label">Win rate at SP</span>
     </div>
     <div class="stat-cell">
-      <span class="stat-num">23.0%</span>
+      <span class="stat-num" id="stat-placerate">—</span>
       <span class="stat-label">Win or place rate</span>
     </div>
   </div>
@@ -420,7 +420,7 @@
   <!-- CUMULATIVE LINE CHART - FULL WIDTH -->
   <div class="chart-card-full" style="margin-bottom: var(--space-8);">
     <div class="chart-title">Cumulative profit</div>
-    <div class="chart-sub">Running points total: Apr 2025 to Apr 2026</div>
+    <div class="chart-sub" id="cumulative-sub">Running points total</div>
     <div class="chart-wrap" style="height: 280px;">
       <canvas id="lineChart"></canvas>
     </div>
@@ -538,9 +538,9 @@
 </footer>
 
 <script>
-  // ── LIVE WINNERS TABLE ────────────────────────────────────────────────────────
-  // Fetches wins and places from the published Tip Log tab (CSV)
+  // ── RECORD PAGE — ALL DATA LIVE FROM CSV ──────────────────────────────────────
   const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRVxHWVrcFIOSKyOgHKSsNAqb9zqmgexoMWxRmhqB-hlPT9C_fWwGg8rZTIeNbzNjSLsHwAm__FbxB_/pub?gid=1605745152&single=true&output=csv';
+  const MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
   function parseDateDMY(str) {
     // Handles DD/MM/YYYY
@@ -562,80 +562,160 @@
     return d;
   }
 
-  async function loadWinners() {
-    const tbody = document.getElementById('winners-tbody');
+  function parseCSVLine(line) {
+    const result = [];
+    let current = '', inQuotes = false;
+    for (let i = 0; i < line.length; i++) {
+      const char = line[i];
+      if (char === '"') { inQuotes = !inQuotes; }
+      else if (char === ',' && !inQuotes) { result.push(current.trim()); current = ''; }
+      else { current += char; }
+    }
+    result.push(current.trim());
+    return result;
+  }
+
+  function monthLabel(d) {
+    return MONTH_NAMES[d.getMonth()] + ' ' + String(d.getFullYear()).slice(2);
+  }
+
+  async function loadRecord() {
+    const winnersTbody = document.getElementById('winners-tbody');
     try {
       const res = await fetch(CSV_URL);
       if (!res.ok) throw new Error('fetch failed');
       const text = await res.text();
 
-      // Parse CSV — skip first two rows (title row + header row)
       const lines = text.trim().split('\n');
-      // Find the header row (contains "Date")
       let headerIdx = 0;
       for (let i = 0; i < Math.min(5, lines.length); i++) {
         if (lines[i].includes('"Date"') || lines[i].startsWith('Date,') || lines[i].startsWith('"Date",')) {
-          headerIdx = i;
-          break;
+          headerIdx = i; break;
         }
       }
 
-      const parseCSVLine = (line) => {
-        const result = [];
-        let current = '';
-        let inQuotes = false;
-        for (let i = 0; i < line.length; i++) {
-          const char = line[i];
-          if (char === '"') {
-            inQuotes = !inQuotes;
-          } else if (char === ',' && !inQuotes) {
-            result.push(current.trim());
-            current = '';
-          } else {
-            current += char;
-          }
-        }
-        result.push(current.trim());
-        return result;
-      };
-
       const cutoff = threeMonthsAgo();
-      const rows = [];
+      let totalPts = 0, totalTips = 0, wins = 0, places = 0;
+      const monthMap = {};
+      const recentWinners = [];
 
       for (let i = headerIdx + 1; i < lines.length; i++) {
         const cols = parseCSVLine(lines[i]);
-        if (cols.length < 12) continue;
-
+        if (cols.length < 13) continue;
         const date = cols[0];
-        const course = cols[1];
-        const horse = cols[3];
-        const betType = cols[5];
-        const sp = cols[7];
-        const outcome = cols[11];
-        const pts = cols[12];
-
-        if (!outcome || !['win','place'].includes(outcome.toLowerCase())) continue;
-
+        const outcome = (cols[11] || '').toLowerCase().trim();
+        const pts = parseFloat(cols[12]);
+        if (!date || !['win','place','loss'].includes(outcome) || isNaN(pts)) continue;
         const d = parseDateDMY(date);
-        if (!d || d < cutoff) continue;
+        if (!d || isNaN(d.getTime())) continue;
 
-        rows.push({ date, dateObj: d, course, horse, betType, sp, outcome, pts });
+        totalTips++;
+        totalPts += pts;
+        if (outcome === 'win') wins++;
+        if (outcome === 'place') places++;
+
+        const key = d.getFullYear() * 100 + d.getMonth();
+        if (!monthMap[key]) monthMap[key] = { label: monthLabel(d), tips: 0, pts: 0 };
+        monthMap[key].tips++;
+        monthMap[key].pts += pts;
+
+        if (d >= cutoff && ['win','place'].includes(outcome)) {
+          recentWinners.push({ date, dateObj: d, course: cols[1], horse: cols[3], betType: cols[5], sp: cols[7], outcome: cols[11], pts: cols[12] });
+        }
       }
 
-      // Sort newest first
-      rows.sort((a, b) => b.dateObj - a.dateObj);
+      // ── STATS ──────────────────────────────────────────────────────────────
+      const pnlEl = document.getElementById('stat-pnl');
+      pnlEl.textContent = (totalPts >= 0 ? '+' : '') + totalPts.toFixed(2);
+      pnlEl.className = 'stat-num ' + (totalPts >= 0 ? 'pos' : '');
+      document.getElementById('stat-tips').textContent = totalTips.toLocaleString();
+      document.getElementById('stat-winrate').textContent = totalTips > 0 ? (wins / totalTips * 100).toFixed(1) + '%' : '—';
+      document.getElementById('stat-placerate').textContent = totalTips > 0 ? ((wins + places) / totalTips * 100).toFixed(1) + '%' : '—';
 
-      if (rows.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:2rem;font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-faint);">No results in last 3 months</td></tr>';
-        return;
+      // ── MONTHLY ARRAY ──────────────────────────────────────────────────────
+      const monthly = Object.keys(monthMap).sort((a, b) => a - b)
+        .map(k => ({ label: monthMap[k].label, tips: monthMap[k].tips, pts: parseFloat(monthMap[k].pts.toFixed(2)) }));
+
+      if (monthly.length > 0) {
+        document.getElementById('cumulative-sub').textContent =
+          'Running points total: ' + monthly[0].label + ' to ' + monthly[monthly.length - 1].label;
       }
 
-      tbody.innerHTML = rows.map(r => {
-        const isWin = r.outcome.toLowerCase() === 'win';
-        const ptsNum = parseFloat(r.pts) || 0;
-        const ptsDisplay = ptsNum > 0 ? '+' + ptsNum.toFixed(2) : ptsNum.toFixed(2);
-        return `
-          <tr>
+      // ── CHARTS ──────────────────────────────────────────────────────────────
+      Chart.defaults.color = '#666';
+      Chart.defaults.borderColor = '#1e1e1e';
+      Chart.defaults.font.family = "'DM Mono', monospace";
+      Chart.defaults.font.size = 10;
+
+      let running = 0;
+      const cumulative = monthly.map(m => { running += m.pts; return parseFloat(running.toFixed(2)); });
+
+      const lineCtx = document.getElementById('lineChart').getContext('2d');
+      const gradient = lineCtx.createLinearGradient(0, 0, 0, 280);
+      gradient.addColorStop(0, 'rgba(34,197,94,0.18)');
+      gradient.addColorStop(1, 'rgba(34,197,94,0)');
+      new Chart(lineCtx, {
+        type: 'line',
+        data: {
+          labels: monthly.map(m => m.label),
+          datasets: [{ label: 'Cumulative pts', data: cumulative, borderColor: '#22c55e', borderWidth: 2, backgroundColor: gradient, fill: true, tension: 0.35, pointRadius: 4, pointBackgroundColor: cumulative.map(v => v >= 0 ? '#22c55e' : '#E8235A'), pointBorderColor: '#050505', pointBorderWidth: 2 }]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          interaction: { intersect: false, mode: 'index' },
+          plugins: { legend: { display: false }, tooltip: { backgroundColor: '#111', borderColor: '#222', borderWidth: 1, padding: 10, callbacks: { label: ctx => ' ' + (ctx.parsed.y > 0 ? '+' : '') + ctx.parsed.y.toFixed(2) + ' pts' } } },
+          scales: {
+            x: { grid: { color: '#111' }, ticks: { color: '#555', font: { size: 10 } } },
+            y: { grid: { color: '#111' }, ticks: { color: '#555', font: { size: 10 }, callback: v => (v > 0 ? '+' : '') + v } }
+          }
+        }
+      });
+
+      const barCtx = document.getElementById('barChart').getContext('2d');
+      new Chart(barCtx, {
+        type: 'bar',
+        data: {
+          labels: monthly.map(m => m.label),
+          datasets: [{ label: 'Monthly pts', data: monthly.map(m => m.pts), backgroundColor: monthly.map(m => m.pts >= 0 ? 'rgba(34,197,94,0.7)' : 'rgba(232,35,90,0.7)'), borderColor: monthly.map(m => m.pts >= 0 ? '#22c55e' : '#E8235A'), borderWidth: 1, borderRadius: 2 }]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          plugins: { legend: { display: false }, tooltip: { backgroundColor: '#111', borderColor: '#222', borderWidth: 1, padding: 10, callbacks: { label: ctx => ' ' + (ctx.parsed.y > 0 ? '+' : '') + ctx.parsed.y.toFixed(2) + ' pts' } } },
+          scales: {
+            x: { grid: { display: false }, ticks: { color: '#555', font: { size: 10 } } },
+            y: { grid: { color: '#111' }, ticks: { color: '#555', font: { size: 10 }, callback: v => (v > 0 ? '+' : '') + v } }
+          }
+        }
+      });
+
+      // ── MONTHLY TABLE ────────────────────────────────────────────────────────
+      const monthlyTbody = document.getElementById('monthlyTableBody');
+      let tableRunning = 0;
+      monthly.forEach(m => {
+        tableRunning = parseFloat((tableRunning + m.pts).toFixed(2));
+        const pos = m.pts >= 0;
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td class="td-date">${m.label}</td>
+          <td class="td-type">${m.tips}</td>
+          <td class="td-pts ${pos ? 'pos' : ''}" style="${!pos ? 'color:var(--color-red)' : ''}">${pos ? '+' : ''}${m.pts.toFixed(2)}</td>
+          <td class="td-pts ${tableRunning >= 0 ? 'pos' : ''}" style="${tableRunning < 0 ? 'color:var(--color-red)' : ''}">${tableRunning >= 0 ? '+' : ''}${tableRunning.toFixed(2)}</td>
+        `;
+        monthlyTbody.appendChild(tr);
+      });
+
+      // ── WINNERS TABLE ────────────────────────────────────────────────────────
+      recentWinners.sort((a, b) => b.dateObj - a.dateObj);
+      if (recentWinners.length === 0) {
+        winnersTbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:2rem;font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-faint);">No results in last 3 months</td></tr>';
+      } else {
+        const oldest = recentWinners[recentWinners.length - 1];
+        document.getElementById('table-period').textContent = formatDateDisplay(oldest.date) + ' to today';
+        winnersTbody.innerHTML = recentWinners.map(r => {
+          const isWin = r.outcome.toLowerCase() === 'win';
+          const ptsNum = parseFloat(r.pts) || 0;
+          const ptsDisplay = ptsNum > 0 ? '+' + ptsNum.toFixed(2) : ptsNum.toFixed(2);
+          return `<tr>
             <td class="td-date">${formatDateDisplay(r.date)}</td>
             <td class="td-horse">${r.horse}</td>
             <td class="td-course">${r.course}</td>
@@ -644,166 +724,15 @@
             <td><span class="badge ${isWin ? 'badge-win' : 'badge-place'}">${isWin ? 'Win' : 'Place'}</span></td>
             <td class="td-pts pos">${ptsDisplay}</td>
           </tr>`;
-      }).join('');
-
-      // Update the period label
-      const oldest = rows[rows.length - 1];
-      document.getElementById('table-period').textContent = `${formatDateDisplay(oldest.date)} to today`;
+        }).join('');
+      }
 
     } catch (e) {
-      tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:2rem;font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-faint);">Record loading — please refresh</td></tr>';
+      winnersTbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:2rem;font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-faint);">Record loading — please refresh</td></tr>';
     }
   }
 
-  loadWinners();
-
-  // ── DATA ──────────────────────────────────────────────────────────────────────
-  const monthly = [
-    { label: 'Apr 25', tips: 34,  pts: -30.53 },
-    { label: 'May 25', tips: 197, pts:  48.60 },
-    { label: 'Jun 25', tips: 156, pts:  28.33 },
-    { label: 'Jul 25', tips: 162, pts:  27.94 },
-    { label: 'Aug 25', tips: 144, pts:  11.36 },
-    { label: 'Sep 25', tips: 113, pts: 122.00 },
-    { label: 'Oct 25', tips: 102, pts:   6.24 },
-    { label: 'Nov 25', tips: 100, pts:   3.12 },
-    { label: 'Dec 25', tips:  76, pts: -13.44 },
-    { label: 'Jan 26', tips: 180, pts: 169.97 },
-    { label: 'Feb 26', tips: 134, pts:  48.39 },
-    { label: 'Mar 26', tips: 242, pts: -64.19 },
-    { label: 'Apr 26', tips: 192, pts: -66.26 },
-  ];
-
-  // Cumulative
-  let running = 0;
-  const cumulative = monthly.map(m => {
-    running += m.pts;
-    return parseFloat(running.toFixed(2));
-  });
-
-  // ── SHARED CHART DEFAULTS ────────────────────────────────────────────────────
-  Chart.defaults.color = '#666';
-  Chart.defaults.borderColor = '#1e1e1e';
-  Chart.defaults.font.family = "'DM Mono', monospace";
-  Chart.defaults.font.size = 10;
-
-  // ── LINE CHART ───────────────────────────────────────────────────────────────
-  const lineCtx = document.getElementById('lineChart').getContext('2d');
-  const gradient = lineCtx.createLinearGradient(0, 0, 0, 280);
-  gradient.addColorStop(0, 'rgba(34,197,94,0.18)');
-  gradient.addColorStop(1, 'rgba(34,197,94,0)');
-
-  new Chart(lineCtx, {
-    type: 'line',
-    data: {
-      labels: monthly.map(m => m.label),
-      datasets: [{
-        label: 'Cumulative pts',
-        data: cumulative,
-        borderColor: '#22c55e',
-        borderWidth: 2,
-        backgroundColor: gradient,
-        fill: true,
-        tension: 0.35,
-        pointRadius: 4,
-        pointBackgroundColor: cumulative.map(v => v >= 0 ? '#22c55e' : '#E8235A'),
-        pointBorderColor: '#050505',
-        pointBorderWidth: 2,
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      interaction: { intersect: false, mode: 'index' },
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          backgroundColor: '#111',
-          borderColor: '#222',
-          borderWidth: 1,
-          padding: 10,
-          callbacks: {
-            label: ctx => ` ${ctx.parsed.y > 0 ? '+' : ''}${ctx.parsed.y.toFixed(2)} pts`
-          }
-        }
-      },
-      scales: {
-        x: {
-          grid: { color: '#111' },
-          ticks: { color: '#555', font: { size: 10 } }
-        },
-        y: {
-          grid: { color: '#111' },
-          ticks: {
-            color: '#555', font: { size: 10 },
-            callback: v => (v > 0 ? '+' : '') + v
-          }
-        }
-      }
-    }
-  });
-
-  // ── BAR CHART ────────────────────────────────────────────────────────────────
-  const barCtx = document.getElementById('barChart').getContext('2d');
-  new Chart(barCtx, {
-    type: 'bar',
-    data: {
-      labels: monthly.map(m => m.label),
-      datasets: [{
-        label: 'Monthly pts',
-        data: monthly.map(m => m.pts),
-        backgroundColor: monthly.map(m => m.pts >= 0 ? 'rgba(34,197,94,0.7)' : 'rgba(204,41,54,0.7)'),
-        borderColor:     monthly.map(m => m.pts >= 0 ? '#22c55e' : '#E8235A'),
-        borderWidth: 1,
-        borderRadius: 2,
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          backgroundColor: '#111',
-          borderColor: '#222',
-          borderWidth: 1,
-          padding: 10,
-          callbacks: {
-            label: ctx => ` ${ctx.parsed.y > 0 ? '+' : ''}${ctx.parsed.y.toFixed(2)} pts`
-          }
-        }
-      },
-      scales: {
-        x: {
-          grid: { display: false },
-          ticks: { color: '#555', font: { size: 10 } }
-        },
-        y: {
-          grid: { color: '#111' },
-          ticks: {
-            color: '#555', font: { size: 10 },
-            callback: v => (v > 0 ? '+' : '') + v
-          }
-        }
-      }
-    }
-  });
-
-  // ── MONTHLY TABLE ─────────────────────────────────────────────────────────────
-  const tbody = document.getElementById('monthlyTableBody');
-  let tableRunning = 0;
-  monthly.forEach(m => {
-    tableRunning += m.pts;
-    const pos = m.pts >= 0;
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td class="td-date">${m.label}</td>
-      <td class="td-type">${m.tips}</td>
-      <td class="td-pts ${pos ? 'pos' : ''}" style="${!pos ? 'color:var(--color-red)' : ''}">${pos ? '+' : ''}${m.pts.toFixed(2)}</td>
-      <td class="td-pts ${tableRunning >= 0 ? 'pos' : ''}" style="${tableRunning < 0 ? 'color:var(--color-red)' : ''}">${tableRunning >= 0 ? '+' : ''}${tableRunning.toFixed(2)}</td>
-    `;
-    tbody.appendChild(tr);
-  });
+  loadRecord();
 </script>
 
 </body>
