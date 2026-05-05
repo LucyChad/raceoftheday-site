@@ -356,13 +356,13 @@
     .delivery-card {
       position: relative; overflow: hidden;
       min-height: 420px;
-      display: flex; flex-direction: column; justify-content: flex-end;
-      padding: var(--space-8);
+      display: flex; flex-direction: column; justify-content: flex-start;
+      padding: var(--space-10) var(--space-8);
       background-size: cover; background-position: center;
     }
     .delivery-card::before {
       content: ''; position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.45) 55%, rgba(0,0,0,0.2) 100%);
+      background: rgba(0,0,0,0.58);
       z-index: 0;
     }
     .delivery-card-inner { position: relative; z-index: 1; }
@@ -371,7 +371,7 @@
       font-size: var(--text-xl); text-transform: uppercase; letter-spacing: 0.02em;
       color: var(--color-text); margin-bottom: var(--space-4); line-height: 1.1;
     }
-    .delivery-card p { font-size: var(--text-sm); color: rgba(255,255,255,0.75); line-height: 1.7; margin-bottom: var(--space-3); }
+    .delivery-card p { font-size: var(--text-sm); font-weight: 500; color: rgba(255,255,255,0.9); line-height: 1.7; margin-bottom: var(--space-3); }
     .dc-email    { background-image: url('images/Racing1.jpeg'); }
     .dc-links    { background-image: url('images/Racing2.jpeg'); }
     .dc-whatsapp { background-image: url('images/Racing4.jpeg'); }
