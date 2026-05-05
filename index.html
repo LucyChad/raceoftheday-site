@@ -384,20 +384,33 @@
     .section.light-bg .section-label { color: var(--color-red); }
     .section.light-bg hr { border-top-color: #CCCCCC; }
 
-    /* PRICING — light-bg overrides */
-    .section.light-bg .pricing-card { background: #FFFFFF; border-color: #DDDDDD; }
-    .section.light-bg .pricing-card.featured { background: #F0EDE8; border-color: rgba(232,53,122,0.35); }
-    .section.light-bg .pricing-card .tier-tag { color: #888888; }
-    .section.light-bg .pricing-card h3 { color: #111111; }
-    .section.light-bg .price-per { color: #777777; }
-    .section.light-bg .price-effective { color: #666666; }
-    .section.light-bg .price-divider { background: #DDDDDD; }
-    .section.light-bg .price-feature { color: #444444; }
-    .section.light-bg .price-note { color: #666666; }
-    .section.light-bg .price-cta.outline { border-color: rgba(0,0,0,0.3); color: #111111; }
-    .section.light-bg .price-cta.outline:hover { border-color: #111111; color: #111111; }
-    .section.light-bg .pricing-standard-note { background: #ECEAE6; border-color: #CCCCCC; color: #555555; }
-    .section.light-bg .trial-callout { background: #ECEAE6; border-color: #CCCCCC; color: #444444; }
+    /* PRICING — photo background with dark overlay, light cards on top */
+    .section.pricing-bg {
+      position: relative;
+      background-image: url('images/outdoor-photo-thoroughbred-racing-racetrack-600nw-2545972227.jpeg');
+      background-size: cover; background-position: center top;
+    }
+    .section.pricing-bg::before {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(0,0,0,0.72); z-index: 0;
+    }
+    .section.pricing-bg > .container { position: relative; z-index: 1; }
+    .section.pricing-bg h2 { color: #ffffff; }
+    .section.pricing-bg p { color: #CCCCCC; }
+    .section.pricing-bg .section-label { color: var(--color-red); }
+    .section.pricing-bg .pricing-card { background: #FFFFFF; border-color: #DDDDDD; }
+    .section.pricing-bg .pricing-card.featured { background: #F4F2EE; border-color: rgba(200,35,74,0.4); }
+    .section.pricing-bg .pricing-card .tier-tag { color: #888888; }
+    .section.pricing-bg .pricing-card h3 { color: #111111; }
+    .section.pricing-bg .price-per { color: #777777; }
+    .section.pricing-bg .price-effective { color: #666666; }
+    .section.pricing-bg .price-divider { background: #DDDDDD; }
+    .section.pricing-bg .price-feature { color: #444444; }
+    .section.pricing-bg .price-note { color: #666666; }
+    .section.pricing-bg .price-cta.outline { border-color: rgba(0,0,0,0.3); color: #111111; }
+    .section.pricing-bg .price-cta.outline:hover { border-color: #111111; color: #111111; }
+    .section.pricing-bg .pricing-standard-note { background: #ECEAE6; border-color: #CCCCCC; color: #555555; }
+    .section.pricing-bg .trial-callout { background: #ECEAE6; border-color: #CCCCCC; color: #444444; }
 
     /* RECORD SECTION */
     .record-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-20); align-items: start; }
@@ -1000,7 +1013,7 @@
 </section>
 
 <!-- PRICING -->
-<section class="section light-bg" id="pricing" aria-labelledby="pricing-heading">
+<section class="section pricing-bg" id="pricing" aria-labelledby="pricing-heading">
   <div class="container">
     <span class="section-label">Founding membership pricing</span>
     <h2 id="pricing-heading">Two options.<br>One window.</h2>
