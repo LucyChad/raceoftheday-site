@@ -351,17 +351,31 @@
     /* DELIVERY GRID */
     .delivery-grid {
       display: grid; grid-template-columns: 1fr 1fr;
-      gap: 1px; margin-top: var(--space-12);
-      background: var(--color-border);
+      gap: 2px; margin-top: var(--space-12);
     }
-    .delivery-card { background: var(--color-surface-3); padding: var(--space-10) var(--space-8); }
-    .delivery-icon { font-size: 2rem; margin-bottom: var(--space-5); display: block; }
+    .delivery-card {
+      position: relative; overflow: hidden;
+      min-height: 420px;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: var(--space-8);
+      background-size: cover; background-position: center;
+    }
+    .delivery-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.45) 55%, rgba(0,0,0,0.2) 100%);
+      z-index: 0;
+    }
+    .delivery-card-inner { position: relative; z-index: 1; }
     .delivery-card h3 {
       font-family: var(--font-display); font-weight: 700;
       font-size: var(--text-xl); text-transform: uppercase; letter-spacing: 0.02em;
-      color: var(--color-text); margin-bottom: var(--space-4);
+      color: var(--color-text); margin-bottom: var(--space-4); line-height: 1.1;
     }
-    .delivery-card p { font-size: var(--text-base); color: var(--color-text-muted); line-height: 1.7; }
+    .delivery-card p { font-size: var(--text-sm); color: rgba(255,255,255,0.75); line-height: 1.7; margin-bottom: var(--space-3); }
+    .dc-email    { background-image: url('images/Racing1.jpeg'); }
+    .dc-links    { background-image: url('images/Racing2.jpeg'); }
+    .dc-whatsapp { background-image: url('images/Racing4.jpeg'); }
+    .dc-summary  { background-image: url('images/Racing 6.jpeg'); }
 
     /* RECORD SECTION */
     .record-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-20); align-items: start; }
@@ -688,6 +702,7 @@
       .guineas-grid { grid-template-columns: 1fr; gap: var(--space-10); }
       .pricing-grid { grid-template-columns: 1fr; }
       .delivery-grid { grid-template-columns: 1fr; }
+      .delivery-card { min-height: 320px; }
       .stats-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 640px) {
@@ -868,28 +883,32 @@
     <h2 id="delivery-heading">The complete<br>racing service.</h2>
     <p style="max-width: 60ch; margin-bottom: 0;">Most tipster services send you a telegram name and leave you to it. We send the selection, yesterday's results, one-click links to place your bet, and a weekly summary of where the year stands. Everything lands in your inbox before the first race.</p>
     <div class="delivery-grid">
-      <div class="delivery-card">
-        <span class="delivery-icon">📧</span>
-        <h3>The daily email</h3>
-        <p>Before racing begins, you'll get an email and a WhatsApp, if you have it. The horse, the race, the course, and links to your favourite bookmaking app to place your bets. On the rare days when no selection is made, you hear that too. Equally useful information.</p>
-        <p>Yesterday's result sits right underneath. You open one email and you know exactly where you stand.</p>
+      <div class="delivery-card dc-email">
+        <div class="delivery-card-inner">
+          <h3>The daily email</h3>
+          <p>Before racing begins, you'll get an email and a WhatsApp, if you have it. The horse, the race, the course, and links to your favourite bookmaking app to place your bets. On the rare days when no selection is made, you hear that too. Equally useful information.</p>
+          <p>Yesterday's result sits right underneath. You open one email and you know exactly where you stand.</p>
+        </div>
       </div>
-      <div class="delivery-card">
-        <span class="delivery-icon">🔗</span>
-        <h3>One-click bet links</h3>
-        <p>Every selection arrives with direct links to Betfair, Sky Bet, Paddy Power and other major bookmakers. One click puts you at the right bet slip, at the right price, before the market moves.</p>
-        <p>No copying odds into a search bar. No hunting for the race. This is the feature no other independent tipster at this price point offers. It makes a real difference to the price you get on.</p>
+      <div class="delivery-card dc-links">
+        <div class="delivery-card-inner">
+          <h3>One-click bet links</h3>
+          <p>Every selection arrives with direct links to Betfair, Sky Bet, Paddy Power and other major bookmakers. One click puts you at the right bet slip, at the right price, before the market moves.</p>
+          <p>No copying odds into a search bar. No hunting for the race. This is the feature no other independent tipster at this price point offers. It makes a real difference to the price you get on.</p>
+        </div>
       </div>
-      <div class="delivery-card">
-        <span class="delivery-icon">📱</span>
-        <h3>WhatsApp delivery</h3>
-        <p>The selection hits your WhatsApp at the same time as the email. If you are away from a screen when racing starts, the pick is already in your pocket. No app. No login. Just a message.</p>
-        <p>If anything changes during the day (and occasionally it does), the WhatsApp is updated accordingly, you'll also get any late selections here too.</p>
+      <div class="delivery-card dc-whatsapp">
+        <div class="delivery-card-inner">
+          <h3>WhatsApp delivery</h3>
+          <p>The selection hits your WhatsApp at the same time as the email. If you are away from a screen when racing starts, the pick is already in your pocket. No app. No login. Just a message.</p>
+          <p>If anything changes during the day (and occasionally it does), the WhatsApp is updated accordingly, you'll also get any late selections here too.</p>
+        </div>
       </div>
-      <div class="delivery-card">
-        <span class="delivery-icon">📊</span>
-        <h3>Weekly P&amp;L summary</h3>
-        <p>Every week, a summary lands with our running points total, current win and place rates, and a note on the races worth watching ahead. Not a daily tipping sheet. A complete racing intelligence subscription.</p>
+      <div class="delivery-card dc-summary">
+        <div class="delivery-card-inner">
+          <h3>Weekly P&amp;L summary</h3>
+          <p>Every week, a summary lands with our running points total, current win and place rates, and a note on the races worth watching ahead. Not a daily tipping sheet. A complete racing intelligence subscription.</p>
+        </div>
       </div>
     </div>
   </div>
