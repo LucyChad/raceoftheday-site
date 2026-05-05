@@ -351,7 +351,7 @@
     /* DELIVERY GRID */
     .delivery-grid {
       display: grid; grid-template-columns: 1fr 1fr;
-      gap: 2px; margin-top: var(--space-12);
+      gap: var(--space-4); margin-top: var(--space-12);
     }
     .delivery-card {
       position: relative; overflow: hidden;
@@ -374,7 +374,7 @@
     .delivery-card p { font-size: var(--text-sm); font-weight: 500; color: rgba(255,255,255,0.9); line-height: 1.7; margin-bottom: var(--space-3); }
     .dc-email    { background-image: url('images/dc-crowd.jpg'); background-position: center 40%; }
     .dc-links    { background-image: url('images/dc-solo.jpg'); background-position: center 35%; }
-    .dc-whatsapp { background-image: url('images/dc-neckandneck.jpg'); background-position: center 30%; }
+    .dc-whatsapp { background-image: url('images/dc-golden.jpg'); background-position: center 40%; }
     .dc-summary  { background-image: url('images/dc-group.jpg'); background-position: center 40%; }
 
     /* RECORD SECTION */
@@ -628,6 +628,40 @@
     .contact-value { font-weight: 600; font-size: var(--text-base); color: var(--color-text); }
     .contact-value a { color: var(--color-text); text-decoration: none; }
     .contact-value a:hover { color: var(--color-violet-light); }
+
+    /* RESPONSIBLE GAMBLING BLOCK */
+    .gamble-block {
+      background: #0D0D0D;
+      border-top: 1px solid #1a1a1a;
+      padding: var(--space-10) var(--space-8);
+    }
+    .gamble-inner { max-width: var(--content); margin: 0 auto; }
+    .gamble-logos {
+      display: flex; align-items: center; flex-wrap: wrap;
+      gap: var(--space-5); margin-bottom: var(--space-5);
+    }
+    .gamble-logos img { height: 22px; width: auto; display: block; }
+    .gamble-18plus {
+      font-family: var(--font-body); font-weight: 700; font-size: 0.85rem;
+      color: #fff; border: 2px solid #fff;
+      padding: 1px 6px; line-height: 1.4;
+    }
+    .gamble-link {
+      font-family: var(--font-body); font-size: 0.85rem;
+      color: #fff; text-decoration: underline;
+    }
+    .gamble-helpline {
+      font-family: var(--font-body); font-size: 0.85rem; color: rgba(255,255,255,0.7);
+    }
+    .gamble-helpline strong { color: #fff; }
+    .gamble-disclaimer {
+      font-family: var(--font-body); font-size: 0.75rem;
+      color: rgba(255,255,255,0.55); line-height: 1.7; max-width: 80ch;
+    }
+    .gamble-disclaimer a { color: #fff; text-decoration: underline; }
+    @media (max-width: 640px) {
+      .gamble-logos { flex-direction: column; align-items: flex-start; gap: var(--space-3); }
+    }
 
     /* FOOTER */
     footer {
@@ -1147,12 +1181,27 @@
 
 </main>
 
+<!-- RESPONSIBLE GAMBLING -->
+<div class="gamble-block" role="contentinfo" aria-label="Responsible gambling information">
+  <div class="gamble-inner">
+    <div class="gamble-logos">
+      <a href="https://www.begambleaware.org" target="_blank" rel="noopener noreferrer" aria-label="GambleAware">
+        <img src="/images/gambleaware-white.svg" alt="GambleAware" />
+      </a>
+      <span class="gamble-18plus" aria-label="18 and over only">18+</span>
+      <a href="https://www.begambleaware.org" target="_blank" rel="noopener noreferrer" class="gamble-link">BeGambleAware.org</a>
+      <span class="gamble-helpline">National Gambling Helpline: <strong>0808 8020 133</strong></span>
+    </div>
+    <p class="gamble-disclaimer">Race Of The Day provides horse racing selections for informational and entertainment purposes. Past performance does not guarantee future results. Please bet responsibly. If gambling is affecting you or someone you know, visit <a href="https://www.begambleaware.org" target="_blank" rel="noopener noreferrer">BeGambleAware.org</a> or call the National Gambling Helpline on 0808 8020 133.</p>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <footer>
-  <p class="disclaimer">Race Of The Day is operated by Horseracing Analytics Ltd for informational and entertainment purposes only. Horse racing involves financial risk and past results do not guarantee future returns. Please bet responsibly and within your means. All selections are opinions, not financial advice. You must be 18 or over to subscribe. <a href="https://www.begambleaware.org" target="_blank" rel="noopener noreferrer">BeGambleAware.org</a> | 0808 802 0133 | <a href="https://www.gamstop.co.uk" target="_blank" rel="noopener noreferrer">GamStop.co.uk</a> | 18+ only</p>
-  <p class="disclaimer" style="margin-top:0.75rem;">
+  <p class="disclaimer">
     <a href="/privacy-policy" style="color:inherit;text-decoration:underline;">Privacy Policy</a> &nbsp;·&nbsp;
     <a href="/terms" style="color:inherit;text-decoration:underline;">Terms &amp; Conditions</a> &nbsp;·&nbsp;
+    <a href="https://www.gamstop.co.uk" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;">GamStop.co.uk</a> &nbsp;·&nbsp;
     &copy; 2026 Horseracing Analytics Ltd
   </p>
 </footer>

@@ -43,6 +43,19 @@
     .disclaimer { font-size: 12px; color: rgba(255,255,255,0.25); line-height: 1.6; max-width: 640px; margin: 0 auto; }
     .disclaimer a { color: rgba(255,255,255,0.4); }
     @media (max-width: 640px) { .stats-grid { grid-template-columns: 1fr 1fr; } }
+  
+    /* RESPONSIBLE GAMBLING BLOCK */
+    .gamble-block { background: #0D0D0D; border-top: 1px solid #1a1a1a; padding: 2.5rem 2rem; }
+    .gamble-inner { max-width: 1200px; margin: 0 auto; }
+    .gamble-logos { display: flex; align-items: center; flex-wrap: wrap; gap: 1.25rem; margin-bottom: 1.25rem; }
+    .gamble-logos img { height: 22px; width: auto; display: block; }
+    .gamble-18plus { font-weight: 700; font-size: 0.85rem; color: #fff; border: 2px solid #fff; padding: 1px 6px; line-height: 1.4; }
+    .gamble-link { font-size: 0.85rem; color: #fff; text-decoration: underline; }
+    .gamble-helpline { font-size: 0.85rem; color: rgba(255,255,255,0.7); }
+    .gamble-helpline strong { color: #fff; }
+    .gamble-disclaimer { font-size: 0.75rem; color: rgba(255,255,255,0.55); line-height: 1.7; max-width: 80ch; }
+    .gamble-disclaimer a { color: #fff; text-decoration: underline; }
+    @media (max-width: 640px) { .gamble-logos { flex-direction: column; align-items: flex-start; gap: 0.75rem; } }
   </style>
 </head>
 <body>
@@ -143,6 +156,19 @@
     <h3 style="font-family:'Manrope',sans-serif; font-weight:800; font-size:22px; margin-bottom:12px;">Follow the horses that matter. Every racing day.</h3>
     <p>Two to seven selections, before the first race. The full verified record open before you subscribe.</p>
     <a href="/#pricing" class="cta-btn">Start Your £1 Trial Week</a>
+  </div>
+</div>
+
+<!-- RESPONSIBLE GAMBLING -->
+<div class="gamble-block" role="contentinfo" aria-label="Responsible gambling information">
+  <div class="gamble-inner">
+    <div class="gamble-logos">
+      <a href="https://www.begambleaware.org" target="_blank" rel="noopener noreferrer" aria-label="GambleAware"><img src="/images/gambleaware-white.svg" alt="GambleAware" /></a>
+      <span class="gamble-18plus" aria-label="18 and over only">18+</span>
+      <a href="https://www.begambleaware.org" target="_blank" rel="noopener noreferrer" class="gamble-link">BeGambleAware.org</a>
+      <span class="gamble-helpline">National Gambling Helpline: <strong>0808 8020 133</strong></span>
+    </div>
+    <p class="gamble-disclaimer">Race Of The Day provides horse racing selections for informational and entertainment purposes. Past performance does not guarantee future results. Please bet responsibly. If gambling is affecting you or someone you know, visit <a href="https://www.begambleaware.org" target="_blank" rel="noopener noreferrer">BeGambleAware.org</a> or call the National Gambling Helpline on 0808 8020 133.</p>
   </div>
 </div>
 

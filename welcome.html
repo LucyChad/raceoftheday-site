@@ -87,6 +87,19 @@
       color: var(--color-text-faint); line-height: 1.8; text-align: center;
     }
     .disclaimer a { color: inherit; text-decoration: underline; }
+  
+    /* RESPONSIBLE GAMBLING BLOCK */
+    .gamble-block { background: #0D0D0D; border-top: 1px solid #1a1a1a; padding: 2.5rem 2rem; }
+    .gamble-inner { max-width: 1200px; margin: 0 auto; }
+    .gamble-logos { display: flex; align-items: center; flex-wrap: wrap; gap: 1.25rem; margin-bottom: 1.25rem; }
+    .gamble-logos img { height: 22px; width: auto; display: block; }
+    .gamble-18plus { font-weight: 700; font-size: 0.85rem; color: #fff; border: 2px solid #fff; padding: 1px 6px; line-height: 1.4; }
+    .gamble-link { font-size: 0.85rem; color: #fff; text-decoration: underline; }
+    .gamble-helpline { font-size: 0.85rem; color: rgba(255,255,255,0.7); }
+    .gamble-helpline strong { color: #fff; }
+    .gamble-disclaimer { font-size: 0.75rem; color: rgba(255,255,255,0.55); line-height: 1.7; max-width: 80ch; }
+    .gamble-disclaimer a { color: #fff; text-decoration: underline; }
+    @media (max-width: 640px) { .gamble-logos { flex-direction: column; align-items: flex-start; gap: 0.75rem; } }
   </style>
 </head>
 <body>
