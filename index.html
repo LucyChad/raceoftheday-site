@@ -21,8 +21,8 @@
       --color-surface:       #0C0C0C;
       --color-surface-2:     #111111;
       --color-surface-3:     #181818;
-      --color-border:        #222222;
-      --color-divider:       #1A1A1A;
+      --color-border:        #333333;
+      --color-divider:       #2D2D2D;
       --color-text:          #FFFFFF;
       --color-text-muted:    #D8D8D8;
       --color-text-faint:    #444444;
@@ -94,7 +94,7 @@
       display: flex; align-items: center; justify-content: space-between;
       padding: var(--space-4) var(--space-8);
       background: rgba(12,12,18,0.94); backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--color-divider);
+      border-bottom: 2px solid var(--color-divider);
     }
     .nav-logo {
       display: flex; align-items: center; gap: var(--space-3);
@@ -317,7 +317,7 @@
     @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
     /* STATS STRIP */
-    .stats-strip { background: var(--color-surface); border-bottom: 1px solid var(--color-divider); }
+    .stats-strip { background: var(--color-surface); border-bottom: 2px solid var(--color-divider); }
     .stats-grid {
       display: grid; grid-template-columns: repeat(4, 1fr);
       max-width: var(--content); margin: 0 auto;
@@ -697,7 +697,7 @@
     /* FOOTER */
     footer {
       background: var(--color-bg); padding: var(--space-10) var(--space-8) calc(var(--space-10) + 3.5rem);
-      text-align: center; border-top: 1px solid var(--color-divider);
+      text-align: center; border-top: 2px solid var(--color-divider);
     }
     .disclaimer {
       font-family: var(--font-mono); font-size: var(--text-xs);
@@ -803,7 +803,7 @@
     </a>
     <div class="nav-right">
       <span class="nav-countdown">Founder Window Closes In <strong id="nav-cd">loading...</strong></span>
-      <a href="https://buy.stripe.com/7sYeVc5aH85AbKU2bW6AM01" class="nav-cta">BETA member (limit 100)</a>
+      <a href="https://buy.stripe.com/7sYeVc5aH85AbKU2bW6AM01" class="nav-cta">£1 test member</a>
     </div>
   </nav>
   <!-- ANNOUNCEMENT BANNER — inside header so it naturally follows nav -->
@@ -845,7 +845,7 @@
       <p class="hero-result-sub"><span id="hero-races">600</span> races tipped &nbsp;·&nbsp; <span id="hero-win">13.7%</span> winners &nbsp;·&nbsp; every result verified</p>
       <p class="hero-sp-note">We calculate on the <strong>Starting Price, not advised price.</strong> No best odds, no cherry-picking. These are the truest figures you will find from any tipster service.</p>
       <div class="hero-ctas">
-        <a href="https://buy.stripe.com/7sYeVc5aH85AbKU2bW6AM01/monthly" class="btn-primary">BETA member (limit 100)</a>
+        <a href="https://buy.stripe.com/7sYeVc5aH85AbKU2bW6AM01/monthly" class="btn-primary">£1 test member</a>
         <a href="#" class="btn-secondary btn-disabled" aria-disabled="true" tabindex="-1">🚫 Annual founder - not yet open</a>
       </div>
       <p class="hero-footnote">Beta mode is running for this weekend only. Once the 100 spots are gone, we move into our founder member rate offer.</p>
@@ -1000,7 +1000,7 @@
           <div class="g-cd-block"><span class="g-cd-num" id="g-secs">--</span><span class="g-cd-label">Secs</span></div>
         </div>
         <div class="guineas-ctas">
-          <a href="https://buy.stripe.com/7sYeVc5aH85AbKU2bW6AM01/monthly" class="price-cta">Join as a test member for £1</a>
+          <a href="https://buy.stripe.com/7sYeVc5aH85AbKU2bW6AM01/monthly" class="price-cta">£1 test member</a>
           <a href="#" class="price-cta outline btn-disabled" aria-disabled="true" tabindex="-1">🚫 Annual founder - not yet open</a>
         </div>
         <p class="guineas-footnote">£1/month beta member - limited to 100 spots for testing</p>
@@ -1036,7 +1036,7 @@
           <div class="price-feature">Price locked for life - never pay more as long as you remain subscribed</div>
           <div class="price-feature">Cancel at any time - no contracts, no notice period</div>
         </div>
-        <a href="https://buy.stripe.com/7sYeVc5aH85AbKU2bW6AM01/monthly" class="price-cta">BETA member (limit 100)</a>
+        <a href="https://buy.stripe.com/7sYeVc5aH85AbKU2bW6AM01/monthly" class="price-cta">£1 test member</a>
         <p class="price-note">Rolls to £19/month after 7 days - cancel before day 7 and pay nothing more</p>
         <p class="price-note price-warning">Cancel and rejoin after window closes and standard £39/month applies</p>
       </div>
@@ -1157,7 +1157,7 @@
       <p style="color: var(--color-text-muted); margin-bottom: var(--space-6);">The £1 trial exists because a record can be read but not felt. Seeing a figure and following a real selection in real time are two different things. The trial lets you do both before you commit to anything more.</p>
       <p style="color: var(--color-text-muted); margin-bottom: var(--space-8);">The founding rate of £19 a month closes on 6th June, or when we hit 1,000 members. After that, it's £39. Or play the long game with us and give it a year, the annual founder rate is just £149, it just makes sense.</p>
       <div style="display: flex; gap: var(--space-4); flex-wrap: wrap; align-items: center;">
-        <a href="https://buy.stripe.com/7sYeVc5aH85AbKU2bW6AM01/monthly" class="btn-primary">BETA member (limit 100)</a>
+        <a href="https://buy.stripe.com/7sYeVc5aH85AbKU2bW6AM01/monthly" class="btn-primary">£1 test member</a>
         <a href="#" class="btn-secondary btn-disabled" aria-disabled="true" tabindex="-1">🚫 Annual founder - not yet open</a>
       </div>
     </div>
@@ -1236,7 +1236,7 @@
   </div>
   <div class="tier-bar-track"><div class="tier-bar-fill" id="tier-fill" style="width:0%"></div></div>
   <span class="tier-bar-note" id="tier-note">— spots left · closes 6 June or at 1,000</span>
-  <a href="https://buy.stripe.com/7sYeVc5aH85AbKU2bW6AM01" class="tier-bar-cta">TEST member (limit 100)</a>
+  <a href="https://buy.stripe.com/7sYeVc5aH85AbKU2bW6AM01" class="tier-bar-cta">£1 test member</a>
 </div>
 
 <script>
