@@ -1477,28 +1477,29 @@
 <div id="waitlist-popup" class="popup-overlay" role="dialog" aria-modal="true" aria-labelledby="waitlist-popup-heading" style="display:none;">
   <div class="popup-box">
     <button class="popup-close-x" id="waitlist-close-x" aria-label="Close">&#x2715;</button>
-    <span class="popup-eyebrow">First 100 · £1/month forever</span>
-    <h2 id="waitlist-popup-heading" class="popup-heading">Reserve your spot.</h2>
-    <p class="popup-body">Enter your email and we'll confirm your place in the first 100. When we go live next week, you'll be first through the door at the beta rate.</p>
+    <span class="popup-eyebrow">Test membership · First 100 spots only</span>
+    <h2 id="waitlist-popup-heading" class="popup-heading">Lock in £1/month.<br>Forever.</h2>
+    <p class="popup-body">This is the test membership rate. £1/month, permanently locked in — your price never goes up while you stay subscribed. Limited to 100 spots, and this is the only time this rate is available.</p>
+
+    <a href="https://buy.stripe.com/7sYeVc5aH85AbKU2bW6AM01" class="popup-cta popup-cta-primary" target="_blank" rel="noopener noreferrer">Join at £1/month &rarr;</a>
+    <p class="popup-footnote" style="margin-top: 0.5rem; margin-bottom: 1.5rem;">7-day free trial. Cancel before day 7 and pay nothing. 18+ only.</p>
+
+    <div class="popup-divider"><span>or</span></div>
+    <p class="popup-alt-text">Not ready? Leave your email and we'll remind you before the 100 spots are gone.</p>
 
     <form id="waitlist-form" name="waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
       <input type="hidden" name="form-name" value="waitlist" />
       <p style="display:none;"><label>Do not fill this in: <input name="bot-field" /></label></p>
       <div class="popup-field">
         <input type="email" name="email" id="waitlist-email" placeholder="Your email address" required autocomplete="email" />
-        <button type="submit" class="popup-cta" id="waitlist-submit">Reserve my spot</button>
+        <button type="submit" class="popup-cta" id="waitlist-submit">Remind me</button>
       </div>
       <p class="popup-error" id="waitlist-error" style="display:none;">Please enter a valid email address.</p>
     </form>
 
     <div id="waitlist-success" style="display:none;">
-      <p class="popup-success-msg">You're on the list. We'll be in touch before launch.</p>
+      <p class="popup-success-msg">Got it. We'll remind you before the spots are gone.</p>
     </div>
-
-    <div class="popup-divider"><span>or</span></div>
-    <p class="popup-alt-text">Already want to start your £1 trial right now?</p>
-    <a href="https://buy.stripe.com/7sYeVc5aH85AbKU2bW6AM01" class="popup-stripe-link" target="_blank" rel="noopener noreferrer">Start £1 trial today &rarr;</a>
-    <p class="popup-footnote">Cancel before day 7 and pay nothing more. 18+ only.</p>
   </div>
 </div>
 
@@ -1574,6 +1575,9 @@
     text-align: center; margin-bottom: var(--space-5);
   }
   .popup-cta:hover { background: var(--color-red-hover); }
+  .popup-cta-primary { text-decoration: none; font-size: var(--text-lg); margin-bottom: var(--space-2); }
+  #waitlist-submit { font-size: var(--text-sm); padding: var(--space-3) var(--space-5); background: transparent; border: 1px solid rgba(255,255,255,0.25); color: var(--color-text-muted); }
+  #waitlist-submit:hover { background: transparent; border-color: #fff; color: #fff; }
   .popup-footnote {
     font-family: var(--font-mono); font-size: 0.72rem;
     color: var(--color-text-muted); text-align: center;
