@@ -434,47 +434,43 @@
     .guineas-section {
       position: relative; overflow: hidden;
       padding: clamp(var(--space-16), 8vw, var(--space-24)) var(--space-8);
+      background: #F4F2EE;
     }
-    .guineas-bg {
-      position: absolute; inset: 0;
-      background-image: url('images/racing-greentrack.jpg');
-      background-size: cover; background-position: center 40%;
-      opacity: 0.38;
-    }
+    .guineas-bg { display: none; }
     .guineas-content { position: relative; z-index: 1; max-width: var(--content); margin: 0 auto; }
     .guineas-grid {
       display: grid; grid-template-columns: 1fr 1fr;
       gap: var(--space-20); align-items: start;
     }
     .guineas-section .section-label { color: var(--color-red); }
-    .guineas-section h2 { font-size: var(--text-2xl); margin-bottom: var(--space-8); }
-    .guineas-section p { color: var(--color-text-muted); }
+    .guineas-section h2 { font-size: var(--text-2xl); margin-bottom: var(--space-8); color: #111111; }
+    .guineas-section p { color: #444444; }
     .guineas-price-note {
       margin-top: var(--space-8); padding: var(--space-5) var(--space-6);
-      background: rgba(204,41,54,0.1); border-left: 3px solid var(--color-red);
-      font-size: var(--text-base); color: var(--color-text-muted); line-height: 1.6;
+      background: rgba(232,53,122,0.07); border-left: 3px solid var(--color-red);
+      font-size: var(--text-base); color: #444444; line-height: 1.6;
     }
-    .guineas-price-note strong { color: var(--color-text); }
+    .guineas-price-note strong { color: #111111; }
     .guineas-countdown {
       display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 1px; background: var(--color-border);
+      gap: 1px; background: #DDDDDD;
     }
     .g-cd-block {
-      background: var(--color-surface-3); padding: var(--space-6) var(--space-4); text-align: center;
+      background: #FFFFFF; padding: var(--space-6) var(--space-4); text-align: center;
     }
     .g-cd-num {
       font-family: var(--font-display); font-weight: 700;
       font-size: var(--text-3xl); line-height: 1; letter-spacing: -0.02em;
-      color: var(--color-text); display: block; margin-bottom: var(--space-2);
+      color: #111111; display: block; margin-bottom: var(--space-2);
     }
     .g-cd-label {
       font-family: var(--font-mono); font-size: var(--text-xs);
-      letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-faint);
+      letter-spacing: 0.1em; text-transform: uppercase; color: #888888;
     }
     .guineas-ctas { display: flex; flex-direction: column; gap: var(--space-4); margin-top: var(--space-8); }
     .guineas-footnote {
       margin-top: var(--space-4); font-family: var(--font-mono); font-size: var(--text-xs);
-      letter-spacing: 0.06em; color: var(--color-text-faint);
+      letter-spacing: 0.06em; color: #888888;
     }
 
     /* PRICING */
@@ -961,7 +957,7 @@
         <p>So, after the window closes, the founding rate of £19 a month is gone. The standard monthly price is £39. That is a difference of £20 every month, every year, for as long as you stay subscribed.</p>
       </div>
       <div>
-        <p style="font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-text-faint); margin-bottom: var(--space-4);">Founding rate closes in</p>
+        <p style="font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.12em; text-transform: uppercase; color: #888888; margin-bottom: var(--space-4);">Founding rate closes in</p>
         <div class="guineas-countdown" role="timer" aria-label="Time until beta closes">
           <div class="g-cd-block"><span class="g-cd-num" id="g-days">--</span><span class="g-cd-label">Days</span></div>
           <div class="g-cd-block"><span class="g-cd-num" id="g-hours">--</span><span class="g-cd-label">Hours</span></div>
