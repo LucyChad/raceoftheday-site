@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>You're In — Race Of The Day</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:ital,wght@0,600;0,700;1,300;1,400&family=DM+Mono:wght@400;500&family=IBM+Plex+Mono:ital,wght@1,400;1,500&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+<!-- GHL CODE BLOCK — paste everything below this line -->
+<style>
+:root {
+  --color-bg:#050505;--color-surface:#0C0C0C;--color-surface-2:#111111;
+  --color-surface-3:#181818;--color-border:#333333;--color-divider:#2D2D2D;
+  --color-text:#FFFFFF;--color-text-muted:#D8D8D8;--color-text-faint:#444444;
+  --color-red:#E8235A;--color-green:#4ADE80;
+  --font-display:'Oswald','Arial Narrow',sans-serif;
+  --font-mono-italic:'IBM Plex Mono','Courier New',monospace;
+  --font-body:'Poppins','Helvetica Neue',sans-serif;
+  --font-mono:'DM Mono','Courier New',monospace;
+}
+.ty-wrap{max-width:640px;margin:0 auto;padding:3rem 1.5rem 4rem;font-family:var(--font-body);color:var(--color-text);text-align:center;}
+.ty-tick{width:64px;height:64px;border-radius:50%;background:rgba(74,222,128,0.12);border:2px solid var(--color-green);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;}
+.ty-tick svg{width:28px;height:28px;fill:var(--color-green);}
+.ty-label{font-family:var(--font-mono);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--color-green);display:block;margin-bottom:1rem;}
+.ty-heading{font-family:var(--font-display);font-weight:700;font-size:clamp(2.2rem,6vw,3.5rem);text-transform:uppercase;letter-spacing:.02em;line-height:1.05;color:var(--color-text);margin-bottom:1.25rem;}
+.ty-heading-sub{font-family:'IBM Plex Mono','Courier New',monospace;font-style:italic;color:var(--color-red);font-size:.45em;display:block;letter-spacing:.06em;margin-bottom:.5rem;font-weight:400;}
+.ty-sub{font-size:.95rem;color:var(--color-text-muted);line-height:1.7;margin-bottom:2.5rem;}
+.ty-divider{height:1px;background:var(--color-divider);margin:0 0 2.5rem;}
+.ty-next-label{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--color-text-muted);display:block;margin-bottom:1.25rem;}
+.ty-steps{list-style:none;padding:0;margin:0 0 2.5rem;text-align:left;}
+.ty-steps li{display:flex;gap:1rem;align-items:flex-start;padding:.9rem 0;border-bottom:1px solid var(--color-divider);font-size:.9rem;color:var(--color-text-muted);line-height:1.5;}
+.ty-steps li:last-child{border-bottom:none;}
+.ty-step-num{font-family:var(--font-display);font-weight:700;font-size:1.1rem;color:var(--color-red);flex-shrink:0;width:1.5rem;text-align:center;margin-top:1px;}
+.ty-step-b{color:#fff;font-weight:700;}
+.ty-wa-btn{display:block;width:100%;padding:1rem 1.5rem;background:#25D366;color:#fff;font-family:var(--font-body);font-weight:700;font-size:.95rem;letter-spacing:.06em;text-transform:uppercase;text-align:center;text-decoration:none;border-radius:100px;margin-bottom:1rem;position:relative;overflow:hidden;}
+.ty-wa-btn::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent);animation:shimmer 2.8s ease-in-out infinite;}
+@keyframes shimmer{0%{left:-100%}50%,100%{left:160%}}
+.ty-wa-btn:hover{background:#1ebe5d;}
+.ty-wa-btn svg{width:20px;height:20px;fill:#fff;vertical-align:middle;margin-right:.5rem;margin-top:-2px;}
+.ty-record-btn{display:block;width:100%;padding:.9rem 1.5rem;background:transparent;color:var(--color-text-muted);font-family:var(--font-body);font-weight:700;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;text-align:center;text-decoration:none;border-radius:100px;border:1px solid var(--color-border);margin-bottom:2.5rem;}
+.ty-record-btn:hover{border-color:#fff;color:#fff;}
+.ty-frank{border-left:3px solid var(--color-red);padding:1rem 1.25rem;background:var(--color-surface-2);margin-bottom:2rem;text-align:left;}
+.ty-frank-text{font-family:'IBM Plex Mono','Courier New',monospace;font-style:italic;font-size:.88rem;color:var(--color-text-muted);line-height:1.7;margin:0 0 .6rem;display:block;}
+.ty-frank-by{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-faint);}
+.ty-rg{display:flex;align-items:center;justify-content:center;gap:1.25rem;flex-wrap:wrap;padding:1.25rem;border-top:1px solid var(--color-divider);}
+.ty-18{display:flex;align-items:center;justify-content:center;width:36px;height:36px;border:2px solid var(--color-text-faint);border-radius:50%;font-family:var(--font-display);font-weight:700;font-size:.95rem;color:var(--color-text-faint);flex-shrink:0;}
+.ty-gam{display:flex;align-items:center;gap:.5rem;padding:.4rem 1rem;background:#00855A;text-decoration:none;flex-shrink:0;}
+.ty-gam-text{display:flex;flex-direction:column;line-height:1.1;}
+.ty-gam-when{font-family:var(--font-mono);font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.8);}
+.ty-gam-name{font-family:var(--font-display);font-weight:700;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:#fff;}
+.ty-gam svg{width:16px;height:16px;fill:#fff;}
+.ty-rdiv{width:1px;height:30px;background:var(--color-border);}
+.ty-helpline{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-faint);text-align:center;line-height:1.6;}
+.ty-helpline-title{color:var(--color-text-muted);display:block;}
+</style>
+
+<link href="https://fonts.googleapis.com/css2?family=Oswald:ital,wght@0,600;0,700;1,300;1,400&family=DM+Mono:wght@400;500&family=IBM+Plex+Mono:ital,wght@1,400;1,500&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
+
+<div class="ty-wrap">
+
+  <div class="ty-tick">
+    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+  </div>
+
+  <span class="ty-label">Payment confirmed</span>
+
+  <h1 class="ty-heading">
+    <span class="ty-heading-sub">Race Of The Day</span>
+    You're In.
+  </h1>
+
+  <p class="ty-sub">Welcome to the beta. Your first tip lands tomorrow morning. Check your email to confirm your address, then join the WhatsApp group below so you never miss a selection.</p>
+
+  <div class="ty-divider"></div>
+
+  <span class="ty-next-label">What happens next</span>
+  <ul class="ty-steps">
+    <li>
+      <span class="ty-step-num">1</span>
+      <span><span class="ty-step-b">Check your inbox.</span> A confirmation email is on its way. If you don't see it in the next few minutes, check your spam folder and mark it as safe.</span>
+    </li>
+    <li>
+      <span class="ty-step-num">2</span>
+      <span><span class="ty-step-b">Join the WhatsApp group.</span> This is where tips land every morning, direct to your phone with a one-tap bet link.</span>
+    </li>
+    <li>
+      <span class="ty-step-num">3</span>
+      <span><span class="ty-step-b">Your first tip arrives tomorrow.</span> Frank picks one race, one horse. That's all you need.</span>
+    </li>
+  </ul>
+
+  <!-- WHATSAPP BUTTON — replace # with your WhatsApp group invite link -->
+  <a class="ty-wa-btn" href="#" target="_blank">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Join the WhatsApp Group
+  </a>
+
+  <a class="ty-record-btn" href="https://raceoftheday.com/record.html">
+    View the verified record →
+  </a>
+
+  <div class="ty-frank">
+    <span class="ty-frank-text">"Every morning I sit down with the form and I find the race. One race, one bet. That's been my method for sixty years and it still works. Welcome aboard."</span>
+    <span class="ty-frank-by"><span style="color:#D8D8D8;">Frank</span> — Lead Tipster, Race Of The Day</span>
+  </div>
+
+  <div class="ty-rg">
+    <div class="ty-18">18+</div>
+    <div class="ty-rdiv"></div>
+    <a class="ty-gam" href="https://www.begambleaware.org" target="_blank">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+      <div class="ty-gam-text">
+        <span class="ty-gam-when">When the fun stops</span>
+        <span class="ty-gam-name">Stop. BeGambleAware</span>
+      </div>
+    </a>
+    <div class="ty-rdiv"></div>
+    <div class="ty-helpline"><span class="ty-helpline-title">National Gambling Helpline</span>0808 8020 133 — Free, 24/7</div>
+  </div>
+
+</div>
+<!-- END GHL CODE BLOCK -->
+</body>
+</html>

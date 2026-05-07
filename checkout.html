@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join Race Of The Day — £1 Beta Test Membership</title>
+  <meta name="robots" content="noindex, nofollow" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:ital,wght@0,600;0,700;1,300;1,400&family=DM+Mono:wght@400;500&family=IBM+Plex+Mono:ital,wght@1,400;1,500&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --color-bg:            #050505;
+      --color-surface:       #0C0C0C;
+      --color-surface-2:     #111111;
+      --color-surface-3:     #181818;
+      --color-border:        #333333;
+      --color-divider:       #2D2D2D;
+      --color-text:          #FFFFFF;
+      --color-text-muted:    #D8D8D8;
+      --color-text-faint:    #444444;
+      --color-red:           #E8235A;
+      --color-red-hover:     #C41A4A;
+      --color-green:         #4ADE80;
+
+      --text-xs:   clamp(0.75rem,  0.7rem  + 0.25vw, 0.875rem);
+      --text-sm:   clamp(0.875rem, 0.8rem  + 0.35vw, 1rem);
+      --text-base: clamp(1rem,     0.95rem + 0.25vw, 1.125rem);
+      --text-lg:   clamp(1.125rem, 1rem    + 0.75vw, 1.5rem);
+      --text-xl:   clamp(1.5rem,   1.2rem  + 1.25vw, 2.25rem);
+      --text-2xl:  clamp(2rem,     1.2rem  + 2.5vw,  3.5rem);
+
+      --space-1:  0.25rem; --space-2:  0.5rem;  --space-3:  0.75rem;
+      --space-4:  1rem;    --space-5:  1.25rem; --space-6:  1.5rem;
+      --space-8:  2rem;    --space-10: 2.5rem;  --space-12: 3rem;
+      --space-16: 4rem;    --space-20: 5rem;    --space-24: 6rem;
+
+      --font-display:      'Oswald', 'Arial Narrow', sans-serif;
+      --font-mono-italic:  'IBM Plex Mono', 'Courier New', monospace;
+      --font-body:         'Poppins', 'Helvetica Neue', sans-serif;
+      --font-mono:         'DM Mono', 'Courier New', monospace;
+      --ease:       cubic-bezier(0.16, 1, 0.3, 1);
+      --transition: 180ms var(--ease);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-size: var(--text-base);
+      line-height: 1.7;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+    p { margin-bottom: var(--space-4); }
+    p:last-child { margin-bottom: 0; }
+
+    /* ── HEADER ── */
+    .checkout-header {
+      background: rgba(12,12,18,0.97);
+      border-bottom: 2px solid var(--color-divider);
+      padding: var(--space-4) var(--space-8);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header-logo {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: var(--text-base);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text);
+      text-decoration: none;
+    }
+    .header-logo span {
+      color: var(--color-red);
+    }
+    .header-secure {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+    .header-secure svg {
+      width: 14px;
+      height: 14px;
+      fill: var(--color-green);
+      flex-shrink: 0;
+    }
+
+    /* ── ANNOUNCEMENT STRIP ── */
+    .announce-strip {
+      background: var(--color-red);
+      padding: 0.4rem var(--space-8);
+      text-align: center;
+    }
+    .announce-strip p {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.95);
+      margin: 0;
+    }
+    .announce-strip strong {
+      color: #fff;
+    }
+
+    /* ── MAIN LAYOUT ── */
+    .checkout-wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: var(--space-12) var(--space-8) var(--space-20);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-12);
+      align-items: start;
+    }
+    @media (max-width: 820px) {
+      .checkout-wrap {
+        grid-template-columns: 1fr;
+        padding: var(--space-8) var(--space-6) var(--space-16);
+      }
+      .checkout-header {
+        padding: var(--space-4) var(--space-6);
+      }
+    }
+
+    /* ── LEFT: OFFER SUMMARY ── */
+    .offer-col {}
+
+    .offer-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-red);
+      display: block;
+      margin-bottom: var(--space-4);
+    }
+    .offer-heading {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: var(--text-2xl);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      line-height: 1.05;
+      color: var(--color-text);
+      margin-bottom: var(--space-6);
+    }
+    .offer-heading em {
+      font-family: var(--font-mono-italic);
+      font-style: normal;
+      color: var(--color-red);
+      font-size: 0.52em;
+      display: block;
+      letter-spacing: 0.06em;
+      margin-bottom: var(--space-2);
+      font-weight: 400;
+    }
+    .offer-sub {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.7;
+      margin-bottom: var(--space-8);
+      max-width: 46ch;
+    }
+
+    /* PRICE SUMMARY */
+    .price-summary {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      padding: var(--space-6) var(--space-6) var(--space-5);
+      margin-bottom: var(--space-6);
+    }
+    .price-summary-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: var(--space-4);
+      padding-bottom: var(--space-4);
+      border-bottom: 1px solid var(--color-divider);
+    }
+    .price-summary-name {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: var(--text-base);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-text);
+    }
+    .price-summary-amount {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: var(--text-xl);
+      color: var(--color-red);
+      line-height: 1;
+    }
+    .price-summary-amount span {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+      letter-spacing: 0.08em;
+      font-weight: 400;
+    }
+    .price-summary-note {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      line-height: 1.6;
+      margin-bottom: var(--space-4);
+      padding-bottom: var(--space-4);
+      border-bottom: 1px solid var(--color-divider);
+    }
+    .price-summary-note strong {
+      color: var(--color-green);
+    }
+    .price-summary-renews {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      letter-spacing: 0.06em;
+      color: var(--color-text-faint);
+      line-height: 1.6;
+    }
+
+    /* WHAT'S INCLUDED */
+    .included-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      display: block;
+      margin-bottom: var(--space-4);
+    }
+    .included-list {
+      list-style: none;
+      margin-bottom: var(--space-8);
+    }
+    .included-list li {
+      display: flex;
+      gap: var(--space-3);
+      align-items: flex-start;
+      padding: var(--space-3) 0;
+      border-bottom: 1px solid var(--color-divider);
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.5;
+    }
+    .included-list li:last-child {
+      border-bottom: none;
+    }
+    .included-list li::before {
+      content: '-';
+      color: var(--color-red);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .included-list strong {
+      color: var(--color-text);
+    }
+
+    /* STATS ROW */
+    .offer-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--color-border);
+      border: 1px solid var(--color-border);
+      margin-bottom: var(--space-6);
+    }
+    .offer-stat {
+      background: var(--color-surface-2);
+      padding: var(--space-4) var(--space-3);
+      text-align: center;
+    }
+    .offer-stat-num {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: var(--text-lg);
+      line-height: 1;
+      color: var(--color-red);
+      display: block;
+      margin-bottom: var(--space-1);
+    }
+    .offer-stat-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+
+    /* TRUST SIGNALS */
+    .trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      margin-bottom: var(--space-6);
+    }
+    .trust-pill {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-2) var(--space-4);
+      border: 1px solid var(--color-border);
+      background: var(--color-surface-2);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+    .trust-pill svg {
+      width: 12px;
+      height: 12px;
+      fill: var(--color-green);
+      flex-shrink: 0;
+    }
+
+    /* FRANK QUOTE */
+    .frank-quote {
+      border-left: 3px solid var(--color-red);
+      padding: var(--space-4) var(--space-5);
+      background: var(--color-surface-2);
+      margin-bottom: 0;
+    }
+    .frank-quote p {
+      font-family: var(--font-mono-italic);
+      font-style: italic;
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.7;
+      margin-bottom: var(--space-3);
+    }
+    .frank-byline {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-faint);
+    }
+    .frank-byline strong {
+      color: var(--color-text-muted);
+    }
+
+    /* ── RIGHT: FORM COLUMN ── */
+    .form-col {}
+
+    .form-card {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      padding: var(--space-8);
+    }
+
+    .form-header {
+      margin-bottom: var(--space-6);
+      padding-bottom: var(--space-6);
+      border-bottom: 1px solid var(--color-divider);
+    }
+    .form-header-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-red);
+      display: block;
+      margin-bottom: var(--space-3);
+    }
+    .form-header h2 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: var(--text-xl);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      line-height: 1.1;
+      color: var(--color-text);
+      margin-bottom: var(--space-2);
+    }
+    .form-header p {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      letter-spacing: 0.08em;
+      color: var(--color-text-muted);
+      margin: 0;
+    }
+
+    /* ─────────────────────────────────────────
+       GHL ORDER FORM EMBED
+       Paste your GHL order form embed code below.
+       The styles below normalise GHL's default
+       form elements to match the ROTD brand.
+    ───────────────────────────────────────── */
+    .ghl-form-embed {
+      /* GHL injects its iframe/form here */
+    }
+
+    /* GHL form overrides — forces brand fonts + dark theme */
+    .ghl-form-embed iframe {
+      width: 100% !important;
+      border: none !important;
+      min-height: 420px;
+    }
+
+    /* ─────────────────────────────────────────
+       STANDALONE FORM (remove if using GHL embed)
+       This is shown as a visual placeholder.
+       Replace the entire .form-fields block with
+       your GHL order form embed code.
+    ───────────────────────────────────────── */
+    .form-fields {}
+
+    .field-group {
+      margin-bottom: var(--space-5);
+    }
+    .field-label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-2);
+    }
+    .field-input {
+      width: 100%;
+      background: var(--color-surface-3);
+      border: 1px solid var(--color-border);
+      color: var(--color-text);
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      padding: var(--space-3) var(--space-4);
+      outline: none;
+      transition: border-color var(--transition);
+      -webkit-appearance: none;
+      border-radius: 0;
+    }
+    .field-input::placeholder {
+      color: var(--color-text-faint);
+    }
+    .field-input:focus {
+      border-color: var(--color-red);
+    }
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-4);
+    }
+
+    .field-divider {
+      height: 1px;
+      background: var(--color-divider);
+      margin: var(--space-6) 0;
+    }
+
+    .card-icons {
+      display: flex;
+      gap: var(--space-2);
+      align-items: center;
+      margin-bottom: var(--space-4);
+    }
+    .card-icon {
+      height: 22px;
+      background: var(--color-surface-3);
+      border: 1px solid var(--color-border);
+      padding: 2px 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-text-faint);
+    }
+    .card-icons-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-3);
+      display: block;
+    }
+
+    .submit-btn {
+      display: block;
+      width: 100%;
+      padding: var(--space-4) var(--space-6);
+      background: var(--color-red);
+      color: #fff;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: var(--text-sm);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: center;
+      border: none;
+      cursor: pointer;
+      border-radius: 100px;
+      position: relative;
+      overflow: hidden;
+      transition: background var(--transition);
+      margin-top: var(--space-6);
+    }
+    .submit-btn::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%; width: 60%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      animation: btn-shimmer 2.8s ease-in-out infinite;
+    }
+    @keyframes btn-shimmer {
+      0%   { left: -100%; }
+      50%, 100% { left: 160%; }
+    }
+    .submit-btn:hover {
+      background: var(--color-red-hover);
+    }
+
+    .form-legal {
+      margin-top: var(--space-4);
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      color: var(--color-text-faint);
+      text-align: center;
+      line-height: 1.7;
+    }
+    .form-legal a {
+      color: var(--color-text-faint);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .form-legal a:hover {
+      color: var(--color-text-muted);
+    }
+
+    /* ORDER TOTAL BAR */
+    .order-total {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--color-surface-3);
+      border: 1px solid var(--color-border);
+      border-top: none;
+      padding: var(--space-4) var(--space-6);
+      margin-top: 0;
+    }
+    .order-total-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+    .order-total-amount {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: var(--text-lg);
+      color: var(--color-red);
+    }
+
+    /* SECURE STRIPE BADGE */
+    .stripe-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-3);
+      padding: var(--space-3) var(--space-6);
+      margin-top: var(--space-4);
+      border: 1px solid var(--color-border);
+      background: var(--color-surface);
+    }
+    .stripe-badge svg {
+      width: 14px;
+      height: 14px;
+      fill: var(--color-green);
+      flex-shrink: 0;
+    }
+    .stripe-badge-text {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-faint);
+    }
+    .stripe-badge-text strong {
+      color: var(--color-text-muted);
+    }
+
+    /* ── FOOTER ── */
+    .checkout-footer {
+      background: var(--color-bg);
+      border-top: 2px solid var(--color-divider);
+      padding: var(--space-8) var(--space-8) var(--space-10);
+      text-align: center;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-6);
+      margin-bottom: var(--space-5);
+    }
+    .footer-links a {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-faint);
+      transition: color var(--transition);
+    }
+    .footer-links a:hover {
+      color: var(--color-text-muted);
+    }
+    .footer-disclaimer {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      letter-spacing: 0.05em;
+      color: var(--color-text-faint);
+      line-height: 1.8;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    /* RESPONSIBLE GAMBLING BADGES */
+    .rg-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-5);
+      flex-wrap: wrap;
+      padding: var(--space-5) var(--space-8);
+      border-top: 1px solid var(--color-divider);
+      border-bottom: 1px solid var(--color-divider);
+      margin-bottom: var(--space-8);
+    }
+    .rg-badge-18 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border: 2px solid var(--color-text-faint);
+      border-radius: 50%;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--color-text-faint);
+      letter-spacing: 0;
+      flex-shrink: 0;
+    }
+    .rg-badge-gam {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-2) var(--space-4);
+      background: #00855A;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+    .rg-badge-gam-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    .rg-badge-gam-when {
+      font-family: var(--font-mono);
+      font-size: 0.55rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
+    }
+    .rg-badge-gam-name {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+    .rg-badge-gam svg {
+      width: 18px;
+      height: 18px;
+      fill: #fff;
+      flex-shrink: 0;
+    }
+    .rg-divider {
+      width: 1px;
+      height: 32px;
+      background: var(--color-border);
+    }
+    .rg-helpline {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-faint);
+      text-align: center;
+      line-height: 1.6;
+    }
+    .rg-helpline strong {
+      color: var(--color-text-muted);
+      display: block;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 560px) {
+      .field-row { grid-template-columns: 1fr; }
+      .offer-stats { grid-template-columns: repeat(3, 1fr); }
+      .trust-row { gap: var(--space-2); }
+      .footer-links { flex-wrap: wrap; gap: var(--space-4); }
+    }
+  </style>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VHWHK7D2QR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VHWHK7D2QR');
+  </script>
+  <!-- Ahrefs Analytics -->
+  <script src="https://analytics.ahrefs.com/analytics.js" data-key="your-ahrefs-key" async></script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="checkout-header">
+    <a href="https://raceoftheday.com" class="header-logo">Race <span>Of The</span> Day</a>
+    <div class="header-secure">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 4l6 2.67V11c0 3.86-2.63 7.47-6 8.93-3.37-1.46-6-5.07-6-8.93V7.67L12 5z"/>
+      </svg>
+      Secure checkout
+    </div>
+  </header>
+
+  <!-- ANNOUNCEMENT STRIP -->
+  <div class="announce-strip">
+    <p><strong>Beta test pricing — £1/month forever.</strong> Hard limit: 100 spots. Closes when full.</p>
+  </div>
+
+  <!-- MAIN -->
+  <main class="checkout-wrap">
+
+    <!-- LEFT: OFFER SUMMARY -->
+    <div class="offer-col">
+
+      <span class="offer-label">Beta Test Membership</span>
+
+      <h1 class="offer-heading">
+        <em>Race Of The Day</em>
+        Daily Racing Tips From 60+ Years Experience
+      </h1>
+
+      <p class="offer-sub">
+        Frank has been reading form for over six decades. One tip per day, delivered by email and WhatsApp, with a direct bet link. No fluff, no hype. Just the selection.
+      </p>
+
+      <!-- PRICE SUMMARY BOX -->
+      <div class="price-summary">
+        <div class="price-summary-header">
+          <span class="price-summary-name">Beta Test Membership</span>
+          <span class="price-summary-amount">£1 <span>/month</span></span>
+        </div>
+        <div class="price-summary-note">
+          <strong>Locked at £1/month forever</strong> for beta members.<br>
+          Standard pricing opens at £39/month after the test window closes.
+        </div>
+        <div class="price-summary-renews">
+          First charge today: £1. Renews monthly at £1. Cancel anytime.
+        </div>
+      </div>
+
+      <!-- WHAT'S INCLUDED -->
+      <span class="included-label">What's included</span>
+      <ul class="included-list">
+        <li><strong>One tip per day</strong>, every racing day — hand-picked by Frank</li>
+        <li><strong>Email delivery</strong> with embedded Betfair bet link</li>
+        <li><strong>WhatsApp group</strong> access for same-day tips</li>
+        <li><strong>Verified public record</strong> — every result tracked at raceoftheday.com/record</li>
+        <li><strong>Beta rate locked for life</strong> — your £1/month never changes</li>
+        <li>Cancel anytime, no questions asked</li>
+      </ul>
+
+      <!-- STATS -->
+      <div class="offer-stats">
+        <div class="offer-stat">
+          <span class="offer-stat-num">60+</span>
+          <span class="offer-stat-label">Years experience</span>
+        </div>
+        <div class="offer-stat">
+          <span class="offer-stat-num">32%</span>
+          <span class="offer-stat-label">Win rate</span>
+        </div>
+        <div class="offer-stat">
+          <span class="offer-stat-num">+14pts</span>
+          <span class="offer-stat-label">Profit per tip</span>
+        </div>
+      </div>
+
+      <!-- TRUST PILLS -->
+      <div class="trust-row">
+        <div class="trust-pill">
+          <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 4l6 2.67V11c0 3.86-2.63 7.47-6 8.93-3.37-1.46-6-5.07-6-8.93V7.67L12 5z"/></svg>
+          Secure payment
+        </div>
+        <div class="trust-pill">
+          <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+          Cancel anytime
+        </div>
+        <div class="trust-pill">
+          <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+          No contracts
+        </div>
+        <div class="trust-pill">
+          <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+          Verified record
+        </div>
+      </div>
+
+      <!-- FRANK QUOTE -->
+      <blockquote class="frank-quote">
+        <p>"I've been doing this for sixty years. I pick one race, one horse, every day. That's all. If you follow the record you'll see it works."</p>
+        <span class="frank-byline"><strong>Frank</strong> — Lead Tipster, Race Of The Day</span>
+      </blockquote>
+
+    </div>
+
+    <!-- RIGHT: FORM -->
+    <div class="form-col">
+
+      <div class="form-card">
+
+        <div class="form-header">
+          <span class="form-header-label">Step 1 of 1 — Your details</span>
+          <h2>Join Now</h2>
+          <p>Beta test rate: £1/month locked for life</p>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════
+             GHL ORDER FORM GOES HERE
+             Delete everything inside .form-fields and
+             paste your GHL embed code in its place.
+             ═══════════════════════════════════════════════ -->
+        <div class="ghl-form-embed">
+
+          <!-- PASTE GHL EMBED CODE HERE -->
+
+          <!-- VISUAL PLACEHOLDER — remove once GHL embed is live -->
+          <div class="form-fields">
+
+            <div class="field-row">
+              <div class="field-group">
+                <label class="field-label" for="first-name">First name</label>
+                <input class="field-input" type="text" id="first-name" placeholder="Frank" />
+              </div>
+              <div class="field-group">
+                <label class="field-label" for="last-name">Last name</label>
+                <input class="field-input" type="text" id="last-name" placeholder="Smith" />
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label" for="email">Email address</label>
+              <input class="field-input" type="email" id="email" placeholder="you@example.com" />
+            </div>
+
+            <div class="field-group">
+              <label class="field-label" for="phone">Mobile number (for WhatsApp tips)</label>
+              <input class="field-input" type="tel" id="phone" placeholder="+44 7700 000000" />
+            </div>
+
+            <div class="field-divider"></div>
+
+            <span class="card-icons-label">Payment details</span>
+            <div class="card-icons">
+              <span class="card-icon">Visa</span>
+              <span class="card-icon">MC</span>
+              <span class="card-icon">Amex</span>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label" for="card-number">Card number</label>
+              <input class="field-input" type="text" id="card-number" placeholder="1234 5678 9012 3456" />
+            </div>
+
+            <div class="field-row">
+              <div class="field-group">
+                <label class="field-label" for="expiry">Expiry</label>
+                <input class="field-input" type="text" id="expiry" placeholder="MM / YY" />
+              </div>
+              <div class="field-group">
+                <label class="field-label" for="cvc">CVC</label>
+                <input class="field-input" type="text" id="cvc" placeholder="123" />
+              </div>
+            </div>
+
+            <button class="submit-btn" type="button">
+              Start for £1/month &rarr;
+            </button>
+
+          </div>
+          <!-- END VISUAL PLACEHOLDER -->
+
+        </div>
+
+        <div class="form-legal">
+          By joining you agree to our <a href="https://raceoftheday.com/terms.html">Terms &amp; Conditions</a> and <a href="https://raceoftheday.com/privacy-policy.html">Privacy Policy</a>.<br>
+          18+ only. Gambling involves risk. Tips are for information only.<br>
+          Please gamble responsibly — <a href="https://www.begambleaware.org" target="_blank" rel="noopener">BeGambleAware.org</a> &bull; 0808 8020 133
+        </div>
+
+      </div>
+
+      <!-- ORDER TOTAL -->
+      <div class="order-total">
+        <span class="order-total-label">Due today</span>
+        <span class="order-total-amount">£1.00</span>
+      </div>
+
+      <!-- STRIPE BADGE -->
+      <div class="stripe-badge">
+        <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 4l6 2.67V11c0 3.86-2.63 7.47-6 8.93-3.37-1.46-6-5.07-6-8.93V7.67L12 5z"/></svg>
+        <span class="stripe-badge-text">Payments secured by <strong>Stripe</strong>. Your card details are never stored.</span>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="checkout-footer">
+
+    <!-- RESPONSIBLE GAMBLING BAR -->
+    <div class="rg-bar">
+      <!-- 18+ badge -->
+      <div class="rg-badge-18" title="18+ only">18+</div>
+
+      <div class="rg-divider"></div>
+
+      <!-- BeGambleAware -->
+      <a class="rg-badge-gam" href="https://www.begambleaware.org" target="_blank" rel="noopener" title="BeGambleAware.org">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+        </svg>
+        <div class="rg-badge-gam-text">
+          <span class="rg-badge-gam-when">When the fun stops</span>
+          <span class="rg-badge-gam-name">Stop. BeGambleAware</span>
+        </div>
+      </a>
+
+      <div class="rg-divider"></div>
+
+      <!-- National Gambling Helpline -->
+      <div class="rg-helpline">
+        <strong>National Gambling Helpline</strong>
+        0808 8020 133 — Free, 24/7
+      </div>
+    </div>
+
+    <nav class="footer-links">
+      <a href="https://raceoftheday.com">Home</a>
+      <a href="https://raceoftheday.com/record.html">Verified Record</a>
+      <a href="https://raceoftheday.com/terms.html">Terms</a>
+      <a href="https://raceoftheday.com/privacy-policy.html">Privacy</a>
+    </nav>
+    <p class="footer-disclaimer">
+      Race Of The Day is a horse racing tipster service. Tips are provided for information and entertainment only and do not constitute financial advice. Past performance is not a guarantee of future results. Please gamble responsibly. 18+ only. If gambling is affecting you or someone you know, visit <a href="https://www.begambleaware.org" target="_blank" rel="noopener">BeGambleAware.org</a> or call 0808 8020 133.
+    </p>
+  </footer>
+
+</body>
+</html>
