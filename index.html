@@ -1354,15 +1354,18 @@
       if (cols.length < 13) continue;
       const outcome = (cols[11] || '').toLowerCase().trim();
       const pts = parseFloat(cols[12]) || 0;
-      if (!outcome) continue;
+      const isWin = outcome === 'win';
+      const isPlace = outcome.startsWith('place');
+      const isLoss = outcome === 'loss';
+      if (!isWin && !isPlace && !isLoss) continue;
       const rk = `${cols[0]}|${cols[1]}|${cols[2]}`; // date|course|time = unique race
       aRaces.add(rk); aPts += pts;
-      if (outcome === 'win')   { aWin.add(rk); aWP.add(rk); }
-      else if (outcome === 'place') { aWP.add(rk); }
+      if (isWin) { aWin.add(rk); aWP.add(rk); }
+      else if (isPlace) { aWP.add(rk); }
       const d = parseDate(cols[0]);
       if (d && d >= cutoff) {
         rRaces.add(rk); rPts += pts; rTips++;
-        if (outcome === 'win') rWins++;
+        if (isWin) rWins++;
       }
     }
     if (aRaces.size === 0) return;

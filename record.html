@@ -614,14 +614,17 @@
         const date = cols[0];
         const outcome = (cols[11] || '').toLowerCase().trim();
         const pts = parseFloat(cols[12]);
-        if (!date || !['win','place','loss'].includes(outcome) || isNaN(pts)) continue;
+        const isWin = outcome === 'win';
+        const isPlace = outcome.startsWith('place');
+        const isLoss = outcome === 'loss';
+        if (!date || (!isWin && !isPlace && !isLoss) || isNaN(pts)) continue;
         const d = parseDateDMY(date);
         if (!d || isNaN(d.getTime())) continue;
 
         totalTips++;
         totalPts += pts;
-        if (outcome === 'win') wins++;
-        if (outcome === 'place') places++;
+        if (isWin) wins++;
+        if (isPlace) places++;
 
         const key = d.getFullYear() * 100 + d.getMonth();
         if (!monthMap[key]) monthMap[key] = { label: monthLabel(d), tips: 0, pts: 0 };
