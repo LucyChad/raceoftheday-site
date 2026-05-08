@@ -19,13 +19,18 @@ exports.handler = async (event) => {
     return { statusCode: 400, body: `Webhook error: ${err.message}` };
   }
 
-  if (stripeEvent.type === 'customer.subscription.created') {
-    const subscription = stripeEvent.data.object;
+  if (stripeEvent.type === 'invoice.payment_succeeded') {
+    const invoice = stripeEvent.data.object;
 
-    const customer = await stripe.customers.retrieve(subscription.customer);
+    // Only trigger on first payment (subscription creation), not renewals
+    if (invoice.billing_reason !== 'subscription_create') {
+      return { statusCode: 200, body: JSON.stringify({ received: true, skipped: 'renewal' }) };
+    }
+
+    const customer = await stripe.customers.retrieve(invoice.customer);
 
     if (!customer.email) {
-      console.error('No email found for customer:', subscription.customer);
+      console.error('No email found for customer:', invoice.customer);
       return { statusCode: 200, body: 'No email found, skipping' };
     }
 
