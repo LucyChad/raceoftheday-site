@@ -1299,8 +1299,11 @@
     if (takenEl) takenEl.textContent = taken;
     if (noteEl) noteEl.textContent = remaining.toLocaleString() + ' spots left · closes 6 June or at 1,000';
     setTimeout(() => { if (fillEl) fillEl.style.width = pct + '%'; }, 200);
-    // Badge counter — shows test spots taken/100
-    const TEST_MAX = 100;
+    // Popup counters
+    const entryRem = document.getElementById('popup-entry-remaining');
+    const waitlistRem = document.getElementById('popup-waitlist-remaining');
+    if (entryRem) entryRem.textContent = remaining;
+    if (waitlistRem) waitlistRem.textContent = remaining;
   })();
 </script>
 
@@ -1457,7 +1460,7 @@
 <div id="entry-popup" class="popup-overlay" role="dialog" aria-modal="true" aria-labelledby="entry-popup-heading" style="display:none;">
   <div class="popup-box popup-box--light">
     <span class="popup-eyebrow popup-eyebrow--dark">Pre-launch membership</span>
-    <h2 id="entry-popup-heading" class="popup-heading popup-heading--dark">53 spots.<br>£9/month.</h2>
+    <h2 id="entry-popup-heading" class="popup-heading popup-heading--dark"><span id="popup-entry-remaining">53</span>/100 spots left at £9.</h2>
     <p class="popup-body popup-body--dark">The lowest price this service will ever be. Closes when the 100 spots are gone.</p>
     <button class="popup-cta" id="entry-popup-close">Got it, show me the site</button>
     <p class="popup-footnote popup-footnote--dark">18+ only · <a href="https://www.begambleaware.org" target="_blank" rel="noopener noreferrer">BeGambleAware.org</a> · 0808 802 0133</p>
@@ -1470,7 +1473,7 @@
 <div id="waitlist-popup" class="popup-overlay" role="dialog" aria-modal="true" aria-labelledby="waitlist-popup-heading" style="display:none;">
   <div class="popup-box popup-box--light">
     <button class="popup-close-x popup-close-x--dark" id="waitlist-close-x" aria-label="Close">&#x2715;</button>
-    <span class="popup-eyebrow popup-eyebrow--dark">Pre-launch · 53 spots remaining</span>
+    <span class="popup-eyebrow popup-eyebrow--dark">Pre-launch · <span id="popup-waitlist-remaining">53</span>/100 spots left</span>
     <h2 id="waitlist-popup-heading" class="popup-heading popup-heading--dark">Join for £9/month.</h2>
     <p class="popup-body popup-body--dark">No trial, no contracts. Cancel anytime. Price rises to £19/month at official launch.</p>
 
