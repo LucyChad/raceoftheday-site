@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Safer Gambling — Race Of The Day</title>
+  <meta name="description" content="Safer gambling information and support resources from Race Of The Day. Warning signs, self-assessment, and links to UK support organisations." />
+  <link rel="canonical" href="https://raceoftheday.com/safer-gambling" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;600;700&family=DM+Mono:wght@400;500&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --color-bg:            #050505;
+      --color-surface:       #0C0C0C;
+      --color-surface-2:     #111111;
+      --color-border:        #333333;
+      --color-divider:       #2D2D2D;
+      --color-text:          #FFFFFF;
+      --color-text-muted:    #D8D8D8;
+      --color-text-faint:    #444444;
+      --color-red:           #FF0066;
+      --color-red-hover:     #CC0052;
+      --color-green:         #4ADE80;
+
+      --text-xs:   clamp(0.75rem,  0.7rem  + 0.25vw, 0.875rem);
+      --text-sm:   clamp(0.875rem, 0.8rem  + 0.35vw, 1rem);
+      --text-base: clamp(1rem,     0.95rem + 0.25vw, 1.125rem);
+      --text-lg:   clamp(1.125rem, 1rem    + 0.75vw, 1.5rem);
+      --text-xl:   clamp(1.5rem,   1.2rem  + 1.25vw, 2.25rem);
+      --text-2xl:  clamp(2rem,     1.2rem  + 2.5vw,  3.5rem);
+
+      --space-2: 0.5rem;  --space-3: 0.75rem; --space-4: 1rem;
+      --space-5: 1.25rem; --space-6: 1.5rem;  --space-8: 2rem;
+      --space-10: 2.5rem; --space-12: 3rem;   --space-16: 4rem;
+      --space-20: 5rem;   --space-24: 6rem;
+
+      --font-display: 'Oswald', 'Arial Narrow', sans-serif;
+      --font-body:    'Poppins', 'Helvetica Neue', sans-serif;
+      --font-mono:    'DM Mono', 'Courier New', monospace;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      --transition: 180ms var(--ease);
+      --content: 860px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 4rem; }
+    body {
+      font-family: var(--font-body);
+      background: var(--color-bg); color: var(--color-text);
+      font-size: var(--text-base); line-height: 1.75; font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h3 {
+      font-family: var(--font-display); font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.02em; line-height: 1.1;
+    }
+    h2 {
+      font-family: var(--font-display); font-weight: 300;
+      text-transform: uppercase; letter-spacing: 0.02em; line-height: 1.1;
+    }
+    p { margin-bottom: var(--space-5); }
+    p:last-child { margin-bottom: 0; }
+    a { color: var(--color-red); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* NAV */
+    header { position: sticky; top: 0; z-index: 100; }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: var(--space-4) var(--space-8);
+      background: rgba(5,5,5,0.97); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--color-divider);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: var(--space-3);
+      text-decoration: none; color: var(--color-text);
+    }
+    .nav-logo-text {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: var(--text-sm); letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .nav-logo-text span { color: var(--color-red); }
+    .nav-back {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.08em; color: var(--color-text-muted);
+      text-decoration: none; text-transform: uppercase;
+      transition: color var(--transition);
+    }
+    .nav-back:hover { color: var(--color-text); text-decoration: none; }
+
+    /* PAGE HEADER */
+    .page-header {
+      padding: var(--space-20) var(--space-8) var(--space-12);
+      background: var(--color-surface);
+      border-bottom: 1px solid var(--color-divider);
+    }
+    .page-header-inner { max-width: var(--content); margin: 0 auto; }
+    .page-label {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--color-red); display: block; margin-bottom: var(--space-4);
+    }
+    .page-title {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: var(--text-2xl); text-transform: uppercase;
+      letter-spacing: 0.02em; line-height: 1.0; margin-bottom: var(--space-6);
+    }
+    .page-intro {
+      font-size: var(--text-base); color: var(--color-text-muted);
+      max-width: 60ch; line-height: 1.8;
+    }
+
+    /* CONTENT */
+    .content { max-width: var(--content); margin: 0 auto; padding: var(--space-16) var(--space-8); }
+
+    /* SECTION */
+    .section { margin-bottom: var(--space-16); }
+    .section:last-child { margin-bottom: 0; }
+    .section-label {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--color-red); display: block; margin-bottom: var(--space-3);
+    }
+    .section-title {
+      font-family: var(--font-display); font-weight: 300;
+      font-size: var(--text-xl); text-transform: uppercase;
+      margin-bottom: var(--space-6);
+      padding-bottom: var(--space-4);
+      border-bottom: 1px solid var(--color-divider);
+    }
+    .section-body {
+      font-size: var(--text-base); color: var(--color-text-muted);
+      line-height: 1.8;
+    }
+    .section-body p { margin-bottom: var(--space-4); }
+    .section-body p:last-child { margin-bottom: 0; }
+    .section-body a { color: var(--color-text); text-decoration: underline; text-underline-offset: 3px; }
+    .section-body a:hover { color: var(--color-red); }
+    .section-body strong { color: var(--color-text); font-weight: 500; }
+
+    /* WARNING SIGNS GRID */
+    .warning-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: var(--space-4);
+      margin-top: var(--space-6);
+    }
+    .warning-card {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      padding: var(--space-5) var(--space-6);
+    }
+    .warning-card-icon {
+      font-size: 1.5rem; margin-bottom: var(--space-3);
+      display: block; line-height: 1;
+    }
+    .warning-card-text {
+      font-family: var(--font-body); font-size: var(--text-sm);
+      font-weight: 400; color: var(--color-text-muted); line-height: 1.6;
+    }
+
+    /* SELF-ASSESSMENT CTA */
+    .assess-block {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-left: 3px solid var(--color-red);
+      border-radius: 4px;
+      padding: var(--space-8);
+      margin-top: var(--space-6);
+      display: flex; align-items: flex-start;
+      gap: var(--space-6); flex-wrap: wrap;
+    }
+    .assess-copy { flex: 1; min-width: 200px; }
+    .assess-copy p {
+      font-size: var(--text-sm); color: var(--color-text-muted);
+      line-height: 1.7; margin-bottom: 0;
+    }
+    .assess-copy strong { color: var(--color-text); font-size: var(--text-base); display: block; margin-bottom: var(--space-2); }
+    .assess-btn {
+      display: inline-flex; align-items: center;
+      font-family: var(--font-body); font-size: var(--text-sm); font-weight: 500;
+      letter-spacing: 0.03em; padding: 0.75rem 1.5rem;
+      background: var(--color-red); color: #fff;
+      border-radius: 100px; text-decoration: none;
+      transition: background var(--transition); white-space: nowrap;
+      flex-shrink: 0; align-self: center;
+    }
+    .assess-btn:hover { background: var(--color-red-hover); text-decoration: none; }
+
+    /* TIPS LIST */
+    .tips-list {
+      list-style: none; padding: 0; margin-top: var(--space-6);
+      display: flex; flex-direction: column; gap: var(--space-3);
+    }
+    .tips-list li {
+      display: flex; align-items: flex-start; gap: var(--space-4);
+      font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.6;
+    }
+    .tips-list li::before {
+      content: '';
+      display: block; flex-shrink: 0;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--color-red);
+      margin-top: 0.55em;
+    }
+
+    /* COMMITMENT BLOCK */
+    .commitment-list {
+      list-style: none; padding: 0; margin-top: var(--space-6);
+      display: flex; flex-direction: column; gap: var(--space-4);
+    }
+    .commitment-item {
+      display: flex; align-items: flex-start; gap: var(--space-4);
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-divider);
+      border-radius: 4px;
+      padding: var(--space-5) var(--space-6);
+    }
+    .commitment-check {
+      font-size: 1.1rem; flex-shrink: 0; margin-top: 0.1em;
+      color: var(--color-green);
+    }
+    .commitment-text {
+      font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.65;
+    }
+    .commitment-text strong { color: var(--color-text); }
+
+    /* SUPPORT ORGS */
+    .orgs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: var(--space-4);
+      margin-top: var(--space-6);
+    }
+    .org-card {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      padding: var(--space-6);
+    }
+    .org-name {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: var(--text-sm); text-transform: uppercase;
+      letter-spacing: 0.04em; color: var(--color-text);
+      margin-bottom: var(--space-2);
+    }
+    .org-url {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      color: var(--color-red); letter-spacing: 0.04em;
+      text-decoration: none; display: block; margin-bottom: var(--space-3);
+    }
+    .org-url:hover { text-decoration: underline; }
+    .org-desc {
+      font-size: var(--text-xs); color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+
+    /* HELPLINE BLOCK */
+    .helpline-block {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      padding: var(--space-8) var(--space-8);
+      margin-top: var(--space-6);
+      display: flex; flex-wrap: wrap; gap: var(--space-8);
+    }
+    .helpline-item { display: flex; flex-direction: column; gap: var(--space-1); }
+    .helpline-label {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--color-text-faint);
+    }
+    .helpline-number {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: var(--text-lg); letter-spacing: 0.04em;
+      color: var(--color-text);
+    }
+    .helpline-note {
+      font-size: var(--text-xs); color: var(--color-text-muted);
+    }
+
+    /* AGE BLOCK */
+    .age-block {
+      display: flex; align-items: center; gap: var(--space-6);
+      background: var(--color-surface-2); border: 1px solid var(--color-border);
+      border-radius: 4px; padding: var(--space-6) var(--space-8);
+      margin-top: var(--space-6); flex-wrap: wrap;
+    }
+    .age-badge {
+      font-family: var(--font-display); font-weight: 700; font-size: 2rem;
+      color: #fff; border: 3px solid #fff;
+      padding: 4px 12px; line-height: 1.3; flex-shrink: 0;
+    }
+    .age-text {
+      font-size: var(--text-sm); color: var(--color-text-muted);
+      line-height: 1.7; flex: 1; min-width: 200px;
+    }
+
+    /* RESPONSIBLE GAMBLING BLOCK */
+    .gamble-block {
+      background: #0D0D0D;
+      border-top: 1px solid #1a1a1a;
+      padding: var(--space-10) var(--space-8);
+    }
+    .gamble-inner { max-width: var(--content); margin: 0 auto; }
+    .gamble-logos {
+      display: flex; align-items: center; flex-wrap: wrap;
+      gap: var(--space-5); margin-bottom: var(--space-5);
+    }
+    .gamble-logos img { height: 22px; width: auto; display: block; }
+    .gamble-18plus {
+      font-family: var(--font-body); font-weight: 700; font-size: 0.85rem;
+      color: #fff; border: 2px solid #fff; padding: 1px 6px; line-height: 1.4;
+    }
+    .gamble-link {
+      font-family: var(--font-body); font-size: 0.85rem;
+      color: #fff; text-decoration: underline;
+    }
+    .gamble-helpline {
+      font-family: var(--font-body); font-size: 0.85rem; color: rgba(255,255,255,0.7);
+    }
+    .gamble-helpline strong { color: #fff; }
+    .gamble-disclaimer {
+      font-family: var(--font-body); font-size: 0.75rem;
+      color: rgba(255,255,255,0.55); line-height: 1.7; max-width: 80ch;
+    }
+    .gamble-disclaimer a { color: #fff; text-decoration: underline; }
+
+    /* FOOTER */
+    footer {
+      background: var(--color-bg);
+      padding: var(--space-10) var(--space-8);
+      text-align: center;
+      border-top: 2px solid var(--color-divider);
+    }
+    .disclaimer {
+      font-family: var(--font-mono); font-size: var(--text-xs);
+      color: var(--color-text-faint); letter-spacing: 0.06em;
+    }
+    .disclaimer a { color: var(--color-text-faint); text-decoration: underline; }
+    .disclaimer a:hover { color: var(--color-text); }
+
+    /* RESPONSIVE */
+    @media (max-width: 640px) {
+      .nav { padding: var(--space-4); }
+      .page-header { padding: var(--space-12) var(--space-4) var(--space-8); }
+      .content { padding: var(--space-10) var(--space-4); }
+      .assess-block { flex-direction: column; }
+      .gamble-logos { flex-direction: column; align-items: flex-start; gap: var(--space-3); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<header>
+  <nav class="nav" aria-label="Site navigation">
+    <a href="/" class="nav-logo" aria-label="Race Of The Day home">
+      <img src="/images/logo.svg" alt="Race Of The Day" height="32" />
+    </a>
+    <a href="/" class="nav-back" aria-label="Back to main site">&larr; Back to site</a>
+  </nav>
+</header>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <span class="page-label">Information &amp; Support</span>
+    <h1 class="page-title">Safer Gambling</h1>
+    <p class="page-intro">Racing is something we love. But we know gambling can cause real harm, and we take that seriously. This page is here whenever you — or someone you know — needs it.</p>
+  </div>
+</div>
+
+<main>
+  <div class="content">
+
+    <!-- WARNING SIGNS -->
+    <section class="section" aria-labelledby="warning-title">
+      <span class="section-label">Know The Signs</span>
+      <h2 class="section-title" id="warning-title">Warning Signs Of Problem Gambling</h2>
+      <div class="section-body">
+        <p>Gambling problems rarely announce themselves. They tend to creep in slowly. If any of these feel familiar, it may be time to take a step back and seek support.</p>
+      </div>
+      <div class="warning-grid" role="list">
+        <div class="warning-card" role="listitem">
+          <span class="warning-card-icon" aria-hidden="true">💸</span>
+          <p class="warning-card-text">Spending more than you planned, or more than you can afford to lose</p>
+        </div>
+        <div class="warning-card" role="listitem">
+          <span class="warning-card-icon" aria-hidden="true">🔄</span>
+          <p class="warning-card-text">Chasing losses — placing more bets to try to win back what you've lost</p>
+        </div>
+        <div class="warning-card" role="listitem">
+          <span class="warning-card-icon" aria-hidden="true">🔒</span>
+          <p class="warning-card-text">Hiding your gambling from family or friends, or lying about how much you bet</p>
+        </div>
+        <div class="warning-card" role="listitem">
+          <span class="warning-card-icon" aria-hidden="true">😔</span>
+          <p class="warning-card-text">Gambling to escape stress, anxiety, loneliness or other difficult feelings</p>
+        </div>
+        <div class="warning-card" role="listitem">
+          <span class="warning-card-icon" aria-hidden="true">🧠</span>
+          <p class="warning-card-text">Difficulty stopping or cutting down, even when you want to</p>
+        </div>
+        <div class="warning-card" role="listitem">
+          <span class="warning-card-icon" aria-hidden="true">🏠</span>
+          <p class="warning-card-text">Gambling affecting your finances, relationships, work or mental health</p>
+        </div>
+        <div class="warning-card" role="listitem">
+          <span class="warning-card-icon" aria-hidden="true">⏰</span>
+          <p class="warning-card-text">Spending increasing amounts of time thinking about gambling</p>
+        </div>
+        <div class="warning-card" role="listitem">
+          <span class="warning-card-icon" aria-hidden="true">💳</span>
+          <p class="warning-card-text">Borrowing money, selling possessions, or using credit to fund gambling</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SELF ASSESSMENT -->
+    <section class="section" aria-labelledby="assess-title">
+      <span class="section-label">Take A Moment</span>
+      <h2 class="section-title" id="assess-title">Check In With Yourself</h2>
+      <div class="section-body">
+        <p>GambleAware's free self-assessment tool takes a few minutes and can help you understand your relationship with gambling more clearly. No account needed, completely private.</p>
+      </div>
+      <div class="assess-block">
+        <div class="assess-copy">
+          <strong>GambleAware Self-Assessment</strong>
+          <p>A short quiz that helps identify whether gambling is becoming a problem. Provided free by GambleAware, the UK's leading safer gambling charity.</p>
+        </div>
+        <a href="https://www.begambleaware.org/gambling-problems/do-i-have-a-gambling-problem/" target="_blank" rel="noopener noreferrer" class="assess-btn">Take the quiz &rarr;</a>
+      </div>
+    </section>
+
+    <!-- PRACTICAL TIPS -->
+    <section class="section" aria-labelledby="tips-title">
+      <span class="section-label">Stay In Control</span>
+      <h2 class="section-title" id="tips-title">Practical Tips</h2>
+      <div class="section-body">
+        <p>Most recreational gamblers stay in control by following a few basic principles. If you're not already doing these, they're worth starting now.</p>
+      </div>
+      <ul class="tips-list" role="list">
+        <li>Only bet money you can genuinely afford to lose — not rent, bills or savings</li>
+        <li>Set a budget before you bet, and stick to it regardless of results</li>
+        <li>Never chase a loss. If you've had a losing run, stop — don't try to win it back in one bet</li>
+        <li>Take regular breaks from gambling, even when things are going well</li>
+        <li>Use the deposit limit, time limit and self-exclusion tools your bookmaker provides</li>
+        <li>Don't bet when you're upset, stressed, drunk or trying to escape a problem</li>
+        <li>Treat gambling as entertainment, not as a way to make money</li>
+        <li>Talk to someone if gambling feels like it's getting on top of you</li>
+      </ul>
+    </section>
+
+    <!-- OUR COMMITMENT -->
+    <section class="section" aria-labelledby="commitment-title">
+      <span class="section-label">What We Do</span>
+      <h2 class="section-title" id="commitment-title">Our Commitment To You</h2>
+      <div class="section-body">
+        <p>Race Of The Day is a horse racing analysis service, not a bookmaker. We don't take bets or handle money. But we're still part of the wider racing ecosystem, and we take our responsibilities seriously.</p>
+      </div>
+      <ul class="commitment-list" role="list">
+        <li class="commitment-item">
+          <span class="commitment-check" aria-hidden="true">✓</span>
+          <span class="commitment-text"><strong>Pre-race selections only.</strong> Every tip is published before the race goes off. No retrospective selections, no cherry-picking.</span>
+        </li>
+        <li class="commitment-item">
+          <span class="commitment-check" aria-hidden="true">✓</span>
+          <span class="commitment-text"><strong>Full verified record, always public.</strong> Our complete tip history — wins and losses — is available to view at <a href="/record" style="color:var(--color-red);">raceoftheday.com/record</a> before anyone subscribes.</span>
+        </li>
+        <li class="commitment-item">
+          <span class="commitment-check" aria-hidden="true">✓</span>
+          <span class="commitment-text"><strong>Realistic staking guidance.</strong> We advise members to use small, level stakes. We do not encourage high-risk staking or bet-building.</span>
+        </li>
+        <li class="commitment-item">
+          <span class="commitment-check" aria-hidden="true">✓</span>
+          <span class="commitment-text"><strong>No pressure marketing.</strong> We don't use countdown manipulation, false scarcity or high-pressure tactics to push people into betting more than they should.</span>
+        </li>
+        <li class="commitment-item">
+          <span class="commitment-check" aria-hidden="true">✓</span>
+          <span class="commitment-text"><strong>No subscription to under-18s.</strong> Membership is strictly for adults aged 18 and over. We enforce this across all sign-up channels.</span>
+        </li>
+        <li class="commitment-item">
+          <span class="commitment-check" aria-hidden="true">✓</span>
+          <span class="commitment-text"><strong>Safer gambling resources on every page.</strong> GambleAware links, the National Gambling Helpline number and responsible gambling messaging appear throughout the site.</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- SUPPORT ORGANISATIONS -->
+    <section class="section" aria-labelledby="orgs-title">
+      <span class="section-label">Get Support</span>
+      <h2 class="section-title" id="orgs-title">Support Organisations</h2>
+      <div class="section-body">
+        <p>All of the following offer free, confidential support — for those affected by their own gambling, and for family members and loved ones.</p>
+      </div>
+      <div class="orgs-grid" role="list">
+        <div class="org-card" role="listitem">
+          <p class="org-name">GambleAware</p>
+          <a href="https://www.begambleaware.org" target="_blank" rel="noopener noreferrer" class="org-url">begambleaware.org</a>
+          <p class="org-desc">The UK's leading safer gambling charity. Information, self-assessment tools, and a network of free treatment services.</p>
+        </div>
+        <div class="org-card" role="listitem">
+          <p class="org-name">GamStop</p>
+          <a href="https://www.gamstop.co.uk" target="_blank" rel="noopener noreferrer" class="org-url">gamstop.co.uk</a>
+          <p class="org-desc">The UK's national self-exclusion scheme. Register once to be excluded from all licensed UK gambling sites and apps.</p>
+        </div>
+        <div class="org-card" role="listitem">
+          <p class="org-name">GamCare</p>
+          <a href="https://www.gamcare.org.uk" target="_blank" rel="noopener noreferrer" class="org-url">gamcare.org.uk</a>
+          <p class="org-desc">Free counselling, advice and support for anyone affected by problem gambling. Live chat available.</p>
+        </div>
+        <div class="org-card" role="listitem">
+          <p class="org-name">Gamblers Anonymous</p>
+          <a href="https://www.gamblersanonymous.org.uk" target="_blank" rel="noopener noreferrer" class="org-url">gamblersanonymous.org.uk</a>
+          <p class="org-desc">A fellowship of men and women who share their experience and support each other in recovery from problem gambling.</p>
+        </div>
+        <div class="org-card" role="listitem">
+          <p class="org-name">GamFam</p>
+          <a href="https://www.gamfam.org.uk" target="_blank" rel="noopener noreferrer" class="org-url">gamfam.org.uk</a>
+          <p class="org-desc">Support for families, partners, friends and children affected by someone else's gambling. You don't have to cope alone.</p>
+        </div>
+        <div class="org-card" role="listitem">
+          <p class="org-name">Citizens Advice</p>
+          <a href="https://www.citizensadvice.org.uk" target="_blank" rel="noopener noreferrer" class="org-url">citizensadvice.org.uk</a>
+          <p class="org-desc">Free advice on debt and financial hardship caused by gambling, including options for managing money and creditors.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- HELPLINES -->
+    <section class="section" aria-labelledby="helplines-title">
+      <span class="section-label">Contact</span>
+      <h2 class="section-title" id="helplines-title">Helplines</h2>
+      <div class="section-body">
+        <p>If you need to talk to someone right now, these free helplines are available.</p>
+      </div>
+      <div class="helpline-block" role="list">
+        <div class="helpline-item" role="listitem">
+          <span class="helpline-label">National Gambling Helpline</span>
+          <span class="helpline-number">0808 8020 133</span>
+          <span class="helpline-note">Free to call · 24 hours a day, 7 days a week</span>
+        </div>
+        <div class="helpline-item" role="listitem">
+          <span class="helpline-label">GamCare Live Chat</span>
+          <span class="helpline-number">gamcare.org.uk</span>
+          <span class="helpline-note">Live chat &amp; online support available</span>
+        </div>
+        <div class="helpline-item" role="listitem">
+          <span class="helpline-label">Text Support (Samaritans)</span>
+          <span class="helpline-number">116 123</span>
+          <span class="helpline-note">If you're in crisis — free, confidential, always open</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- AGE VERIFICATION -->
+    <section class="section" aria-labelledby="age-title">
+      <span class="section-label">Age Policy</span>
+      <h2 class="section-title" id="age-title">18+ Only</h2>
+      <div class="age-block">
+        <span class="age-badge" aria-label="18 plus only">18+</span>
+        <p class="age-text">Race Of The Day is strictly for adults aged 18 and over. By subscribing, you confirm that you are of legal gambling age in your jurisdiction. If you are concerned about underage gambling, please visit <a href="https://ygam.org" target="_blank" rel="noopener noreferrer">YGAM.org</a> for resources and support.</p>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- RESPONSIBLE GAMBLING -->
+<div class="gamble-block" role="contentinfo" aria-label="Responsible gambling information">
+  <div class="gamble-inner">
+    <div class="gamble-logos">
+      <a href="https://www.begambleaware.org" target="_blank" rel="noopener noreferrer" aria-label="GambleAware">
+        <img src="/images/gambleaware-white.svg" alt="GambleAware" />
+      </a>
+      <span class="gamble-18plus" aria-label="18 and over only">18+</span>
+      <a href="https://www.begambleaware.org" target="_blank" rel="noopener noreferrer" class="gamble-link">BeGambleAware.org</a>
+      <span class="gamble-helpline">National Gambling Helpline: <strong>0808 8020 133</strong></span>
+    </div>
+    <p class="gamble-disclaimer">Race Of The Day provides horse racing selections for informational and entertainment purposes. Past performance does not guarantee future results. Please bet responsibly. If gambling is affecting you or someone you know, visit <a href="https://www.begambleaware.org" target="_blank" rel="noopener noreferrer">BeGambleAware.org</a> or call the National Gambling Helpline on 0808 8020 133.</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p class="disclaimer">
+    <a href="/privacy-policy">Privacy Policy</a> &nbsp;·&nbsp;
+    <a href="/terms">Terms &amp; Conditions</a> &nbsp;·&nbsp;
+    <a href="https://www.gamstop.co.uk" target="_blank" rel="noopener noreferrer">GamStop.co.uk</a> &nbsp;·&nbsp;
+    &copy; 2026 Horseracing Analytics Ltd
+  </p>
+</footer>
+
+</body>
+</html>
