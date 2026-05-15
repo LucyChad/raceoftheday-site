@@ -3,69 +3,66 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Race Of The Day — Daily Selection</title>
+  <title>Race Of The Day — Daily Selections</title>
   <style>
-    body { margin: 0; padding: 0; background: #111111; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #ffffff; }
+    body { margin: 0; padding: 0; background: #F4F2EE; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #111111; }
     table { border-collapse: collapse; }
-    .wrapper { width: 100%; background: #111111; padding: 0; }
-    .container { max-width: 600px; margin: 0 auto; background: #111111; }
+    .wrapper { width: 100%; background: #F4F2EE; }
+    .container { max-width: 600px; margin: 0 auto; background: #ffffff; }
 
     /* HEADER */
-    .header { background: #050505; padding: 24px 32px; border-bottom: 2px solid #FF0066; }
-    .header-logo { font-family: 'Arial Narrow', Arial, sans-serif; font-weight: 700; font-size: 20px; text-transform: uppercase; letter-spacing: 0.08em; color: #ffffff; text-decoration: none; }
-    .header-date { font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: #888888; margin-top: 4px; }
+    .header { background: #111111; padding: 24px 32px; border-bottom: 3px solid #FF0066; }
+    .header-logo { font-weight: 700; font-size: 20px; text-transform: uppercase; letter-spacing: 0.08em; color: #ffffff; }
+    .header-meta { font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: #888888; margin-top: 4px; }
 
-    /* TODAY'S SELECTION */
-    .selection-block { background: #0C0C0C; border: 1px solid #222222; border-left: 3px solid #FF0066; padding: 28px 32px; margin: 0; }
-    .selection-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: #FF0066; margin-bottom: 8px; display: block; }
-    .selection-horse { font-family: 'Arial Narrow', Arial, sans-serif; font-weight: 700; font-size: 32px; text-transform: uppercase; letter-spacing: 0.02em; line-height: 1; color: #ffffff; margin-bottom: 12px; }
-    .selection-meta { font-size: 13px; color: #BBBBBB; line-height: 1.6; }
-    .selection-meta strong { color: #ffffff; }
+    /* INTRO */
+    .intro-block { padding: 24px 32px 0 32px; background: #ffffff; }
+    .intro-text { font-size: 15px; color: #444444; line-height: 1.7; margin: 0; }
 
-    /* REASONING */
-    .reasoning-block { padding: 28px 32px; background: #111111; border-bottom: 1px solid #1a1a1a; }
-    .reasoning-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: #888888; margin-bottom: 12px; display: block; }
-    .reasoning-body { font-size: 15px; color: #BBBBBB; line-height: 1.8; }
+    /* RACE BLOCK */
+    .race-block { margin: 20px 0 0 0; background: #ffffff; border: 1px solid #e8e8e8; border-left: 3px solid #FF0066; }
+    .race-header { padding: 12px 20px; background: #F4F2EE; border-bottom: 1px solid #e8e8e8; }
+    .race-course { font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: #FF0066; display: block; margin-bottom: 2px; }
+    .race-time { font-size: 17px; font-weight: 700; color: #111111; }
+
+    /* TIP ROW */
+    .tip-row { padding: 12px 20px; border-bottom: 1px solid #f0f0f0; }
+    .tip-row:last-child { border-bottom: none; }
+    .tip-horse { font-size: 16px; font-weight: 700; color: #111111; text-transform: uppercase; letter-spacing: 0.02em; }
+    .tip-details { font-size: 13px; color: #888888; margin-top: 3px; }
+    .tip-details strong { color: #444444; }
 
     /* BET LINKS */
-    .bet-links-block { background: #0C0C0C; padding: 24px 32px; border-bottom: 1px solid #1a1a1a; }
-    .bet-links-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: #888888; margin-bottom: 16px; display: block; }
-    .bet-links-row { display: flex; flex-wrap: wrap; gap: 10px; }
-    .bet-link { display: inline-block; padding: 10px 20px; background: #FF0066; color: #ffffff; text-decoration: none; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; border-radius: 100px; }
-    /* Fallback table layout for email clients */
-    .bet-links-table { width: 100%; }
-    .bet-links-table td { padding: 4px 6px 4px 0; }
+    .bet-links-block { background: #F4F2EE; padding: 20px 32px; margin-top: 24px; border-top: 1px solid #e8e8e8; }
+    .bet-links-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: #888888; margin-bottom: 14px; display: block; }
+    .bet-link { display: inline-block; padding: 9px 16px; background: #FF0066; color: #ffffff; text-decoration: none; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; border-radius: 100px; }
+    .bet-link-secondary { background: #333333; }
 
-    /* YESTERDAY'S RESULT */
-    .result-block { padding: 24px 32px; border-bottom: 1px solid #1a1a1a; }
-    .result-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: #888888; margin-bottom: 12px; display: block; }
-    .result-row { display: flex; align-items: baseline; gap: 12px; }
-    .result-horse { font-size: 15px; font-weight: 700; color: #ffffff; }
-    .result-outcome-win  { font-size: 13px; font-weight: 700; color: #4ADE80; text-transform: uppercase; letter-spacing: 0.08em; }
-    .result-outcome-loss { font-size: 13px; font-weight: 700; color: #888888; text-transform: uppercase; letter-spacing: 0.08em; }
-    .result-pnl { font-size: 13px; color: #BBBBBB; }
+    /* YESTERDAY */
+    .result-block { padding: 20px 32px; border-top: 1px solid #e8e8e8; background: #ffffff; }
+    .result-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: #888888; margin-bottom: 10px; display: block; }
+    .result-horse { font-size: 14px; font-weight: 700; color: #111111; }
+    .result-win  { font-size: 11px; font-weight: 700; color: #15803d; text-transform: uppercase; letter-spacing: 0.08em; margin-left: 8px; }
+    .result-loss { font-size: 11px; font-weight: 700; color: #888888; text-transform: uppercase; letter-spacing: 0.08em; margin-left: 8px; }
+    .result-pnl { font-size: 13px; color: #888888; margin-left: 6px; }
 
-    /* RUNNING P&L */
-    .pnl-block { background: #0C0C0C; padding: 20px 32px; border-bottom: 1px solid #1a1a1a; }
-    .pnl-inner { display: flex; gap: 32px; flex-wrap: wrap; }
-    .pnl-stat-num { font-family: 'Arial Narrow', Arial, sans-serif; font-weight: 700; font-size: 24px; color: #4ADE80; display: block; line-height: 1; }
-    .pnl-stat-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: #888888; margin-top: 4px; display: block; }
+    /* STATS */
+    .stats-block { background: #111111; padding: 20px 32px; border-top: 1px solid #e8e8e8; }
+    .stat-num { font-weight: 700; font-size: 22px; color: #4ADE80; display: block; line-height: 1; }
+    .stat-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: #888888; margin-top: 3px; display: block; }
 
     /* FOOTER */
-    .email-footer { padding: 24px 32px; background: #050505; border-top: 1px solid #1a1a1a; }
-    .email-footer p { font-size: 12px; color: #555555; line-height: 1.6; margin: 0 0 8px 0; }
-    .email-footer a { color: #888888; text-decoration: underline; }
-    .unsubscribe { font-size: 11px; color: #444444; }
+    .email-footer { padding: 20px 32px; background: #F4F2EE; border-top: 1px solid #e8e8e8; }
+    .email-footer p { font-size: 12px; color: #888888; line-height: 1.6; margin: 0 0 8px 0; }
+    .email-footer a { color: #555555; text-decoration: underline; }
 
-    /* GAMBLE BLOCK */
-    .gamble-footer { background: #0D0D0D; border-top: 1px solid #1a1a1a; padding: 24px 32px; }
-    .gamble-footer-logos { margin-bottom: 12px; }
-    .gamble-footer-logos span { font-size: 12px; color: #ffffff; }
-    .gamble-footer-18 { display: inline-block; font-size: 11px; font-weight: 700; color: #fff; border: 1.5px solid #fff; padding: 1px 5px; margin-right: 8px; line-height: 1.4; vertical-align: middle; }
-    .gamble-footer-link { color: #ffffff; text-decoration: underline; font-size: 12px; }
-    .gamble-footer-helpline { font-size: 12px; color: #aaaaaa; margin: 6px 0; }
-    .gamble-footer-disclaimer { font-size: 11px; color: #555555; line-height: 1.7; margin-top: 8px; }
-    .gamble-footer-disclaimer a { color: #888888; text-decoration: underline; }
+    /* GAMBLE */
+    .gamble-footer { background: #111111; border-top: 1px solid #222222; padding: 20px 32px; }
+    .gamble-18 { display: inline-block; font-size: 11px; font-weight: 700; color: #fff; border: 1.5px solid #fff; padding: 1px 5px; margin-right: 8px; line-height: 1.4; vertical-align: middle; }
+    .gamble-link { color: #ffffff; text-decoration: underline; font-size: 12px; }
+    .gamble-helpline { font-size: 12px; color: #aaaaaa; margin: 6px 0; }
+    .gamble-disclaimer { font-size: 11px; color: #666666; line-height: 1.7; margin-top: 8px; }
+    .gamble-disclaimer a { color: #888888; text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -76,96 +73,168 @@
   <tr>
     <td class="header">
       <div class="header-logo">Race Of The Day</div>
-      <div class="header-date">{{date}} &nbsp;·&nbsp; Daily Selection</div>
+      <div class="header-meta">{{date}} &nbsp;·&nbsp; Frank's Daily Selections</div>
     </td>
   </tr>
 
-  <!-- TODAY'S SELECTION -->
+  <!-- INTRO -->
   <tr>
-    <td class="selection-block">
-      <span class="selection-label">Today's selection</span>
-      <div class="selection-horse">{{horse_name}}</div>
-      <div class="selection-meta">
-        <strong>{{race_time}}</strong> &nbsp;·&nbsp; {{course}} &nbsp;·&nbsp; {{race_name}}<br />
-        Advised price: <strong>{{advised_price}}</strong> &nbsp;·&nbsp; Bet type: <strong>{{bet_type}}</strong>
-      </div>
+    <td class="intro-block">
+      <p class="intro-text">{{intro_note}}</p>
     </td>
   </tr>
 
-  <!-- REASONING -->
+  <!-- ==================== -->
+  <!-- RACE 1 — duplicate this block for each race -->
+  <!-- ==================== -->
   <tr>
-    <td class="reasoning-block">
-      <span class="reasoning-label">The reasoning</span>
-      <div class="reasoning-body">{{reasoning}}</div>
+    <td style="padding: 0 32px;">
+      <table class="race-block" width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+          <td class="race-header">
+            <span class="race-course">{{race_1_course}}</span>
+            <span class="race-time">{{race_1_time}}</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="tip-row">
+            <div class="tip-horse">{{race_1_horse_1}}</div>
+            <div class="tip-details">
+              <strong>{{race_1_bet_type_1}}</strong> &nbsp;·&nbsp; Stake: <strong>{{race_1_stake_1}} pts</strong>
+            </div>
+          </td>
+        </tr>
+        <!-- Add more tip rows here if needed -->
+      </table>
     </td>
   </tr>
 
-  <!-- ONE-CLICK BET LINKS -->
+  <!-- ==================== -->
+  <!-- RACE 2 -->
+  <!-- ==================== -->
+  <tr>
+    <td style="padding: 0 32px;">
+      <table class="race-block" width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+          <td class="race-header">
+            <span class="race-course">{{race_2_course}}</span>
+            <span class="race-time">{{race_2_time}}</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="tip-row">
+            <div class="tip-horse">{{race_2_horse_1}}</div>
+            <div class="tip-details">
+              <strong>{{race_2_bet_type_1}}</strong> &nbsp;·&nbsp; Stake: <strong>{{race_2_stake_1}} pts</strong>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  <!-- ==================== -->
+  <!-- RACE 3 -->
+  <!-- ==================== -->
+  <tr>
+    <td style="padding: 0 32px;">
+      <table class="race-block" width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+          <td class="race-header">
+            <span class="race-course">{{race_3_course}}</span>
+            <span class="race-time">{{race_3_time}}</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="tip-row">
+            <div class="tip-horse">{{race_3_horse_1}}</div>
+            <div class="tip-details">
+              <strong>{{race_3_bet_type_1}}</strong> &nbsp;·&nbsp; Stake: <strong>{{race_3_stake_1}} pts</strong>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <!-- Add Race 4–8 blocks here as needed — same structure -->
+
+  <!-- BET LINKS -->
   <tr>
     <td class="bet-links-block">
-      <span class="bet-links-label">Place your bet — one click</span>
-      <table class="bet-links-table" cellpadding="0" cellspacing="0">
+      <span class="bet-links-label">Place your bets — one click</span>
+      <table cellpadding="0" cellspacing="0">
         <tr>
-          <td><a href="{{betfair_link}}" class="bet-link">Betfair</a></td>
-          <td><a href="{{skybet_link}}" class="bet-link">Sky Bet</a></td>
-          <td><a href="{{paddypower_link}}" class="bet-link">Paddy Power</a></td>
-          <td><a href="{{bet365_link}}" class="bet-link">Bet365</a></td>
+          <td style="padding: 4px 8px 4px 0;"><a href="https://www.paddypower.com/horse-racing" class="bet-link">Paddy Power</a></td>
+          <td style="padding: 4px 8px 4px 0;"><a href="https://www.skybet.com/horse-racing" class="bet-link">Sky Bet</a></td>
+          <td style="padding: 4px 8px 4px 0;"><a href="https://www.ladbrokes.com" class="bet-link">Ladbrokes</a></td>
+          <td style="padding: 4px 8px 4px 0;"><a href="https://www.coral.co.uk" class="bet-link">Coral</a></td>
+        </tr>
+        <tr>
+          <td style="padding: 4px 8px 4px 0;"><a href="https://www.williamhill.com" class="bet-link bet-link-secondary">William Hill</a></td>
+          <td style="padding: 4px 8px 4px 0;"><a href="https://www.betfair.com/sport/horse-racing" class="bet-link bet-link-secondary">Betfair</a></td>
+          <td style="padding: 4px 8px 4px 0;"><a href="https://www.bet365.com" class="bet-link bet-link-secondary">Bet365</a></td>
+          <td></td>
         </tr>
       </table>
     </td>
   </tr>
 
-  <!-- YESTERDAY'S RESULT -->
+  <!-- YESTERDAY'S RESULTS -->
   <tr>
     <td class="result-block">
-      <span class="result-label">Yesterday's result</span>
-      <div class="result-row">
-        <span class="result-horse">{{yesterday_horse}}</span>
-        <span class="result-outcome-win">{{yesterday_outcome}}</span>
-        <span class="result-pnl">{{yesterday_pnl}} pts</span>
+      <span class="result-label">Yesterday's results</span>
+      <div style="margin-bottom: 8px;">
+        <span class="result-horse">{{yesterday_horse_1}}</span>
+        <span class="result-win">{{yesterday_outcome_1}}</span>
+        <span class="result-pnl">{{yesterday_pnl_1}} pts</span>
+      </div>
+      <div style="margin-bottom: 8px;">
+        <span class="result-horse">{{yesterday_horse_2}}</span>
+        <span class="result-win">{{yesterday_outcome_2}}</span>
+        <span class="result-pnl">{{yesterday_pnl_2}} pts</span>
       </div>
     </td>
   </tr>
 
-  <!-- RUNNING P&L -->
+  <!-- RUNNING STATS -->
   <tr>
-    <td class="pnl-block">
+    <td class="stats-block">
       <table width="100%" cellpadding="0" cellspacing="0">
         <tr>
-          <td style="padding-right:32px;">
-            <span class="pnl-stat-num">{{running_pts}}</span>
-            <span class="pnl-stat-label">Points profit (12 months)</span>
+          <td style="padding-right: 24px;">
+            <span class="stat-num">{{running_pts}}</span>
+            <span class="stat-label">Points profit</span>
           </td>
-          <td style="padding-right:32px;">
-            <span class="pnl-stat-num">{{win_rate}}</span>
-            <span class="pnl-stat-label">Win rate at SP</span>
+          <td style="padding-right: 24px;">
+            <span class="stat-num">{{win_rate}}</span>
+            <span class="stat-label">Win rate</span>
           </td>
           <td>
-            <span class="pnl-stat-num">{{selections_count}}</span>
-            <span class="pnl-stat-label">Selections this year</span>
+            <span class="stat-num">{{total_selections}}</span>
+            <span class="stat-label">Selections this year</span>
           </td>
         </tr>
       </table>
     </td>
   </tr>
 
-  <!-- EMAIL FOOTER -->
+  <!-- FOOTER -->
   <tr>
     <td class="email-footer">
-      <p>You're receiving this because you're a Race Of The Day member. Questions? Reply to this email or contact us at <a href="mailto:hello@raceoftheday.com">hello@raceoftheday.com</a></p>
-      <p class="unsubscribe"><a href="{{unsubscribe_link}}">Unsubscribe</a> &nbsp;·&nbsp; <a href="https://raceoftheday.com/privacy-policy">Privacy Policy</a> &nbsp;·&nbsp; <a href="https://raceoftheday.com/terms">Terms &amp; Conditions</a></p>
+      <p>You're receiving this because you're a Race Of The Day member. Questions? Reply to this email or write to <a href="mailto:hello@raceoftheday.com">hello@raceoftheday.com</a></p>
+      <p style="font-size:11px; color:#aaaaaa;"><a href="{{unsubscribe_link}}" style="color:#aaaaaa;">Unsubscribe</a> &nbsp;·&nbsp; <a href="https://raceoftheday.com/privacy-policy" style="color:#aaaaaa;">Privacy Policy</a> &nbsp;·&nbsp; <a href="https://raceoftheday.com/terms" style="color:#aaaaaa;">Terms &amp; Conditions</a></p>
     </td>
   </tr>
 
   <!-- RESPONSIBLE GAMBLING -->
   <tr>
     <td class="gamble-footer">
-      <div class="gamble-footer-logos">
-        <span class="gamble-footer-18">18+</span>
-        <a href="https://www.begambleaware.org" class="gamble-footer-link">BeGambleAware.org</a>
+      <div style="margin-bottom: 10px;">
+        <span class="gamble-18">18+</span>
+        <a href="https://www.begambleaware.org" class="gamble-link">BeGambleAware.org</a>
       </div>
-      <p class="gamble-footer-helpline">National Gambling Helpline: <strong style="color:#ffffff;">0808 8020 133</strong></p>
-      <p class="gamble-footer-disclaimer">Race Of The Day provides horse racing selections for informational and entertainment purposes. Past performance does not guarantee future results. Please bet responsibly. If gambling is affecting you or someone you know, visit <a href="https://www.begambleaware.org">BeGambleAware.org</a> or call the National Gambling Helpline on 0808 8020 133.</p>
+      <p class="gamble-helpline">National Gambling Helpline: <strong style="color:#ffffff;">0808 8020 133</strong></p>
+      <p class="gamble-disclaimer">Race Of The Day provides horse racing selections for informational and entertainment purposes. Past performance does not guarantee future results. Please bet responsibly. If gambling is affecting you or someone you know, visit <a href="https://www.begambleaware.org">BeGambleAware.org</a> or call the National Gambling Helpline on 0808 8020 133.</p>
     </td>
   </tr>
 
