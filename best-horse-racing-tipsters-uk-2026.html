@@ -30,7 +30,7 @@
     .key-stat p { font-size: 18px; font-weight: 600; margin: 0; }
     .criteria-list { list-style: none; margin: 0 0 24px 0; }
     .criteria-list li { padding: 10px 0; border-bottom: 1px solid #EBEBEB; padding-left: 20px; position: relative; }
-    .criteria-list li::before { content: '—'; position: absolute; left: 0; color: var(--red); font-weight: 700; }
+    .criteria-list li::before { content: '·'; position: absolute; left: 0; color: var(--red); font-weight: 700; }
     .criteria-list li:last-child { border-bottom: none; }
     .service-card { border: 1px solid #E5E5E5; margin: 32px 0; }
     .service-card-header { background: var(--black); color: var(--white); padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
@@ -115,9 +115,9 @@
   </script>
   <!-- Reddit Pixel -->
   <script>
-  !function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);
-  rdt("init","a2_j0fodda58dya",{optOut:false,useDecimalCurrencyValues:true});
-  rdt("track","PageView");
+  !function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js?pixel_id=a2_j0fodda58dya",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);
+  rdt("init","a2_j0fodda58dya",{useDecimalCurrencyValues:true});
+  rdt("track","PageVisit");
   </script>
   <!-- End Reddit Pixel -->
 </head>
@@ -125,7 +125,7 @@
 
 <nav>
   <a href="/" class="nav-logo"><img src="/images/logo-dark.svg" alt="Race Of The Day" height="28" /></a>
-  <a href="https://buy.stripe.com/3cI4gycD92LgbKU9Eo6AM02" class="nav-cta">Join — £9/month</a>
+  <a href="https://buy.stripe.com/3cI4gycD92LgbKU9Eo6AM02" class="nav-cta">Join, £9/month</a>
 </nav>
 
 <section id="hero">
@@ -296,7 +296,7 @@
       </tr>
       <tr>
         <td><strong>Volume</strong></td>
-        <td>Selective — stated rationale for no-send days</td>
+        <td>Selective, stated rationale for no-send days</td>
         <td>Never a no-send day regardless of card quality</td>
       </tr>
       <tr>

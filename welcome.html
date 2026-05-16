@@ -3,21 +3,40 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>You're in — Race Of The Day</title>
+  <title>You're in · Race Of The Day</title>
   <meta name="robots" content="noindex, nofollow" />
+  <!-- Stripe session lookup (shared by Reddit + Meta pixels for advanced matching) -->
+  <script>
+  (function(){
+    var sid = new URLSearchParams(window.location.search).get('session_id');
+    window.__rotdSessionId = sid && sid.indexOf('cs_') === 0 ? sid : null;
+    window.__rotdSession = window.__rotdSessionId
+      ? fetch('/.netlify/functions/lookup-stripe-session?session_id=' + encodeURIComponent(window.__rotdSessionId))
+          .then(function(r){ return r.ok ? r.json() : null; })
+          .catch(function(){ return null; })
+      : Promise.resolve(null);
+    window.__rotdSessionReady = Promise.race([
+      window.__rotdSession,
+      new Promise(function(res){ setTimeout(function(){ res(null); }, 2000); })
+    ]);
+  })();
+  </script>
   <!-- Reddit Pixel -->
   <script>
-  !function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);
-  rdt("init","a2_j0fodda58dya",{optOut:false,useDecimalCurrencyValues:true});
-  rdt("track","PageView");
+  !function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js?pixel_id=a2_j0fodda58dya",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);
+  window.__rotdSessionReady.then(function(data){
+    var initOpts = { useDecimalCurrencyValues: true };
+    if (data && data.email) initOpts.email = data.email;
+    rdt('init','a2_j0fodda58dya', initOpts);
+    rdt('track','PageVisit');
+    var value = data && data.amount_total ? data.amount_total / 100 : 9.00;
+    var currency = data && data.currency ? data.currency.toUpperCase() : 'GBP';
+    var purchase = { currency: currency, value: value };
+    if (window.__rotdSessionId) purchase.transactionId = window.__rotdSessionId;
+    rdt('track','Purchase', purchase);
+  });
   </script>
   <!-- End Reddit Pixel -->
-  <!-- Reddit Pixel conversion event — fires on successful subscription -->
-  <script>
-    window.addEventListener('load', function(){
-      if(window.rdt){ rdt('track','SignUp',{currency:'GBP',value:9.00}); }
-    });
-  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;700&family=Poppins:wght@300;400&family=DM+Mono:wght@400&display=swap" rel="stylesheet" />
@@ -133,8 +152,22 @@
   t.src=v;s=b.getElementsByTagName(e)[0];
   s.parentNode.insertBefore(t,s)}(window, document,'script',
   'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '1689587619058662');
-  fbq('track', 'PageView');
+  window.__rotdSessionReady.then(function(data){
+    if (data && data.email) {
+      fbq('init', '1689587619058662', { em: data.email });
+    } else {
+      fbq('init', '1689587619058662');
+    }
+    fbq('track', 'PageView');
+    var value = data && data.amount_total ? data.amount_total / 100 : 9.00;
+    var currency = data && data.currency ? data.currency.toUpperCase() : 'GBP';
+    var purchase = { currency: currency, value: value };
+    if (window.__rotdSessionId) {
+      fbq('track', 'Purchase', purchase, { eventID: window.__rotdSessionId });
+    } else {
+      fbq('track', 'Purchase', purchase);
+    }
+  });
   </script>
   <noscript><img height="1" width="1" style="display:none"
   src="https://www.facebook.com/tr?id=1689587619058662&ev=PageView&noscript=1"
@@ -156,7 +189,7 @@
     <div class="steps">
       <div class="step">
         <span class="step-num">01</span>
-        <p class="step-text"><strong>Check your email.</strong> Stripe has sent a payment receipt to the address you used at checkout. Keep this — it confirms your founding rate is locked.</p>
+        <p class="step-text"><strong>Check your email.</strong> Stripe has sent a payment receipt to the address you used at checkout. Keep this, it confirms your founding rate is locked.</p>
       </div>
       <div class="step">
         <span class="step-num">02</span>

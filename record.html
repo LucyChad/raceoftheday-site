@@ -137,7 +137,7 @@
     /* HEADLINE STATS */
     .stats-band { background: var(--color-bg); border-bottom: 1px solid var(--color-divider); }
     .stats-grid {
-      display: grid; grid-template-columns: repeat(4,1fr);
+      display: grid; grid-template-columns: repeat(5,1fr);
       max-width: var(--content); margin: 0 auto;
     }
     .stat-cell {
@@ -326,9 +326,9 @@
     /* RESPONSIVE */
     @media (max-width: 900px) {
       .stats-grid { grid-template-columns: repeat(2,1fr); }
-      .stat-cell:nth-child(2) { border-right: none; }
-      .stat-cell { border-bottom: 1px solid var(--color-divider); }
-      .stat-cell:nth-child(3), .stat-cell:nth-child(4) { border-bottom: none; }
+      .stat-cell { border-bottom: 1px solid var(--color-divider); border-right: 1px solid var(--color-divider); }
+      .stat-cell:nth-child(2n) { border-right: none; }
+      .stat-cell:nth-child(5) { grid-column: 1 / -1; border-right: none; border-bottom: none; }
       .charts-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 640px) {
@@ -391,9 +391,9 @@
   </script>
   <!-- Reddit Pixel -->
   <script>
-  !function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);
-  rdt("init","a2_j0fodda58dya",{optOut:false,useDecimalCurrencyValues:true});
-  rdt("track","PageView");
+  !function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js?pixel_id=a2_j0fodda58dya",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);
+  rdt("init","a2_j0fodda58dya",{useDecimalCurrencyValues:true});
+  rdt("track","PageVisit");
   </script>
   <!-- End Reddit Pixel -->
 </head>
@@ -406,7 +406,7 @@
     </a>
     <div class="nav-right">
       <a href="/" class="nav-back">← Back to home</a>
-      <a href="https://buy.stripe.com/3cI4gycD92LgbKU9Eo6AM02" class="nav-cta">Join — £9/month</a>
+      <a href="https://buy.stripe.com/3cI4gycD92LgbKU9Eo6AM02" class="nav-cta">Join · £9/month</a>
     </div>
   </nav>
 </header>
@@ -433,19 +433,23 @@
 <div class="stats-band">
   <div class="stats-grid">
     <div class="stat-cell">
-      <span class="stat-num pos" id="stat-pnl">—</span>
+      <span class="stat-num pos" id="stat-pnl">...</span>
       <span class="stat-label">Points profit, all time</span>
     </div>
     <div class="stat-cell">
-      <span class="stat-num" id="stat-tips">—</span>
+      <span class="stat-num pos" id="stat-pnl-12m">...</span>
+      <span class="stat-label">Points profit, last 12 months</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-num" id="stat-tips">...</span>
       <span class="stat-label">Selections logged</span>
     </div>
     <div class="stat-cell">
-      <span class="stat-num" id="stat-winrate">—</span>
+      <span class="stat-num" id="stat-winrate">...</span>
       <span class="stat-label">Win rate at SP</span>
     </div>
     <div class="stat-cell">
-      <span class="stat-num" id="stat-placerate">—</span>
+      <span class="stat-num" id="stat-placerate">...</span>
       <span class="stat-label">Win or place rate</span>
     </div>
   </div>
@@ -559,9 +563,9 @@
 <div class="record-cta">
   <div class="record-cta-inner">
     <h2>You've seen the record.<br>Now try it.</h2>
-    <p>£9/month, pre-launch rate. 100 spots total. Full access from day one — daily selections, WhatsApp, one-click bet links, daily results.</p>
+    <p>£9/month, pre-launch rate. 100 spots total. Full access from day one: daily selections, WhatsApp, one-click bet links, daily results.</p>
     <div class="cta-btns">
-      <a href="https://buy.stripe.com/3cI4gycD92LgbKU9Eo6AM02" class="btn-primary">Join — £9/month</a>
+      <a href="https://buy.stripe.com/3cI4gycD92LgbKU9Eo6AM02" class="btn-primary">Join · £9/month</a>
       <a href="/" class="btn-secondary">Back to home</a>
     </div>
   </div>
@@ -588,7 +592,7 @@
 </footer>
 
 <script>
-  // ── RECORD PAGE — ALL DATA LIVE FROM CSV ──────────────────────────────────────
+  // ── RECORD PAGE · ALL DATA LIVE FROM CSV ──────────────────────────────────────
   const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRVxHWVrcFIOSKyOgHKSsNAqb9zqmgexoMWxRmhqB-hlPT9C_fWwGg8rZTIeNbzNjSLsHwAm__FbxB_/pub?gid=1605745152&single=true&output=csv';
   const MONTH_NAMES = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
@@ -645,7 +649,8 @@
       }
 
       const cutoff = threeMonthsAgo();
-      let totalPts = 0, totalTips = 0, wins = 0, places = 0;
+      const cutoff12m = new Date(); cutoff12m.setDate(cutoff12m.getDate() - 365);
+      let totalPts = 0, pts12m = 0, totalTips = 0, wins = 0, places = 0;
       const monthMap = {};
       const recentWinners = [];
 
@@ -664,6 +669,7 @@
 
         totalTips++;
         totalPts += pts;
+        if (d >= cutoff12m) pts12m += pts;
         if (isWin) wins++;
         if (isPlace) places++;
 
@@ -681,9 +687,12 @@
       const pnlEl = document.getElementById('stat-pnl');
       pnlEl.textContent = (totalPts >= 0 ? '+' : '') + totalPts.toFixed(2);
       pnlEl.className = 'stat-num ' + (totalPts >= 0 ? 'pos' : '');
+      const pnl12mEl = document.getElementById('stat-pnl-12m');
+      pnl12mEl.textContent = (pts12m >= 0 ? '+' : '') + pts12m.toFixed(2);
+      pnl12mEl.className = 'stat-num ' + (pts12m >= 0 ? 'pos' : '');
       document.getElementById('stat-tips').textContent = totalTips.toLocaleString();
-      document.getElementById('stat-winrate').textContent = totalTips > 0 ? (wins / totalTips * 100).toFixed(1) + '%' : '—';
-      document.getElementById('stat-placerate').textContent = totalTips > 0 ? ((wins + places) / totalTips * 100).toFixed(1) + '%' : '—';
+      document.getElementById('stat-winrate').textContent = totalTips > 0 ? (wins / totalTips * 100).toFixed(1) + '%' : '...';
+      document.getElementById('stat-placerate').textContent = totalTips > 0 ? ((wins + places) / totalTips * 100).toFixed(1) + '%' : '...';
 
       // ── MONTHLY ARRAY ──────────────────────────────────────────────────────
       const monthly = Object.keys(monthMap).sort((a, b) => a - b)
@@ -781,7 +790,7 @@
       }
 
     } catch (e) {
-      winnersTbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:2rem;font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-faint);">Record loading — please refresh</td></tr>';
+      winnersTbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:2rem;font-family:var(--font-mono);font-size:var(--text-xs);letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-faint);">Record loading, please refresh</td></tr>';
     }
   }
 
