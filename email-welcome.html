@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>You're in — Race Of The Day</title>
+  <style>
+    body { margin: 0; padding: 0; background: #F4F2EE; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #111111; }
+    table { border-collapse: collapse; }
+    .wrapper { width: 100%; background: #F4F2EE; }
+    .container { max-width: 600px; margin: 0 auto; background: #ffffff; }
+
+    /* HEADER */
+    .header { background: #111111; padding: 24px 32px; border-bottom: 3px solid #E8235A; }
+    .header-logo { font-weight: 700; font-size: 20px; text-transform: uppercase; letter-spacing: 0.08em; color: #ffffff; }
+    .header-meta { font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: #888888; margin-top: 4px; }
+
+    /* BODY */
+    .body-block { padding: 32px; background: #ffffff; }
+    .eyebrow { font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: #E8235A; display: block; margin-bottom: 16px; }
+    .h1 { font-size: 36px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em; color: #111111; line-height: 1; margin: 0 0 20px 0; }
+    .intro { font-size: 15px; color: #444444; line-height: 1.7; margin: 0 0 28px 0; }
+
+    /* STEPS */
+    .steps { border: 1px solid #e8e8e8; margin-bottom: 32px; }
+    .step { padding: 16px 20px; border-bottom: 1px solid #e8e8e8; }
+    .step:last-child { border-bottom: none; }
+    .step-inner { display: flex; gap: 16px; }
+    .step-num { font-size: 10px; font-family: 'Courier New', monospace; letter-spacing: 0.1em; color: #E8235A; min-width: 20px; padding-top: 2px; }
+    .step-text { font-size: 14px; color: #444444; line-height: 1.6; }
+    .step-text strong { color: #111111; }
+
+    /* FOOTER */
+    .email-footer { padding: 20px 32px; background: #F4F2EE; border-top: 1px solid #e8e8e8; }
+    .email-footer p { font-size: 12px; color: #888888; line-height: 1.6; margin: 0 0 8px 0; }
+    .email-footer a { color: #555555; text-decoration: underline; }
+
+    /* RESPONSIBLE GAMBLING */
+    .gamble-footer { background: #111111; padding: 20px 32px; border-top: 1px solid #222222; }
+    .gamble-18 { display: inline-block; font-size: 11px; font-weight: 700; color: #fff; border: 1.5px solid #fff; padding: 1px 5px; margin-right: 8px; line-height: 1.4; vertical-align: middle; }
+    .gamble-link { color: #ffffff; text-decoration: underline; font-size: 12px; }
+    .gamble-helpline { font-size: 12px; color: #aaaaaa; margin: 6px 0; }
+    .gamble-disclaimer { font-size: 11px; color: #666666; line-height: 1.7; margin-top: 8px; }
+    .gamble-disclaimer a { color: #888888; text-decoration: underline; }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+<table class="container" width="600" cellpadding="0" cellspacing="0" role="presentation">
+
+  <!-- HEADER -->
+  <tr>
+    <td class="header">
+      <div class="header-logo">Race Of The Day</div>
+      <div class="header-meta">Founding Member Confirmation</div>
+    </td>
+  </tr>
+
+  <!-- BODY -->
+  <tr>
+    <td class="body-block">
+      <span class="eyebrow">You're a founding member</span>
+      <h1 class="h1">You're in.</h1>
+      <p class="intro">Welcome to Race Of The Day. Frank's selections land before racing begins each day — and today you locked in the founding rate, for as long as you stay. Here is what happens next.</p>
+
+      <div class="steps">
+
+        <div class="step">
+          <div class="step-inner">
+            <span class="step-num">01</span>
+            <div class="step-text">
+              <strong>Save our WhatsApp number.</strong> Daily selections arrive via WhatsApp — you must save the number to receive them. We'll send a message shortly to confirm you're set up. Reply to that message so we know you're good to go.
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-inner">
+            <span class="step-num">02</span>
+            <div class="step-text">
+              <strong>Your first selection arrives tomorrow morning.</strong> Before racing begins, Frank's pick lands in WhatsApp and by email. On days when nothing meets the criteria, you'll hear that too.
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-inner">
+            <span class="step-num">03</span>
+            <div class="step-text">
+              <strong>Check your Stripe receipt.</strong> Stripe has sent a payment confirmation to this email address. It confirms your founding rate is locked in. Keep it somewhere safe.
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-inner">
+            <span class="step-num">04</span>
+            <div class="step-text">
+              <strong>Not what you expected? No problem.</strong> Email <a href="mailto:hello@raceoftheday.com" style="color: #111111;">hello@raceoftheday.com</a> within 7 days and we'll cancel with no questions asked.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </td>
+  </tr>
+
+  <!-- FOOTER -->
+  <tr>
+    <td class="email-footer">
+      <p>You're receiving this because you signed up at raceoftheday.com. Questions? Reply to this email or write to <a href="mailto:hello@raceoftheday.com">hello@raceoftheday.com</a></p>
+      <p style="font-size: 11px; color: #aaaaaa;">
+        <a href="{{unsubscribe_link}}" style="color: #aaaaaa;">Unsubscribe</a>
+        &nbsp;·&nbsp;
+        <a href="https://raceoftheday.com/privacy-policy" style="color: #aaaaaa;">Privacy Policy</a>
+        &nbsp;·&nbsp;
+        <a href="https://raceoftheday.com/terms" style="color: #aaaaaa;">Terms &amp; Conditions</a>
+      </p>
+    </td>
+  </tr>
+
+  <!-- RESPONSIBLE GAMBLING -->
+  <tr>
+    <td class="gamble-footer">
+      <div style="margin-bottom: 10px;">
+        <span class="gamble-18">18+</span>
+        <a href="https://www.begambleaware.org" class="gamble-link">BeGambleAware.org</a>
+      </div>
+      <p class="gamble-helpline">National Gambling Helpline: <strong style="color: #ffffff;">0808 8020 133</strong></p>
+      <p class="gamble-disclaimer">
+        Race Of The Day provides horse racing selections for informational and entertainment purposes only.
+        Past performance does not guarantee future results. Please bet responsibly.
+        If gambling is affecting you or someone you know, visit <a href="https://www.begambleaware.org">BeGambleAware.org</a>
+        or call the National Gambling Helpline on 0808 8020 133.
+      </p>
+    </td>
+  </tr>
+
+</table>
+</div>
+</body>
+</html>
